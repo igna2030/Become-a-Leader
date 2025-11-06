@@ -49,7 +49,6 @@ export class BatallaComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  // 💡 HELPER: Obtiene el nombre del tipo traducido (usado en HTML con pipe async)
   getTranslatedTypeName(typeName: string): Observable<string> {
     return this.pokeapi.getLocalizedTypeName(typeName);
   }
@@ -168,11 +167,9 @@ export class BatallaComponent {
               this.rival.push(pokemon);
             }
             
-            // 💡 Localizar nombres y movimientos de todo el equipo rival
             const localizationPromises = this.rival.map(p => this.localizePokemon(p));
             await Promise.all(localizationPromises);
 
-            // Esperamos a que los sprites del equipo rival se asignen
             await this.asignarSprites(this.rival);
             
             this.pokemonRival = this.rival[0];
