@@ -133,7 +133,13 @@
     "moveClass": "Clase",
     "movePower": "Potencia",
     "moveAccuracy": "Precisión",
-    "movePP": "Usos Máximos"
+    "movePP": "Usos Máximos",
+    "species": "Especie del Pokemon",
+    "weak": "Debil",
+    "veryWeak": "Muy debil",
+    "normal": "Normal",
+    "resistance": "Resistente",
+    "inmune": "Inmune"
   },
   "pokemonList": {
     "title": "Lista de Pokemons "
@@ -159,6 +165,8 @@
   },
   "batalla": {
     "title": "¡Ganaste!",
+    "searchPlaceholder": "Ingrese el nombre del pokemon",
+    "pokedexTitle": "Pokedex",
     "defeatTitle": "Perdiste la batalla",
     "victoryMsg": "¡Has ganado la batalla! Sumaste {{puntosGanados}} punto. Puntaje total: {{puntajeNuevo}}. Cargando siguiente batalla...",
     "defeatMsg": "¡Has perdido la batalla! Se guardó tu puntaje final. Puntaje total: {{puntajeNuevo}}.",
@@ -168,6 +176,9 @@
     "fainted": "se ha desmayado!",
     "usedMove": "usó",
     "isDefeated": "ha sido derrotado!",
+    "bossApproachingMsg": "¡Atención! Un poderoso JEFE se acerca... ¡Prepárate para el siguiente duelo!",
+    "bossEngagedMsg": "¡EL JEFE, {{name}}, ha aparecido! ¡Sé valiente, Entrenador!",
+    "rivalAppeared":"Aparecio un rival es un",
     "errorSpriteFetch": "Error al obtener el sprite",
     "status": {
       "loadingBattle": "Iniciando batalla",
@@ -213,7 +224,7 @@
     "gameDeleted": "Juego eliminado:",
     "gameDeleteError": "Error eleminando el juego:"
   },
-    "intro": {
+  "intro": {
     "message": "Bienvenido a Become a Leader. En este proyecto se simulan batallas de Líder Pokémon contra entrenadores, usando un equipo de un mismo tipo. Tu objetivo es acumular la mayor cantidad de victorias y sumar puntos. Recuerda que cuando pierdes, tu partida se elimina y tu puntaje se guarda en la tabla de puntajes. Entrando al juego..."
   }
 }

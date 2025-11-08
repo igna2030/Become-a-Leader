@@ -7,10 +7,12 @@
       <strong>{{ "profile.currentScore" | translate }}:</strong>
       {{ partida?.puntuacion }}
     </p>
+    <p>
+      <app-mini-pokedex></app-mini-pokedex>
+    </p>
   </div>
 
   <div class="batalla-container" *ngIf="pokemonJugador && pokemonRival">
-
     <div class="informacion">
       <div class="pokemon-info rival">
         <h3>{{ transformarPrimeraLetra(pokemonRival.especie) }}</h3>
@@ -83,9 +85,6 @@
         </li>
       </ul>
     </div>
-        <app-mini-pokedex>   </app-mini-pokedex>
-
-
     <div *ngIf="resultado" class="resultado-batalla">
       <p>{{ resultado }}</p>
     </div>

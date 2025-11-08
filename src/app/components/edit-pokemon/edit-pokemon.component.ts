@@ -200,7 +200,6 @@ export class EditPokemonComponent implements OnInit {
     }
   }
 
-  // --- ACTUALIZADO: NUEVO MÉTODO PARA REVERTIR LA TRADUCCIÓN SIN LLAMADAS A LA API PARA MOVIMIENTOS ---
   async deslocalizePokemon(pokemon: Pokemon): Promise<Pokemon> {
     // 1. Crear una copia profunda para modificar el objeto de guardado, no el de la UI
     const pokemonToSave: Pokemon = JSON.parse(JSON.stringify(pokemon));
@@ -243,7 +242,6 @@ export class EditPokemonComponent implements OnInit {
 
     return pokemonToSave;
   }
-  // ---------------------------------------------------------------------
 
   // 💡 Helper de capitalización (mantenido)
   transformarPrimeraLetra(nombre: string): string {

@@ -4,6 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, catchError, of } from 'rxjs';
 import { PokeAPIService } from '../../service/poke-api.service';
 import { FormsModule } from '@angular/forms'; // Required for ngModel
+import { tipos } from '../../interface/tipos';
 
 @Component({
   selector: 'app-mini-pokedex',
@@ -41,11 +42,6 @@ export class MiniPokedexComponent {
     const searchKey = this.searchTerm.toLowerCase().trim();
 
     this.pokeapi.getPokemonDetails(searchKey).pipe(
-      catchError(error => {
-        this.errorMessage = this.translate.instant('batalla.pokemonNotFound');
-        console.error('Search error:', error);
-        return of(null);
-      })
     ).subscribe(async details => {
       if (!details) return;
 

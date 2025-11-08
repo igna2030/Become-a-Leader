@@ -43,29 +43,34 @@ export class PokeAPIService {
     );
   }
   //MOVES
-  getMoveByName(name: string): Observable<any> {
-    const currentLang = this.getCurrentLang();
+getMoveByName(name: string): Observable<any> {
+    const currentLang = this.getCurrentLang();
+    
+    const cleanName = name
+        .split(':')[0]
+        .toLowerCase()
+        .replace(/\s/g, '-');
 
-    return this.http.get<any>(this.url + 'move/' + name).pipe(
-      map((moveData) => {
-        const localizedName = moveData.names.find(
-          (n: any) => n.language.name === currentLang
-        );
+    return this.http.get<any>(this.url + 'move/' + cleanName).pipe(
+      map((moveData) => {
+        const localizedName = moveData.names.find(
+          (n: any) => n.language.name === currentLang
+        );
 
-        const localizedEffect = moveData.effect_entries.find(
-          (e: any) => e.language.name === currentLang
-        );
+        const localizedEffect = moveData.effect_entries.find(
+          (e: any) => e.language.name === currentLang
+        );
 
-        return {
-          ...moveData,
-          name: localizedName ? localizedName.name : moveData.name,
-          effect: localizedEffect
-            ? localizedEffect.effect
-            : 'No effect description found.',
-        };
-      })
-    );
-  }
+        return {
+          ...moveData,
+          name: localizedName ? localizedName.name : moveData.name,
+          effect: localizedEffect
+            ? localizedEffect.effect
+            : 'No effect description found.',
+        };
+      })
+    );
+  }
 
   getMoveLocalizedName(name: string): Observable<string> {
     return this.getMoveByName(name).pipe(

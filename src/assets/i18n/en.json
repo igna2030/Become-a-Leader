@@ -133,7 +133,13 @@
     "moveClass": "Class",
     "movePower": "Power",
     "moveAccuracy": "Accuracy",
-    "movePP": "Max Uses"
+    "movePP": "Max Uses",
+    "species": "Pokemon specie",
+    "weak": "Weak",
+    "veryWeak": "Very weak",
+    "normal": "Normal",
+    "resistance": "Resistance",
+    "inmune": "Inmune"
   },
   "pokemonList": {
     "title": "List of Pokemon "
@@ -159,6 +165,8 @@
   },
   "batalla": {
     "title": "You Won!",
+    "searchPlaceholder": "Enter the pokemon name",
+    "pokedexTitle": "Pokedex",
     "defeatTitle": "Battle Lost",
     "victoryMsg": "You won the battle! You gained {{puntosGanados}} point. Total score: {{puntajeNuevo}}. Loading next battle...",
     "defeatMsg": "You lost the battle! Your final score was saved. Total score: {{puntajeNuevo}}.",
@@ -167,6 +175,9 @@
     "noEffect": "It had no effect...",
     "fainted": "has fainted!",
     "usedMove": "used",
+    "bossApproachingMsg": "¡Beware! a strong boss is aproaching GET READY FOR THE NEXT COMBAT",
+    "bossEngagedMsg": "¡THE BOSS, {{name}}, has appeared! ¡Be brave, Trainer!",
+    "rivalAppeared":"A new rival appeared is",
     "isDefeated": "has been defeated!",
     "errorSpriteFetch": "Error fetching sprite",
     "status": {

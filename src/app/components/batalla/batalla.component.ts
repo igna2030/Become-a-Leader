@@ -29,6 +29,12 @@ export class BatallaComponent {
   ps = inject(PartidaService);
   rs = inject(RankingService);
   translate = inject(TranslateService);
+// Boss battle control
+isBossBattle: boolean = false;
+bossMultiplier: number = 1.5; // Boss stats multiplier
+turnosParaBoss: number = 5;
+
+
 
   // Datos de la batalla
   cambioPokemon: boolean = false;
@@ -154,36 +160,74 @@ export class BatallaComponent {
     
     this.movimientosJugador = this.pokemonJugador?.movimientos!;
   }
+checkBossBattle() {
+    if (this.contadorDeDuelos > 0 && this.contadorDeDuelos % this.turnosParaBoss === 0) {
+        this.isBossBattle = true;
+        console.log(this.translate.instant('batalla.status.bossBattle'));
+        return true;
+    }
+    this.isBossBattle = false;
+    return false;
+}
 
-  generarRival(): Promise<void> {
-    console.log(this.translate.instant('batalla.status.generatingRival'));
-    return new Promise((resolve, reject) => {
-      this.teamService.getPokemons().subscribe(
-        {
-          next: async (data) => {
-            while (this.rival.length < 6) {
-              const pokemon = data[Math.floor(Math.random() * (data.length - 1)) + 1];
-              pokemon.idEntrenador = "rival";
-              this.rival.push(pokemon);
-            }
-            
-            const localizationPromises = this.rival.map(p => this.localizePokemon(p));
-            await Promise.all(localizationPromises);
+// Enhance pokemon stats for boss battles
+enhancePokemonStats(pokemon: Pokemon) {
+    if (!this.isBossBattle) return pokemon;
 
-            await this.asignarSprites(this.rival);
-            
-            this.pokemonRival = this.rival[0];
-            this.movimientosRival = this.pokemonRival.movimientos!;
-            console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
-            resolve();
-          },
-          error: (error: Error) => {
-            console.log(this.translate.instant('batalla.status.errorRivalLoad'), error);
-            reject(error);
-          }
-        })
-    });
-  }
+    const enhancedPokemon = { ...pokemon };
+    enhancedPokemon.estadisticas = {
+        hp: Math.floor(pokemon.estadisticas.hp * this.bossMultiplier),
+        atk: Math.floor(pokemon.estadisticas.atk * this.bossMultiplier),
+        def: Math.floor(pokemon.estadisticas.def * this.bossMultiplier),
+        satk: Math.floor(pokemon.estadisticas.satk * this.bossMultiplier),
+        sdef: Math.floor(pokemon.estadisticas.sdef * this.bossMultiplier),
+        spd: Math.floor(pokemon.estadisticas.spd * this.bossMultiplier)
+    };
+    enhancedPokemon.vidaActual = enhancedPokemon.estadisticas.hp;
+    return enhancedPokemon;
+}
+
+  generarRival(): Promise<void> {
+    console.log(this.translate.instant('batalla.status.generatingRival'));
+    const isBoss = this.checkBossBattle();
+    
+    return new Promise((resolve, reject) => {
+      this.teamService.getPokemons().subscribe(
+        {
+          next: async (data) => {
+            while (this.rival.length < 6) {
+              let pokemon = data[Math.floor(Math.random() * (data.length - 1)) + 1];
+              pokemon.idEntrenador = "rival";
+              if (isBoss) {
+                pokemon = this.enhancePokemonStats(pokemon);
+              }
+              this.rival.push(pokemon);
+            }
+            
+            const localizationPromises = this.rival.map(p => this.localizePokemon(p));
+            await Promise.all(localizationPromises);
+
+            await this.asignarSprites(this.rival);
+            
+            this.pokemonRival = this.rival[0];
+            this.movimientosRival = this.pokemonRival.movimientos!;
+            console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
+            if (isBoss) {
+                    this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
+                        this.mostrarMensajeBatalla(msg);
+                    });
+                } else {
+                    this.mostrarMensajeBatalla(`${this.translate.instant('batalla.rivalAppeared')} ${this.transformarPrimeraLetra(this.pokemonRival.especie)}.`);
+                }
+            resolve();
+          },
+          error: (error: Error) => {
+            console.log(this.translate.instant('batalla.status.errorRivalLoad'), error);
+            reject(error);
+          }
+        })
+    });
+  }
 
   /*---------------------------------------------------------------------------------------------------------------------------------------- */
 
