@@ -6,4 +6,5 @@ export interface Partida {
     fecha_fin?:Date,
     puntuacion:number,
     personaje:Entrenador;
+    dificultad?: 'facil' | 'normal'; 
 }

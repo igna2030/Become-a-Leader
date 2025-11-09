@@ -369,12 +369,12 @@
     },
     {
       "id": "f5d9",
-      "fecha_inicio": "2025-11-07T23:12:39.397Z",
-      "fecha_fin": "2025-11-07T23:12:39.397Z",
-      "puntuacion": 6,
+      "fecha_inicio": "2025-11-08T23:08:17.676Z",
+      "fecha_fin": "2025-11-08T23:08:17.676Z",
+      "puntuacion": 2,
       "personaje": {
         "id": "f5d9",
-        "nombre": "ignacioo",
+        "nombre": "asdasd",
         "tipo": "flying",
         "equipo": [
           {
@@ -720,7 +720,8 @@
             "idEntrenador": "f5d9"
           }
         ]
-      }
+      },
+      "duelosGanados": 2
     }
   ],
   "rankings": [
@@ -745,6 +746,30 @@
     {
       "id": "39fe",
       "nombre": "igna",
+      "usuario": "f5d9",
+      "puntaje": 0
+    },
+    {
+      "id": "6642",
+      "nombre": "ignacio",
+      "usuario": "f5d9",
+      "puntaje": 1
+    },
+    {
+      "id": "0697",
+      "nombre": "sad",
+      "usuario": "f5d9",
+      "puntaje": 4
+    },
+    {
+      "id": "68a7",
+      "nombre": "ddd",
+      "usuario": "f5d9",
+      "puntaje": 7
+    },
+    {
+      "id": "dc18",
+      "nombre": "dasdasdasdasd",
       "usuario": "f5d9",
       "puntaje": 0
     }

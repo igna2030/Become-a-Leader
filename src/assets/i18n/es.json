@@ -95,7 +95,8 @@
   "ranking": {
     "position": "Posición",
     "name": "Nombre",
-    "score": "Puntaje"
+    "score": "Puntaje",
+    "difficulty":"Dificultad"
   },
   "types": {
     "steel": "Acero",
@@ -141,6 +142,13 @@
     "resistance": "Resistente",
     "inmune": "Inmune"
   },
+    "pokedex":{
+    "superEffective":"super efectivo hacia el pokemon",
+    "notVeryEffective":"No muy efectivo hacia el pokemon",
+    "immunities":"inmune",
+    "neutral":"neutral"
+
+  },
   "pokemonList": {
     "title": "Lista de Pokemons "
   },
@@ -180,6 +188,7 @@
     "bossEngagedMsg": "¡EL JEFE, {{name}}, ha aparecido! ¡Sé valiente, Entrenador!",
     "rivalAppeared":"Aparecio un rival es un",
     "errorSpriteFetch": "Error al obtener el sprite",
+    "isSentOut":" se ha enviado",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

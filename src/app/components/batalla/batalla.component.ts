@@ -16,188 +16,202 @@ import { Observable } from 'rxjs';
 import { MiniPokedexComponent } from "../app-mini-pokedex/pokedex";
 
 @Component({
-  selector: 'app-batalla',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, MiniPokedexComponent],
-  templateUrl: './batalla.component.html',
-  styleUrls: ['./batalla.component.css']
+  selector: 'app-batalla',
+  standalone: true,
+  imports: [CommonModule, TranslateModule, MiniPokedexComponent],
+  templateUrl: './batalla.component.html',
+  styleUrls: ['./batalla.component.css']
 })
-
 export class BatallaComponent {
-  pokeapi = inject(PokeAPIService);
-  teamService = inject(TeamService);
-  ps = inject(PartidaService);
-  rs = inject(RankingService);
-  translate = inject(TranslateService);
-// Boss battle control
-isBossBattle: boolean = false;
-bossMultiplier: number = 1.5; // Boss stats multiplier
-turnosParaBoss: number = 5;
+  pokeapi = inject(PokeAPIService);
+  teamService = inject(TeamService);
+  ps = inject(PartidaService);
+  rs = inject(RankingService);
+  translate = inject(TranslateService);
 
+  isBossBattle: boolean = false;
+  bossMultiplier: number = 1.7;
+  turnosParaBoss: number = 5;
 
+  cambioPokemon: boolean = false;
+  duelosGanados: number = 0; 
+  idPartida: string = '';
+  partida: Partida | null = null;
+  jugador?: Entrenador;
+  rival: Pokemon[] = [];
+  pokemonJugador?: Pokemon | null = null;
+  pokemonRival?: Pokemon | null = null;
+  movimientosJugador: Move[] = [];
+  mensajeBatalla: string = '';
+  movimientosRival: Move[] = [];
+  resultado: string = '';
+  mostrarModal: boolean = false;
+  mensajeModal: string = '';
+  UserService = inject(UserService);
 
-  // Datos de la batalla
-  cambioPokemon: boolean = false;
-  contadorDeDuelos: number = 0;
-  idPartida: string = '';
-  partida: Partida | null = null;
-  jugador?: Entrenador;
-  rival: Pokemon[] = [];
-  pokemonJugador?: Pokemon | null = null;
-  pokemonRival?: Pokemon | null = null;
-  movimientosJugador: Move[] = [];
-  mensajeBatalla: string = '';
-  movimientosRival: Move[] = [];
-  resultado: string = '';
-  mostrarModal: boolean = false;
-  mensajeModal: string = '';
-  UserService = inject(UserService);
+  originalEquipoJugador: Pokemon[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  getTranslatedTypeName(typeName: string): Observable<string> {
-    return this.pokeapi.getLocalizedTypeName(typeName);
-  }
+  getTranslatedTypeName(typeName: string): Observable<string> {
+    return this.pokeapi.getLocalizedTypeName(typeName);
+  }
 
-  contadorSumar() {
-    this.contadorDeDuelos += 1;
-  }
+  ngOnInit(): void {
+    this.idPartida = localStorage.getItem('token')!;
+    
+    if (!this.idPartida) {
+      console.error(this.translate.instant('log.errorMissingToken'));
+      this.navegarMenu();
+      return;
+    }
 
-  verificarContador() {
-    if (this.contadorDeDuelos > 3) {
-      this.cambioPokemon = true;
-    }
-  }
+    this.ps.getPartidaByUserId(this.idPartida).subscribe({
+      next: (partida) => {
+        this.partida = partida;
+        
+        if (this.partida) { 
+          console.log('Partida obtenida:', partida);
+          this.jugador = partida?.personaje;
+          
+          this.duelosGanados = (this.partida as any).duelosGanados || 0; 
+          console.log('Duelos Ganados inicializados:', this.duelosGanados);
 
-  ngOnInit(): void {
-    this.idPartida = localStorage.getItem('token')!;
-    this.ps.getPartidaByUserId(this.idPartida).subscribe({
-      next: (partida) => {
-        this.partida = partida;
-        console.log('Partida obtenida:', partida);
-        this.jugador = partida?.personaje;
-        console.log('Entrenador obtenido:', this.jugador);
-        this.iniciarBatalla();
-      },
-      error: (error) => {
-        console.error('Error al obtener la partida', error);
-      }
-    })
-  }
+          console.log('Entrenador obtenido:', this.jugador);
+          this.iniciarBatalla();
+        } else {
+          console.error('Error: Partida no encontrada a pesar de la respuesta exitosa. Redirigiendo.');
+          this.navegarMenu();
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener la partida (404 o error de red). Navegando al menú.', error);
+        this.navegarMenu();
+      }
+    })
+  }
 
-  /**
-   * Convierte el tipo de un movimiento en una clase CSS de tipo de movimiento (en minúsculas).
-   * @param tipo El tipo de movimiento.
-   * @returns La clase de tipo de movimiento.
-   */
-  obtenerClaseTipoMovimiento(tipo: string): string {
-    return tipo.toLocaleLowerCase();
-  }
+  obtenerClaseTipoMovimiento(tipo: string): string {
+    return tipo.toLocaleLowerCase();
+  }
 
-  obtenerUrlSprites(pokemon: Pokemon): Promise<{ front_default: string, back_default: string }> {
-    return new Promise((resolve, reject) => {
-      this.pokeapi.getSpriteByID(pokemon.id).subscribe({
-        next: (data) => {
-          resolve({
-            front_default: data.front_default,
-            back_default: data.back_default
-          });
-        },
-        error: (error: Error) => {
-          reject(this.translate.instant('batalla.errorSpriteFetch'));
-        }
-      });
-    });
-  }
+  obtenerUrlSprites(pokemon: Pokemon): Promise<{ front_default: string, back_default: string }> {
+    return new Promise((resolve, reject) => {
+      this.pokeapi.getSpriteByID(pokemon.id).subscribe({
+        next: (data) => {
+          resolve({
+            front_default: data.front_default,
+            back_default: data.back_default
+          });
+        },
+        error: (error: Error) => {
+          reject(this.translate.instant('batalla.errorSpriteFetch'));
+        }
+      });
+    });
+  }
 
-  async asignarSprites(equipo: Pokemon[] | undefined) {
-    for (const element of equipo || []) {
-      try {
-        const urls = await this.obtenerUrlSprites(element);
-        element.backSprite = urls.back_default;
-        element.frontSprite = urls.front_default;
-      }
-      catch {
-        console.error(this.translate.instant('log.spriteUrlError'));
-      }
-    }
-  }
+  async asignarSprites(equipo: Pokemon[] | undefined) {
+    for (const element of equipo || []) {
+      try {
+        const urls = await this.obtenerUrlSprites(element);
+        element.backSprite = urls.back_default;
+        element.frontSprite = urls.front_default;
+      }
+      catch {
+        console.error(this.translate.instant('log.spriteUrlError'));
+      }
+    }
+  }
 
- 
-  async localizePokemon(pokemon: Pokemon): Promise<void> {
-    const localizedData = await this.pokeapi.getPokemonDetails(pokemon.especie).toPromise();
-    if (localizedData?.name) {
-      pokemon.especie = localizedData.name; 
-      pokemon.localizedName = localizedData.name; 
-    }
-    
-    const movePromises = pokemon.movimientos.map(async (move) => {
-      const localizedName = await this.pokeapi.getMoveLocalizedName(move.nombre).toPromise();
-      if (localizedName) {
-        move.nombre = localizedName; 
-        move.localizedName = localizedName;
-      }
-    });
+  async localizePokemon(pokemon: Pokemon): Promise<void> {
+    const cleanSpeciesName = pokemon.especie.toLowerCase().replace(/[\s\.]/g, '-');
+    
+    const localizedData = await this.pokeapi.getPokemonDetails(cleanSpeciesName).toPromise();
+    if (localizedData?.name) {
+      pokemon.especie = localizedData.name; 
+      pokemon.localizedName = localizedData.name; 
+    }
+    
+    const movePromises = pokemon.movimientos.map(async (move) => {
+      const localizedName = await this.pokeapi.getMoveLocalizedName(move.nombre).toPromise();
+      if (localizedName) {
+        move.nombre = localizedName; 
+        move.localizedName = localizedName;
+      }
+    });
 
-    await Promise.all(movePromises);
-  }
+    await Promise.all(movePromises);
+  }
 
-  async iniciarBatalla() { 
-    console.log(this.translate.instant('batalla.status.loadingBattle'));
-    
-    await this.asignarSprites(this.jugador?.equipo);
-    
-    this.pokemonJugador = this.jugador?.equipo[0];
-    
-    if (this.pokemonJugador) {
-      await this.localizePokemon(this.pokemonJugador);
-    }
-    
-    console.log(this.translate.instant('batalla.status.pokemonPlayer'), this.pokemonJugador);
+  async iniciarBatalla() { 
+    console.log(this.translate.instant('batalla.status.loadingBattle'));
+    
+    await this.asignarSprites(this.jugador?.equipo);
+    
+    if (this.jugador?.equipo) {
+      this.originalEquipoJugador = JSON.parse(JSON.stringify(this.jugador.equipo));
+    }
 
-    // Generar y localizar al rival
-    await this.generarRival();
-    
-    this.movimientosJugador = this.pokemonJugador?.movimientos!;
-  }
-checkBossBattle() {
-    if (this.contadorDeDuelos > 0 && this.contadorDeDuelos % this.turnosParaBoss === 0) {
+    this.pokemonJugador = this.jugador?.equipo[0];
+    
+    if (this.pokemonJugador) {
+      await this.localizePokemon(this.pokemonJugador);
+    }
+    
+    console.log(this.translate.instant('batalla.status.pokemonPlayer'), this.pokemonJugador);
+
+    await this.generarRival();
+    
+    this.movimientosJugador = this.pokemonJugador?.movimientos!;
+  }
+
+  checkBossBattle(): boolean {
+    if (this.duelosGanados > 0 && this.duelosGanados % this.turnosParaBoss === 0) {
         this.isBossBattle = true;
         console.log(this.translate.instant('batalla.status.bossBattle'));
         return true;
     }
     this.isBossBattle = false;
     return false;
-}
+  }
 
-// Enhance pokemon stats for boss battles
-enhancePokemonStats(pokemon: Pokemon) {
+  enhancePokemonStats(pokemon: Pokemon): Pokemon {
     if (!this.isBossBattle) return pokemon;
 
-    const enhancedPokemon = { ...pokemon };
-    enhancedPokemon.estadisticas = {
-        hp: Math.floor(pokemon.estadisticas.hp * this.bossMultiplier),
-        atk: Math.floor(pokemon.estadisticas.atk * this.bossMultiplier),
-        def: Math.floor(pokemon.estadisticas.def * this.bossMultiplier),
-        satk: Math.floor(pokemon.estadisticas.satk * this.bossMultiplier),
-        sdef: Math.floor(pokemon.estadisticas.sdef * this.bossMultiplier),
-        spd: Math.floor(pokemon.estadisticas.spd * this.bossMultiplier)
+    const enhancedPokemon = { 
+      ...pokemon, 
+      estadisticas: { ...pokemon.estadisticas } 
     };
+        
+    enhancedPokemon.estadisticas.hp = Math.floor(pokemon.estadisticas.hp * this.bossMultiplier);
+    enhancedPokemon.estadisticas.atk = Math.floor(pokemon.estadisticas.atk * this.bossMultiplier);
+    enhancedPokemon.estadisticas.def = Math.floor(pokemon.estadisticas.def * this.bossMultiplier);
+    enhancedPokemon.estadisticas.satk = Math.floor(pokemon.estadisticas.satk * this.bossMultiplier);
+    enhancedPokemon.estadisticas.sdef = Math.floor(pokemon.estadisticas.sdef * this.bossMultiplier);
+    enhancedPokemon.estadisticas.spd = Math.floor(pokemon.estadisticas.spd * this.bossMultiplier);
+    
     enhancedPokemon.vidaActual = enhancedPokemon.estadisticas.hp;
     return enhancedPokemon;
-}
+  }
 
   generarRival(): Promise<void> {
     console.log(this.translate.instant('batalla.status.generatingRival'));
-    const isBoss = this.checkBossBattle();
     
+    const isBoss = this.checkBossBattle();
+
     return new Promise((resolve, reject) => {
       this.teamService.getPokemons().subscribe(
         {
           next: async (data) => {
-            while (this.rival.length < 6) {
+            const numRivals = isBoss ? 1 : 6;
+
+            this.rival = [];
+
+            while (this.rival.length < numRivals) {
               let pokemon = data[Math.floor(Math.random() * (data.length - 1)) + 1];
               pokemon.idEntrenador = "rival";
+
               if (isBoss) {
                 pokemon = this.enhancePokemonStats(pokemon);
               }
@@ -211,14 +225,17 @@ enhancePokemonStats(pokemon: Pokemon) {
             
             this.pokemonRival = this.rival[0];
             this.movimientosRival = this.pokemonRival.movimientos!;
+            
             console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
+            
             if (isBoss) {
-                    this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
-                        this.mostrarMensajeBatalla(msg);
-                    });
-                } else {
-                    this.mostrarMensajeBatalla(`${this.translate.instant('batalla.rivalAppeared')} ${this.transformarPrimeraLetra(this.pokemonRival.especie)}.`);
-                }
+                this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
+                    this.mostrarMensajeBatalla(msg);
+                });
+            } else {
+                this.mostrarMensajeBatalla(`${this.translate.instant('batalla.rivalAppeared')} ${this.transformarPrimeraLetra(this.pokemonRival.especie)}.`);
+            }
+            
             resolve();
           },
           error: (error: Error) => {
@@ -229,277 +246,344 @@ enhancePokemonStats(pokemon: Pokemon) {
     });
   }
 
-  /*---------------------------------------------------------------------------------------------------------------------------------------- */
+  batalla(movimientoSeleccionado: Move): void {
+    let atacante: Pokemon;
+    let defensor: Pokemon;
+    let movimientoAtacante: Move;
+    let chequearTurnoDefensor: string;
+    console.log(this.translate.instant('batalla.status.loadingBattle'));
+    if (this.pokemonJugador!.estadisticas.spd >= this.pokemonRival!.estadisticas.spd) {
+      atacante = this.pokemonJugador!;
+      defensor = this.pokemonRival!;
+      chequearTurnoDefensor = this.pokemonRival!.id;
+      movimientoAtacante = movimientoSeleccionado;
+      console.log(this.translate.instant('batalla.status.attackingPlayer'));
+      console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
+    } else {
+      atacante = this.pokemonRival!;
+      defensor = this.pokemonJugador!;
+      chequearTurnoDefensor = this.pokemonJugador!.id;
+      movimientoAtacante = this.generarMovimientoRival();
+      console.log(this.translate.instant('batalla.status.attackingRival'));
+      console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
+    }
+    this.calcularAtaque(movimientoAtacante, atacante, defensor);
+    console.log(this.translate.instant('batalla.status.originalDefenderId'), defensor.id);
+    defensor = this.verificarCambio(defensor);
+    console.log(this.translate.instant('batalla.status.newDefenderId'), defensor.id);
 
-  //METODO GENERAL DE BATALLA, utiliza variables para asignar el pokemon atacante y el pokemon defensor, ademas del movimiento atacante
-  //Dependiendo de la velocidad del pokemon del entrenador y del rival se decidira cual sera el pokemon atacante y el defensor
-  //Luego se calcula el daño del ataque dependiendo del pokemon atacante y defensor y del movimiento que utilice el atacante
-  //Se verifica si el pokemon rival sigue con vida, si es asi se genera un ataque con ese pokemon
-  batalla(movimientoSeleccionado: Move): void {
-    let atacante: Pokemon;
-    let defensor: Pokemon;
-    let movimientoAtacante: Move;
-    let chequearTurnoDefensor: string;
-    console.log(this.translate.instant('batalla.status.loadingBattle'));
-    // Comparar las velocidades
-    if (this.pokemonJugador!.estadisticas.spd >= this.pokemonRival!.estadisticas.spd) {
-      // Si el jugador es igual o más rápido que el rival
-      atacante = this.pokemonJugador!;
-      defensor = this.pokemonRival!;
-      chequearTurnoDefensor = this.pokemonRival!.id;
-      movimientoAtacante = movimientoSeleccionado;
-      console.log(this.translate.instant('batalla.status.attackingPlayer'));
-      console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
-    } else {
-      // Si el rival es más rápido
-      atacante = this.pokemonRival!;
-      defensor = this.pokemonJugador!;
-      chequearTurnoDefensor = this.pokemonJugador!.id;
-      movimientoAtacante = this.generarMovimientoRival();  // Generamos un movimiento aleatorio para el rival
-      console.log(this.translate.instant('batalla.status.attackingRival'));
-      console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
-    }
-    this.calcularAtaque(movimientoAtacante, atacante, defensor);
-    console.log(this.translate.instant('batalla.status.originalDefenderId'), defensor.id);
-    defensor = this.verificarCambio(defensor);
-    console.log(this.translate.instant('batalla.status.newDefenderId'), defensor.id);
+    setTimeout(() => {
+      if (chequearTurnoDefensor === defensor.id) {
+        console.log(this.translate.instant('batalla.status.defenderStanding'));
+        if (defensor === this.pokemonJugador) {
+          movimientoAtacante = movimientoSeleccionado;
+        } else {
+          movimientoAtacante = this.generarMovimientoRival();
+        }
 
-    setTimeout(() => {
-      // Si el defensor sigue en pie, realizar el siguiente ataque
-      if (chequearTurnoDefensor === defensor.id) {
-        console.log(this.translate.instant('batalla.status.defenderStanding'));
-        // Si es el jugador, usa su movimiento seleccionado
-        if (defensor === this.pokemonJugador) {
-          movimientoAtacante = movimientoSeleccionado;
-        } else {
-          movimientoAtacante = this.generarMovimientoRival();
-        }
+        this.calcularAtaque(movimientoAtacante, defensor, atacante);
 
-        // Realizar el siguiente ataque
-        this.calcularAtaque(movimientoAtacante, defensor, atacante);
+        this.verificarCambio(atacante);
+      }
+    }, 2000)
+  }
 
-        // Verificar si el atacante ha sido derrotado
-        this.verificarCambio(atacante);
-      }
-    }, 2000)
-  }
+  generarMovimientoRival(): Move {
+    const movimientosPosibles = this.pokemonRival?.movimientos || [];
+    const indiceAleatorio = Math.floor(Math.random() * movimientosPosibles.length);
+    return movimientosPosibles[indiceAleatorio];
+  }
+  realizarAtaque2(movimiento: Move, atacante: Pokemon, defensor: Pokemon): void {
+    let danio = 0;
 
-  //
-  generarMovimientoRival(): Move {
-    const movimientosPosibles = this.pokemonRival?.movimientos || [];
-    const indiceAleatorio = Math.floor(Math.random() * movimientosPosibles.length);
-    return movimientosPosibles[indiceAleatorio];
-  }
-  realizarAtaque2(movimiento: Move, atacante: Pokemon, defensor: Pokemon): void {
-    let danio = 0;
+    if (movimiento.clase === 'Fisico') {
+      danio = Math.max(atacante.estadisticas.atk - defensor.estadisticas.def, 1);
+    } else if (movimiento.clase === 'Especial') {
+      danio = Math.max(atacante.estadisticas.satk - defensor.estadisticas.sdef, 1);
+    }
 
-    // El cálculo del daño dependerá de la clase del movimiento (físico, especial, estado)
-    if (movimiento.clase === 'Fisico') {
-      danio = Math.max(atacante.estadisticas.atk - defensor.estadisticas.def, 1);
-    } else if (movimiento.clase === 'Especial') {
-      danio = Math.max(atacante.estadisticas.satk - defensor.estadisticas.sdef, 1);
-    }
+    defensor.vidaActual = Math.max(defensor.vidaActual - danio, 0);
 
-    // Aplicamos el daño
-    defensor.vidaActual = Math.max(defensor.vidaActual - danio, 0);
+    console.log(`${atacante.especie} ${this.translate.instant('batalla.usedMove')} ${defensor.especie} con ${movimiento.nombre} causando ${danio} de daño.`);
+  }
 
-    // Mostrar el daño en consola o UI
-    console.log(`${atacante.especie} ${this.translate.instant('batalla.usedMove')} ${defensor.especie} con ${movimiento.nombre} causando ${danio} de daño.`);
-  }
+  verificarCambio(defensor: Pokemon): Pokemon {
+    if (defensor.vidaActual <= 0) {
+      this.mensajeBatalla = `${this.transformarPrimeraLetra(defensor.especie)} ${this.translate.instant('batalla.isDefeated')}`;
+      console.log(this.mensajeBatalla);
 
-  verificarCambio(defensor: Pokemon): Pokemon {
-    if (defensor.vidaActual <= 0) {
+      if (defensor.idEntrenador === this.pokemonJugador?.idEntrenador) {
+        this.jugador?.equipo.shift();
+        if (this.jugador?.equipo.length === 0) {
+          console.log(this.translate.instant('batalla.status.playerTeamDefeated'));
+          this.finalizarBatalla(false);
+          this.duelosGanados = 0; 
+        }
+        if (this.jugador!.equipo.length > 0) {
+          this.pokemonJugador = this.jugador!.equipo[0];
+          this.movimientosJugador = this.pokemonJugador.movimientos!;
+          defensor = this.pokemonJugador;
+          this.localizePokemon(defensor);
+        }
+      } else {
+        this.rival.shift();
+        if (this.rival.length === 0) {
+          console.log(this.translate.instant('batalla.status.rivalTeamDefeated'));
+          
+          if (this.isBossBattle) {
+            this.isBossBattle = false;
+          }
+            
+          this.finalizarBatalla(true);
+        }
+        if (this.rival.length > 0) {
+          this.pokemonRival = this.rival[0];
+          this.movimientosRival = this.pokemonRival.movimientos!;
+          defensor = this.pokemonRival;
+          this.localizePokemon(defensor);
+        }
+      }
+    }
+    return defensor;
+  }
 
-      // Mensaje: {Pokemon} has been defeated!
-      this.mensajeBatalla = `${this.transformarPrimeraLetra(defensor.especie)} ${this.translate.instant('batalla.isDefeated')}`;
-      console.log(this.mensajeBatalla);
+  calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
+    console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
+    const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
+    
+    const nivel = 50;
+    const potencia = movimiento.potencia || 0;
 
-      // Eliminar al defensor de su respectivo equipo (jugador o rival)
-      if (defensor.idEntrenador === this.pokemonJugador?.idEntrenador) {
-        this.jugador?.equipo.shift();
-        if (this.jugador?.equipo.length === 0) {
-          console.log(this.translate.instant('batalla.status.playerTeamDefeated'));
-          this.finalizarBatalla(false);
-          this.contadorDeDuelos = 0;
-        }
-        if (this.jugador!.equipo.length > 0) {
-          this.pokemonJugador = this.jugador!.equipo[0];
-          this.movimientosJugador = this.pokemonJugador.movimientos!;
-          defensor = this.pokemonJugador; // Siguiente Pokémon si hay alguno
-          this.localizePokemon(defensor); // Localizar el nuevo Pokémon
-        }
-      } else {
-        this.rival.shift();
-        if (this.rival.length === 0) {
-          console.log(this.translate.instant('batalla.status.rivalTeamDefeated'));
-          this.finalizarBatalla(true);
-          this.contadorSumar();
-          this.verificarContador();
-        }
-        if (this.rival.length > 0) {
-          this.pokemonRival = this.rival[0];
-          this.movimientosRival = this.pokemonRival.movimientos!;
-          defensor = this.pokemonRival; // Siguiente Pokémon si hay alguno
-          this.localizePokemon(defensor); // Localizar el nuevo Pokémon
-        }
-      }
-    }
-    return defensor;
-  }
+    let ataqueStat = movimiento.clase === 'Fisico' ? atacante.estadisticas.atk : atacante.estadisticas.satk;
+    let defensaStat = movimiento.clase === 'Fisico' ? defensor.estadisticas.def : defensor.estadisticas.sdef;
+    
+    defensaStat = defensaStat === 0 ? 1 : defensaStat; 
 
-  /*-------------------------------------------------------------------------------------------------------------------------*/
-  calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
-    console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
-    const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
-    const daño = Math.floor(((2 * atacante.estadisticas.atk) / defensor.estadisticas.def) * movimiento.potencia * factor);
-    defensor.vidaActual -= daño;
+    let danio = 0;
+    if (movimiento.clase !== 'Estado' && potencia > 0) {
+      danio = Math.floor(
+        ( ( (2 * nivel / 5 + 2) * potencia * (ataqueStat / defensaStat) ) / 50 + 2 ) * factor
+      );
+      danio = Math.max(1, danio);
+    } else if (movimiento.clase === 'Estado') {
+      danio = 0;
+      console.log(`El movimiento ${movimiento.nombre} es de estado y no causa daño.`);
+    }
+    
+    defensor.vidaActual -= danio;
 
-    let efectoMensaje = '';
-    if (factor > 1) {
-      efectoMensaje = this.translate.instant('batalla.superEffective');
-    } else if (factor === 0) {
-      efectoMensaje = this.translate.instant('batalla.noEffect');
-    } else if (factor < 1) {
-      efectoMensaje = this.translate.instant('batalla.notVeryEffective');
-    }
 
-    // Mensaje: {Attacker} used {Move}.
-    // Note: Since 'especie' and 'nombre' are now localized, this works correctly.
-    const baseAtaque = `${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.usedMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}.`;
+    let efectoMensaje = '';
+    if (factor > 1) {
+      efectoMensaje = this.translate.instant('batalla.superEffective');
+    } else if (factor === 0) {
+      efectoMensaje = this.translate.instant('batalla.noEffect');
+    } else if (factor < 1) {
+      efectoMensaje = this.translate.instant('batalla.notVeryEffective');
+    }
 
-    let mensajeAtaque = baseAtaque + (efectoMensaje ? ` ${efectoMensaje}` : '');
+    const baseAtaque = `${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.usedMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}.`;
 
-    this.mostrarMensajeBatalla(mensajeAtaque);
+    let mensajeAtaque = baseAtaque + (efectoMensaje ? ` ${efectoMensaje}` : '');
 
-    if (defensor.vidaActual < 0) {
-      defensor.vidaActual = 0;
-      // Mensaje: {Pokemon} has fainted!
-      const faintedMsg = `${this.transformarPrimeraLetra(defensor.especie)} ${this.translate.instant('batalla.fainted')}`;
-      this.mostrarMensajeBatalla(mensajeAtaque + ` ${faintedMsg}`);
-    }
-  }
+    this.mostrarMensajeBatalla(mensajeAtaque);
 
-  mostrarMensajeBatalla(mensaje: string) {
-    this.mensajeBatalla = mensaje;
-  }
+    if (defensor.vidaActual < 0) {
+      defensor.vidaActual = 0;
+      const faintedMsg = `${this.transformarPrimeraLetra(defensor.especie)} ${this.translate.instant('batalla.fainted')}`;
+      this.mostrarMensajeBatalla(mensajeAtaque + ` ${faintedMsg}`);
+    }
+  }
 
-  calcularEfectividad(tipoAtaque: string, tiposDefensor: string[]): number {
-    console.log(this.translate.instant('batalla.status.calculatingEffectiveness'));
-    console.log(this.translate.instant('batalla.status.attackType'), tipoAtaque);
-    let efectividadTotal = 1;
+  mostrarMensajeBatalla(mensaje: string) {
+    this.mensajeBatalla = mensaje;
+  }
 
-    const tipoAtacante = tipos.find(t => t.name === tipoAtaque.toLowerCase());
-    if (!tipoAtacante) return efectividadTotal;
+  calcularEfectividad(tipoAtaque: string, tiposDefensor: string[]): number {
+    console.log(this.translate.instant('batalla.status.calculatingEffectiveness'));
+    console.log(this.translate.instant('batalla.status.attackType'), tipoAtaque);
+    let efectividadTotal = 1;
 
-    for (const tipoDefensor of tiposDefensor) {
-      console.log(this.translate.instant('batalla.status.defenderType'), tipoDefensor);
-      const efectividad = tipoAtacante.efectivity.find(([tipo, _]) => tipo === tipoDefensor.toLowerCase());
-      if (efectividad) {
-        efectividadTotal *= efectividad[1];
-      } else {
-        efectividadTotal *= 1;
-      }
-    }
-    console.log(this.translate.instant('batalla.status.effectiveness'), efectividadTotal);
-    return efectividadTotal;
-  }
+    const tipoAtacante = tipos.find(t => t.name === tipoAtaque.toLowerCase());
+    if (!tipoAtacante) return efectividadTotal;
 
-  pokemonJugadorRestantes(): number {
-    return this.jugador?.equipo.filter(pokemon => pokemon.vidaActual > 0).length || 0;
-  }
+    for (const tipoDefensor of tiposDefensor) {
+      console.log(this.translate.instant('batalla.status.defenderType'), tipoDefensor);
+      const efectividad = tipoAtacante.efectivity.find(([tipo, _]) => tipo === tipoDefensor.toLowerCase());
+      if (efectividad) {
+        efectividadTotal *= efectividad[1];
+      } else {
+        efectividadTotal *= 1;
+      }
+    }
+    console.log(this.translate.instant('batalla.status.effectiveness'), efectividadTotal);
+    return efectividadTotal;
+  }
 
-  pokemonRivalRestantes(): number {
-    return this.rival?.filter(pokemon => pokemon.vidaActual > 0).length || 0;
-  }
+  pokemonJugadorRestantes(): number {
+    return this.jugador?.equipo.filter(pokemon => pokemon.vidaActual > 0).length || 0;
+  }
 
-  transformarPrimeraLetra(nombre: string): string {
-    if (!nombre) return nombre;
-    return nombre.charAt(0).toUpperCase() + nombre.slice(1);
-  }
+  pokemonRivalRestantes(): number {
+    return this.rival?.filter(pokemon => pokemon.vidaActual > 0).length || 0;
+  }
 
-  finalizarBatalla(ganador: boolean) {
-    let puntajeNuevo = 0;
+  transformarPrimeraLetra(nombre: string): string {
+    if (!nombre) return nombre;
+    return nombre.charAt(0).toUpperCase() + nombre.slice(1);
+  }
 
-    // Usamos subscribe para los mensajes del modal que pueden ser más complejos y se muestran al usuario
-    if (ganador) {
-      puntajeNuevo = (this.partida?.puntuacion ?? 0) + 1;
-      this.resultado = this.translate.instant('batalla.title'); // Establece 'You Won!' o '¡Ganaste!'
+  finalizarBatalla(ganador: boolean) {
+    let puntajeNuevo = 0;
+    
+    if (!this.partida || !this.partida.id || !this.jugador) {
+        console.error('Error: Objeto Partida o Partida ID no disponibles. No se puede actualizar el puntaje.');
+        this.resultado = this.translate.instant('batalla.defeatTitle');
+        this.mensajeModal = this.translate.instant('batalla.errorGameUpdate') || 'Error al guardar la partida. La sesión no es válida.';
+        this.mostrarModal = true;
+        return;
+    }
 
-      // victoryMsg: "You won the battle! You gained {{puntosGanados}} point. Total score: {{puntajeNuevo}}. Loading next battle..."
-      this.translate.get('batalla.victoryMsg', { puntajeNuevo: puntajeNuevo, puntosGanados: 1 }).subscribe(msg => {
-        this.mensajeModal = msg;
-        this.mostrarModal = true;
-      });
+    const partidaId = this.partida.id;
+    const nombreJugador = this.jugador.nombre;
 
-      this.ps.actualizarPuntaje(this.partida?.id!, puntajeNuevo).subscribe({
-        next: (response) => {
-          console.log(this.translate.instant('log.scoreUpdated'), response);
-        },
-        error: (error: Error) => {
-          console.error(this.translate.instant('log.scoreUpdateError'), error);
-        }
-      });
-    } else {
-      const ranking = { nombre: '', usuario: '', puntaje: 0 };
-      puntajeNuevo = this.partida?.puntuacion ?? 0;
-      this.resultado = this.translate.instant('batalla.defeatTitle'); // Establece 'Battle Lost' o 'Perdiste la batalla'
+    if (ganador) {
+      const puntosGanados = this.isBossBattle ? 3 : 1; 
+      puntajeNuevo = (this.partida.puntuacion ?? 0) + puntosGanados;
+      
+      this.duelosGanados++; 
+      
+      this.resultado = this.translate.instant('batalla.title');
+      
+      this.translate.get('batalla.victoryMsg', { puntajeNuevo: puntajeNuevo, puntosGanados: puntosGanados }).subscribe(msg => {
+        this.mensajeModal = msg;
+        this.mostrarModal = true;
+      });
 
-      // defeatMsg: "You lost the battle! Your final score was saved. Total score: {{puntajeNuevo}}"
-      this.translate.get('batalla.defeatMsg', { puntajeNuevo: puntajeNuevo }).subscribe(msg => {
-        this.mensajeModal = msg;
-        this.mostrarModal = true;
-      });
 
-      console.log(this.jugador?.nombre!);
-      console.log(this.partida?.id!);
-      ranking!.nombre = this.jugador?.nombre!;
-      ranking!.usuario = this.partida?.id!;
-      ranking!.puntaje = puntajeNuevo;
+      this.ps.actualizarPuntaje(partidaId, { puntuacion: puntajeNuevo, duelosGanados: this.duelosGanados } as any).subscribe({ 
+        next: (response) => {
+          console.log(this.translate.instant('log.scoreUpdated'), response);
+          this.partida!.puntuacion = puntajeNuevo;
+          (this.partida as any).duelosGanados = this.duelosGanados;
+          
+          this.continuarBatalla();
+        },
+        error: (error: Error) => {
+          console.error(this.translate.instant('log.scoreUpdateError'), error);
+        }
+      });
+      
+      this.isBossBattle = false;
 
-      this.rs.postRanking(ranking!).subscribe({
-        next: (response) => {
-          console.log(this.translate.instant('log.rankingUpdated'), response);
-        },
-        error: (error: Error) => {
-          console.error(this.translate.instant('log.rankingUpdateError'), error);
-        }
-      });
+    } else {
+      const ranking = { nombre: '', usuario: '', puntaje: 0 };
+      puntajeNuevo = this.partida.puntuacion ?? 0;
+      this.resultado = this.translate.instant('batalla.defeatTitle');
 
-      this.ps.eliminarPartida(this.partida?.id!).subscribe({
-        next: (response) => {
-          console.log(this.translate.instant('log.gameDeleted'), response);
-        },
-        error: (error: Error) => {
-          console.error(this.translate.instant('log.gameDeleteError'), error);
-        }
-      });
-    }
-  }
+      this.translate.get('batalla.defeatMsg', { puntajeNuevo: puntajeNuevo }).subscribe(msg => {
+        this.mensajeModal = msg;
+        this.mostrarModal = true;
+      });
 
-  cerrarModal() {
-    const isWin = this.resultado === this.translate.instant('batalla.title');
+      console.log(nombreJugador);
+      console.log(partidaId);
+      ranking!.nombre = nombreJugador;
+      ranking!.usuario = partidaId;
+      ranking!.puntaje = puntajeNuevo;
 
-    // Limpiamos el estado del modal antes de cerrar o navegar
-    this.mostrarModal = false;
-    this.resultado = '';
-    this.mensajeModal = '';
+      this.rs.postRanking(ranking!).subscribe({
+        next: (response) => {
+          console.log(this.translate.instant('log.rankingUpdated'), response);
+        },
+        error: (error: Error) => {
+          console.error(this.translate.instant('log.rankingUpdateError'), error);
+        }
+      });
 
-    if (isWin) {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/batalla']); // Navegar de nuevo a la ruta deseada
-      });
-    }
-    else {
-      this.navegarMenu();
-    }
-  }
+      this.ps.eliminarPartida(partidaId).subscribe({
+        next: (response) => {
+          console.log(this.translate.instant('log.gameDeleted'), response);
+        },
+        error: (error: Error) => {
+          console.error(this.translate.instant('log.gameDeleteError'), error);
+        }
+      });
+    }
+  }
 
-  navegarMenu() {
-    this.router.navigate(['/menu']);
-  }
+  async continuarBatalla() {
+  if (!this.jugador) {
+    console.error('continuarBatalla: jugador no definido, no se puede restaurar el equipo.');
+    return;
+  }
 
-  logout() {
-    this.UserService.logout();
-    this.router.navigate(['']);
-  }
+  if (this.originalEquipoJugador && this.originalEquipoJugador.length) {
+    this.jugador.equipo = this.originalEquipoJugador.map(p => {
+      const nuevo: Pokemon = {
+        ...p,
+        estadisticas: { ...p.estadisticas },
+        movimientos: p.movimientos ? p.movimientos.map(m => ({ ...m })) : [],
+        id: p.id,
+        idEntrenador: p.idEntrenador,
+        especie: p.especie,
+        vidaActual: p.estadisticas.hp,
+        frontSprite: p.frontSprite,
+        backSprite: p.backSprite,
+        localizedName: p.localizedName
+      } as any;
+      return nuevo;
+    });
+
+    this.jugador.equipo.forEach(p => {
+      p.vidaActual = p.estadisticas.hp;
+    });
+
+    this.pokemonJugador = this.jugador.equipo[0];
+    if (this.pokemonJugador) {
+      await this.localizePokemon(this.pokemonJugador);
+      await this.asignarSprites(this.jugador.equipo);
+      this.movimientosJugador = this.pokemonJugador.movimientos!;
+    }
+  } else {
+    if (this.jugador.equipo) {
+      this.jugador.equipo.forEach(p => {
+        p.vidaActual = p.estadisticas.hp;
+      });
+      this.pokemonJugador = this.jugador.equipo[0];
+      if (this.pokemonJugador) {
+        await this.localizePokemon(this.pokemonJugador);
+        this.movimientosJugador = this.pokemonJugador.movimientos!;
+      }
+    }
+  }
+
+  this.pokemonRival = null;
+  this.rival = [];
+  this.mensajeBatalla = this.translate.instant('batalla.status.preparingNextBattle');
+}
+
+  cerrarModal() {
+    const isWin = this.resultado === this.translate.instant('batalla.title');
+
+    this.mostrarModal = false;
+    this.resultado = '';
+    this.mensajeModal = '';
+
+    if (isWin) {
+      this.generarRival();
+    }
+    else {
+      this.navegarMenu();
+    }
+  }
+
+  navegarMenu() {
+    this.router.navigate(['/menu']);
+  }
+
+  logout() {
+    this.UserService.logout();
+    this.router.navigate(['']);
+  }
 }

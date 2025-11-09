@@ -114,7 +114,8 @@
   "ranking": {
     "position": "Position",
     "name": "Name",
-    "score": "Score"
+    "score": "Score",
+    "difficulty":"Difficulty"
   },
   "pokemonDetail": {
     "generalInfo": "General Information",
@@ -140,6 +141,13 @@
     "normal": "Normal",
     "resistance": "Resistance",
     "inmune": "Inmune"
+  },
+  "pokedex":{
+    "superEffective":"super effective against him",
+    "notVeryEffective":"Not very effective against him",
+    "immunities":"inmune",
+    "neutral":"neutral"
+
   },
   "pokemonList": {
     "title": "List of Pokemon "
@@ -180,6 +188,7 @@
     "rivalAppeared":"A new rival appeared is",
     "isDefeated": "has been defeated!",
     "errorSpriteFetch": "Error fetching sprite",
+    "isSentOut":"is sent out",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",
