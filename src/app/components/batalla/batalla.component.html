@@ -1,106 +1,169 @@
 <div class="fondo">
-  <div class="trainer-info">
-    <p>
-      <strong>{{ "profile.name" | translate }}:</strong> {{ jugador?.nombre }}
-    </p>
-    <p>
-      <strong>{{ "profile.currentScore" | translate }}:</strong>
-      {{ partida?.puntuacion }}
-    </p>
-    <p>
-      <app-mini-pokedex></app-mini-pokedex>
-    </p>
-  </div>
-
-  <div class="batalla-container" *ngIf="pokemonJugador && pokemonRival">
-    <div class="informacion">
-      <div class="pokemon-info rival">
-        <h3>{{ transformarPrimeraLetra(pokemonRival.especie) }}</h3>
+    <div class="trainer-info">
         <p>
-          {{ "pokemonDetail.hp" | translate }}: {{ pokemonRival.vidaActual }}/{{
-            pokemonRival.estadisticas.hp
-          }}
+            <strong>{{ "profile.name" | translate }}:</strong> {{ jugador?.nombre }}
         </p>
-        <div class="hp-bar">
-          <div
-            class="hp-bar-inner"
-            [style.width.%]="
-              (pokemonRival.vidaActual / pokemonRival.estadisticas.hp) * 100
-            "
-          ></div>
-        </div>
-        <p>{{ "profile.team" | translate }}: {{ pokemonRivalRestantes() }}</p>
-      </div>
-    </div>
-
-    <div class="batalla">
-      <div class="pokemon-sprite rival">
-        <img
-          [src]="pokemonRival.frontSprite"
-          alt="{{ pokemonRival.especie }}"
-        />
-      </div>
-
-      <div class="pokemon-sprite jugador">
-        <img
-          [src]="pokemonJugador.backSprite"
-          alt="{{ pokemonJugador.especie }}"
-        />
-      </div>
-    </div>
-
-    <div class="informacion">
-      <div class="pokemon-info jugador">
-        <h3>{{ transformarPrimeraLetra(pokemonJugador.especie) }}</h3>
         <p>
-          {{ "pokemonDetail.hp" | translate }}:
-          {{ pokemonJugador.vidaActual }}/{{ pokemonJugador.estadisticas.hp }}
+            <strong>{{ "profile.currentScore" | translate }}:</strong>
+            {{ partida?.puntuacion }}
         </p>
-        <div class="hp-bar">
-          <div
-            class="hp-bar-inner"
-            [style.width.%]="
-              (pokemonJugador.vidaActual / pokemonJugador.estadisticas.hp) * 100
-            "
-          ></div>
+        <p>
+            <app-mini-pokedex></app-mini-pokedex>
+        </p>
+    </div>
+
+    <div class="batalla-container" *ngIf="pokemonJugador && pokemonRival">
+        <div class="informacion">
+            <div class="pokemon-info rival">
+                <h3>{{ transformarPrimeraLetra(pokemonRival.especie) }}</h3>
+                <p>
+                    {{ "pokemonDetail.hp" | translate }}: {{ pokemonRival.vidaActual }}/{{
+                    pokemonRival.estadisticas.hp
+                    }}
+                </p>
+                <div class="hp-bar">
+                    <div
+                        class="hp-bar-inner"
+                        [style.width.%]="
+                            (pokemonRival.vidaActual / pokemonRival.estadisticas.hp) * 100
+                        ">
+                    </div>
+                </div>
+                <p>{{ "profile.team" | translate }}: {{ pokemonRivalRestantes() }}</p>
+            </div>
         </div>
-        <p>{{ "profile.team" | translate }}: {{ pokemonJugadorRestantes() }}</p>
-      </div>
-    </div>
 
-    <div class="container">
-      <div *ngIf="mensajeBatalla" class="mensaje-batalla">
-        <p>{{ mensajeBatalla }}</p>
-      </div>
+        <div class="batalla">
+            <div class="pokemon-sprite rival">
+                <img
+                    [src]="pokemonRival.frontSprite"
+                    alt="{{ pokemonRival.especie }}"
+                />
+            </div>
 
-      <ul class="movimientos-container">
-        <li
-          *ngFor="let movimiento of movimientosJugador"
-          (click)="batalla(movimiento)"
-          class="boton-movimiento"
-          [ngClass]="obtenerClaseTipoMovimiento(movimiento.tipo)"
-        >
-          {{ transformarPrimeraLetra(movimiento.nombre) }} -
-          {{ "pokemonDetail.movePower" | translate }}: {{ movimiento.potencia }}
-        </li>
-      </ul>
+            <div class="pokemon-sprite jugador">
+                <img
+                    [src]="pokemonJugador.backSprite"
+                    alt="{{ pokemonJugador.especie }}"
+                />
+            </div>
+        </div>
+
+        <div class="informacion">
+            <div class="pokemon-info jugador">
+                <h3>{{ transformarPrimeraLetra(pokemonJugador.especie) }}</h3>
+                <p>
+                    {{ "pokemonDetail.hp" | translate }}:
+                    {{ pokemonJugador.vidaActual }}/{{ pokemonJugador.estadisticas.hp }}
+                </p>
+                <div class="hp-bar">
+                    <div
+                        class="hp-bar-inner"
+                        [style.width.%]="
+                            (pokemonJugador.vidaActual / pokemonJugador.estadisticas.hp) * 100
+                        ">
+                    </div>
+                </div>
+                <p>{{ "profile.team" | translate }}: {{ pokemonJugadorRestantes() }}</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div *ngIf="mensajeBatalla" class="mensaje-batalla">
+                <p>{{ mensajeBatalla }}</p>
+            </div>
+
+            <div class="actions-container">
+                
+                <div class="main-battle-menu" *ngIf="!mostrarInventario && !mostrarSeleccionRevivir">
+                    
+                    <ul class="movimientos-container">
+                        <li
+                            *ngFor="let movimiento of movimientosJugador"
+                            (click)="batalla(movimiento)"
+                            class="boton-movimiento"
+                            [ngClass]="obtenerClaseTipoMovimiento(movimiento.tipo)">
+                            {{ transformarPrimeraLetra(movimiento.nombre) }} -
+                            {{ "pokemonDetail.movePower" | translate }}: {{ movimiento.potencia }}
+                        </li>
+                    </ul>
+                    
+                    <div class="additional-controls">
+                        <button class="control-button items-button" (click)="mostrarInventario = true">
+                            {{ 'actions.items' | translate }} ({{ jugador?.items?.length || 0 }})
+                        </button>
+                        
+                        <button 
+                            *ngIf="pokemonDebilitados.length > 0"
+                            class="control-button revive-button"
+                            (click)="mostrarSeleccionRevivir = true"> 
+                            {{ 'actions.revive' | translate }}
+                        </button>
+                        
+                    </div>
+                </div>
+                
+                <div class="inventory-panel" *ngIf="mostrarInventario && !mostrarSeleccionRevivir">
+                    <h2>{{ 'actions.inventory' | translate }}</h2>
+                    
+                    <ul class="item-list">
+                        <li *ngFor="let item of jugador?.items; let i = index" class="item-entry">
+                            <span>{{ transformarPrimeraLetra(item.name) }}</span>
+                            <button 
+                                (click)="usarItemPorIndice(i)" 
+                                class="use-item-button"
+                                [disabled]="!pokemonJugador">
+                                {{ 'actions.use' | translate }}
+                            </button>
+                        </li>
+                        <li *ngIf="!jugador?.items?.length || jugador?.items?.length === 0">{{ 'actions.noItems' | translate }}</li>
+                    </ul>
+                    
+                    <button class="back-button" (click)="mostrarInventario = false">{{ 'actions.back' | translate }}</button>
+                </div>
+                
+                <div class="revive-selection-panel" *ngIf="mostrarSeleccionRevivir">
+                    <h2>{{ 'batalla.selectPokemonToRevive' | translate }}</h2>
+                    <p *ngIf="itemDeRevivirSeleccionado">Usando: {{ transformarPrimeraLetra(itemDeRevivirSeleccionado.name) }}</p>
+                    <p *ngIf="!itemDeRevivirSeleccionado" class="warning-message">
+                       {{ 'batalla.selectReviveItemFirst' | translate }} (Abre inventario y selecciona un Revivir)
+                    </p>
+                    
+                    <div class="fainted-pokemon-list">
+                        <div 
+                             *ngFor="let pokemon of pokemonDebilitados; let i = index" 
+                             (click)="ejecutarRevivir(i)"
+                             class="pokemon-option"
+                             [class.disabled-revive]="!itemDeRevivirSeleccionado">
+                            
+                            <img [src]="pokemon.frontSprite" [alt]="pokemon.especie">
+                            <p>{{ transformarPrimeraLetra(pokemon.localizedName || pokemon.especie) }}</p>
+                            <p>HP: 0/{{ pokemon.estadisticas.hp }}</p>
+                        </div>
+                    </div>
+                    
+                    <button class="back-button" (click)="mostrarSeleccionRevivir = false">{{ 'general.cancel' | translate }}</button>
+                </div>
+
+            </div>
+            
+        </div>
+        <div *ngIf="resultado" class="resultado-batalla">
+            <p>{{ resultado }}</p>
+        </div>
     </div>
-    <div *ngIf="resultado" class="resultado-batalla">
-      <p>{{ resultado }}</p>
-    </div>
-  </div>
 </div>
 
 <div class="modal" *ngIf="mostrarModal">
-  <div class="modal-contenido">
-    <h2>{{ resultado }}</h2>
-    <p>{{ mensajeModal }}</p>
-    <button (click)="cerrarModal()" [translate]="'actions.select'">
-      Aceptar
-    </button>
-  </div>
+    <div class="modal-contenido">
+        <h2>{{ resultado }}</h2>
+        <p>{{ mensajeModal }}</p>
+        <button (click)="cerrarModal()" [translate]="'actions.select'">
+            Aceptar
+        </button>
+    </div>
 </div>
 <div class="BotoncitoLogout">
-  <button type="button" (click)="navegarMenu()">MENU</button>
-  <button type="button" (click)="logout()">LOGOUT</button>
+    <button type="button" (click)="navegarMenu()">MENU</button>
+    <button type="button" (click)="logout()">LOGOUT</button>
 </div>

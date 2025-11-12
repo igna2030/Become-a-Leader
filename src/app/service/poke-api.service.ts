@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, switchMap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Items } from '../interface/items';
 @Injectable({
   providedIn: 'root',
 })
@@ -177,5 +178,13 @@ getMoveByName(name: string): Observable<any> {
         return typeData.name;
       })
     );
+  }
+  getItems():Observable<Items>
+  {
+    return this.http.get<Items>(this.url+"item");
+  }
+  getItemsById(id:number):Observable<Items>
+  {
+    return this.http.get<Items>(this.url+"item/"+id);
   }
 }

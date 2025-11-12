@@ -23,7 +23,12 @@
     "select": "Seleccionar",
     "change": "Cambiar",
     "createGame": "Crear Partida",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "items": "Items",
+    "revive": "Revivir",
+    "inventory": "Inventario",
+    "use": "usar item",
+    "noItems":"No hay items"
   },
   "alerts": {
     "nicknameEmpty": "No puedes dejar el campo vacío.",
@@ -96,7 +101,7 @@
     "position": "Posición",
     "name": "Nombre",
     "score": "Puntaje",
-    "difficulty":"Dificultad"
+    "difficulty": "Dificultad"
   },
   "types": {
     "steel": "Acero",
@@ -142,12 +147,11 @@
     "resistance": "Resistente",
     "inmune": "Inmune"
   },
-    "pokedex":{
-    "superEffective":"super efectivo hacia el pokemon",
-    "notVeryEffective":"No muy efectivo hacia el pokemon",
-    "immunities":"inmune",
-    "neutral":"neutral"
-
+  "pokedex": {
+    "superEffective": "Super efectivo hacia el pokemon",
+    "notVeryEffective": "No muy efectivo hacia el pokemon",
+    "immunities": "inmune",
+    "neutral": "neutral"
   },
   "pokemonList": {
     "title": "Lista de Pokemons "
@@ -186,9 +190,17 @@
     "isDefeated": "ha sido derrotado!",
     "bossApproachingMsg": "¡Atención! Un poderoso JEFE se acerca... ¡Prepárate para el siguiente duelo!",
     "bossEngagedMsg": "¡EL JEFE, {{name}}, ha aparecido! ¡Sé valiente, Entrenador!",
-    "rivalAppeared":"Aparecio un rival es un",
+    "rivalAppeared": "Aparecio un rival es un",
     "errorSpriteFetch": "Error al obtener el sprite",
-    "isSentOut":" se ha enviado",
+    "isSentOut": " se ha enviado",
+    "pokedexError": "Error al cargar el pokemon de la pokedex",
+    "errorGameUpdate": "Error al cargar el juego",
+    "usedItem": "Item usado",
+    "selectTargetFor": "Objetivo seleccionado para revivir",
+    "healed":"se curo",
+    "hp":"Vida",
+    "selectPokemonToRevive":"Elige un pokemon para revivir",
+    "selectReviveItemFirst ":"Primero elige un item de revivir",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",
@@ -207,7 +219,13 @@
       "attackType": "Tipo de ataque:",
       "defenderType": "Tipo de defensor:",
       "effectiveness": "Efectividad:",
-      "errorRivalLoad": "Error al cargar rival"
+      "errorRivalLoad": "Error al cargar rival",
+      "alreadyFullHP": "La vida del pokemon esta completa",
+      "noFainted": "No hay pokemons caidos"
+    },
+    "error":{
+      "invalidAction":"Accion invalida"
+
     }
   },
   "menu": {
@@ -235,5 +253,8 @@
   },
   "intro": {
     "message": "Bienvenido a Become a Leader. En este proyecto se simulan batallas de Líder Pokémon contra entrenadores, usando un equipo de un mismo tipo. Tu objetivo es acumular la mayor cantidad de victorias y sumar puntos. Recuerda que cuando pierdes, tu partida se elimina y tu puntaje se guarda en la tabla de puntajes. Entrando al juego..."
+  },
+  "general":{
+    "cancel":"cancelar"
   }
 }

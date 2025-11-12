@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { tipos } from '../../interface/tipos';
 import { lastValueFrom, Observable } from 'rxjs';
 
-type TypeFactor = { type: string; factor: number; label?: string };
+type TypeFactor = { type: string; factor: number; displayType?: string };
 
 @Component({
   selector: 'app-mini-pokedex',
@@ -23,14 +23,14 @@ export class MiniPokedexComponent {
   searchedPokemonData: {
     name: string;
     localizedName: string;
-    types: string[]; 
-    typesLocalized?: { type: string; label: string }[] | null; 
+    types: string[];
+    typesLocalized?: { type: string; displayType: string }[] | null; 
     spriteUrl: string;
     effectiveness?: {
       immunities: TypeFactor[];
-      superEffective: TypeFactor[];    
-      notEffective: TypeFactor[];      
-      neutral: TypeFactor[];           
+      superEffective: TypeFactor[];
+      notEffective: TypeFactor[];
+      neutral: TypeFactor[];
     };
   } | null = null;
 
@@ -87,20 +87,23 @@ export class MiniPokedexComponent {
         types,
         spriteUrl: spriteData?.front_default || ''
       };
+      
       const typesLocalized = await Promise.all(
         types.map(async t => {
-          const label = await this.getTypeDisplayName(t);
-          return { type: t, label };
+          const displayType = await this.getTypeDisplayName(t); 
+          return { type: t, displayType }; 
         })
       );
       this.searchedPokemonData.typesLocalized = typesLocalized;
+
       const rawEffectiveness = this.computeStrengthsWeaknesses(types);
       await this.localizeEffectiveness(rawEffectiveness);
 
       this.searchedPokemonData.effectiveness = rawEffectiveness;
+      this.searchTerm = '';
     }, err => {
       console.error(err);
-      this.errorMessage = this.translate.instant('batalla.pokedexError') || 'Error al buscar Pokémon';
+      this.errorMessage = this.translate.instant('batalla.pokedexError');
     });
   }
 
@@ -160,7 +163,7 @@ export class MiniPokedexComponent {
 
     allLists.forEach(list => {
       list.forEach(tf => {
-        const p = this.getTypeDisplayName(tf.type).then(label => { tf.label = label; }).catch(() => { tf.label = this.transformarPrimeraLetra(tf.type); });
+        const p = this.getTypeDisplayName(tf.type).then(displayType => { tf.displayType = displayType; }).catch(() => { tf.displayType = this.transformarPrimeraLetra(tf.type); });
         promises.push(p);
       });
     });
@@ -174,6 +177,6 @@ export class MiniPokedexComponent {
   }
 
   getTranslatedTypeName(typeName: string): Observable<string> {
-      return this.pokeapi.getLocalizedTypeName(typeName);
-    }
+    return this.pokeapi.getLocalizedTypeName(typeName);
+  }
 }

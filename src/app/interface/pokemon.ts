@@ -14,4 +14,5 @@ export interface Pokemon
     idEntrenador?:string;
     frontSprite?:string;
     backSprite?:string;
+    cryUrl?: string;
 }

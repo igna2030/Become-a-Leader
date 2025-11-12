@@ -23,7 +23,12 @@
     "select": "Select",
     "change": "Change",
     "createGame": "Create new game",
-    "next": "Next"
+    "next": "Next",
+    "items": "Items",
+    "revive": "Revive",
+    "inventory": "Inventory",
+    "use": "use item",
+    "noItems":"There are no items"
   },
   "alerts": {
     "emailRequired": "Email is required",
@@ -115,7 +120,7 @@
     "position": "Position",
     "name": "Name",
     "score": "Score",
-    "difficulty":"Difficulty"
+    "difficulty": "Difficulty"
   },
   "pokemonDetail": {
     "generalInfo": "General Information",
@@ -142,12 +147,11 @@
     "resistance": "Resistance",
     "inmune": "Inmune"
   },
-  "pokedex":{
-    "superEffective":"super effective against him",
-    "notVeryEffective":"Not very effective against him",
-    "immunities":"inmune",
-    "neutral":"neutral"
-
+  "pokedex": {
+    "superEffective": "super effective against him",
+    "notVeryEffective": "Not very effective against him",
+    "immunities": "inmune",
+    "neutral": "neutral"
   },
   "pokemonList": {
     "title": "List of Pokemon "
@@ -185,10 +189,18 @@
     "usedMove": "used",
     "bossApproachingMsg": "¡Beware! a strong boss is aproaching GET READY FOR THE NEXT COMBAT",
     "bossEngagedMsg": "¡THE BOSS, {{name}}, has appeared! ¡Be brave, Trainer!",
-    "rivalAppeared":"A new rival appeared is",
+    "rivalAppeared": "A new rival appeared is",
     "isDefeated": "has been defeated!",
     "errorSpriteFetch": "Error fetching sprite",
-    "isSentOut":"is sent out",
+    "isSentOut": "is sent out",
+    "pokedexError": "Error while loading the pokemon in the pokedex",
+    "errorGameUpdate": "Error while loading the game",
+    "usedItem": "Used item",
+    "selectTargetFor": "Target selected for reviving",
+    "healed": "healed",
+    "hp": "HP",
+    "selectPokemonToRevive": "Select pokemon to revive",
+    "selectReviveItemFirst ":"First select an revive item",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",
@@ -207,7 +219,12 @@
       "attackType": "Attack Type:",
       "defenderType": "Defender Type:",
       "effectiveness": "Effectiveness:",
-      "errorRivalLoad": "Error loading rival"
+      "errorRivalLoad": "Error loading rival",
+      "alreadyFullHP": "The pokemon life is full",
+      "noFainted": "There are no fainted pokemon"
+    },
+    "error": {
+      "invalidAction": "Accion invalida"
     }
   },
   "menu": {
@@ -235,5 +252,8 @@
   },
   "intro": {
     "message": "Welcome to Become a Leader. This project simulates battles between a Pokémon Leader and trainers, using a single-type team. Your goal is to accumulate the highest number of victories and score points. Remember that when you lose, your game is deleted and your score is saved in the ranking table. Entering the game..."
+  },
+  "general":{
+    "cancel":"cancel"
   }
 }
