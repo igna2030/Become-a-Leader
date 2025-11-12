@@ -37,6 +37,7 @@ export class PokeAPIService {
               ...localizedData,
               name: localizedData.localizedName,
               especie: localizedData.localizedName,
+              cryUrl: pokemonData.cries?.latest || pokemonData.cries?.legacy,
             };
           })
         );

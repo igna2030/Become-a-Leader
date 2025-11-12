@@ -15,6 +15,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { MiniPokedexComponent } from "../app-mini-pokedex/pokedex";
 import { Items } from '../../interface/items';
+import { AudioService } from '../../service/audio-service';
 
 @Component({
   selector: 'app-batalla',
@@ -53,6 +54,7 @@ export class BatallaComponent {
   originalEquipoJugador: Pokemon[] = [];
   itemDeRevivirSeleccionado: Items | null = null;
   indiceItemDeRevivir: number = -1;
+  audio_service = inject(AudioService)
 
   healingValues: { [key: string]: number } = {
     'potion': 20,
@@ -395,6 +397,9 @@ export class BatallaComponent {
     console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
 
+    if (movimiento.originalName) { 
+        this.audio_service.playMoveSound(movimiento.originalName);
+    }
     const nivel = 50;
     const potencia = movimiento.potencia || 0;
 
@@ -800,6 +805,7 @@ export class BatallaComponent {
 
     this.ejecutarCuracionHP(itemUsado, index);
   }
+  
 
 }
 

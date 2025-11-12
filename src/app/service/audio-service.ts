@@ -1,0 +1,264 @@
+import { Injectable } from '@angular/core';
+import { SoundBuffer } from '../interface/sound-buffer'; // Asegúrate de tener esta interfaz
+import { Observable, forkJoin } from 'rxjs';
+
+// Definición de tipos para las claves de música y SFX
+type BGMKey = 'battleBGM'|'intro'| 'win';
+type SFXKey =  'hit' ;
+type SoundFileMap = Record<SFXKey, string> & Record<BGMKey, string | string[]>;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AudioService {
+  private audioContext: AudioContext;
+  private soundBuffers: SoundBuffer = {};
+  private isLoaded = false;
+
+  // Propiedades para el control de la lista de reproducción (playlist)
+  private currentSource: AudioBufferSourceNode | null = null;
+  private currentPlaylistKey: BGMKey | null = null;
+  private currentTrackIndex: number = -1;
+
+  private soundFiles: SoundFileMap = {
+    hit: 'assets/audio/hit.mp3',
+    win: ['assets/audio/victory_gen_1.mp3',
+      'assets/audio/victory_gen3_red.mp3'
+    ],
+    intro: ['assets/audio/pokemon_fire_and_red_intro.mp3',
+      'assets/audio/pokemon_gen_1_intro.mp3'
+    ],
+    battleBGM: ['assets/audio/battle_red_fire.mp3',
+      'assets/audio/battle_green_blue_gen1.mp3'
+    ],
+  };
+
+  constructor() {
+    const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext;
+    this.audioContext = new AudioContextClass();
+
+    this.loadSounds();
+  }
+
+
+  private async loadSounds(): Promise<void> {
+    const fileKeys = (Object.keys(this.soundFiles) as (keyof typeof this.soundFiles)[])
+      .filter(key => typeof this.soundFiles[key] === 'string');
+
+    const promises = fileKeys.map(key =>
+      this.fetchAndDecodeAudio(key as string, this.soundFiles[key] as string)
+    );
+
+    try {
+      await Promise.all(promises);
+      this.isLoaded = true;
+      console.log('Audio buffers loaded successfully.');
+    } catch (error) {
+      console.error('Error loading audio buffers:', error);
+    }
+  }
+
+  private async fetchAndDecodeAudio(key: string, url: string): Promise<void> {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+
+    return new Promise((resolve, reject) => {
+      this.audioContext.decodeAudioData(
+        arrayBuffer,
+        (buffer) => {
+          this.soundBuffers[key] = buffer;
+          resolve();
+        },
+        (error) => {
+          console.error(`Error decoding audio file ${url}:`, error);
+          reject(error);
+        }
+      );
+    });
+  }
+
+
+  public playSound(key: keyof typeof this.soundFiles): void {
+    if (!this.isLoaded) return;
+
+    const buffer = this.soundBuffers[key];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
+    }
+
+    source.connect(this.audioContext.destination);
+    source.start(0);
+  }
+
+
+  public async playDynamicSound(url: string): Promise<void> {
+    if (!url) return;
+
+    try {
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+
+      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
+        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
+      });
+
+      const source = this.audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
+
+      source.connect(this.audioContext.destination);
+      source.start(0);
+
+    } catch (error) {
+      console.error('Error playing dynamic sound:', error);
+    }
+  }
+
+
+  public stopBGM(): void {
+    if (this.currentSource) {
+      this.currentSource.stop();
+      this.currentSource = null;
+      this.currentPlaylistKey = null;
+      this.currentTrackIndex = -1;
+    }
+  }
+
+
+  public playBGM(key: BGMKey): void {
+    if (!this.isLoaded) return;
+
+    const musicEntry = this.soundFiles[key];
+
+    if (this.currentPlaylistKey === key) return;
+
+    this.stopBGM();
+
+    if (Array.isArray(musicEntry)) {
+      this.playSequentialTrack(key, 0);
+    } else {
+      this.startLoopingBGM(key as string);
+    }
+  }
+
+  private playSequentialTrack(key: BGMKey, index: number): void {
+    const musicEntry = this.soundFiles[key] as string[];
+    if (index < 0 || index >= musicEntry.length) return;
+
+    const selectedUrl = musicEntry[index];
+    const bufferKey = selectedUrl;
+
+    if (this.soundBuffers[bufferKey]) {
+      this.startTrackWithOnEnded(key, index, bufferKey);
+    } else {
+      this.fetchAndDecodeAudio(bufferKey, selectedUrl)
+        .then(() => {
+          if (this.currentPlaylistKey === key || this.currentPlaylistKey === null) {
+            this.startTrackWithOnEnded(key, index, bufferKey);
+          }
+        })
+        .catch(e => console.error(`Error loading BGM track ${index} for ${key}:`, e));
+    }
+  }
+
+
+  private startTrackWithOnEnded(key: BGMKey, index: number, bufferKey: string): void {
+    this.stopBGM();
+
+    const buffer = this.soundBuffers[bufferKey];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
+    }
+
+    source.connect(this.audioContext.destination);
+
+    source.onended = () => {
+      this.playNextTrackInSequence(key);
+    };
+    source.start(0);
+    this.currentSource = source;
+    this.currentPlaylistKey = key;
+    this.currentTrackIndex = index;
+  }
+
+
+  private playNextTrackInSequence(key: BGMKey): void {
+    if (this.currentPlaylistKey !== key) return;
+    const musicEntry = this.soundFiles[key] as string[];
+    if (!musicEntry || musicEntry.length === 0) return;
+
+    const nextIndex = (this.currentTrackIndex + 1) % musicEntry.length;
+
+    this.playSequentialTrack(key, nextIndex);
+  }
+
+  private startLoopingBGM(key: string): void {
+    const buffer = this.soundBuffers[key];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.loop = true;
+
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
+    }
+
+    source.connect(this.audioContext.destination);
+    source.start(0);
+
+    this.currentSource = source;
+    this.currentPlaylistKey = key as BGMKey;
+    this.currentTrackIndex = 0;
+  }
+
+  public async playMoveSound(moveName: string): Promise<void> {
+    if (!moveName) return;
+
+    const normalizedName = moveName.toLowerCase().replace(/-/g, '_');
+    
+    // Asume que el archivo está en assets/audio/moves/ con extensión .mp3
+    const soundUrl = `assets/audio/moves/${normalizedName}.mp3`;
+
+    try {
+      const response = await fetch(soundUrl);
+      
+      if (!response.ok) {
+
+          return;
+      }
+      
+      const arrayBuffer = await response.arrayBuffer();
+
+      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
+        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
+      });
+
+      const source = this.audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
+
+      source.connect(this.audioContext.destination);
+      source.start(0);
+
+    } catch (error) {
+      console.warn(`Error playing sound for move '${moveName}'. File missing or corrupt.`, error);
+    }
+  }
+}
