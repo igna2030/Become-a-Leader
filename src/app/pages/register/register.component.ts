@@ -6,11 +6,12 @@ import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule,TranslateModule],
+  imports: [RouterModule, ReactiveFormsModule,TranslateModule,AppAudio],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

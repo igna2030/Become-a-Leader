@@ -223,6 +223,10 @@
       "alreadyFullHP": "The pokemon life is full",
       "noFainted": "There are no fainted pokemon"
     },
+    "volume":{
+      "music":"Music volume",
+      "sfx":"Game volume"
+    },
     "error": {
       "invalidAction": "Accion invalida"
     }

@@ -28,7 +28,7 @@
     "revive": "Revivir",
     "inventory": "Inventario",
     "use": "usar item",
-    "noItems":"No hay items"
+    "noItems": "No hay items"
   },
   "alerts": {
     "nicknameEmpty": "No puedes dejar el campo vacío.",
@@ -197,10 +197,10 @@
     "errorGameUpdate": "Error al cargar el juego",
     "usedItem": "Item usado",
     "selectTargetFor": "Objetivo seleccionado para revivir",
-    "healed":"se curo",
-    "hp":"Vida",
-    "selectPokemonToRevive":"Elige un pokemon para revivir",
-    "selectReviveItemFirst":"Primero elige un item de revivir",
+    "healed": "se curo",
+    "hp": "Vida",
+    "selectPokemonToRevive": "Elige un pokemon para revivir",
+    "selectReviveItemFirst": "Primero elige un item de revivir",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",
@@ -223,9 +223,12 @@
       "alreadyFullHP": "La vida del pokemon esta completa",
       "noFainted": "No hay pokemons caidos"
     },
-    "error":{
-      "invalidAction":"Accion invalida"
-
+    "volume": {
+      "music": "Sonido Musica",
+      "sfx": "Sonido Juego"
+    },
+    "error": {
+      "invalidAction": "Accion invalida"
     }
   },
   "menu": {
@@ -254,7 +257,7 @@
   "intro": {
     "message": "Bienvenido a Become a Leader. En este proyecto se simulan batallas de Líder Pokémon contra entrenadores, usando un equipo de un mismo tipo. Tu objetivo es acumular la mayor cantidad de victorias y sumar puntos. Recuerda que cuando pierdes, tu partida se elimina y tu puntaje se guarda en la tabla de puntajes. Entrando al juego..."
   },
-  "general":{
-    "cancel":"cancelar"
+  "general": {
+    "cancel": "cancelar"
   }
 }

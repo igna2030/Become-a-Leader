@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import { MiniPokedexComponent } from "../app-mini-pokedex/pokedex";
 import { Items } from '../../interface/items';
 import { AudioService } from '../../service/audio-service';
+
 @Component({
   selector: 'app-batalla',
   standalone: true,
@@ -54,6 +55,8 @@ export class BatallaComponent {
   itemDeRevivirSeleccionado: Items | null = null;
   indiceItemDeRevivir: number = -1;
   audio_service = inject(AudioService)
+  bgmVolume: number = 0.5;
+  sfxVolume: number = 0.8
 
   healingValues: { [key: string]: number } = {
     'potion': 20,
@@ -82,6 +85,10 @@ export class BatallaComponent {
     return this.pokeapi.getLocalizedTypeName(typeName);
   }
 
+  delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   ngOnInit(): void {
     this.idPartida = localStorage.getItem('token')!;
 
@@ -99,8 +106,7 @@ export class BatallaComponent {
           console.log('Partida obtenida:', partida);
           this.jugador = partida?.personaje;
           if (this.jugador) {
-            this.audio_service.resumeContext();
-            this.audio_service.playBGM('battleBGM');
+
             if (!this.jugador.items) {
               this.jugador.items = [];
             }
@@ -108,6 +114,7 @@ export class BatallaComponent {
               next: (data: Items) => {
                 this.jugador!.items?.push(data)
                 console.log(data);
+                console.log('Ítems cargados. Total:', this.jugador!.items!.length);
 
               },
               error: (err: Error) => {
@@ -198,19 +205,24 @@ export class BatallaComponent {
 
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
+
     this.audio_service.resumeContext();
     this.audio_service.playBGM('battleBGM')
 
     await this.asignarSprites(this.jugador?.equipo);
-
     if (this.jugador?.equipo) {
       this.originalEquipoJugador = JSON.parse(JSON.stringify(this.jugador.equipo));
     }
 
     this.pokemonJugador = this.jugador?.equipo[0];
 
+
     if (this.pokemonJugador) {
       await this.localizePokemon(this.pokemonJugador);
+      const cryUrl = this.pokemonJugador.cryUrl;
+      if (cryUrl) {
+        await this.audio_service.playDynamicSound(cryUrl);
+      }
     }
 
     console.log(this.translate.instant('batalla.status.pokemonPlayer'), this.pokemonJugador);
@@ -249,7 +261,7 @@ export class BatallaComponent {
     return enhancedPokemon;
   }
 
-  generarRival(): Promise<void> {
+  async generarRival(): Promise<void> {
     console.log(this.translate.instant('batalla.status.generatingRival'));
 
     const isBoss = this.checkBossBattle();
@@ -280,6 +292,11 @@ export class BatallaComponent {
             this.pokemonRival = this.rival[0];
             this.movimientosRival = this.pokemonRival.movimientos!;
 
+            const cryUrl = this.pokemonRival.cryUrl;
+            if (cryUrl) {
+              await this.audio_service.playDynamicSound(cryUrl);
+            }
+
             console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
 
             if (isBoss) {
@@ -300,12 +317,13 @@ export class BatallaComponent {
     });
   }
 
-  batalla(movimientoSeleccionado: Move): void {
+  async batalla(movimientoSeleccionado: Move): Promise<void> {
     let atacante: Pokemon;
     let defensor: Pokemon;
     let movimientoAtacante: Move;
     let chequearTurnoDefensor: string;
     console.log(this.translate.instant('batalla.status.loadingBattle'));
+
     if (this.pokemonJugador!.estadisticas.spd >= this.pokemonRival!.estadisticas.spd) {
       atacante = this.pokemonJugador!;
       defensor = this.pokemonRival!;
@@ -321,25 +339,29 @@ export class BatallaComponent {
       console.log(this.translate.instant('batalla.status.attackingRival'));
       console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
     }
-    this.calcularAtaque(movimientoAtacante, atacante, defensor);
-    console.log(this.translate.instant('batalla.status.originalDefenderId'), defensor.id);
-    defensor = this.verificarCambio(defensor);
+
+    await this.calcularAtaque(movimientoAtacante, atacante, defensor);  
+    await this.delay(100); 
+
+    defensor = await this.verificarCambio(defensor);
     console.log(this.translate.instant('batalla.status.newDefenderId'), defensor.id);
 
-    setTimeout(() => {
-      if (chequearTurnoDefensor === defensor.id) {
-        console.log(this.translate.instant('batalla.status.defenderStanding'));
-        if (defensor === this.pokemonJugador) {
-          movimientoAtacante = movimientoSeleccionado;
-        } else {
-          movimientoAtacante = this.generarMovimientoRival();
-        }
 
-        this.calcularAtaque(movimientoAtacante, defensor, atacante);
+    if (chequearTurnoDefensor === defensor.id) {
+      console.log(this.translate.instant('batalla.status.defenderStanding'));
 
-        this.verificarCambio(atacante);
+      await this.delay(1000); 
+      if (defensor === this.pokemonJugador) {
+        movimientoAtacante = movimientoSeleccionado; 
+      } else {
+        movimientoAtacante = this.generarMovimientoRival(); 
       }
-    }, 2000)
+
+      await this.calcularAtaque(movimientoAtacante, defensor, atacante);
+      await this.delay(100); 
+
+      await this.verificarCambio(atacante);
+    }
   }
 
   generarMovimientoRival(): Move {
@@ -347,21 +369,8 @@ export class BatallaComponent {
     const indiceAleatorio = Math.floor(Math.random() * movimientosPosibles.length);
     return movimientosPosibles[indiceAleatorio];
   }
-  realizarAtaque2(movimiento: Move, atacante: Pokemon, defensor: Pokemon): void {
-    let danio = 0;
 
-    if (movimiento.clase === 'Fisico') {
-      danio = Math.max(atacante.estadisticas.atk - defensor.estadisticas.def, 1);
-    } else if (movimiento.clase === 'Especial') {
-      danio = Math.max(atacante.estadisticas.satk - defensor.estadisticas.sdef, 1);
-    }
-
-    defensor.vidaActual = Math.max(defensor.vidaActual - danio, 0);
-
-    console.log(`${atacante.especie} ${this.translate.instant('batalla.usedMove')} ${defensor.especie} con ${movimiento.nombre} causando ${danio} de daño.`);
-  }
-
-  verificarCambio(defensor: Pokemon): Pokemon {
+  async verificarCambio(defensor: Pokemon): Promise<Pokemon> {
     if (defensor.vidaActual <= 0) {
       this.mensajeBatalla = `${this.transformarPrimeraLetra(defensor.especie)} ${this.translate.instant('batalla.isDefeated')}`;
       console.log(this.mensajeBatalla);
@@ -382,7 +391,12 @@ export class BatallaComponent {
           this.pokemonJugador = this.jugador!.equipo[0];
           this.movimientosJugador = this.pokemonJugador.movimientos!;
           defensor = this.pokemonJugador;
-          this.localizePokemon(defensor);
+          await this.localizePokemon(defensor);
+
+          const cryUrl = this.pokemonJugador.cryUrl;
+          if (cryUrl) {
+            await this.audio_service.playDynamicSound(cryUrl);
+          }
         }
       } else {
         this.rival.shift();
@@ -399,22 +413,28 @@ export class BatallaComponent {
           this.pokemonRival = this.rival[0];
           this.movimientosRival = this.pokemonRival.movimientos!;
           defensor = this.pokemonRival;
-          this.localizePokemon(defensor);
+          await this.localizePokemon(defensor);
+
+          const cryUrl = this.pokemonRival.cryUrl;
+          if (cryUrl) {
+            await this.audio_service.playDynamicSound(cryUrl);
+          }
         }
       }
     }
     return defensor;
   }
 
-  calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
+  async calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
     console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
     this.audio_service.resumeContext();
     this.audio_service.playBGM('battleBGM');
 
     if (movimiento.originalName) {
-      this.audio_service.playMoveSound(movimiento.originalName);
+      await this.audio_service.playMoveSound(movimiento.originalName);
     }
+
     const nivel = 50;
     const potencia = movimiento.potencia || 0;
 
@@ -630,7 +650,6 @@ export class BatallaComponent {
         }
       }
     }
-
     this.pokemonRival = null;
     this.rival = [];
     this.audio_service.playBGM("win");
@@ -640,12 +659,11 @@ export class BatallaComponent {
 
   cerrarModal() {
     const isWin = this.resultado === this.translate.instant('batalla.title');
-
     this.mostrarModal = false;
     this.resultado = '';
     this.mensajeModal = '';
-
     if (isWin) {
+      this.audio_service.playBGM('battleBGM');
       this.generarRival();
     }
     else {
@@ -667,48 +685,38 @@ export class BatallaComponent {
     const healingIds: number[] = [17, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 43, 44];
     const randomIndex = Math.floor(Math.random() * healingIds.length);
     return healingIds[randomIndex];
-
   }
 
 
-  ejecutarCuracionHP(itemUsado: Items, itemIndex: number): void {
+  async ejecutarCuracionHP(itemUsado: Items, itemIndex: number): Promise<void> {
     if (!this.pokemonJugador || this.pokemonJugador.vidaActual === this.pokemonJugador.estadisticas.hp) {
       this.mostrarMensajeBatalla(this.translate.instant('batalla.status.alreadyFullHP'));
       return;
     }
-
     const itemName = itemUsado.name.toLowerCase();
     let curacionValor: number = this.healingValues[itemName] || 0;
-
     let curacionAplicada: number;
-
     if (curacionValor === 9999) {
       curacionAplicada = this.pokemonJugador.estadisticas.hp - this.pokemonJugador.vidaActual;
     } else {
       curacionAplicada = curacionValor;
     }
-
     const vidaAntes = this.pokemonJugador.vidaActual;
     const vidaDeseada = vidaAntes + curacionAplicada;
-
     this.pokemonJugador.vidaActual = Math.min(
       vidaDeseada,
       this.pokemonJugador.estadisticas.hp
     );
-
     const vidaRestaurada = this.pokemonJugador.vidaActual - vidaAntes;
-
     this.mostrarMensajeBatalla(
       `${this.transformarPrimeraLetra(this.pokemonJugador.especie)} ${this.translate.instant('batalla.usedItem')} ${this.transformarPrimeraLetra(itemUsado.name)}. ${this.translate.instant('batalla.healed')} ${vidaRestaurada} ${this.translate.instant('batalla.hp')}`
     );
-
     this.jugador!.items!.splice(itemIndex, 1);
+    await this.delay(2000); 
 
-    setTimeout(() => {
-      const movimientoRival = this.generarMovimientoRival();
-      this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
-      this.verificarCambio(this.pokemonJugador!);
-    }, 2000);
+    const movimientoRival = this.generarMovimientoRival();
+    await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
+    await this.verificarCambio(this.pokemonJugador!);
   }
 
   iniciarSeleccionRevive(itemUsado: Items): void {
@@ -722,74 +730,59 @@ export class BatallaComponent {
     );
   }
 
-  ejecutarRevivir(pokemonIndex: number): void {
+  async ejecutarRevivir(pokemonIndex: number): Promise<void> {
     const itemUsado = this.itemDeRevivirSeleccionado;
     const reviveItemIndex = this.indiceItemDeRevivir;
-
     this.mostrarSeleccionRevivir = false;
-
     if (!itemUsado || reviveItemIndex === -1 || this.pokemonDebilitados.length <= pokemonIndex) {
       this.mostrarMensajeBatalla(this.translate.instant('batalla.error.invalidAction'));
       return;
     }
-
     const itemName = itemUsado.name.toLowerCase();
     const pokemonRevivido = this.pokemonDebilitados[pokemonIndex];
-
     let hpRevivido: number;
     if (itemName === 'max-revive' || itemName === 'sacred-ash') {
       hpRevivido = pokemonRevivido.estadisticas.hp;
     } else {
       hpRevivido = Math.floor(pokemonRevivido.estadisticas.hp / 2);
     }
-
     const [pokemonMovido] = this.pokemonDebilitados.splice(pokemonIndex, 1);
-
     pokemonMovido.vidaActual = hpRevivido;
     this.jugador!.equipo.push(pokemonMovido);
-
     this.mostrarMensajeBatalla(
       `${this.transformarPrimeraLetra(pokemonRevivido.especie)} ${this.translate.instant('batalla.revived')} ${this.transformarPrimeraLetra(itemUsado.name)} con ${hpRevivido} ${this.translate.instant('batalla.hp')}.`
     );
-
     this.jugador!.items!.splice(reviveItemIndex, 1);
-
     this.itemDeRevivirSeleccionado = null;
     this.indiceItemDeRevivir = -1;
-
-    setTimeout(() => {
-      const movimientoRival = this.generarMovimientoRival();
-      this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
-      this.verificarCambio(this.pokemonJugador!);
-    }, 2000);
+    await this.delay(2000); 
+    const movimientoRival = this.generarMovimientoRival();
+    await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
+    await this.verificarCambio(this.pokemonJugador!);
   }
 
 
 
 
 
-  ejecutarSacredAsh(itemUsado: Items, itemIndex: number): void {
+  async ejecutarSacredAsh(itemUsado: Items, itemIndex: number): Promise<void> {
     if (this.pokemonDebilitados.length === 0) {
       this.mostrarMensajeBatalla(this.translate.instant('batalla.status.noFainted'));
       return;
     }
-
     while (this.pokemonDebilitados.length > 0) {
       const pokemon = this.pokemonDebilitados.shift()!;
       pokemon.vidaActual = pokemon.estadisticas.hp;
       this.jugador!.equipo.push(pokemon);
     }
-
     this.mostrarMensajeBatalla(
       `${this.translate.instant('batalla.allFaintedRevived')} ${this.transformarPrimeraLetra(itemUsado.name)}.`
     );
-
     this.jugador!.items!.splice(itemIndex, 1);
-    setTimeout(() => {
-      const movimientoRival = this.generarMovimientoRival();
-      this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
-      this.verificarCambio(this.pokemonJugador!);
-    }, 2000);
+    await this.delay(2000); 
+    const movimientoRival = this.generarMovimientoRival();
+    await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
+    await this.verificarCambio(this.pokemonJugador!);
   }
 
 
@@ -798,32 +791,35 @@ export class BatallaComponent {
   usarItemPorIndice(index: number): void {
     const itemUsado: Items = this.jugador!.items![index];
     const itemName = itemUsado.name.toLowerCase();
-
     this.mostrarInventario = false;
-
     if (itemName === 'revive' || itemName === 'max-revive') {
-
       if (this.pokemonDebilitados.length === 0) {
         this.mostrarMensajeBatalla(this.translate.instant('batalla.status.noFainted'));
         return;
       }
       this.itemDeRevivirSeleccionado = itemUsado;
       this.indiceItemDeRevivir = index;
-
       this.mostrarSeleccionRevivir = true;
       return;
     }
-
     if (itemName === 'sacred-ash') {
       this.ejecutarSacredAsh(itemUsado, index);
       return;
     }
-
     this.ejecutarCuracionHP(itemUsado, index);
   }
 
-
+public setBGMVolume(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const newVolume = parseFloat(target.value);
+    this.bgmVolume = newVolume; 
+    this.audio_service.setBGMVolume(newVolume);
+}
+public setSFXVolume(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const newVolume = parseFloat(target.value);
+    this.sfxVolume = newVolume;
+    this.audio_service.setSFXVolume(newVolume);
 }
 
-
-
+}

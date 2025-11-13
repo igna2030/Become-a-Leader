@@ -7,11 +7,12 @@ import { switchMap } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs'; // Necesario para el pipe async
 import { CommonModule } from '@angular/common';
+import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
-  imports: [TranslateModule, CommonModule],
+  imports: [TranslateModule, CommonModule,AppAudio],
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.css']
 })

@@ -7,11 +7,12 @@ import { PokeAPIService } from '../../service/poke-api.service';
 import { Pokemon } from '../../interface/pokemon';
 import { UserService } from '../../service/user.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CommonModule, RouterModule,TranslateModule],
+  imports: [CommonModule, RouterModule,TranslateModule,AppAudio],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.css'
 })

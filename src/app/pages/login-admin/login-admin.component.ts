@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../service/auth.service';
 import { Admin } from '../../interface/admin';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-login-admin',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule,AppAudio],
   templateUrl: './login-admin.component.html',
   styleUrl: './login-admin.component.css'
 })

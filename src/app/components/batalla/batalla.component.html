@@ -12,6 +12,43 @@
         </p>
     </div>
 
+<div class="top-controls-panel">
+        <div class="BotoncitoLogout">
+            <button type="button" (click)="navegarMenu()">MENU</button>
+            <button type="button" (click)="logout()">LOGOUT</button>
+        </div>
+
+        <div class="volume-control">
+            <label for="bgm-volume">
+                {{ 'batalla.volume.music' | translate }}: {{ (bgmVolume * 100).toFixed(0) }}%
+            </label>
+            <input 
+                id="sfx-volume" 
+                type="range" 
+                min="0" 
+                max="1" 
+                step="0.1" 
+                [value]="bgmVolume" 
+                (input)="setBGMVolume($event)"
+            >
+        </div>
+        
+        <div class="volume-control sfx-volume">
+            <label for="sfx-volume">
+                {{ 'batalla.volume.sfx' | translate }}: {{ (sfxVolume * 100).toFixed(0) }}%
+            </label>
+            <input 
+                id="sfx-volume" 
+                type="range" 
+                min="0" 
+                max="1" 
+                step="0.1" 
+                [value]="sfxVolume" 
+                (input)="setSFXVolume($event)"
+            >
+        </div>
+    </div>
+
     <div class="batalla-container" *ngIf="pokemonJugador && pokemonRival">
         <div class="informacion">
             <div class="pokemon-info rival">
@@ -108,7 +145,10 @@
                     
                     <ul class="item-list">
                         <li *ngFor="let item of jugador?.items; let i = index" class="item-entry">
-                            <span>{{ transformarPrimeraLetra(item.name) }}</span>
+                            <img *ngIf="item.sprite" [src]="item.sprite" [alt]="item.localizedName">
+                            <span>{{ transformarPrimeraLetra(item.name) }}
+                                {{item.description}}
+                            </span>
                             <button 
                                 (click)="usarItemPorIndice(i)" 
                                 class="use-item-button"
@@ -162,8 +202,4 @@
             Aceptar
         </button>
     </div>
-</div>
-<div class="BotoncitoLogout">
-    <button type="button" (click)="navegarMenu()">MENU</button>
-    <button type="button" (click)="logout()">LOGOUT</button>
 </div>

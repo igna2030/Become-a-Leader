@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 import { Pokemon } from '../../interface/pokemon';
 import { TeamService } from '../../service/team.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-nueva-partida',
   standalone: true,
-  imports: [FormsModule,TranslateModule],
+  imports: [FormsModule,TranslateModule,AppAudio],
   templateUrl: './nueva-partida.component.html',
   styleUrl: './nueva-partida.component.css'
 })

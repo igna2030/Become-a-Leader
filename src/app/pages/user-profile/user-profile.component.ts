@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { PartidaService } from '../../service/partida.service';
 import { PokeAPIService } from '../../service/poke-api.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [UserAccountInfoComponent, CommonModule,TranslateModule],
+  imports: [UserAccountInfoComponent, CommonModule,TranslateModule,AppAudio],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })

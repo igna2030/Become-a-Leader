@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../interface/user.interface';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
   selector: 'app-user-account-info',
   standalone: true,
-  imports: [FormsModule, CommonModule, TranslateModule],
+  imports: [FormsModule, CommonModule, TranslateModule,AppAudio],
   templateUrl: './user-account-info.component.html',
   styleUrls: ['./user-account-info.component.css']
 })

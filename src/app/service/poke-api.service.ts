@@ -174,6 +174,39 @@ export class PokeAPIService {
     return this.http.get<Items>(this.url + "item");
   }
   getItemsById(id: number): Observable<Items> {
-    return this.http.get<Items>(this.url + "item/" + id);
+    return this.http.get<any>(this.url + "item/" + id).pipe(
+      switchMap((itemData: any) => {
+        return this.getItemsSprites(id).pipe(
+          map((spriteData: any) => {
+            const currentLang = this.getCurrentLang();
+
+            const localizedName = itemData.names.find(
+              (n: any) => n.language.name === currentLang
+            );
+
+            const descriptionEntry = itemData.flavor_text_entries.find(
+              (entry: any) => entry.language.name === currentLang
+            );
+
+            const item: Items = {
+              name: itemData.name,
+              category: itemData.category,
+              localizedName: localizedName ? localizedName.name : itemData.name,
+
+              description: descriptionEntry
+                ? descriptionEntry.text.replace(/[\n\r\f]/g, ' ')
+                : 'No description found.',
+              sprite: spriteData.default
+            };
+            return item;
+          })
+        );
+      })
+    );
+  }
+  getItemsSprites(id: number): Observable<any> {
+    return this.http
+      .get<any>(this.url + 'item/' + id)
+      .pipe(map((data: any) => data?.sprites));
   }
 }

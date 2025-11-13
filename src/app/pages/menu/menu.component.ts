@@ -5,11 +5,13 @@ import { Router, RouterModule } from '@angular/router';
 import { PartidaService } from '../../service/partida.service';
 import { Partida } from '../../interface/partida.js';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AudioService } from '../../service/audio-service';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule,TranslateModule,RouterModule],
+  imports: [CommonModule,TranslateModule,RouterModule,AppAudio],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
@@ -18,6 +20,7 @@ export class MenuComponent implements OnInit {
   partida: Partida | null = null;
   tienePartida: boolean = false;
     translate = inject(TranslateService);
+    audio_service = inject(AudioService)
 
   constructor(
     private userService: UserService,
@@ -35,6 +38,7 @@ export class MenuComponent implements OnInit {
             next: (partida: Partida | null) => {
               this.partida = partida;
               this.tienePartida = !!partida;
+              this.audio_service.playBGM("intro")
             },
             error: () => {
               

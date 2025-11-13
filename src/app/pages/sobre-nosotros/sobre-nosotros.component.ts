@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../../components/app-audio/app-audio';
 @Component({
   selector: 'app-sobre-nosotros',
   standalone: true,
-  imports: [RouterModule, CommonModule,TranslateModule],
+  imports: [RouterModule, CommonModule,TranslateModule,AppAudio],
   templateUrl: './sobre-nosotros.component.html',
   styleUrl: './sobre-nosotros.component.css'
 })

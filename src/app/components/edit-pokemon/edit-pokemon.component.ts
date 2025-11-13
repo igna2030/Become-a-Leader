@@ -6,11 +6,12 @@ import { Move } from '../../interface/move';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
   selector: 'app-edit-pokemon',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule,AppAudio],
   templateUrl: './edit-pokemon.component.html',
   styleUrl: './edit-pokemon.component.css'
 })

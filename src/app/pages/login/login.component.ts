@@ -6,11 +6,13 @@ import { UserService } from '../../service/user.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../service/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AudioService } from '../../service/audio-service';
+import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule,AppAudio],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
+  audio_service = inject(AudioService);
 
   constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
     this.route.queryParams.subscribe(params => {
@@ -44,8 +47,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.Login()
+        this.audio_service.resumeContext();
+    this.audio_service.playBGM("intro");
   }
-
+ 
   Login() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.getRawValue()
