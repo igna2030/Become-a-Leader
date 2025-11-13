@@ -45,34 +45,34 @@ export class PokeAPIService {
     );
   }
   //MOVES
-getMoveByName(name: string): Observable<any> {
-    const currentLang = this.getCurrentLang();
-    
+  getMoveByName(name: string): Observable<any> {
+    const currentLang = this.getCurrentLang();
+
     const cleanName = name
-        .split(':')[0]
-        .toLowerCase()
-        .replace(/\s/g, '-');
+      .split(':')[0]
+      .toLowerCase()
+      .replace(/\s/g, '-');
 
-    return this.http.get<any>(this.url + 'move/' + cleanName).pipe(
-      map((moveData) => {
-        const localizedName = moveData.names.find(
-          (n: any) => n.language.name === currentLang
-        );
+    return this.http.get<any>(this.url + 'move/' + cleanName).pipe(
+      map((moveData) => {
+        const localizedName = moveData.names.find(
+          (n: any) => n.language.name === currentLang
+        );
 
-        const localizedEffect = moveData.effect_entries.find(
-          (e: any) => e.language.name === currentLang
-        );
+        const localizedEffect = moveData.effect_entries.find(
+          (e: any) => e.language.name === currentLang
+        );
 
-        return {
-          ...moveData,
-          name: localizedName ? localizedName.name : moveData.name,
-          effect: localizedEffect
-            ? localizedEffect.effect
-            : 'No effect description found.',
-        };
-      })
-    );
-  }
+        return {
+          ...moveData,
+          name: localizedName ? localizedName.name : moveData.name,
+          effect: localizedEffect
+            ? localizedEffect.effect
+            : 'No effect description found.',
+        };
+      })
+    );
+  }
 
   getMoveLocalizedName(name: string): Observable<string> {
     return this.getMoveByName(name).pipe(
@@ -162,16 +162,6 @@ getMoveByName(name: string): Observable<any> {
     );
   }
 
-  getMoveOriginalName(localizedName: string): Observable<string> {
-    return this.http.get<any>(`${this.url}move/${localizedName}`).pipe(
-      map(moveData => {
-        const englishNameEntry = moveData.names.find(
-          (n: any) => n.language.name === 'en'
-        );
-        return englishNameEntry ? englishNameEntry.name : moveData.name;
-      })
-    );
-  }
 
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(
@@ -180,12 +170,10 @@ getMoveByName(name: string): Observable<any> {
       })
     );
   }
-  getItems():Observable<Items>
-  {
-    return this.http.get<Items>(this.url+"item");
+  getItems(): Observable<Items> {
+    return this.http.get<Items>(this.url + "item");
   }
-  getItemsById(id:number):Observable<Items>
-  {
-    return this.http.get<Items>(this.url+"item/"+id);
+  getItemsById(id: number): Observable<Items> {
+    return this.http.get<Items>(this.url + "item/" + id);
   }
 }

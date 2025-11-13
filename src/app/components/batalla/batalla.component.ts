@@ -16,7 +16,6 @@ import { Observable } from 'rxjs';
 import { MiniPokedexComponent } from "../app-mini-pokedex/pokedex";
 import { Items } from '../../interface/items';
 import { AudioService } from '../../service/audio-service';
-
 @Component({
   selector: 'app-batalla',
   standalone: true,
@@ -100,6 +99,8 @@ export class BatallaComponent {
           console.log('Partida obtenida:', partida);
           this.jugador = partida?.personaje;
           if (this.jugador) {
+            this.audio_service.resumeContext();
+            this.audio_service.playBGM('battleBGM');
             if (!this.jugador.items) {
               this.jugador.items = [];
             }
@@ -107,6 +108,7 @@ export class BatallaComponent {
               next: (data: Items) => {
                 this.jugador!.items?.push(data)
                 console.log(data);
+
               },
               error: (err: Error) => {
                 console.log(err)
@@ -130,6 +132,10 @@ export class BatallaComponent {
         this.navegarMenu();
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.audio_service.stopBGM();
   }
 
   obtenerClaseTipoMovimiento(tipo: string): string {
@@ -175,7 +181,12 @@ export class BatallaComponent {
     }
 
     const movePromises = pokemon.movimientos.map(async (move) => {
-      const localizedName = await this.pokeapi.getMoveLocalizedName(move.nombre).toPromise();
+      if (!move.originalName) {
+        move.originalName = move.nombre;
+      }
+
+      const localizedName = await this.pokeapi.getMoveLocalizedName(move.originalName).toPromise();
+
       if (localizedName) {
         move.nombre = localizedName;
         move.localizedName = localizedName;
@@ -187,6 +198,8 @@ export class BatallaComponent {
 
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
+    this.audio_service.resumeContext();
+    this.audio_service.playBGM('battleBGM')
 
     await this.asignarSprites(this.jugador?.equipo);
 
@@ -396,9 +409,11 @@ export class BatallaComponent {
   calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
     console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
+    this.audio_service.resumeContext();
+    this.audio_service.playBGM('battleBGM');
 
-    if (movimiento.originalName) { 
-        this.audio_service.playMoveSound(movimiento.originalName);
+    if (movimiento.originalName) {
+      this.audio_service.playMoveSound(movimiento.originalName);
     }
     const nivel = 50;
     const potencia = movimiento.potencia || 0;
@@ -618,6 +633,7 @@ export class BatallaComponent {
 
     this.pokemonRival = null;
     this.rival = [];
+    this.audio_service.playBGM("win");
     this.mensajeBatalla = this.translate.instant('batalla.status.preparingNextBattle');
   }
 
@@ -805,7 +821,7 @@ export class BatallaComponent {
 
     this.ejecutarCuracionHP(itemUsado, index);
   }
-  
+
 
 }
 

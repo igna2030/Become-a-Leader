@@ -200,7 +200,7 @@
     "healed": "healed",
     "hp": "HP",
     "selectPokemonToRevive": "Select pokemon to revive",
-    "selectReviveItemFirst ":"First select an revive item",
+    "selectReviveItemFirst":"First select an revive item",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",

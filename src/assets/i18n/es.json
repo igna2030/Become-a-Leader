@@ -200,7 +200,7 @@
     "healed":"se curo",
     "hp":"Vida",
     "selectPokemonToRevive":"Elige un pokemon para revivir",
-    "selectReviveItemFirst ":"Primero elige un item de revivir",
+    "selectReviveItemFirst":"Primero elige un item de revivir",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

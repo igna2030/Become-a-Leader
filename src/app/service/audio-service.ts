@@ -149,6 +149,14 @@ export class AudioService {
     }
   }
 
+  public resumeContext(): void {
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume().then(() => {
+        console.log("AudioContext reanudado exitosamente.");
+      }).catch(e => console.error("Error al reanudar AudioContext:", e));
+    }
+}
+
   private playSequentialTrack(key: BGMKey, index: number): void {
     const musicEntry = this.soundFiles[key] as string[];
     if (index < 0 || index >= musicEntry.length) return;
@@ -225,40 +233,51 @@ export class AudioService {
     this.currentTrackIndex = 0;
   }
 
-  public async playMoveSound(moveName: string): Promise<void> {
-    if (!moveName) return;
+public async playMoveSound(moveName: string): Promise<void> {
+    if (!moveName) return;
+    
+    const apiName = moveName.toLowerCase();
 
-    const normalizedName = moveName.toLowerCase().replace(/-/g, '_');
+    const fileName = this.normalizeMoveNameForFile(apiName);
+
+    const soundUrl = `assets/audio/moves/${fileName}.mp3`;
+
+    try {
+      const response = await fetch(soundUrl);
+
+      if (!response.ok) {
+        console.warn(`404 Not Found: Could not load sound from URL: ${soundUrl}`);
+        return;
+      }
+
+      const arrayBuffer = await response.arrayBuffer();
+
+      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
+        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
+      });
+
+      const source = this.audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
+
+      source.connect(this.audioContext.destination);
+      source.start(0);
+
+    } catch (error) {
+      console.warn(`Error playing sound for move '${moveName}'. File missing or corrupt.`, error);
+    }
+}
+
+  private normalizeMoveNameForFile(apiName: string): string {
+    let formattedName = apiName.replace(/_/g, '-'); 
     
-    // Asume que el archivo está en assets/audio/moves/ con extensión .mp3
-    const soundUrl = `assets/audio/moves/${normalizedName}.mp3`;
-
-    try {
-      const response = await fetch(soundUrl);
-      
-      if (!response.ok) {
-
-          return;
-      }
-      
-      const arrayBuffer = await response.arrayBuffer();
-
-      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
-        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
-      });
-
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
-
-      if (this.audioContext.state === 'suspended') {
-        await this.audioContext.resume();
-      }
-
-      source.connect(this.audioContext.destination);
-      source.start(0);
-
-    } catch (error) {
-      console.warn(`Error playing sound for move '${moveName}'. File missing or corrupt.`, error);
-    }
-  }
+    formattedName = formattedName.toLowerCase(); 
+    
+    formattedName = formattedName.replace(/\s/g, '-'); 
+    
+    return formattedName; 
+}
 }

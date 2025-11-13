@@ -371,7 +371,7 @@
       "id": "f5d9",
       "fecha_inicio": "2025-11-12T00:12:26.904Z",
       "fecha_fin": "2025-11-12T00:12:26.904Z",
-      "puntuacion": 1,
+      "puntuacion": 2,
       "personaje": {
         "id": "f5d9",
         "nombre": "Ma",
@@ -719,7 +719,7 @@
           }
         ]
       },
-      "duelosGanados": 1
+      "duelosGanados": 2
     }
   ],
   "rankings": [
