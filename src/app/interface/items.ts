@@ -4,6 +4,7 @@ export interface Items {
     category:ReferenciaItem,
     localizedName?:string,
     description:string,
+    localizedDescription?:string,
     sprite?:string
 }
 

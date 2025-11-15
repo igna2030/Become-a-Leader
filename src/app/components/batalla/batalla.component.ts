@@ -57,7 +57,7 @@ export class BatallaComponent {
   audio_service = inject(AudioService)
   bgmVolume: number = 0.5;
   sfxVolume: number = 0.8
-
+  pokemonAtacanteId: string | null = null;
   healingValues: { [key: string]: number } = {
     'potion': 20,
     "hyper-potion": 200,
@@ -340,8 +340,8 @@ export class BatallaComponent {
       console.log(this.translate.instant('batalla.status.defenderId'), chequearTurnoDefensor);
     }
 
-    await this.calcularAtaque(movimientoAtacante, atacante, defensor);  
-    await this.delay(100); 
+    await this.calcularAtaque(movimientoAtacante, atacante, defensor);
+    await this.delay(100);
 
     defensor = await this.verificarCambio(defensor);
     console.log(this.translate.instant('batalla.status.newDefenderId'), defensor.id);
@@ -350,15 +350,15 @@ export class BatallaComponent {
     if (chequearTurnoDefensor === defensor.id) {
       console.log(this.translate.instant('batalla.status.defenderStanding'));
 
-      await this.delay(1000); 
+      await this.delay(1000);
       if (defensor === this.pokemonJugador) {
-        movimientoAtacante = movimientoSeleccionado; 
+        movimientoAtacante = movimientoSeleccionado;
       } else {
-        movimientoAtacante = this.generarMovimientoRival(); 
+        movimientoAtacante = this.generarMovimientoRival();
       }
 
       await this.calcularAtaque(movimientoAtacante, defensor, atacante);
-      await this.delay(100); 
+      await this.delay(100);
 
       await this.verificarCambio(atacante);
     }
@@ -430,11 +430,11 @@ export class BatallaComponent {
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
     this.audio_service.resumeContext();
     this.audio_service.playBGM('battleBGM');
-
+    this.pokemonAtacanteId = atacante.id;
+    await this.delay(600);
     if (movimiento.originalName) {
       await this.audio_service.playMoveSound(movimiento.originalName);
     }
-
     const nivel = 50;
     const potencia = movimiento.potencia || 0;
 
@@ -470,6 +470,8 @@ export class BatallaComponent {
 
     let mensajeAtaque = baseAtaque + (efectoMensaje ? ` ${efectoMensaje}` : '');
 
+        await this.delay(700);
+    this.pokemonAtacanteId = null;
     this.mostrarMensajeBatalla(mensajeAtaque);
 
     if (defensor.vidaActual < 0) {
@@ -712,7 +714,7 @@ export class BatallaComponent {
       `${this.transformarPrimeraLetra(this.pokemonJugador.especie)} ${this.translate.instant('batalla.usedItem')} ${this.transformarPrimeraLetra(itemUsado.name)}. ${this.translate.instant('batalla.healed')} ${vidaRestaurada} ${this.translate.instant('batalla.hp')}`
     );
     this.jugador!.items!.splice(itemIndex, 1);
-    await this.delay(2000); 
+    await this.delay(2000);
 
     const movimientoRival = this.generarMovimientoRival();
     await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
@@ -755,7 +757,7 @@ export class BatallaComponent {
     this.jugador!.items!.splice(reviveItemIndex, 1);
     this.itemDeRevivirSeleccionado = null;
     this.indiceItemDeRevivir = -1;
-    await this.delay(2000); 
+    await this.delay(2000);
     const movimientoRival = this.generarMovimientoRival();
     await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
     await this.verificarCambio(this.pokemonJugador!);
@@ -779,7 +781,7 @@ export class BatallaComponent {
       `${this.translate.instant('batalla.allFaintedRevived')} ${this.transformarPrimeraLetra(itemUsado.name)}.`
     );
     this.jugador!.items!.splice(itemIndex, 1);
-    await this.delay(2000); 
+    await this.delay(2000);
     const movimientoRival = this.generarMovimientoRival();
     await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
     await this.verificarCambio(this.pokemonJugador!);
@@ -809,17 +811,17 @@ export class BatallaComponent {
     this.ejecutarCuracionHP(itemUsado, index);
   }
 
-public setBGMVolume(event: Event): void {
+  public setBGMVolume(event: Event): void {
     const target = event.target as HTMLInputElement;
     const newVolume = parseFloat(target.value);
-    this.bgmVolume = newVolume; 
+    this.bgmVolume = newVolume;
     this.audio_service.setBGMVolume(newVolume);
-}
-public setSFXVolume(event: Event): void {
+  }
+  public setSFXVolume(event: Event): void {
     const target = event.target as HTMLInputElement;
     const newVolume = parseFloat(target.value);
     this.sfxVolume = newVolume;
     this.audio_service.setSFXVolume(newVolume);
-}
+  }
 
 }

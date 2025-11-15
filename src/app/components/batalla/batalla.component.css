@@ -524,3 +524,21 @@ div.batalla div img {
     border-radius: 50%;
     border: 2px solid white;
 }
+
+@keyframes shake-left-right {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-10px, 0); } 
+    75% { transform: translate(10px, 0); }  
+    100% { transform: translate(0, 0); }
+}
+
+
+.pokemon-sprite.rival,
+.pokemon-sprite.jugador {
+    position: absolute; 
+    transition: transform 0.1s ease-in-out;
+}
+
+.pokemon-sprite.is-attacking {
+    animation: shake-left-right 0.3s ease-in-out 3;
+}
