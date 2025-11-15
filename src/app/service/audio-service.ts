@@ -24,6 +24,7 @@ export class AudioService {
   private bgmVolume: number = 0.5;
   private sfxVolume: number = 0.8;
   private currentBGMVolume: number = this.loadBGMVolume();
+  private currentsfxVolume: number = this.loadSFXVolume();
 
   private soundFiles: SoundFileMap = {
     hit: 'assets/audio/hit.mp3',
@@ -63,7 +64,8 @@ export class AudioService {
     this.sfxGainNode.connect(this.audioContext.destination);
 
     this.bgmGainNode.gain.setValueAtTime(this.bgmVolume, this.audioContext.currentTime);
-    this.sfxGainNode.gain.setValueAtTime(this.sfxVolume, this.audioContext.currentTime);
+    this.sfxGainNode.gain.setValueAtTime(this.currentsfxVolume, this.audioContext.currentTime);
+    this.sfxVolume = this.currentsfxVolume;
 
     this.loadSounds();
   }
@@ -345,7 +347,15 @@ export class AudioService {
 
   public setSFXVolume(volume: number): void {
     volume = Math.max(0, Math.min(1, volume));
-    this.sfxVolume = volume;
+    this.currentsfxVolume = volume;
     this.sfxGainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+    localStorage.setItem('sfxVolume', volume.toString());
+  }
+  private loadSFXVolume(): number {
+    const savedVolume = localStorage.getItem('sfxVolume');
+    return savedVolume ? parseFloat(savedVolume) : 0.8;
+  }
+  public getsfxVolume(){
+    return this.currentsfxVolume;
   }
 }
