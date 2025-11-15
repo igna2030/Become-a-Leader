@@ -72,17 +72,30 @@
       </div>
     </div>
 
-    <div class="batalla">          
-      <div class="pokemon-sprite rival"
-        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonRival.id}">  
-       <img [src]="pokemonRival.frontSprite"
-          alt="{{ pokemonRival.especie }}"  />        
-      </div>          
-      <div class="pokemon-sprite jugador"
-        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonJugador.id}">
-        <img [src]="pokemonJugador.backSprite"
-          alt="{{ pokemonJugador.especie }}"/>
-      </div>     
+    <div class="batalla">
+               
+      <div
+        class="pokemon-sprite rival"
+        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonRival.id }"
+      >
+         
+        <img
+          [src]="pokemonRival.frontSprite"
+          alt="{{ pokemonRival.especie }}"
+        />
+               
+      </div>
+               
+      <div
+        class="pokemon-sprite jugador"
+        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonJugador.id }"
+      >
+        <img
+          [src]="pokemonJugador.backSprite"
+          alt="{{ pokemonJugador.especie }}"
+        />
+      </div>
+           
     </div>
 
     <div class="informacion">
@@ -124,6 +137,7 @@
               {{ transformarPrimeraLetra(movimiento.nombre) }} -
               {{ "pokemonDetail.movePower" | translate }}:
               {{ movimiento.potencia }}
+              {{movimiento.localizedtype??'Unknown'}}
             </li>
           </ul>
 

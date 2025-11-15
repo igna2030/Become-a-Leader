@@ -24,7 +24,7 @@ export class PartidaService {
     return this.http.delete<void>(`${this.urlBase}/${id}`);
   }
 
-actualizarPuntaje(id: string, updates: { puntuacion: number, duelosGanados: number }): Observable<any> { 
+actualizarPuntaje(id: string, updates: any): Observable<any> { 
   // Asegúrate de que el body del PATCH es el objeto 'updates' completo:
   return this.http.patch(`${this.urlBase}/${id}`, updates); 
 }

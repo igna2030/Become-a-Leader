@@ -55,8 +55,8 @@ export class BatallaComponent {
   itemDeRevivirSeleccionado: Items | null = null;
   indiceItemDeRevivir: number = -1;
   audio_service = inject(AudioService)
-  bgmVolume= this.audio_service.getBGMVolume();
-  sfxVolume= this.audio_service.getsfxVolume();
+  bgmVolume = this.audio_service.getBGMVolume();
+  sfxVolume = this.audio_service.getsfxVolume();
   pokemonAtacanteId: string | null = null;
   healingValues: { [key: string]: number } = {
     'potion': 20,
@@ -81,9 +81,8 @@ export class BatallaComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  getTranslatedTypeName(typeName: string): Observable<string> {
-    return this.pokeapi.getLocalizedTypeName(typeName);
-  }
+
+
 
   delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -198,11 +197,15 @@ export class BatallaComponent {
         move.nombre = localizedName;
         move.localizedName = localizedName;
       }
+
+      if (move.tipo) {
+        const localizedType = await this.pokeapi.getLocalizedTypeName(move.tipo).toPromise();
+        (move as any).localizedtype = localizedType || this.transformarPrimeraLetra(move.tipo);
+      }
     });
 
     await Promise.all(movePromises);
   }
-
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
 
@@ -470,7 +473,7 @@ export class BatallaComponent {
 
     let mensajeAtaque = baseAtaque + (efectoMensaje ? ` ${efectoMensaje}` : '');
 
-        await this.delay(700);
+    await this.delay(700);
     this.pokemonAtacanteId = null;
     this.mostrarMensajeBatalla(mensajeAtaque);
 
@@ -551,25 +554,31 @@ export class BatallaComponent {
       this.pokeapi.getItemsById(id).subscribe({
         next: (value: Items) => {
           this.jugador?.items?.push(value);
+          for (let i = 0; i < this.pokemonDebilitados.length; i++) {
+            this.jugador?.equipo.push(this.pokemonDebilitados[i]);
 
+          }
+          this.jugador!.equipo.forEach(p => {
+            p.vidaActual = p.estadisticas.hp;
+          })
+          this.ps.actualizarPuntaje(partidaId, { puntuacion: puntajeNuevo, duelosGanados: this.duelosGanados, personaje: this.jugador } as any).subscribe({
+            next: (response) => {
+              console.log(this.translate.instant('log.scoreUpdated'), response);
+              this.partida!.puntuacion = puntajeNuevo;
+              (this.partida as any).duelosGanados = this.duelosGanados;
+              this.continuarBatalla();
+            },
+            error: (error: Error) => {
+              console.error(this.translate.instant('log.scoreUpdateError'), error);
+            }
+          });
+
+          this.isBossBattle = false;
         },
         error: (err: Error) => {
           console.log(err)
         },
       })
-      this.ps.actualizarPuntaje(partidaId, { puntuacion: puntajeNuevo, duelosGanados: this.duelosGanados } as any).subscribe({
-        next: (response) => {
-          console.log(this.translate.instant('log.scoreUpdated'), response);
-          this.partida!.puntuacion = puntajeNuevo;
-          (this.partida as any).duelosGanados = this.duelosGanados;
-          this.continuarBatalla();
-        },
-        error: (error: Error) => {
-          console.error(this.translate.instant('log.scoreUpdateError'), error);
-        }
-      });
-
-      this.isBossBattle = false;
 
     } else {
       const ranking = { nombre: '', usuario: '', puntaje: 0 };

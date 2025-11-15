@@ -18,7 +18,8 @@
   <div class="pokemon-details" *ngIf="searchedPokemonData">
     <p class="pokemon-name">
       <strong>{{ 'pokemonDetail.species' | translate }}:</strong>
-      {{ transformarPrimeraLetra(searchedPokemonData.localizedName || searchedPokemonData.name) }}
+      {{ transformarPrimeraLetra(searchedPokemonData.localizedName ||
+      searchedPokemonData.name) }}
     </p>
 
     <img
@@ -30,11 +31,11 @@
     <div class="pokemon-types">
       <strong>{{ 'pokemonDetail.types' | translate }}:</strong>
       <span
-        *ngFor="let tipo of searchedPokemonData.types"
-        [ngClass]="obtenerClaseTipoMovimiento(tipo)"
+        *ngFor="let tipoData of searchedPokemonData.typesLocalized"
+        [ngClass]="obtenerClaseTipoMovimiento(tipoData.type)"
         class="type-tag"
       >
-        {{ transformarPrimeraLetra(tipo) }}
+        {{ tipoData.displayType || transformarPrimeraLetra(tipoData.type) }}
       </span>
     </div>
 
@@ -47,13 +48,20 @@
             *ngFor="let t of searchedPokemonData.effectiveness.superEffective"
             [ngClass]="obtenerClaseTipoMovimiento(t.type)"
           >
-            <span class="type-tag">{{ transformarPrimeraLetra(t.type) }}</span>
-            <span class="factor-badge super">{{ formatoFactor(t.factor) }}</span>
+            <span class="type-tag"
+              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+            >
+            <span class="factor-badge super"
+              >{{ formatoFactor(t.factor) }}</span
+            >
           </span>
         </div>
       </div>
 
-      <div *ngIf="searchedPokemonData.effectiveness.notEffective.length" class="mt">
+      <div
+        *ngIf="searchedPokemonData.effectiveness.notEffective.length"
+        class="mt"
+      >
         <strong>{{ 'pokedex.notVeryEffective' | translate }}</strong>
         <div class="type-list">
           <span
@@ -61,13 +69,18 @@
             *ngFor="let t of searchedPokemonData.effectiveness.notEffective"
             [ngClass]="obtenerClaseTipoMovimiento(t.type)"
           >
-            <span class="type-tag">{{ transformarPrimeraLetra(t.type) }}</span>
+            <span class="type-tag"
+              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+            >
             <span class="factor-badge weak">{{ formatoFactor(t.factor) }}</span>
           </span>
         </div>
       </div>
 
-      <div *ngIf="searchedPokemonData.effectiveness.immunities.length" class="mt">
+      <div
+        *ngIf="searchedPokemonData.effectiveness.immunities.length"
+        class="mt"
+      >
         <strong>{{ 'pokedex.immunities' | translate }}</strong>
         <div class="type-list">
           <span
@@ -75,12 +88,15 @@
             *ngFor="let t of searchedPokemonData.effectiveness.immunities"
             [ngClass]="obtenerClaseTipoMovimiento(t.type)"
           >
-            <span class="type-tag">{{ transformarPrimeraLetra(t.type) }}</span>
-            <span class="factor-badge immune">{{ formatoFactor(t.factor) }}</span>
+            <span class="type-tag"
+              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+            >
+            <span class="factor-badge immune"
+              >{{ formatoFactor(t.factor) }}</span
+            >
           </span>
         </div>
       </div>
-
     </div>
   </div>
 </div>

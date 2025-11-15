@@ -115,7 +115,6 @@ export class PokeAPIService {
         const localizedNameEntry = typeData.names.find(
           (name: any) => name.language.name === currentLang
         );
-        // Returns the localized name if found, otherwise transforms the API name (e.g., 'fire' -> 'Fire')
         return localizedNameEntry ? localizedNameEntry.name : this.transformarPrimeraLetra(typeName);
       })
     );

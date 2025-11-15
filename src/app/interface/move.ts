@@ -8,5 +8,6 @@ export interface Move {
     pp: number, //Cantidad de Usos
     localizedName?: string
     originalName?: string,
-    originalType?: string
+    originalType?: string,
+    localizedtype?:string
 }
