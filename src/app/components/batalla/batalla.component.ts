@@ -55,8 +55,8 @@ export class BatallaComponent {
   itemDeRevivirSeleccionado: Items | null = null;
   indiceItemDeRevivir: number = -1;
   audio_service = inject(AudioService)
-  bgmVolume: number = 0.5;
-  sfxVolume: number = 0.8
+  bgmVolume= this.audio_service.getBGMVolume();
+  sfxVolume= this.audio_service.getsfxVolume();
   pokemonAtacanteId: string | null = null;
   healingValues: { [key: string]: number } = {
     'potion': 20,
