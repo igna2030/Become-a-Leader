@@ -66,11 +66,20 @@
 }
 
 .pokemon-details {
+  overflow-y: auto;
+  max-height: 650px;
   background-color: #424242;
   border: 3px inset #757575;
   padding: 10px;
   border-radius: 5px;
   color: #FFEB3B;
+  &::-webkit-scrollbar{
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #90A4AE;
+    border: 3px;
+  }
 }
 
 .pokemon-name strong {

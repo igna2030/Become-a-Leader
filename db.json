@@ -32,14 +32,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 184,
+            "vidaActual": 253,
             "estadisticas": {
-              "hp": 184,
-              "atk": 234,
-              "def": 218,
-              "satk": 374,
-              "sdef": 332,
-              "spd": 323
+              "hp": 253,
+              "atk": 125,
+              "def": 89,
+              "satk": 269,
+              "sdef": 221,
+              "spd": 227
             },
             "movimientos": [
               {
@@ -89,14 +89,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 161,
+            "vidaActual": 251,
             "estadisticas": {
-              "hp": 161,
-              "atk": 241,
-              "def": 289,
-              "satk": 256,
-              "sdef": 265,
-              "spd": 293
+              "hp": 251,
+              "atk": 158,
+              "def": 181,
+              "satk": 142,
+              "sdef": 188,
+              "spd": 204
             },
             "movimientos": [
               {
@@ -145,14 +145,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 131,
+            "vidaActual": 242,
             "estadisticas": {
-              "hp": 131,
-              "atk": 212,
-              "def": 233,
-              "satk": 395,
-              "sdef": 314,
-              "spd": 396
+              "hp": 242,
+              "atk": 132,
+              "def": 146,
+              "satk": 287,
+              "sdef": 221,
+              "spd": 254
             },
             "movimientos": [
               {
@@ -201,14 +201,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 138,
+            "vidaActual": 252,
             "estadisticas": {
-              "hp": 138,
-              "atk": 253,
-              "def": 247,
-              "satk": 416,
-              "sdef": 343,
-              "spd": 359
+              "hp": 252,
+              "atk": 161,
+              "def": 148,
+              "satk": 288,
+              "sdef": 226,
+              "spd": 263
             },
             "movimientos": [
               {
@@ -258,14 +258,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 225,
+            "vidaActual": 316,
             "estadisticas": {
-              "hp": 225,
-              "atk": 300,
-              "def": 382,
-              "satk": 333,
-              "sdef": 308,
-              "spd": 195
+              "hp": 316,
+              "atk": 191,
+              "def": 263,
+              "satk": 212,
+              "sdef": 190,
+              "spd": 80
             },
             "movimientos": [
               {
@@ -315,14 +315,14 @@
               "fighting"
             ],
             "nivel": 100,
-            "vidaActual": 168,
+            "vidaActual": 278,
             "estadisticas": {
-              "hp": 168,
-              "atk": 383,
-              "def": 260,
-              "satk": 271,
-              "sdef": 354,
-              "spd": 290
+              "hp": 278,
+              "atk": 273,
+              "def": 153,
+              "satk": 154,
+              "sdef": 259,
+              "spd": 197
             },
             "movimientos": [
               {
@@ -369,150 +369,14 @@
     },
     {
       "id": "f5d9",
-      "fecha_inicio": "2025-11-15T15:37:18.624Z",
-      "fecha_fin": "2025-11-15T15:37:18.624Z",
+      "fecha_inicio": "2025-11-15T21:27:22.040Z",
+      "fecha_fin": "2025-11-15T21:27:22.040Z",
       "puntuacion": 1,
       "personaje": {
         "id": "f5d9",
         "nombre": "asd",
         "tipo": "rock",
         "equipo": [
-          {
-            "id": "142",
-            "especie": "Aerodactyl",
-            "tipos": [
-              "rock",
-              "flying"
-            ],
-            "nivel": 100,
-            "vidaActual": 195,
-            "estadisticas": {
-              "hp": 195,
-              "atk": 327,
-              "def": 251,
-              "satk": 257,
-              "sdef": 279,
-              "spd": 400
-            },
-            "movimientos": [
-              {
-                "nombre": "Ataque Aéreo",
-                "tipo": "flying",
-                "clase": "physical",
-                "potencia": 140,
-                "precision": 90,
-                "usos": 5,
-                "pp": 5,
-                "originalName": "sky-attack",
-                "localizedName": "Ataque Aéreo"
-              },
-              {
-                "nombre": "Avalancha",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "rock-slide",
-                "localizedName": "Avalancha"
-              },
-              {
-                "nombre": "Terremoto",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Terremoto"
-              },
-              {
-                "nombre": "Colmillo Ígneo",
-                "tipo": "fire",
-                "clase": "physical",
-                "potencia": 65,
-                "precision": 95,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "fire-fang",
-                "localizedName": "Colmillo Ígneo"
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/142.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
-            "localizedName": "Aerodactyl"
-          },
-          {
-            "id": "141",
-            "especie": "Kabutops",
-            "tipos": [
-              "rock",
-              "water"
-            ],
-            "nivel": 100,
-            "vidaActual": 155,
-            "estadisticas": {
-              "hp": 155,
-              "atk": 376,
-              "def": 364,
-              "satk": 244,
-              "sdef": 287,
-              "spd": 299
-            },
-            "movimientos": [
-              {
-                "nombre": "Tijera X",
-                "tipo": "bug",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "x-scissor",
-                "localizedName": "Tijera X"
-              },
-              {
-                "nombre": "Tajo Umbrío",
-                "tipo": "dark",
-                "clase": "physical",
-                "potencia": 70,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "night-slash",
-                "localizedName": "Tajo Umbrío"
-              },
-              {
-                "nombre": "Cascada",
-                "tipo": "water",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "waterfall",
-                "localizedName": "Cascada"
-              },
-              {
-                "nombre": "Avalancha",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "rock-slide",
-                "localizedName": "Avalancha"
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/141.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
-            "localizedName": "Kabutops"
-          },
           {
             "id": "567",
             "especie": "Archeops",
@@ -521,14 +385,14 @@
               "flying"
             ],
             "nivel": 100,
-            "vidaActual": 199,
+            "vidaActual": 276,
             "estadisticas": {
-              "hp": 199,
-              "atk": 410,
-              "def": 261,
-              "satk": 378,
-              "sdef": 258,
-              "spd": 372
+              "hp": 276,
+              "atk": 302,
+              "def": 159,
+              "satk": 262,
+              "sdef": 176,
+              "spd": 255
             },
             "movimientos": [
               {
@@ -540,7 +404,8 @@
                 "usos": 10,
                 "pp": 10,
                 "originalName": "earthquake",
-                "localizedName": "Terremoto"
+                "localizedName": "Terremoto",
+                "localizedtype": "Tierra"
               },
               {
                 "nombre": "Avalancha",
@@ -551,7 +416,8 @@
                 "usos": 10,
                 "pp": 10,
                 "originalName": "rock-slide",
-                "localizedName": "Avalancha"
+                "localizedName": "Avalancha",
+                "localizedtype": "Roca"
               },
               {
                 "nombre": "Dragoaliento",
@@ -562,7 +428,8 @@
                 "usos": 20,
                 "pp": 20,
                 "originalName": "dragon-breath",
-                "localizedName": "Dragoaliento"
+                "localizedName": "Dragoaliento",
+                "localizedtype": "Dragón"
               },
               {
                 "nombre": "Ala de Acero",
@@ -573,7 +440,8 @@
                 "usos": 25,
                 "pp": 25,
                 "originalName": "steel-wing",
-                "localizedName": "Ala de Acero"
+                "localizedName": "Ala de Acero",
+                "localizedtype": "Acero"
               }
             ],
             "idEntrenador": "f5d9",
@@ -583,20 +451,256 @@
           },
           {
             "id": "348",
-            "especie": "Armaldo",
+            "especie": "armaldo",
             "tipos": [
               "rock",
               "bug"
             ],
             "nivel": 100,
-            "vidaActual": 176,
+            "vidaActual": 298,
             "estadisticas": {
-              "hp": 176,
-              "atk": 399,
-              "def": 347,
-              "satk": 282,
-              "sdef": 290,
-              "spd": 232
+              "hp": 298,
+              "atk": 270,
+              "def": 248,
+              "satk": 159,
+              "sdef": 191,
+              "spd": 112
+            },
+            "movimientos": [
+              {
+                "nombre": "x-scissor",
+                "tipo": "bug",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "aqua-tail",
+                "tipo": "water",
+                "clase": "physical",
+                "potencia": 90,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "rock-tomb",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/348.png",
+            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/348.png"
+          },
+          {
+            "id": "464",
+            "especie": "rhyperior",
+            "tipos": [
+              "ground",
+              "rock"
+            ],
+            "nivel": 100,
+            "vidaActual": 350,
+            "estadisticas": {
+              "hp": 350,
+              "atk": 293,
+              "def": 291,
+              "satk": 133,
+              "sdef": 116,
+              "spd": 113
+            },
+            "movimientos": [
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "flamethrower",
+                "tipo": "fire",
+                "clase": "special",
+                "potencia": 90,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "thunderbolt",
+                "tipo": "electric",
+                "clase": "special",
+                "potencia": 90,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/464.png",
+            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png"
+          },
+          {
+            "id": "565",
+            "especie": "carracosta",
+            "tipos": [
+              "water",
+              "rock"
+            ],
+            "nivel": 100,
+            "vidaActual": 284,
+            "estadisticas": {
+              "hp": 284,
+              "atk": 222,
+              "def": 299,
+              "satk": 190,
+              "sdef": 155,
+              "spd": 76
+            },
+            "movimientos": [
+              {
+                "nombre": "waterfall",
+                "tipo": "water",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "superpower",
+                "tipo": "fighting",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 5,
+                "pp": 5
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/565.png",
+            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png"
+          },
+          {
+            "id": "142",
+            "especie": "aerodactyl",
+            "tipos": [
+              "rock",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 295,
+            "estadisticas": {
+              "hp": 295,
+              "atk": 250,
+              "def": 165,
+              "satk": 128,
+              "sdef": 182,
+              "spd": 291
+            },
+            "movimientos": [
+              {
+                "nombre": "sky-attack",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 140,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "fire-fang",
+                "tipo": "fire",
+                "clase": "physical",
+                "potencia": 65,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/142.png",
+            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
+          },
+          {
+            "id": "141",
+            "especie": "Kabutops",
+            "tipos": [
+              "rock",
+              "water"
+            ],
+            "nivel": 100,
+            "vidaActual": 267,
+            "estadisticas": {
+              "hp": 267,
+              "atk": 263,
+              "def": 239,
+              "satk": 168,
+              "sdef": 178,
+              "spd": 184
             },
             "movimientos": [
               {
@@ -608,133 +712,21 @@
                 "usos": 15,
                 "pp": 15,
                 "originalName": "x-scissor",
-                "localizedName": "Tijera X"
+                "localizedName": "Tijera X",
+                "localizedtype": "Bicho"
               },
               {
-                "nombre": "Terremoto",
-                "tipo": "ground",
+                "nombre": "Tajo Umbrío",
+                "tipo": "dark",
                 "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Terremoto"
-              },
-              {
-                "nombre": "Acua Cola",
-                "tipo": "water",
-                "clase": "physical",
-                "potencia": 90,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "aqua-tail",
-                "localizedName": "Acua Cola"
-              },
-              {
-                "nombre": "Tumba Rocas",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 60,
-                "precision": 95,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "rock-tomb",
-                "localizedName": "Tumba Rocas"
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/348.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/348.png",
-            "localizedName": "Armaldo"
-          },
-          {
-            "id": "464",
-            "especie": "Rhyperior",
-            "tipos": [
-              "ground",
-              "rock"
-            ],
-            "nivel": 100,
-            "vidaActual": 278,
-            "estadisticas": {
-              "hp": 278,
-              "atk": 410,
-              "def": 390,
-              "satk": 238,
-              "sdef": 233,
-              "spd": 206
-            },
-            "movimientos": [
-              {
-                "nombre": "Terremoto",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Terremoto"
-              },
-              {
-                "nombre": "Avalancha",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "rock-slide",
-                "localizedName": "Avalancha"
-              },
-              {
-                "nombre": "Lanzallamas",
-                "tipo": "fire",
-                "clase": "special",
-                "potencia": 90,
+                "potencia": 70,
                 "precision": 100,
                 "usos": 15,
                 "pp": 15,
-                "originalName": "flamethrower",
-                "localizedName": "Lanzallamas"
+                "originalName": "night-slash",
+                "localizedName": "Tajo Umbrío",
+                "localizedtype": "Siniestro"
               },
-              {
-                "nombre": "Rayo",
-                "tipo": "electric",
-                "clase": "special",
-                "potencia": 90,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "thunderbolt",
-                "localizedName": "Rayo"
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/464.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png",
-            "localizedName": "Rhyperior"
-          },
-          {
-            "id": "565",
-            "especie": "Carracosta",
-            "tipos": [
-              "water",
-              "rock"
-            ],
-            "nivel": 100,
-            "vidaActual": 175,
-            "estadisticas": {
-              "hp": 175,
-              "atk": 337,
-              "def": 387,
-              "satk": 307,
-              "sdef": 258,
-              "spd": 200
-            },
-            "movimientos": [
               {
                 "nombre": "Cascada",
                 "tipo": "water",
@@ -744,18 +736,8 @@
                 "usos": 15,
                 "pp": 15,
                 "originalName": "waterfall",
-                "localizedName": "Cascada"
-              },
-              {
-                "nombre": "Terremoto",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Terremoto"
+                "localizedName": "Cascada",
+                "localizedtype": "Agua"
               },
               {
                 "nombre": "Avalancha",
@@ -766,46 +748,36 @@
                 "usos": 10,
                 "pp": 10,
                 "originalName": "rock-slide",
-                "localizedName": "Avalancha"
-              },
-              {
-                "nombre": "Fuerza Bruta",
-                "tipo": "fighting",
-                "clase": "physical",
-                "potencia": 120,
-                "precision": 100,
-                "usos": 5,
-                "pp": 5,
-                "originalName": "superpower",
-                "localizedName": "Fuerza Bruta"
+                "localizedName": "Avalancha",
+                "localizedtype": "Roca"
               }
             ],
             "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/565.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png",
-            "localizedName": "Carracosta"
+            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/141.png",
+            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
+            "localizedName": "Kabutops"
           }
         ],
         "items": [
           {
-            "name": "max-revive",
-            "category": {
-              "name": "revival",
-              "url": "https://pokeapi.co/api/v2/item-category/29/"
-            },
-            "localizedName": "Revivir Máximo",
-            "description": "Medicina que revive a un Pokémon debilitado y le devuelve todos sus PS.",
-            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-revive.png"
-          },
-          {
-            "name": "super-potion",
+            "name": "energy-root",
             "category": {
               "name": "healing",
               "url": "https://pokeapi.co/api/v2/item-category/27/"
             },
-            "localizedName": "Superpoción",
-            "description": "Medicina en espray que cura heridas y restaura 50 PS de un Pokémon.",
-            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/super-potion.png"
+            "localizedName": "Raíz Energía",
+            "description": "Raíz muy amarga que restaura 200 PS de un Pokémon.",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-root.png"
+          },
+          {
+            "name": "max-potion",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Poción Máxima",
+            "description": "Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-potion.png"
           }
         ]
       },
@@ -818,48 +790,6 @@
       "nombre": "Agus",
       "usuario": "4efd",
       "puntaje": 12
-    },
-    {
-      "id": "12a5",
-      "nombre": "Ignacio",
-      "usuario": "4efd",
-      "puntaje": 1
-    },
-    {
-      "id": "f005",
-      "nombre": "ADAD",
-      "usuario": "f5d9",
-      "puntaje": 0
-    },
-    {
-      "id": "39fe",
-      "nombre": "igna",
-      "usuario": "f5d9",
-      "puntaje": 0
-    },
-    {
-      "id": "6642",
-      "nombre": "ignacio",
-      "usuario": "f5d9",
-      "puntaje": 1
-    },
-    {
-      "id": "0697",
-      "nombre": "sad",
-      "usuario": "f5d9",
-      "puntaje": 4
-    },
-    {
-      "id": "68a7",
-      "nombre": "ddd",
-      "usuario": "f5d9",
-      "puntaje": 7
-    },
-    {
-      "id": "dc18",
-      "nombre": "dasdasdasdasd",
-      "usuario": "f5d9",
-      "puntaje": 0
     }
   ],
   "pokemons": [
@@ -871,14 +801,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 210,
+      "vidaActual": 349,
       "estadisticas": {
-        "hp": 210,
-        "atk": 366,
-        "def": 296,
-        "satk": 260,
-        "sdef": 330,
-        "spd": 312
+        "hp": 349,
+        "atk": 271,
+        "def": 175,
+        "satk": 154,
+        "sdef": 216,
+        "spd": 203
       },
       "movimientos": [
         {
@@ -927,14 +857,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 307,
+      "vidaActual": 406,
       "estadisticas": {
-        "hp": 307,
-        "atk": 289,
-        "def": 281,
-        "satk": 313,
-        "sdef": 325,
-        "spd": 237
+        "hp": 406,
+        "atk": 212,
+        "def": 194,
+        "satk": 203,
+        "sdef": 212,
+        "spd": 148
       },
       "movimientos": [
         {
@@ -982,14 +912,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 306,
+      "vidaActual": 388,
       "estadisticas": {
-        "hp": 306,
-        "atk": 252,
-        "def": 249,
-        "satk": 352,
-        "sdef": 317,
-        "spd": 256
+        "hp": 388,
+        "atk": 183,
+        "def": 172,
+        "satk": 266,
+        "sdef": 236,
+        "spd": 177
       },
       "movimientos": [
         {
@@ -1038,14 +968,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 192,
+      "vidaActual": 311,
       "estadisticas": {
-        "hp": 192,
-        "atk": 291,
-        "def": 248,
-        "satk": 287,
-        "sdef": 389,
-        "spd": 331
+        "hp": 311,
+        "atk": 160,
+        "def": 160,
+        "satk": 170,
+        "sdef": 270,
+        "spd": 246
       },
       "movimientos": [
         {
@@ -1094,14 +1024,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 155,
+      "vidaActual": 265,
       "estadisticas": {
-        "hp": 155,
-        "atk": 376,
-        "def": 364,
-        "satk": 244,
-        "sdef": 287,
-        "spd": 299
+        "hp": 265,
+        "atk": 252,
+        "def": 239,
+        "satk": 139,
+        "sdef": 183,
+        "spd": 207
       },
       "movimientos": [
         {
@@ -1150,14 +1080,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 222,
+      "vidaActual": 330,
       "estadisticas": {
-        "hp": 222,
-        "atk": 364,
-        "def": 321,
-        "satk": 300,
-        "sdef": 300,
-        "spd": 236
+        "hp": 330,
+        "atk": 266,
+        "def": 230,
+        "satk": 212,
+        "sdef": 206,
+        "spd": 137
       },
       "movimientos": [
         {
@@ -1205,14 +1135,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 194,
+      "vidaActual": 287,
       "estadisticas": {
-        "hp": 194,
-        "atk": 325,
-        "def": 262,
-        "satk": 376,
-        "sdef": 306,
-        "spd": 290
+        "hp": 287,
+        "atk": 198,
+        "def": 185,
+        "satk": 298,
+        "sdef": 241,
+        "spd": 206
       },
       "movimientos": [
         {
@@ -1260,14 +1190,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 165,
+      "vidaActual": 281,
       "estadisticas": {
-        "hp": 165,
-        "atk": 405,
-        "def": 262,
-        "satk": 345,
-        "sdef": 346,
-        "spd": 276
+        "hp": 281,
+        "atk": 314,
+        "def": 154,
+        "satk": 213,
+        "sdef": 245,
+        "spd": 162
       },
       "movimientos": [
         {
@@ -1315,14 +1245,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 253,
+      "vidaActual": 348,
       "estadisticas": {
-        "hp": 253,
-        "atk": 403,
-        "def": 240,
-        "satk": 197,
-        "sdef": 234,
-        "spd": 317
+        "hp": 348,
+        "atk": 313,
+        "def": 148,
+        "satk": 86,
+        "sdef": 158,
+        "spd": 216
       },
       "movimientos": [
         {
@@ -1370,14 +1300,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 208,
+      "vidaActual": 328,
       "estadisticas": {
-        "hp": 208,
-        "atk": 344,
-        "def": 315,
-        "satk": 351,
-        "sdef": 297,
-        "spd": 331
+        "hp": 328,
+        "atk": 261,
+        "def": 210,
+        "satk": 221,
+        "sdef": 192,
+        "spd": 214
       },
       "movimientos": [
         {
@@ -1426,14 +1356,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 197,
+      "vidaActual": 286,
       "estadisticas": {
-        "hp": 197,
-        "atk": 298,
-        "def": 276,
-        "satk": 355,
-        "sdef": 307,
-        "spd": 330
+        "hp": 286,
+        "atk": 197,
+        "def": 185,
+        "satk": 247,
+        "sdef": 206,
+        "spd": 243
       },
       "movimientos": [
         {
@@ -1481,14 +1411,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 166,
+      "vidaActual": 298,
       "estadisticas": {
-        "hp": 166,
-        "atk": 289,
-        "def": 430,
-        "satk": 307,
-        "sdef": 273,
-        "spd": 190
+        "hp": 298,
+        "atk": 213,
+        "def": 322,
+        "satk": 191,
+        "sdef": 185,
+        "spd": 61
       },
       "movimientos": [
         {
@@ -1537,14 +1467,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 176,
+      "vidaActual": 303,
       "estadisticas": {
-        "hp": 176,
-        "atk": 316,
-        "def": 294,
-        "satk": 329,
-        "sdef": 360,
-        "spd": 299
+        "hp": 303,
+        "atk": 178,
+        "def": 211,
+        "satk": 232,
+        "sdef": 236,
+        "spd": 187
       },
       "movimientos": [
         {
@@ -1593,14 +1523,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 275,
+      "vidaActual": 365,
       "estadisticas": {
-        "hp": 275,
-        "atk": 293,
-        "def": 281,
-        "satk": 311,
-        "sdef": 292,
-        "spd": 190
+        "hp": 365,
+        "atk": 216,
+        "def": 187,
+        "satk": 209,
+        "sdef": 191,
+        "spd": 75
       },
       "movimientos": [
         {
@@ -1648,14 +1578,14 @@
         "grass"
       ],
       "nivel": 100,
-      "vidaActual": 167,
+      "vidaActual": 274,
       "estadisticas": {
-        "hp": 167,
-        "atk": 340,
-        "def": 385,
-        "satk": 258,
-        "sdef": 252,
-        "spd": 325
+        "hp": 274,
+        "atk": 272,
+        "def": 277,
+        "satk": 132,
+        "sdef": 161,
+        "spd": 197
       },
       "movimientos": [
         {
@@ -1704,14 +1634,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 142,
+      "vidaActual": 260,
       "estadisticas": {
-        "hp": 142,
-        "atk": 394,
-        "def": 275,
-        "satk": 250,
-        "sdef": 261,
-        "spd": 273
+        "hp": 260,
+        "atk": 312,
+        "def": 166,
+        "satk": 135,
+        "sdef": 139,
+        "spd": 190
       },
       "movimientos": [
         {
@@ -1760,14 +1690,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 148,
+      "vidaActual": 252,
       "estadisticas": {
-        "hp": 148,
-        "atk": 267,
-        "def": 274,
-        "satk": 374,
-        "sdef": 351,
-        "spd": 321
+        "hp": 252,
+        "atk": 162,
+        "def": 172,
+        "satk": 275,
+        "sdef": 229,
+        "spd": 214
       },
       "movimientos": [
         {
@@ -1816,14 +1746,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 227,
+      "vidaActual": 326,
       "estadisticas": {
-        "hp": 227,
-        "atk": 319,
-        "def": 309,
-        "satk": 325,
-        "sdef": 306,
-        "spd": 255
+        "hp": 326,
+        "atk": 218,
+        "def": 194,
+        "satk": 221,
+        "sdef": 197,
+        "spd": 172
       },
       "movimientos": [
         {
@@ -1871,14 +1801,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 225,
+      "vidaActual": 305,
       "estadisticas": {
-        "hp": 225,
-        "atk": 266,
-        "def": 318,
-        "satk": 353,
-        "sdef": 329,
-        "spd": 241
+        "hp": 305,
+        "atk": 183,
+        "def": 182,
+        "satk": 264,
+        "sdef": 204,
+        "spd": 136
       },
       "movimientos": [
         {
@@ -1927,14 +1857,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 176,
+      "vidaActual": 257,
       "estadisticas": {
-        "hp": 176,
-        "atk": 277,
-        "def": 258,
-        "satk": 327,
-        "sdef": 246,
-        "spd": 367
+        "hp": 257,
+        "atk": 189,
+        "def": 139,
+        "satk": 225,
+        "sdef": 176,
+        "spd": 258
       },
       "movimientos": [
         {
@@ -1990,14 +1920,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 154,
+      "vidaActual": 269,
       "estadisticas": {
-        "hp": 154,
-        "atk": 277,
-        "def": 263,
-        "satk": 362,
-        "sdef": 335,
-        "spd": 408
+        "hp": 269,
+        "atk": 157,
+        "def": 171,
+        "satk": 253,
+        "sdef": 219,
+        "spd": 282
       },
       "movimientos": [
         {
@@ -2045,14 +1975,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 159,
+      "vidaActual": 289,
       "estadisticas": {
-        "hp": 159,
-        "atk": 380,
-        "def": 274,
-        "satk": 319,
-        "sdef": 301,
-        "spd": 330
+        "hp": 289,
+        "atk": 275,
+        "def": 160,
+        "satk": 207,
+        "sdef": 198,
+        "spd": 227
       },
       "movimientos": [
         {
@@ -2101,14 +2031,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 284,
+      "vidaActual": 376,
       "estadisticas": {
-        "hp": 284,
-        "atk": 264,
-        "def": 250,
-        "satk": 270,
-        "sdef": 286,
-        "spd": 267
+        "hp": 376,
+        "atk": 143,
+        "def": 166,
+        "satk": 174,
+        "sdef": 192,
+        "spd": 147
       },
       "movimientos": [
         {
@@ -2156,14 +2086,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 208,
+      "vidaActual": 305,
       "estadisticas": {
-        "hp": 208,
-        "atk": 359,
-        "def": 291,
-        "satk": 364,
-        "sdef": 295,
-        "spd": 230
+        "hp": 305,
+        "atk": 249,
+        "def": 189,
+        "satk": 234,
+        "sdef": 196,
+        "spd": 129
       },
       "movimientos": [
         {
@@ -2212,14 +2142,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 249,
+      "vidaActual": 357,
       "estadisticas": {
-        "hp": 249,
-        "atk": 296,
-        "def": 323,
-        "satk": 349,
-        "sdef": 307,
-        "spd": 279
+        "hp": 357,
+        "atk": 194,
+        "def": 230,
+        "satk": 231,
+        "sdef": 213,
+        "spd": 178
       },
       "movimientos": [
         {
@@ -2267,14 +2197,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 234,
+      "vidaActual": 321,
       "estadisticas": {
-        "hp": 234,
-        "atk": 402,
-        "def": 286,
-        "satk": 263,
-        "sdef": 310,
-        "spd": 244
+        "hp": 321,
+        "atk": 276,
+        "def": 209,
+        "satk": 171,
+        "sdef": 188,
+        "spd": 147
       },
       "movimientos": [
         {
@@ -2323,14 +2253,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 184,
+      "vidaActual": 277,
       "estadisticas": {
-        "hp": 184,
-        "atk": 234,
-        "def": 218,
-        "satk": 374,
-        "sdef": 332,
-        "spd": 323
+        "hp": 277,
+        "atk": 132,
+        "def": 89,
+        "satk": 262,
+        "sdef": 230,
+        "spd": 239
       },
       "movimientos": [
         {
@@ -2378,14 +2308,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 162,
+      "vidaActual": 286,
       "estadisticas": {
-        "hp": 162,
-        "atk": 238,
-        "def": 359,
-        "satk": 391,
-        "sdef": 307,
-        "spd": 276
+        "hp": 286,
+        "atk": 148,
+        "def": 233,
+        "satk": 296,
+        "sdef": 217,
+        "spd": 164
       },
       "movimientos": [
         {
@@ -2433,14 +2363,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 198,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 198,
-        "atk": 293,
-        "def": 297,
-        "satk": 295,
-        "sdef": 288,
-        "spd": 292
+        "hp": 290,
+        "atk": 193,
+        "def": 194,
+        "satk": 213,
+        "sdef": 187,
+        "spd": 174
       },
       "movimientos": [
         {
@@ -2489,14 +2419,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 265,
+      "vidaActual": 348,
       "estadisticas": {
-        "hp": 265,
-        "atk": 400,
-        "def": 287,
-        "satk": 287,
-        "sdef": 263,
-        "spd": 308
+        "hp": 348,
+        "atk": 290,
+        "def": 199,
+        "satk": 160,
+        "sdef": 156,
+        "spd": 199
       },
       "movimientos": [
         {
@@ -2544,14 +2474,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 220,
+      "vidaActual": 310,
       "estadisticas": {
-        "hp": 220,
-        "atk": 395,
-        "def": 280,
-        "satk": 267,
-        "sdef": 309,
-        "spd": 242
+        "hp": 310,
+        "atk": 288,
+        "def": 192,
+        "satk": 148,
+        "sdef": 192,
+        "spd": 162
       },
       "movimientos": [
         {
@@ -2599,14 +2529,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 133,
+      "vidaActual": 236,
       "estadisticas": {
-        "hp": 133,
-        "atk": 339,
-        "def": 288,
-        "satk": 207,
-        "sdef": 354,
-        "spd": 293
+        "hp": 236,
+        "atk": 246,
+        "def": 205,
+        "satk": 92,
+        "sdef": 238,
+        "spd": 175
       },
       "movimientos": [
         {
@@ -2655,14 +2585,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 168,
+      "vidaActual": 269,
       "estadisticas": {
-        "hp": 168,
-        "atk": 353,
-        "def": 277,
-        "satk": 380,
-        "sdef": 276,
-        "spd": 322
+        "hp": 269,
+        "atk": 240,
+        "def": 170,
+        "satk": 267,
+        "sdef": 193,
+        "spd": 202
       },
       "movimientos": [
         {
@@ -2710,14 +2640,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 143,
+      "vidaActual": 241,
       "estadisticas": {
-        "hp": 143,
-        "atk": 317,
-        "def": 327,
-        "satk": 197,
-        "sdef": 341,
-        "spd": 258
+        "hp": 241,
+        "atk": 235,
+        "def": 215,
+        "satk": 107,
+        "sdef": 263,
+        "spd": 157
       },
       "movimientos": [
         {
@@ -2765,14 +2695,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 267,
+      "vidaActual": 378,
       "estadisticas": {
-        "hp": 267,
-        "atk": 329,
-        "def": 288,
-        "satk": 207,
-        "sdef": 313,
-        "spd": 229
+        "hp": 378,
+        "atk": 238,
+        "def": 183,
+        "satk": 82,
+        "sdef": 212,
+        "spd": 117
       },
       "movimientos": [
         {
@@ -2821,14 +2751,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 161,
+      "vidaActual": 262,
       "estadisticas": {
-        "hp": 161,
-        "atk": 241,
-        "def": 289,
-        "satk": 256,
-        "sdef": 265,
-        "spd": 293
+        "hp": 262,
+        "atk": 135,
+        "def": 175,
+        "satk": 142,
+        "sdef": 172,
+        "spd": 189
       },
       "movimientos": [
         {
@@ -2876,14 +2806,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 156,
+      "vidaActual": 246,
       "estadisticas": {
-        "hp": 156,
-        "atk": 315,
-        "def": 276,
-        "satk": 265,
-        "sdef": 305,
-        "spd": 307
+        "hp": 246,
+        "atk": 228,
+        "def": 166,
+        "satk": 169,
+        "sdef": 188,
+        "spd": 180
       },
       "movimientos": [
         {
@@ -2931,14 +2861,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 216,
+      "vidaActual": 330,
       "estadisticas": {
-        "hp": 216,
-        "atk": 281,
-        "def": 303,
-        "satk": 269,
-        "sdef": 304,
-        "spd": 232
+        "hp": 330,
+        "atk": 170,
+        "def": 187,
+        "satk": 188,
+        "sdef": 186,
+        "spd": 139
       },
       "movimientos": [
         {
@@ -2986,14 +2916,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 167,
+      "vidaActual": 278,
       "estadisticas": {
-        "hp": 167,
-        "atk": 330,
-        "def": 252,
-        "satk": 345,
-        "sdef": 273,
-        "spd": 274
+        "hp": 278,
+        "atk": 214,
+        "def": 158,
+        "satk": 243,
+        "sdef": 128,
+        "spd": 158
       },
       "movimientos": [
         {
@@ -3042,14 +2972,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 205,
+      "vidaActual": 301,
       "estadisticas": {
-        "hp": 205,
-        "atk": 311,
-        "def": 293,
-        "satk": 274,
-        "sdef": 309,
-        "spd": 396
+        "hp": 301,
+        "atk": 233,
+        "def": 182,
+        "satk": 166,
+        "sdef": 181,
+        "spd": 303
       },
       "movimientos": [
         {
@@ -3098,14 +3028,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 183,
+      "vidaActual": 315,
       "estadisticas": {
-        "hp": 183,
-        "atk": 348,
-        "def": 287,
-        "satk": 304,
-        "sdef": 252,
-        "spd": 322
+        "hp": 315,
+        "atk": 253,
+        "def": 149,
+        "satk": 194,
+        "sdef": 176,
+        "spd": 188
       },
       "movimientos": [
         {
@@ -3154,14 +3084,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 151,
+      "vidaActual": 286,
       "estadisticas": {
-        "hp": 151,
-        "atk": 314,
-        "def": 366,
-        "satk": 268,
-        "sdef": 276,
-        "spd": 336
+        "hp": 286,
+        "atk": 221,
+        "def": 225,
+        "satk": 158,
+        "sdef": 182,
+        "spd": 211
       },
       "movimientos": [
         {
@@ -3210,14 +3140,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 226,
+      "vidaActual": 339,
       "estadisticas": {
-        "hp": 226,
-        "atk": 331,
-        "def": 281,
-        "satk": 304,
-        "sdef": 268,
-        "spd": 299
+        "hp": 339,
+        "atk": 235,
+        "def": 183,
+        "satk": 199,
+        "sdef": 185,
+        "spd": 163
       },
       "movimientos": [
         {
@@ -3266,14 +3196,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 269,
+      "vidaActual": 351,
       "estadisticas": {
-        "hp": 269,
-        "atk": 412,
-        "def": 265,
-        "satk": 233,
-        "sdef": 260,
-        "spd": 311
+        "hp": 351,
+        "atk": 310,
+        "def": 152,
+        "satk": 133,
+        "sdef": 164,
+        "spd": 227
       },
       "movimientos": [
         {
@@ -3321,14 +3251,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 212,
+      "vidaActual": 321,
       "estadisticas": {
-        "hp": 212,
-        "atk": 368,
-        "def": 377,
-        "satk": 256,
-        "sdef": 249,
-        "spd": 224
+        "hp": 321,
+        "atk": 256,
+        "def": 268,
+        "satk": 151,
+        "sdef": 144,
+        "spd": 116
       },
       "movimientos": [
         {
@@ -3377,14 +3307,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 174,
+      "vidaActual": 284,
       "estadisticas": {
-        "hp": 174,
-        "atk": 316,
-        "def": 385,
-        "satk": 219,
-        "sdef": 277,
-        "spd": 331
+        "hp": 284,
+        "atk": 215,
+        "def": 295,
+        "satk": 134,
+        "sdef": 183,
+        "spd": 211
       },
       "movimientos": [
         {
@@ -3433,14 +3363,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 208,
+      "vidaActual": 326,
       "estadisticas": {
-        "hp": 208,
-        "atk": 376,
-        "def": 295,
-        "satk": 264,
-        "sdef": 285,
-        "spd": 329
+        "hp": 326,
+        "atk": 247,
+        "def": 193,
+        "satk": 165,
+        "sdef": 167,
+        "spd": 208
       },
       "movimientos": [
         {
@@ -3489,14 +3419,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 230,
+      "vidaActual": 316,
       "estadisticas": {
-        "hp": 230,
-        "atk": 302,
-        "def": 313,
-        "satk": 275,
-        "sdef": 308,
-        "spd": 286
+        "hp": 316,
+        "atk": 217,
+        "def": 225,
+        "satk": 176,
+        "sdef": 197,
+        "spd": 189
       },
       "movimientos": [
         {
@@ -3546,14 +3476,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 182,
+      "vidaActual": 316,
       "estadisticas": {
-        "hp": 182,
-        "atk": 299,
-        "def": 288,
-        "satk": 286,
-        "sdef": 268,
-        "spd": 351
+        "hp": 316,
+        "atk": 204,
+        "def": 184,
+        "satk": 169,
+        "sdef": 154,
+        "spd": 231
       },
       "movimientos": [
         {
@@ -3602,14 +3532,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 239,
+      "vidaActual": 321,
       "estadisticas": {
-        "hp": 239,
-        "atk": 376,
-        "def": 278,
-        "satk": 250,
-        "sdef": 263,
-        "spd": 300
+        "hp": 321,
+        "atk": 264,
+        "def": 156,
+        "satk": 151,
+        "sdef": 167,
+        "spd": 187
       },
       "movimientos": [
         {
@@ -3658,14 +3588,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 160,
+      "vidaActual": 262,
       "estadisticas": {
-        "hp": 160,
-        "atk": 237,
-        "def": 340,
-        "satk": 335,
-        "sdef": 288,
-        "spd": 269
+        "hp": 262,
+        "atk": 122,
+        "def": 232,
+        "satk": 212,
+        "sdef": 154,
+        "spd": 157
       },
       "movimientos": [
         {
@@ -3714,14 +3644,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 146,
+      "vidaActual": 264,
       "estadisticas": {
-        "hp": 146,
-        "atk": 307,
-        "def": 275,
-        "satk": 290,
-        "sdef": 225,
-        "spd": 376
+        "hp": 264,
+        "atk": 196,
+        "def": 152,
+        "satk": 172,
+        "sdef": 116,
+        "spd": 273
       },
       "movimientos": [
         {
@@ -3770,14 +3700,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 199,
+      "vidaActual": 272,
       "estadisticas": {
-        "hp": 199,
-        "atk": 410,
-        "def": 261,
-        "satk": 378,
-        "sdef": 258,
-        "spd": 372
+        "hp": 272,
+        "atk": 322,
+        "def": 160,
+        "satk": 248,
+        "sdef": 163,
+        "spd": 258
       },
       "movimientos": [
         {
@@ -3826,14 +3756,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 189,
+      "vidaActual": 285,
       "estadisticas": {
-        "hp": 189,
-        "atk": 372,
-        "def": 271,
-        "satk": 248,
-        "sdef": 252,
-        "spd": 354
+        "hp": 285,
+        "atk": 279,
+        "def": 178,
+        "satk": 141,
+        "sdef": 162,
+        "spd": 230
       },
       "movimientos": [
         {
@@ -3881,14 +3811,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 131,
+      "vidaActual": 232,
       "estadisticas": {
-        "hp": 131,
-        "atk": 212,
-        "def": 233,
-        "satk": 395,
-        "sdef": 314,
-        "spd": 396
+        "hp": 232,
+        "atk": 137,
+        "def": 127,
+        "satk": 323,
+        "sdef": 206,
+        "spd": 263
       },
       "movimientos": [
         {
@@ -3936,14 +3866,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 138,
+      "vidaActual": 264,
       "estadisticas": {
-        "hp": 138,
-        "atk": 253,
-        "def": 247,
-        "satk": 416,
-        "sdef": 343,
-        "spd": 359
+        "hp": 264,
+        "atk": 172,
+        "def": 133,
+        "satk": 288,
+        "sdef": 233,
+        "spd": 253
       },
       "movimientos": [
         {
@@ -3992,14 +3922,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 225,
+      "vidaActual": 310,
       "estadisticas": {
-        "hp": 225,
-        "atk": 300,
-        "def": 382,
-        "satk": 333,
-        "sdef": 308,
-        "spd": 195
+        "hp": 310,
+        "atk": 168,
+        "def": 264,
+        "satk": 223,
+        "sdef": 179,
+        "spd": 79
       },
       "movimientos": [
         {
@@ -4048,14 +3978,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 168,
+      "vidaActual": 278,
       "estadisticas": {
-        "hp": 168,
-        "atk": 383,
-        "def": 260,
-        "satk": 271,
-        "sdef": 354,
-        "spd": 290
+        "hp": 278,
+        "atk": 277,
+        "def": 168,
+        "satk": 156,
+        "sdef": 277,
+        "spd": 184
       },
       "movimientos": [
         {
@@ -4104,14 +4034,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 159,
+      "vidaActual": 260,
       "estadisticas": {
-        "hp": 159,
-        "atk": 324,
-        "def": 359,
-        "satk": 300,
-        "sdef": 380,
-        "spd": 218
+        "hp": 260,
+        "atk": 201,
+        "def": 258,
+        "satk": 200,
+        "sdef": 281,
+        "spd": 89
       },
       "movimientos": [
         {
@@ -4160,14 +4090,14 @@
         "bug"
       ],
       "nivel": 100,
-      "vidaActual": 176,
+      "vidaActual": 276,
       "estadisticas": {
-        "hp": 176,
-        "atk": 399,
-        "def": 347,
-        "satk": 282,
-        "sdef": 290,
-        "spd": 232
+        "hp": 276,
+        "atk": 273,
+        "def": 209,
+        "satk": 172,
+        "sdef": 201,
+        "spd": 135
       },
       "movimientos": [
         {
@@ -4216,14 +4146,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 168,
+      "vidaActual": 271,
       "estadisticas": {
-        "hp": 168,
-        "atk": 297,
-        "def": 339,
-        "satk": 314,
-        "sdef": 362,
-        "spd": 226
+        "hp": 271,
+        "atk": 185,
+        "def": 224,
+        "satk": 207,
+        "sdef": 237,
+        "spd": 109
       },
       "movimientos": [
         {
@@ -4272,14 +4202,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 190,
+      "vidaActual": 291,
       "estadisticas": {
-        "hp": 190,
-        "atk": 388,
-        "def": 281,
-        "satk": 235,
-        "sdef": 329,
-        "spd": 303
+        "hp": 291,
+        "atk": 276,
+        "def": 181,
+        "satk": 115,
+        "sdef": 236,
+        "spd": 210
       },
       "movimientos": [
         {
@@ -4328,14 +4258,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 190,
+      "vidaActual": 313,
       "estadisticas": {
-        "hp": 190,
-        "atk": 266,
-        "def": 273,
-        "satk": 418,
-        "sdef": 350,
-        "spd": 314
+        "hp": 313,
+        "atk": 140,
+        "def": 138,
+        "satk": 310,
+        "sdef": 217,
+        "spd": 224
       },
       "movimientos": [
         {
@@ -4384,14 +4314,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 140,
+      "vidaActual": 243,
       "estadisticas": {
-        "hp": 140,
-        "atk": 329,
-        "def": 231,
-        "satk": 233,
-        "sdef": 223,
-        "spd": 457
+        "hp": 243,
+        "atk": 197,
+        "def": 115,
+        "satk": 126,
+        "sdef": 116,
+        "spd": 364
       },
       "movimientos": [
         {
@@ -4439,14 +4369,14 @@
         "bug"
       ],
       "nivel": 100,
-      "vidaActual": 161,
+      "vidaActual": 251,
       "estadisticas": {
-        "hp": 161,
-        "atk": 375,
-        "def": 331,
-        "satk": 263,
-        "sdef": 265,
-        "spd": 302
+        "hp": 251,
+        "atk": 275,
+        "def": 229,
+        "satk": 150,
+        "sdef": 188,
+        "spd": 191
       },
       "movimientos": [
         {
@@ -4495,14 +4425,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 278,
+      "vidaActual": 366,
       "estadisticas": {
-        "hp": 278,
-        "atk": 410,
-        "def": 390,
-        "satk": 238,
-        "sdef": 233,
-        "spd": 206
+        "hp": 366,
+        "atk": 314,
+        "def": 305,
+        "satk": 137,
+        "sdef": 120,
+        "spd": 108
       },
       "movimientos": [
         {
@@ -4551,14 +4481,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 175,
+      "vidaActual": 279,
       "estadisticas": {
-        "hp": 175,
-        "atk": 337,
-        "def": 387,
-        "satk": 307,
-        "sdef": 258,
-        "spd": 200
+        "hp": 279,
+        "atk": 258,
+        "def": 279,
+        "satk": 175,
+        "sdef": 182,
+        "spd": 82
       },
       "movimientos": [
         {
@@ -4607,14 +4537,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 195,
+      "vidaActual": 292,
       "estadisticas": {
-        "hp": 195,
-        "atk": 327,
-        "def": 251,
-        "satk": 257,
-        "sdef": 279,
-        "spd": 400
+        "hp": 292,
+        "atk": 241,
+        "def": 171,
+        "satk": 134,
+        "sdef": 161,
+        "spd": 309
       },
       "movimientos": [
         {
@@ -4663,14 +4593,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 209,
+      "vidaActual": 331,
       "estadisticas": {
-        "hp": 209,
-        "atk": 332,
-        "def": 320,
-        "satk": 238,
-        "sdef": 243,
-        "spd": 267
+        "hp": 331,
+        "atk": 223,
+        "def": 216,
+        "satk": 156,
+        "sdef": 147,
+        "spd": 155
       },
       "movimientos": [
         {
@@ -4718,14 +4648,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 204,
+      "vidaActual": 306,
       "estadisticas": {
-        "hp": 204,
-        "atk": 383,
-        "def": 393,
-        "satk": 261,
-        "sdef": 293,
-        "spd": 195
+        "hp": 306,
+        "atk": 324,
+        "def": 301,
+        "satk": 153,
+        "sdef": 173,
+        "spd": 75
       },
       "movimientos": [
         {
@@ -4773,14 +4703,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 227,
+      "vidaActual": 329,
       "estadisticas": {
-        "hp": 227,
-        "atk": 465,
-        "def": 246,
-        "satk": 264,
-        "sdef": 237,
-        "spd": 230
+        "hp": 329,
+        "atk": 378,
+        "def": 146,
+        "satk": 158,
+        "sdef": 144,
+        "spd": 144
       },
       "movimientos": [
         {
@@ -4829,14 +4759,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 161,
+      "vidaActual": 249,
       "estadisticas": {
-        "hp": 161,
-        "atk": 276,
-        "def": 254,
-        "satk": 393,
-        "sdef": 290,
-        "spd": 375
+        "hp": 249,
+        "atk": 168,
+        "def": 137,
+        "satk": 290,
+        "sdef": 197,
+        "spd": 255
       },
       "movimientos": [
         {
@@ -4884,14 +4814,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 125,
+      "vidaActual": 215,
       "estadisticas": {
-        "hp": 125,
-        "atk": 285,
-        "def": 404,
-        "satk": 262,
-        "sdef": 375,
-        "spd": 181
+        "hp": 215,
+        "atk": 169,
+        "def": 316,
+        "satk": 151,
+        "sdef": 302,
+        "spd": 90
       },
       "movimientos": [
         {
@@ -4940,14 +4870,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 136,
+      "vidaActual": 250,
       "estadisticas": {
-        "hp": 136,
-        "atk": 240,
-        "def": 317,
-        "satk": 414,
-        "sdef": 337,
-        "spd": 295
+        "hp": 250,
+        "atk": 136,
+        "def": 198,
+        "satk": 335,
+        "sdef": 205,
+        "spd": 205
       },
       "movimientos": [
         {
@@ -4996,14 +4926,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 208,
+      "vidaActual": 300,
       "estadisticas": {
-        "hp": 208,
-        "atk": 369,
-        "def": 302,
-        "satk": 250,
-        "sdef": 300,
-        "spd": 255
+        "hp": 300,
+        "atk": 270,
+        "def": 189,
+        "satk": 126,
+        "sdef": 196,
+        "spd": 131
       },
       "movimientos": [
         {
@@ -5052,14 +4982,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 126,
+      "vidaActual": 243,
       "estadisticas": {
-        "hp": 126,
-        "atk": 330,
-        "def": 341,
-        "satk": 311,
-        "sdef": 360,
-        "spd": 227
+        "hp": 243,
+        "atk": 218,
+        "def": 245,
+        "satk": 205,
+        "sdef": 259,
+        "spd": 93
       },
       "movimientos": [
         {
@@ -5108,14 +5038,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 165,
+      "vidaActual": 288,
       "estadisticas": {
-        "hp": 165,
-        "atk": 301,
-        "def": 276,
-        "satk": 294,
-        "sdef": 291,
-        "spd": 345
+        "hp": 288,
+        "atk": 182,
+        "def": 170,
+        "satk": 172,
+        "sdef": 177,
+        "spd": 236
       },
       "movimientos": [
         {
@@ -5164,14 +5094,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 201,
+      "vidaActual": 307,
       "estadisticas": {
-        "hp": 201,
-        "atk": 409,
-        "def": 324,
-        "satk": 348,
-        "sdef": 320,
-        "spd": 284
+        "hp": 307,
+        "atk": 290,
+        "def": 216,
+        "satk": 244,
+        "sdef": 235,
+        "spd": 198
       },
       "movimientos": [
         {
@@ -5220,14 +5150,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 187,
+      "vidaActual": 266,
       "estadisticas": {
-        "hp": 187,
-        "atk": 321,
-        "def": 337,
-        "satk": 314,
-        "sdef": 339,
-        "spd": 288
+        "hp": 266,
+        "atk": 215,
+        "def": 204,
+        "satk": 218,
+        "sdef": 205,
+        "spd": 210
       },
       "movimientos": [
         {
@@ -5276,14 +5206,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 175,
+      "vidaActual": 286,
       "estadisticas": {
-        "hp": 175,
-        "atk": 341,
-        "def": 286,
-        "satk": 298,
-        "sdef": 314,
-        "spd": 353
+        "hp": 286,
+        "atk": 253,
+        "def": 196,
+        "satk": 212,
+        "sdef": 195,
+        "spd": 222
       },
       "movimientos": [
         {
@@ -5332,14 +5262,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 204,
+      "vidaActual": 309,
       "estadisticas": {
-        "hp": 204,
-        "atk": 415,
-        "def": 298,
-        "satk": 351,
-        "sdef": 290,
-        "spd": 355
+        "hp": 309,
+        "atk": 299,
+        "def": 185,
+        "satk": 249,
+        "sdef": 201,
+        "spd": 245
       },
       "movimientos": [
         {
@@ -5388,14 +5318,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 250,
+      "vidaActual": 361,
       "estadisticas": {
-        "hp": 250,
-        "atk": 390,
-        "def": 304,
-        "satk": 295,
-        "sdef": 302,
-        "spd": 327
+        "hp": 361,
+        "atk": 311,
+        "def": 218,
+        "satk": 193,
+        "sdef": 211,
+        "spd": 219
       },
       "movimientos": [
         {
@@ -5443,14 +5373,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 188,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 188,
-        "atk": 429,
-        "def": 323,
-        "satk": 266,
-        "sdef": 271,
-        "spd": 329
+        "hp": 290,
+        "atk": 316,
+        "def": 204,
+        "satk": 151,
+        "sdef": 173,
+        "spd": 219
       },
       "movimientos": [
         {
@@ -5499,14 +5429,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 181,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 181,
-        "atk": 286,
-        "def": 356,
-        "satk": 376,
-        "sdef": 317,
-        "spd": 267
+        "hp": 290,
+        "atk": 163,
+        "def": 253,
+        "satk": 282,
+        "sdef": 198,
+        "spd": 164
       },
       "movimientos": [
         {
@@ -5555,14 +5485,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 175,
+      "vidaActual": 279,
       "estadisticas": {
-        "hp": 175,
-        "atk": 305,
-        "def": 552,
-        "satk": 267,
-        "sdef": 247,
-        "spd": 215
+        "hp": 279,
+        "atk": 189,
+        "def": 411,
+        "satk": 117,
+        "sdef": 171,
+        "spd": 92
       },
       "movimientos": [
         {
@@ -5611,14 +5541,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 172,
+      "vidaActual": 250,
       "estadisticas": {
-        "hp": 172,
-        "atk": 295,
-        "def": 433,
-        "satk": 230,
-        "sdef": 276,
-        "spd": 272
+        "hp": 250,
+        "atk": 192,
+        "def": 305,
+        "satk": 114,
+        "sdef": 160,
+        "spd": 156
       },
       "movimientos": [
         {
@@ -5667,14 +5597,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 170,
+      "vidaActual": 256,
       "estadisticas": {
-        "hp": 170,
-        "atk": 361,
-        "def": 485,
-        "satk": 271,
-        "sdef": 261,
-        "spd": 228
+        "hp": 256,
+        "atk": 246,
+        "def": 378,
+        "satk": 154,
+        "sdef": 128,
+        "spd": 114
       },
       "movimientos": [
         {
@@ -5723,14 +5653,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 196,
+      "vidaActual": 302,
       "estadisticas": {
-        "hp": 196,
-        "atk": 400,
-        "def": 382,
-        "satk": 305,
-        "sdef": 311,
-        "spd": 282
+        "hp": 302,
+        "atk": 295,
+        "def": 268,
+        "satk": 214,
+        "sdef": 213,
+        "spd": 173
       },
       "movimientos": [
         {
@@ -5779,14 +5709,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 147,
+      "vidaActual": 258,
       "estadisticas": {
-        "hp": 147,
-        "atk": 240,
-        "def": 479,
-        "satk": 213,
-        "sdef": 419,
-        "spd": 172
+        "hp": 258,
+        "atk": 130,
+        "def": 342,
+        "satk": 137,
+        "sdef": 321,
+        "spd": 113
       },
       "movimientos": [
         {
@@ -5834,14 +5764,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 220,
+      "vidaActual": 330,
       "estadisticas": {
-        "hp": 220,
-        "atk": 267,
-        "def": 360,
-        "satk": 257,
-        "sdef": 380,
-        "spd": 245
+        "hp": 330,
+        "atk": 166,
+        "def": 265,
+        "satk": 149,
+        "sdef": 311,
+        "spd": 151
       },
       "movimientos": [
         {
@@ -5890,14 +5820,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 243,
+      "vidaActual": 346,
       "estadisticas": {
-        "hp": 243,
-        "atk": 418,
-        "def": 341,
-        "satk": 330,
-        "sdef": 340,
-        "spd": 254
+        "hp": 346,
+        "atk": 287,
+        "def": 253,
+        "satk": 227,
+        "sdef": 235,
+        "spd": 144
       },
       "movimientos": [
         {
@@ -5946,14 +5876,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 221,
+      "vidaActual": 340,
       "estadisticas": {
-        "hp": 221,
-        "atk": 391,
-        "def": 245,
-        "satk": 332,
-        "sdef": 229,
-        "spd": 288
+        "hp": 340,
+        "atk": 287,
+        "def": 140,
+        "satk": 226,
+        "sdef": 144,
+        "spd": 177
       },
       "movimientos": [
         {
@@ -6002,14 +5932,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 217,
+      "vidaActual": 334,
       "estadisticas": {
-        "hp": 217,
-        "atk": 337,
-        "def": 308,
-        "satk": 371,
-        "sdef": 315,
-        "spd": 335
+        "hp": 334,
+        "atk": 225,
+        "def": 212,
+        "satk": 292,
+        "sdef": 217,
+        "spd": 224
       },
       "movimientos": [
         {
@@ -6058,14 +5988,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 159,
+      "vidaActual": 284,
       "estadisticas": {
-        "hp": 159,
-        "atk": 377,
-        "def": 261,
-        "satk": 216,
-        "sdef": 302,
-        "spd": 386
+        "hp": 284,
+        "atk": 257,
+        "def": 150,
+        "satk": 119,
+        "sdef": 200,
+        "spd": 277
       },
       "movimientos": [
         {
@@ -6113,14 +6043,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 234,
+      "vidaActual": 352,
       "estadisticas": {
-        "hp": 234,
-        "atk": 327,
-        "def": 289,
-        "satk": 209,
-        "sdef": 281,
-        "spd": 302
+        "hp": 352,
+        "atk": 209,
+        "def": 198,
+        "satk": 100,
+        "sdef": 187,
+        "spd": 208
       },
       "movimientos": [
         {
@@ -6168,14 +6098,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 211,
+      "vidaActual": 314,
       "estadisticas": {
-        "hp": 211,
-        "atk": 408,
-        "def": 301,
-        "satk": 284,
-        "sdef": 303,
-        "spd": 243
+        "hp": 314,
+        "atk": 309,
+        "def": 176,
+        "satk": 169,
+        "sdef": 184,
+        "spd": 134
       },
       "movimientos": [
         {
@@ -6223,14 +6153,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 182,
+      "vidaActual": 282,
       "estadisticas": {
-        "hp": 182,
-        "atk": 337,
-        "def": 342,
-        "satk": 232,
-        "sdef": 290,
-        "spd": 361
+        "hp": 282,
+        "atk": 240,
+        "def": 210,
+        "satk": 120,
+        "sdef": 176,
+        "spd": 248
       },
       "movimientos": [
         {
@@ -6278,14 +6208,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 359,
+      "vidaActual": 451,
       "estadisticas": {
-        "hp": 359,
-        "atk": 372,
-        "def": 265,
-        "satk": 270,
-        "sdef": 340,
-        "spd": 183
+        "hp": 451,
+        "atk": 271,
+        "def": 180,
+        "satk": 164,
+        "sdef": 257,
+        "spd": 84
       },
       "movimientos": [
         {
@@ -6333,14 +6263,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 208,
+      "vidaActual": 342,
       "estadisticas": {
-        "hp": 208,
-        "atk": 301,
-        "def": 331,
-        "satk": 224,
-        "sdef": 278,
-        "spd": 317
+        "hp": 342,
+        "atk": 189,
+        "def": 232,
+        "satk": 110,
+        "sdef": 169,
+        "spd": 221
       },
       "movimientos": [
         {
@@ -6388,14 +6318,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 215,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 215,
-        "atk": 291,
-        "def": 287,
-        "satk": 391,
-        "sdef": 279,
-        "spd": 330
+        "hp": 290,
+        "atk": 191,
+        "def": 164,
+        "satk": 318,
+        "sdef": 178,
+        "spd": 212
       },
       "movimientos": [
         {
@@ -6443,14 +6373,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 229,
+      "vidaActual": 311,
       "estadisticas": {
-        "hp": 229,
-        "atk": 370,
-        "def": 274,
-        "satk": 235,
-        "sdef": 243,
-        "spd": 228
+        "hp": 311,
+        "atk": 270,
+        "def": 180,
+        "satk": 143,
+        "sdef": 157,
+        "spd": 128
       },
       "movimientos": [
         {
@@ -6499,14 +6429,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 198,
+      "vidaActual": 293,
       "estadisticas": {
-        "hp": 198,
-        "atk": 241,
-        "def": 321,
-        "satk": 366,
-        "sdef": 381,
-        "spd": 278
+        "hp": 293,
+        "atk": 127,
+        "def": 226,
+        "satk": 265,
+        "sdef": 258,
+        "spd": 177
       },
       "movimientos": [
         {
@@ -6555,14 +6485,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 100,
+      "vidaActual": 227,
       "estadisticas": {
-        "hp": 100,
-        "atk": 209,
-        "def": 246,
-        "satk": 344,
-        "sdef": 376,
-        "spd": 296
+        "hp": 227,
+        "atk": 113,
+        "def": 172,
+        "satk": 212,
+        "sdef": 267,
+        "spd": 231
       },
       "movimientos": [
         {
@@ -6610,14 +6540,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 207,
+      "vidaActual": 310,
       "estadisticas": {
-        "hp": 207,
-        "atk": 298,
-        "def": 291,
-        "satk": 245,
-        "sdef": 261,
-        "spd": 324
+        "hp": 310,
+        "atk": 210,
+        "def": 213,
+        "satk": 165,
+        "sdef": 136,
+        "spd": 227
       },
       "movimientos": [
         {
@@ -6666,14 +6596,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 175,
+      "vidaActual": 265,
       "estadisticas": {
-        "hp": 175,
-        "atk": 255,
-        "def": 285,
-        "satk": 392,
-        "sdef": 359,
-        "spd": 293
+        "hp": 265,
+        "atk": 140,
+        "def": 153,
+        "satk": 279,
+        "sdef": 271,
+        "spd": 184
       },
       "movimientos": [
         {
@@ -6722,14 +6652,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 120,
+      "vidaActual": 236,
       "estadisticas": {
-        "hp": 120,
-        "atk": 326,
-        "def": 311,
-        "satk": 247,
-        "sdef": 233,
-        "spd": 228
+        "hp": 236,
+        "atk": 212,
+        "def": 191,
+        "satk": 165,
+        "sdef": 147,
+        "spd": 124
       },
       "movimientos": [
         {
@@ -6778,14 +6708,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 232,
+      "vidaActual": 349,
       "estadisticas": {
-        "hp": 232,
-        "atk": 228,
-        "def": 291,
-        "satk": 261,
-        "sdef": 290,
-        "spd": 223
+        "hp": 349,
+        "atk": 126,
+        "def": 194,
+        "satk": 138,
+        "sdef": 211,
+        "spd": 114
       },
       "movimientos": [
         {
@@ -6834,14 +6764,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 165,
+      "vidaActual": 266,
       "estadisticas": {
-        "hp": 165,
-        "atk": 385,
-        "def": 338,
-        "satk": 247,
-        "sdef": 261,
-        "spd": 286
+        "hp": 266,
+        "atk": 281,
+        "def": 228,
+        "satk": 130,
+        "sdef": 185,
+        "spd": 154
       },
       "movimientos": [
         {
@@ -6881,6 +6811,71 @@
           "pp": 5
         }
       ]
+    },
+    {
+      "id": "384",
+      "especie": "rayquaza",
+      "tipos": [
+        "dragon",
+        "flying"
+      ],
+      "nivel": 100,
+      "vidaActual": 351,
+      "estadisticas": {
+        "hp": 351,
+        "atk": 339,
+        "def": 216,
+        "satk": 326,
+        "sdef": 212,
+        "spd": 202
+      },
+      "movimientos": [
+        {
+          "nombre": "dragon-tail",
+          "tipo": "dragon",
+          "clase": "physical",
+          "potencia": 60,
+          "precision": 90,
+          "usos": 10,
+          "pp": 10,
+          "originalName": "dragon-tail",
+          "originalType": "dragon"
+        },
+        {
+          "nombre": "dragon-ascent",
+          "tipo": "flying",
+          "clase": "physical",
+          "potencia": 120,
+          "precision": 100,
+          "usos": 5,
+          "pp": 5,
+          "originalName": "dragon-ascent",
+          "originalType": "flying"
+        },
+        {
+          "nombre": "air-slash",
+          "tipo": "flying",
+          "clase": "special",
+          "potencia": 75,
+          "precision": 95,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "air-slash",
+          "originalType": "flying"
+        },
+        {
+          "nombre": "headbutt",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 70,
+          "precision": 100,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "headbutt",
+          "originalType": "normal"
+        }
+      ],
+      "idEntrenador": ""
     }
   ],
   "admins": [

@@ -161,6 +161,8 @@ export class PokeAPIService {
     );
   }
 
+  
+
 
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(

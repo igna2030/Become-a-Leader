@@ -24,7 +24,7 @@ export class MiniPokedexComponent {
     name: string;
     localizedName: string;
     types: string[];
-    typesLocalized?: { type: string; displayType: string }[] | null; 
+    typesLocalized?: { type: string; displayType: string }[] | null;
     spriteUrl: string;
     effectiveness?: {
       immunities: TypeFactor[];
@@ -64,15 +64,19 @@ export class MiniPokedexComponent {
   }
 
   async searchPokemon(): Promise<void> {
-    if (!this.searchTerm) return;
+    if (!this.searchTerm) { return }
+    ;
 
     this.errorMessage = '';
     this.searchedPokemonData = null;
-    const searchKey = this.searchTerm.toLowerCase().trim();
+    const searchKey = this.searchTerm
+      .toLowerCase()
+      .trim()
+      .replace(/[\s\.:]+/g, '-');
 
     this.pokeapi.getPokemonDetails(searchKey).subscribe(async details => {
       if (!details) {
-        this.errorMessage = this.translate.instant('batalla.pokedexNotFound') || 'Pokémon no encontrado';
+        this.errorMessage = this.translate.instant('batalla.pokedexNotFound');
         return;
       }
 
@@ -87,11 +91,11 @@ export class MiniPokedexComponent {
         types,
         spriteUrl: spriteData?.front_default || ''
       };
-      
+
       const typesLocalized = await Promise.all(
         types.map(async t => {
-          const displayType = await this.getTypeDisplayName(t); 
-          return { type: t, displayType }; 
+          const displayType = await this.getTypeDisplayName(t);
+          return { type: t, displayType };
         })
       );
       this.searchedPokemonData.typesLocalized = typesLocalized;

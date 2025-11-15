@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 import { MiniPokedexComponent } from "../app-mini-pokedex/pokedex";
 import { Items } from '../../interface/items';
 import { AudioService } from '../../service/audio-service';
-
+import { Stats } from '../../interface/stats';
 @Component({
   selector: 'app-batalla',
   standalone: true,
@@ -80,8 +80,6 @@ export class BatallaComponent {
   }
 
   constructor(private router: Router, private route: ActivatedRoute) { }
-
-
 
 
   delay(ms: number): Promise<void> {
@@ -268,57 +266,186 @@ export class BatallaComponent {
     console.log(this.translate.instant('batalla.status.generatingRival'));
 
     const isBoss = this.checkBossBattle();
+    const numRivals = isBoss ? 1 : 6;
 
-    return new Promise((resolve, reject) => {
-      this.teamService.getPokemons().subscribe(
-        {
-          next: async (data) => {
-            const numRivals = isBoss ? 1 : 6;
+    try {
+      this.rival = [];
 
-            this.rival = [];
+      while (this.rival.length < numRivals) {
+        const randomId = Math.floor(Math.random() * 898) + 1;
 
-            while (this.rival.length < numRivals) {
-              let pokemon = data[Math.floor(Math.random() * (data.length - 1)) + 1];
-              pokemon.idEntrenador = "rival";
+        let pokemon = await this.crearPokemonDesdeApi(randomId);
 
-              if (isBoss) {
-                pokemon = this.enhancePokemonStats(pokemon);
-              }
-              this.rival.push(pokemon);
-            }
+        if (isBoss) {
+          pokemon = this.enhancePokemonStats(pokemon);
+        }
 
-            const localizationPromises = this.rival.map(p => this.localizePokemon(p));
-            await Promise.all(localizationPromises);
+        this.rival.push(pokemon);
+      }
 
-            await this.asignarSprites(this.rival);
+      await this.asignarSprites(this.rival);
 
-            this.pokemonRival = this.rival[0];
-            this.movimientosRival = this.pokemonRival.movimientos!;
+      this.pokemonRival = this.rival[0];
+      this.movimientosRival = this.pokemonRival.movimientos!;
 
-            const cryUrl = this.pokemonRival.cryUrl;
-            if (cryUrl) {
-              await this.audio_service.playDynamicSound(cryUrl);
-            }
+      const cryUrl = this.pokemonRival.cryUrl;
+      if (cryUrl) {
+        await this.audio_service.playDynamicSound(cryUrl);
+      }
 
-            console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
+      console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
 
-            if (isBoss) {
-              this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
-                this.mostrarMensajeBatalla(msg);
-              });
-            } else {
-              this.mostrarMensajeBatalla(`${this.translate.instant('batalla.rivalAppeared')} ${this.transformarPrimeraLetra(this.pokemonRival.especie)}.`);
-            }
+      if (isBoss) {
+        this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
+          this.mostrarMensajeBatalla(msg);
+        });
+      } else {
+        this.mostrarMensajeBatalla(`${this.translate.instant('batalla.rivalAppeared')} ${this.transformarPrimeraLetra(this.pokemonRival.especie)}.`);
+      }
 
-            resolve();
-          },
-          error: (error: Error) => {
-            console.log(this.translate.instant('batalla.status.errorRivalLoad'), error);
-            reject(error);
-          }
-        })
-    });
+    } catch (error) {
+      console.error(this.translate.instant('batalla.status.errorRivalLoad'), error);
+      this.mostrarMensajeBatalla(this.translate.instant('batalla.status.errorRivalLoad'));
+      await this.delay(3000);
+      this.navegarMenu();
+    }
   }
+
+  seleccionarMovimientosAleatorios<T>(items: T[], cantidad: number): T[] {
+    if (!items || items.length <= cantidad) {
+      return items ? [...items] : [];
+    }
+
+    const shuffled = [...items];
+    let currentIndex = shuffled.length;
+    let randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [shuffled[currentIndex], shuffled[randomIndex]] = [
+        shuffled[randomIndex], shuffled[currentIndex]];
+    }
+
+    return shuffled.slice(0, cantidad);
+  }
+
+private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
+    const apiData = await this.pokeapi.getPokemonDetails(id).toPromise();
+
+    const nivel = 100; 
+
+    const ivs = this.generateIVs(); 
+    const estadisticas: Stats = { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 };
+
+    apiData.stats.forEach((s: any) => {
+      const baseStat = s.base_stat;
+      const ev = this.generateEV(1, 84); 
+
+      switch (s.stat.name) {
+        case 'hp':
+          estadisticas.hp = this.calculateStats(baseStat, ivs.hp, ev, nivel, true);
+          break;
+        case 'attack':
+          estadisticas.atk = this.calculateStats(baseStat, ivs.atk, ev, nivel, false);
+          break;
+        case 'defense':
+          estadisticas.def = this.calculateStats(baseStat, ivs.def, ev, nivel, false);
+          break;
+        case 'special-attack':
+          estadisticas.satk = this.calculateStats(baseStat, ivs.satk, ev, nivel, false);
+          break;
+        case 'special-defense':
+          estadisticas.sdef = this.calculateStats(baseStat, ivs.sdef, ev, nivel, false);
+          break;
+        case 'speed':
+          estadisticas.spd = this.calculateStats(baseStat, ivs.spd, ev, nivel, false);
+          break;
+      }
+    });
+
+    const tipos: string[] = apiData.types.map((t: any) => t.type.name);
+
+    const allMoveNames: string[] = apiData.moves.map((m: any) => m.move.name);
+    const shuffledMoveNames = this.seleccionarMovimientosAleatorios(allMoveNames, allMoveNames.length);
+
+    const movimientos: Move[] = []; 
+    for (const moveName of shuffledMoveNames) {
+      if (movimientos.length >= 4) {
+        break;
+      }
+
+      const moveData = await this.pokeapi.getMoveByName(moveName).toPromise();
+      const damageClass = moveData.damage_class.name;
+      
+
+      const power = moveData.power || 0;
+
+      if (damageClass !== 'status' && power >= 65) {
+
+        let claseMovimiento: string;
+        if (damageClass === 'physical') {
+          claseMovimiento = 'Fisico';
+        } else {
+          claseMovimiento = 'Especial';
+        }
+
+        const move: Move = {
+          nombre: moveName, 
+          originalName: moveName,
+          tipo: moveData.type.name,
+          clase: claseMovimiento,
+          potencia: power,
+          precision: moveData.accuracy || 100,
+          pp: moveData.pp || 10,
+          localizedName: moveName,
+          localizedtype: await this.pokeapi.getLocalizedTypeName(moveData.type.name).toPromise()
+        };
+
+        movimientos.push(move); 
+      }
+    }
+    const pokemon: Pokemon = {
+      id: apiData.id.toString(),
+      especie: apiData.name,
+      localizedName: apiData.name,
+      tipos: tipos,
+      nivel: nivel,
+      estadisticas: estadisticas,
+      vidaActual: estadisticas.hp,
+      movimientos: movimientos, 
+      idEntrenador: "rival",
+      cryUrl: apiData.cryUrl,
+    };
+
+    return pokemon;
+  }
+  private generateIVs(): Stats {
+    const IV: Stats =
+    {
+      hp: Math.floor(Math.random() * 32),
+      atk: Math.floor(Math.random() * 32),
+      def: Math.floor(Math.random() * 32),
+      satk: Math.floor(Math.random() * 32),
+      sdef: Math.floor(Math.random() * 32),
+      spd: Math.floor(Math.random() * 32),
+    };
+    return IV;
+  }
+
+  private calculateStats(base: number, iv: number, ev: number, level: number, isHP = false): number {
+    if (isHP) {
+      return Math.floor((((2 * base + iv + (ev / 4)) * level) / 100) + level + 10);
+    } else {
+      return Math.floor((((2 * base + iv + (ev / 4)) * level) / 100) + 5);
+    }
+  }
+
+  private generateEV(min: number, max: number): number {
+    return Math.round(Math.floor(Math.random() * (max - min + 1)) + min);
+  }
+
 
   async batalla(movimientoSeleccionado: Move): Promise<void> {
     let atacante: Pokemon;
@@ -787,8 +914,7 @@ export class BatallaComponent {
       this.jugador!.equipo.push(pokemon);
     }
     this.mostrarMensajeBatalla(
-      `${this.translate.instant('batalla.allFaintedRevived')} ${this.transformarPrimeraLetra(itemUsado.name)}.`
-    );
+      `${this.translate.instant('batalla.allFaintedRevived')} ${this.transformarPrimeraLetra(itemUsado.name)}.`);
     this.jugador!.items!.splice(itemIndex, 1);
     await this.delay(2000);
     const movimientoRival = this.generarMovimientoRival();

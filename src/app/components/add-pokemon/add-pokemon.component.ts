@@ -188,13 +188,14 @@ export class AddPokemonComponent {
         this.iv = this.generateIVs();
 
         // Calcular las estadísticas
+
         this.pokemon.estadisticas = {
-          hp: this.calculateStats(this.statsBase.hp, this.iv.hp, this.generateEV(1, 84), this.pokemon.nivel, false),
-          atk: this.calculateStats(this.statsBase.atk, this.iv.atk, this.generateEV(1, 84), this.pokemon.nivel, true),
-          def: this.calculateStats(this.statsBase.def, this.iv.def, this.generateEV(1, 84), this.pokemon.nivel, true),
-          satk: this.calculateStats(this.statsBase.satk, this.iv.satk, this.generateEV(1, 84), this.pokemon.nivel, true),
-          sdef: this.calculateStats(this.statsBase.sdef, this.iv.sdef, this.generateEV(1, 84), this.pokemon.nivel, true),
-          spd: this.calculateStats(this.statsBase.spd, this.iv.spd, this.generateEV(1, 84), this.pokemon.nivel, true),
+          hp: this.calculateStats(this.statsBase.hp, this.iv.hp, this.generateEV(1, 84), this.pokemon.nivel, true),
+          atk: this.calculateStats(this.statsBase.atk, this.iv.atk, this.generateEV(1, 84), this.pokemon.nivel, false),
+          def: this.calculateStats(this.statsBase.def, this.iv.def, this.generateEV(1, 84), this.pokemon.nivel, false),
+          satk: this.calculateStats(this.statsBase.satk, this.iv.satk, this.generateEV(1, 84), this.pokemon.nivel, false),
+          sdef: this.calculateStats(this.statsBase.sdef, this.iv.sdef, this.generateEV(1, 84), this.pokemon.nivel, false),
+          spd: this.calculateStats(this.statsBase.spd, this.iv.spd, this.generateEV(1, 84), this.pokemon.nivel, false),
         };
 
         this.pokemon.vidaActual = this.pokemon.estadisticas.hp;
