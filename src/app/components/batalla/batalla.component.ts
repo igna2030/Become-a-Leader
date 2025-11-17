@@ -25,16 +25,23 @@ import { Stats } from '../../interface/stats';
   styleUrls: ['./batalla.component.css']
 })
 export class BatallaComponent {
+  //Servicios
   pokeapi = inject(PokeAPIService);
   teamService = inject(TeamService);
   ps = inject(PartidaService);
   rs = inject(RankingService);
   translate = inject(TranslateService);
+  audio_service = inject(AudioService);
+  UserService = inject(UserService);
+
+  bgmVolume = this.audio_service.getBGMVolume();
+  sfxVolume = this.audio_service.getsfxVolume();
+  //pelea con jefe
   isBossBattle: boolean = false;
   bossMultiplier: number = 1.7;
   turnosParaBoss: number = 5;
-  cambioPokemon: boolean = false;
   duelosGanados: number = 0;
+  //interfaces
   idPartida: string = '';
   partida: Partida | null = null;
   jugador?: Entrenador;
@@ -42,22 +49,20 @@ export class BatallaComponent {
   pokemonJugador?: Pokemon | null = null;
   pokemonRival?: Pokemon | null = null;
   movimientosJugador: Move[] = [];
-  mensajeBatalla: string = '';
   movimientosRival: Move[] = [];
+  //mensajes
+  mensajeBatalla: string = '';
   resultado: string = '';
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-  UserService = inject(UserService);
+  //lista de pokemon debilitados
   pokemonDebilitados: Pokemon[] = [];
+  originalEquipoJugador: Pokemon[] = [];
+  //inventario
   mostrarSeleccionRevivir: boolean = false;
   mostrarInventario: boolean = false;
-  originalEquipoJugador: Pokemon[] = [];
   itemDeRevivirSeleccionado: Items | null = null;
   indiceItemDeRevivir: number = -1;
-  audio_service = inject(AudioService)
-  bgmVolume = this.audio_service.getBGMVolume();
-  sfxVolume = this.audio_service.getsfxVolume();
-  pokemonAtacanteId: string | null = null;
   healingValues: { [key: string]: number } = {
     'potion': 20,
     "hyper-potion": 200,
@@ -78,6 +83,15 @@ export class BatallaComponent {
     "energy-root": 200,
     "berry-juice": 20
   }
+  //animacion movimiento pokemon
+  pokemonAtacanteId: string | null = null;
+
+  mostrarSeleccionEquipo: boolean = false;
+  modoSeleccion: 'cambio' | 'curacion' | null = null; // Para saber qué hacer al hacer click
+
+  // Variables temporales para cuando se elige curar
+  itemCuracionSeleccionado: Items | null = null;
+  indiceItemCuracion: number = -1;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -87,14 +101,17 @@ export class BatallaComponent {
   }
 
   ngOnInit(): void {
+    //encuentra la partida
     this.idPartida = localStorage.getItem('token')!;
 
     if (!this.idPartida) {
+      //si no esta tira error
       console.error(this.translate.instant('log.errorMissingToken'));
       this.navegarMenu();
       return;
     }
 
+    //se subscribe a la partida
     this.ps.getPartidaByUserId(this.idPartida).subscribe({
       next: (partida) => {
         this.partida = partida;
@@ -103,12 +120,13 @@ export class BatallaComponent {
           console.log('Partida obtenida:', partida);
           this.jugador = partida?.personaje;
           if (this.jugador) {
-
+            //si no hay un array de items lo crea
             if (!this.jugador.items) {
               this.jugador.items = [];
             }
             this.pokeapi.getItemsById(this.getRandomItem()).subscribe({
               next: (data: Items) => {
+                //le agrega un item inicial
                 this.jugador!.items?.push(data)
                 console.log(data);
                 console.log('Ítems cargados. Total:', this.jugador!.items!.length);
@@ -139,6 +157,7 @@ export class BatallaComponent {
   }
 
   ngOnDestroy(): void {
+    //quita la música
     this.audio_service.stopBGM();
   }
 
@@ -175,65 +194,80 @@ export class BatallaComponent {
     }
   }
 
+  //esta funcion sirve para localizar los pokemon segun el currentLang()
   async localizePokemon(pokemon: Pokemon): Promise<void> {
+    //pone el nombre de los pokemon todo en minusculas 
+    // y cambia los espacios puntos o barras por - para seguir la convencion de la pokeapi
     const cleanSpeciesName = pokemon.especie.toLowerCase().replace(/[\s\.]/g, '-');
 
+
+    //consigue los datos de los pokemon y espera la promise
     const localizedData = await this.pokeapi.getPokemonDetails(cleanSpeciesName).toPromise();
+    //si encuentra la forma localizada la pasa
     if (localizedData?.name) {
       pokemon.especie = localizedData.name;
       pokemon.localizedName = localizedData.name;
     }
 
+    //consigue los movimientos
     const movePromises = pokemon.movimientos.map(async (move) => {
       if (!move.originalName) {
         move.originalName = move.nombre;
       }
-
       const localizedName = await this.pokeapi.getMoveLocalizedName(move.originalName).toPromise();
-
+      //los traduce si existen
       if (localizedName) {
         move.nombre = localizedName;
         move.localizedName = localizedName;
       }
-
+      //traduce el tipo del movimiento
       if (move.tipo) {
         const localizedType = await this.pokeapi.getLocalizedTypeName(move.tipo).toPromise();
         (move as any).localizedtype = localizedType || this.transformarPrimeraLetra(move.tipo);
       }
     });
 
+    //espera a que se completen las promesas
     await Promise.all(movePromises);
   }
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
 
+    //pone la musica de batalla
     this.audio_service.resumeContext();
     this.audio_service.playBGM('battleBGM')
 
+    //espera a que se asignen los sprites
     await this.asignarSprites(this.jugador?.equipo);
     if (this.jugador?.equipo) {
       this.originalEquipoJugador = JSON.parse(JSON.stringify(this.jugador.equipo));
     }
-
+    //si el array existe es el primero del jugador
     this.pokemonJugador = this.jugador?.equipo[0];
 
-
+    //si existe el pokemon lo localiza
     if (this.pokemonJugador) {
       await this.localizePokemon(this.pokemonJugador);
+      //pasa la url del sonido de invocación
       const cryUrl = this.pokemonJugador.cryUrl;
+      //si existe lo activa
       if (cryUrl) {
         await this.audio_service.playDynamicSound(cryUrl);
       }
     }
 
+    //muestra el pokemon del jugador
     console.log(this.translate.instant('batalla.status.pokemonPlayer'), this.pokemonJugador);
 
+    //genera el rival
     await this.generarRival();
 
+    //muestra los movimientos del jugador
     this.movimientosJugador = this.pokemonJugador?.movimientos!;
   }
 
   checkBossBattle(): boolean {
+    //cada 5 duelos hay una pelea de jefe
     if (this.duelosGanados > 0 && this.duelosGanados % this.turnosParaBoss === 0) {
       this.isBossBattle = true;
       console.log(this.translate.instant('batalla.status.bossBattle'));
@@ -244,57 +278,67 @@ export class BatallaComponent {
   }
 
   enhancePokemonStats(pokemon: Pokemon): Pokemon {
-    if (!this.isBossBattle) return pokemon;
+    //si no es pelea de jefe simplemente devuelve el pokemon
+    if (!this.isBossBattle) { return pokemon; }
 
+    //el pokemon enchanced es el pokemon pasado desde generar rival
     const enhancedPokemon = {
       ...pokemon,
       estadisticas: { ...pokemon.estadisticas }
     };
-
+    //mejora las estadisticas del pokemon jefe cada 5 turnos aumento el bossMultiplier en.3 empezando en 1.7
     enhancedPokemon.estadisticas.hp = Math.floor(pokemon.estadisticas.hp * this.bossMultiplier);
     enhancedPokemon.estadisticas.atk = Math.floor(pokemon.estadisticas.atk * this.bossMultiplier);
     enhancedPokemon.estadisticas.def = Math.floor(pokemon.estadisticas.def * this.bossMultiplier);
     enhancedPokemon.estadisticas.satk = Math.floor(pokemon.estadisticas.satk * this.bossMultiplier);
     enhancedPokemon.estadisticas.sdef = Math.floor(pokemon.estadisticas.sdef * this.bossMultiplier);
     enhancedPokemon.estadisticas.spd = Math.floor(pokemon.estadisticas.spd * this.bossMultiplier);
-
     enhancedPokemon.vidaActual = enhancedPokemon.estadisticas.hp;
     return enhancedPokemon;
   }
 
   async generarRival(): Promise<void> {
+    //muestra que genera el rival
     console.log(this.translate.instant('batalla.status.generatingRival'));
 
+    //se fija si es un jefe
     const isBoss = this.checkBossBattle();
+    //si es jefe solo crea un jefe
     const numRivals = isBoss ? 1 : 6;
 
     try {
       this.rival = [];
 
+
+      //si es jefe solo se crea uno, en el otro caso se generan 6
       while (this.rival.length < numRivals) {
-        const randomId = Math.floor(Math.random() * 898) + 1;
-
+        let randomId: number;
+        //crea un id random 
+        randomId = Math.floor(Math.random() * 898) + 1;
+        //agarra al pokemon de la pokeapi teniendo el mismo id
         let pokemon = await this.crearPokemonDesdeApi(randomId);
-
         if (isBoss) {
+          //si es jefe lo genera con las estadisticas mejoradas
           pokemon = this.enhancePokemonStats(pokemon);
         }
-
+        //pushea el pokemon en el array
         this.rival.push(pokemon);
       }
-
+      //espera a que se le asignen los sprites
       await this.asignarSprites(this.rival);
 
       this.pokemonRival = this.rival[0];
       this.movimientosRival = this.pokemonRival.movimientos!;
-
+      //aplica el sonido de invocación del pokemon rival
       const cryUrl = this.pokemonRival.cryUrl;
       if (cryUrl) {
         await this.audio_service.playDynamicSound(cryUrl);
       }
-
+      //muestra el nombre del pokemon del rival
       console.log(this.translate.instant('batalla.status.pokemonRival'), this.pokemonRival);
 
+      //si es jefe muestra un mensaje especial aclarando que es un jefe
+      //si no simplemente muestra el mensaje que aparecio un rival 
       if (isBoss) {
         this.translate.get('batalla.bossEngagedMsg', { name: this.transformarPrimeraLetra(this.pokemonRival.especie) }).subscribe(msg => {
           this.mostrarMensajeBatalla(msg);
@@ -311,38 +355,16 @@ export class BatallaComponent {
     }
   }
 
-  seleccionarMovimientosAleatorios<T>(items: T[], cantidad: number): T[] {
-    if (!items || items.length <= cantidad) {
-      return items ? [...items] : [];
-    }
-
-    const shuffled = [...items];
-    let currentIndex = shuffled.length;
-    let randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [shuffled[currentIndex], shuffled[randomIndex]] = [
-        shuffled[randomIndex], shuffled[currentIndex]];
-    }
-
-    return shuffled.slice(0, cantidad);
-  }
-
-private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
+  private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
     const apiData = await this.pokeapi.getPokemonDetails(id).toPromise();
 
-    const nivel = 100; 
-
-    const ivs = this.generateIVs(); 
+    const nivel = 100;
+    const ivs = this.generateIVs();
     const estadisticas: Stats = { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 };
 
     apiData.stats.forEach((s: any) => {
       const baseStat = s.base_stat;
-      const ev = this.generateEV(1, 84); 
-
+      const ev = this.generateEV(1, 84);
       switch (s.stat.name) {
         case 'hp':
           estadisticas.hp = this.calculateStats(baseStat, ivs.hp, ev, nivel, true);
@@ -367,45 +389,60 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
 
     const tipos: string[] = apiData.types.map((t: any) => t.type.name);
 
+
     const allMoveNames: string[] = apiData.moves.map((m: any) => m.move.name);
-    const shuffledMoveNames = this.seleccionarMovimientosAleatorios(allMoveNames, allMoveNames.length);
+    const moveDataPromises = allMoveNames.map(moveName =>
+      this.pokeapi.getMoveByName(moveName).toPromise().catch(e => null)
+    );
 
-    const movimientos: Move[] = []; 
-    for (const moveName of shuffledMoveNames) {
-      if (movimientos.length >= 4) {
-        break;
+    const allMoveData = (await Promise.all(moveDataPromises)).filter(m =>
+      m != null && m.damage_class != null
+    );
+
+    const attackMovesData = allMoveData.filter(m =>
+      m.damage_class.name !== 'status' && (m.power || 0) > 0
+    );
+
+    const scoredMoves = attackMovesData.map(moveData => {
+      let score = moveData.power || 0;
+
+      if (tipos.includes(moveData.type.name)) {
+        score += 20;
+      }
+      return { score, moveData };
+    });
+
+    scoredMoves.sort((a, b) => b.score - a.score);
+
+    const viableMovePool = scoredMoves.slice(0, 8);
+
+    const shuffledViableMoves = [...viableMovePool].sort(() => 0.5 - Math.random());
+
+    const mejoresMovimientosData = shuffledViableMoves.slice(0, 4).map(sm => sm.moveData);
+
+    const movimientos: Move[] = [];
+    for (const moveData of mejoresMovimientosData) {
+      let claseMovimiento: string;
+      if (moveData.damage_class.name === 'physical') {
+        claseMovimiento = 'Fisico';
+      } else {
+        claseMovimiento = 'Especial';
       }
 
-      const moveData = await this.pokeapi.getMoveByName(moveName).toPromise();
-      const damageClass = moveData.damage_class.name;
-      
-
-      const power = moveData.power || 0;
-
-      if (damageClass !== 'status' && power >= 65) {
-
-        let claseMovimiento: string;
-        if (damageClass === 'physical') {
-          claseMovimiento = 'Fisico';
-        } else {
-          claseMovimiento = 'Especial';
-        }
-
-        const move: Move = {
-          nombre: moveName, 
-          originalName: moveName,
-          tipo: moveData.type.name,
-          clase: claseMovimiento,
-          potencia: power,
-          precision: moveData.accuracy || 100,
-          pp: moveData.pp || 10,
-          localizedName: moveName,
-          localizedtype: await this.pokeapi.getLocalizedTypeName(moveData.type.name).toPromise()
-        };
-
-        movimientos.push(move); 
-      }
+      const move: Move = {
+        nombre: moveData.name,
+        originalName: moveData.originalSlug,
+        tipo: moveData.type.name,
+        clase: claseMovimiento,
+        potencia: moveData.power || 0,
+        precision: moveData.accuracy || 100,
+        pp: moveData.pp || 10,
+        localizedName: moveData.name,
+        localizedtype: await this.pokeapi.getLocalizedTypeName(moveData.type.name).toPromise()
+      };
+      movimientos.push(move);
     }
+
     const pokemon: Pokemon = {
       id: apiData.id.toString(),
       especie: apiData.name,
@@ -414,7 +451,7 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
       nivel: nivel,
       estadisticas: estadisticas,
       vidaActual: estadisticas.hp,
-      movimientos: movimientos, 
+      movimientos: movimientos,
       idEntrenador: "rival",
       cryUrl: apiData.cryUrl,
     };
@@ -493,9 +530,10 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
       await this.verificarCambio(atacante);
     }
   }
-
+  //esta funcion hace que el rival utilize un movimiento de los 4 que tiene
   generarMovimientoRival(): Move {
     const movimientosPosibles = this.pokemonRival?.movimientos || [];
+    //aca se utiliza la funcion math.random para utilizar uno de los 4 movimientos posibles
     const indiceAleatorio = Math.floor(Math.random() * movimientosPosibles.length);
     return movimientosPosibles[indiceAleatorio];
   }
@@ -744,6 +782,7 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
   }
 
   async continuarBatalla() {
+    this.pokemonDebilitados = []
     if (!this.jugador) {
       console.error('continuarBatalla: jugador no definido, no se puede restaurar el equipo.');
       return;
@@ -925,10 +964,89 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
 
 
 
+
+  //sirve para poder elegir el volumen de los efectos de sonido
+  public setBGMVolume(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const newVolume = parseFloat(target.value);
+    this.bgmVolume = newVolume;
+    this.audio_service.setBGMVolume(newVolume);
+  }
+  //sirve para poder elegir el volumen de los efectos de sonido
+  public setSFXVolume(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const newVolume = parseFloat(target.value);
+    this.sfxVolume = newVolume;
+    this.audio_service.setSFXVolume(newVolume);
+  }
+
+  //Se utiza para limpiar la descripcion de los items
+  limpiarDescripcion(texto: string): string {
+    if (!texto) return '';
+    // Reemplaza saltos de página (\f) y saltos de línea (\n) por espacios
+    // y elimina espacios dobles resultantes.
+    return texto.replace(/[\f\n\r]/g, ' ').replace(/\s+/g, ' ').trim().toUpperCase();
+  }
+
+  abrirMenuCambio(): void {
+    if (this.jugador?.equipo.length === 1) {
+      this.mostrarMensajeBatalla(this.translate.instant('batalla.status.onlyOnePokemon'));
+      return;
+    }
+    this.modoSeleccion = 'cambio';
+    this.mostrarSeleccionEquipo = true;
+    this.mensajeBatalla = this.translate.instant('batalla.choosePokemonSwitch');
+  }
+
+  async ejecutarCambioPokemon(index: number): Promise<void> {
+    const pokemonEntrante = this.jugador!.equipo[index];
+
+    if (pokemonEntrante.id === this.pokemonJugador?.id) {
+      this.mostrarMensajeBatalla(this.translate.instant('batalla.status.alreadyInBattle'));
+      return;
+    }
+
+    this.mostrarSeleccionEquipo = false;
+    this.modoSeleccion = null;
+    this.audio_service.playSound('return');
+    await this.delay(800);
+    this.mostrarMensajeBatalla(`${this.transformarPrimeraLetra(this.pokemonJugador!.especie)} ${this.translate.instant('batalla.return')}!`);
+    await this.delay(1000);
+
+
+    const indexActual = 0;
+
+    const temp = this.jugador!.equipo[indexActual];
+    this.jugador!.equipo[indexActual] = this.jugador!.equipo[index];
+    this.jugador!.equipo[index] = temp;
+
+    this.pokemonJugador = this.jugador!.equipo[0];
+
+    await this.localizePokemon(this.pokemonJugador);
+    this.movimientosJugador = this.pokemonJugador.movimientos!;
+    this.audio_service.playSound('out');
+    await this.delay(700);
+
+    this.mostrarMensajeBatalla(` ${this.transformarPrimeraLetra(this.pokemonJugador.especie)} ${this.translate.instant('batalla.go')}!`);
+
+
+    const cryUrl = this.pokemonJugador.cryUrl;
+    if (cryUrl) {
+      await this.audio_service.playDynamicSound(cryUrl);
+    }
+
+    await this.delay(1500);
+
+    const movimientoRival = this.generarMovimientoRival();
+    await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
+    await this.verificarCambio(this.pokemonJugador!);
+  }
+
   usarItemPorIndice(index: number): void {
     const itemUsado: Items = this.jugador!.items![index];
     const itemName = itemUsado.name.toLowerCase();
     this.mostrarInventario = false;
+
     if (itemName === 'revive' || itemName === 'max-revive') {
       if (this.pokemonDebilitados.length === 0) {
         this.mostrarMensajeBatalla(this.translate.instant('batalla.status.noFainted'));
@@ -939,24 +1057,75 @@ private async crearPokemonDesdeApi(id: number): Promise<Pokemon> {
       this.mostrarSeleccionRevivir = true;
       return;
     }
+
     if (itemName === 'sacred-ash') {
       this.ejecutarSacredAsh(itemUsado, index);
       return;
     }
-    this.ejecutarCuracionHP(itemUsado, index);
+
+    this.itemCuracionSeleccionado = itemUsado;
+    this.indiceItemCuracion = index;
+    this.modoSeleccion = 'curacion';
+    this.mostrarSeleccionEquipo = true;
+    this.mostrarMensajeBatalla(`${this.translate.instant('batalla.selectTargetFor')} ${this.transformarPrimeraLetra(itemUsado.name)}.`);
   }
 
-  public setBGMVolume(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const newVolume = parseFloat(target.value);
-    this.bgmVolume = newVolume;
-    this.audio_service.setBGMVolume(newVolume);
+  async ejecutarCuracionSobreObjetivo(index: number): Promise<void> {
+    const objetivo = this.jugador!.equipo[index];
+    const itemUsado = this.itemCuracionSeleccionado;
+    const itemIndex = this.indiceItemCuracion;
+
+    if (objetivo.vidaActual === objetivo.estadisticas.hp) {
+      this.mostrarMensajeBatalla(this.translate.instant('batalla.status.alreadyFullHP'));
+      return;
+    }
+
+    this.mostrarSeleccionEquipo = false;
+    this.modoSeleccion = null;
+
+    const itemName = itemUsado!.name.toLowerCase();
+    let curacionValor: number = this.healingValues[itemName] || 0;
+    let curacionAplicada: number;
+
+    if (curacionValor === 9999) {
+      curacionAplicada = objetivo.estadisticas.hp - objetivo.vidaActual;
+    } else {
+      curacionAplicada = curacionValor;
+    }
+
+    const vidaAntes = objetivo.vidaActual;
+    const vidaDeseada = vidaAntes + curacionAplicada;
+    objetivo.vidaActual = Math.min(vidaDeseada, objetivo.estadisticas.hp);
+    const vidaRestaurada = objetivo.vidaActual - vidaAntes;
+
+    this.mostrarMensajeBatalla(
+      `${this.transformarPrimeraLetra(objetivo.especie)} ${this.translate.instant('batalla.healed')} ${vidaRestaurada} ${this.translate.instant('batalla.hp')}`
+    );
+
+    this.jugador!.items!.splice(itemIndex, 1);
+    this.itemCuracionSeleccionado = null;
+    this.indiceItemCuracion = -1;
+
+    await this.delay(2000);
+
+    const movimientoRival = this.generarMovimientoRival();
+    await this.calcularAtaque(movimientoRival, this.pokemonRival!, this.pokemonJugador!);
+    await this.verificarCambio(this.pokemonJugador!);
   }
-  public setSFXVolume(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const newVolume = parseFloat(target.value);
-    this.sfxVolume = newVolume;
-    this.audio_service.setSFXVolume(newVolume);
+
+  onPokemonSeleccionado(index: number) {
+    if (this.modoSeleccion === 'cambio') {
+      this.ejecutarCambioPokemon(index);
+    } else if (this.modoSeleccion === 'curacion') {
+      this.ejecutarCuracionSobreObjetivo(index);
+    }
+  }
+
+  cancelarSeleccionEquipo() {
+    this.mostrarSeleccionEquipo = false;
+    this.modoSeleccion = null;
+    this.itemCuracionSeleccionado = null;
+    this.indiceItemCuracion = -1;
   }
 
 }

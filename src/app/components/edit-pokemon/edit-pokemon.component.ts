@@ -16,7 +16,6 @@ import { AppAudio } from '../app-audio/app-audio';
   styleUrl: './edit-pokemon.component.css'
 })
 export class EditPokemonComponent implements OnInit {
-  // ... Variables sin cambios ...
   pokemon: Pokemon = {
     id: '',
     especie: '',
@@ -40,7 +39,7 @@ export class EditPokemonComponent implements OnInit {
   pokemonMoveID: number = -1;
   moveListID: number = -1;
 
-  // ... Injectables sin cambios ...
+// injectables
   ps = inject(PokeAPIService);
   ts = inject(TeamService);
   route = inject(Router);
@@ -64,7 +63,7 @@ export class EditPokemonComponent implements OnInit {
   }
 
   async loadPokemonData(id: string) {
-    // 1. Cargar el Pokémon del entrenador
+    //  Cargar el Pokémon del entrenador
     this.ts.getPokemonByID(id).subscribe({
       next: async (data: Pokemon) => {
         this.pokemon = data;
@@ -76,7 +75,7 @@ export class EditPokemonComponent implements OnInit {
       }
     });
 
-    // 2. Obtener la lista COMPLETA de movimientos y localizarlos.
+    //  Obtener la lista COMPLETA de movimientos y localizarlos.
     this.ps.getPokemonByID(id).subscribe({
       next: async (poke: any) => {
         if (poke) {
@@ -155,7 +154,6 @@ export class EditPokemonComponent implements OnInit {
   // Actualizado: Guarda el nombre original antes de la traducción y utiliza el tipo original.
   async forceRelocalizeCurrentMove(move: Move): Promise<void> {
     try {
-      // Al cargar desde Firestore, move.nombre y move.tipo son los nombres en inglés.
       // Los guardamos como originales antes de la traducción para poder deslocalizar SIN API calls.
       move.originalName = move.nombre;
       move.originalType = move.tipo;
@@ -202,10 +200,10 @@ export class EditPokemonComponent implements OnInit {
   }
 
   async deslocalizePokemon(pokemon: Pokemon): Promise<Pokemon> {
-    // 1. Crear una copia profunda para modificar el objeto de guardado, no el de la UI
+    //  Crear una copia profunda para modificar el objeto de guardado, no el de la UI
     const pokemonToSave: Pokemon = JSON.parse(JSON.stringify(pokemon));
 
-    // 2. Deslocalizar Especie (Nombre a inglés)
+    //  Deslocalizar Especie (Nombre a inglés)
     try {
       // Esta API call sigue siendo necesaria para la especie
       const originalName = await this.ps.getPokemonOriginalName(pokemonToSave.especie).toPromise();
@@ -214,23 +212,19 @@ export class EditPokemonComponent implements OnInit {
       }
     } catch (e) { /* Si falla la API, mantenemos el nombre existente */ }
 
-    // 3. Deslocalizar Tipos (a inglés)
+    //  Deslocalizar Tipos (a inglés)
     pokemonToSave.tipos = await Promise.all(
       pokemonToSave.tipos.map(async (tipo) => {
         try {
-          // Esta API call sigue siendo necesaria para los tipos de Pokémon
           const originalType = await this.ps.getOriginalTypeName(tipo).toPromise();
           return originalType || tipo;
         } catch (e) { return tipo; }
       })
     );
 
-    // 4. Deslocalizar Movimientos (Nombre y Tipo a inglés)
     // Usamos los campos 'originalName' y 'originalType' para evitar llamadas a la API
     pokemonToSave.movimientos = pokemonToSave.movimientos.map((move) => {
-      // Si 'originalName' existe (porque el movimiento fue cargado o reemplazado correctamente), 
-      // lo usamos; si no, caemos en el nombre de la UI (que podría estar traducido, 
-      // pero es el mejor intento)
+
       const nameToSave = move.originalName || move.nombre;
       const typeToSave = move.originalType || move.tipo;
 

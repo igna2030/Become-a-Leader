@@ -17,6 +17,6 @@ export class SobreNosotrosComponent {
     { url: 'foto2.jpg', texto: 'Luciano Buda', urlGitHub: 'https://github.com/LuchoDMD' },
     { url: 'foto3.jpeg', texto: 'Tomas Dallier', urlGitHub: 'https://github.com/Tomyyii' },
     { url: 'foto4.jpg', texto: 'Ignacio Malaguti', urlGitHub: 'https://github.com/igna2030' },
-    { url: 'foto5.JPG', texto: 'Gonzalo Varela', urlGitHub: 'https://github.com/piragna1' }
+    { url: 'foto5.jpg', texto: 'Gonzalo Varela', urlGitHub: 'https://github.com/piragna1' }
   ];
 }

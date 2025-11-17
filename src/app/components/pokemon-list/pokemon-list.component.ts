@@ -80,22 +80,3 @@ export class PokemonListComponent implements OnInit
 }
 
 
- /*
-          Mira Nica los metodos de los array se caen a pedazos si lees esto fijate porque jajaj
-          this.pokemons.forEach((pokemon:Pokemon)=>{
-          console.log("ID Poke: "+pokemon.id);
-          this.ps.getSpritesByID(pokemon.id).subscribe({
-            next:(data: any)=>{
-              let icon = data.versions?.['generation-vii']?.icons?.front_default;
-              if(icon){
-                console.log("Icon: "+icon);
-                this.pIcons.unshift(icon);
-              }
-              icon="";
-            },
-            error:(err:Error)=>{
-              console.log("ERROR: "+err.message);
-            }
-          });
-        });
-*/

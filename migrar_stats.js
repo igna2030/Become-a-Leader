@@ -29,14 +29,14 @@ function calculateStats(base, iv, ev, level, isHP = false) {
   }
 }
 
-
 async function recalcularStatsPokemon(pokemon) {
   console.log(`Procesando: ${pokemon.especie} (ID: ${pokemon.id})...`);
   
   try {
     const response = await axios.get(`${POKEAPI_URL}${pokemon.id}`);
-    const apiStats = response.data.stats;
+    const apiData = response.data; 
 
+    const apiStats = apiData.stats;
     const baseStats = {};
     apiStats.forEach(s => {
       switch (s.stat.name) {
@@ -64,7 +64,14 @@ async function recalcularStatsPokemon(pokemon) {
     pokemon.estadisticas = nuevasEstadisticas;
     pokemon.vidaActual = nuevasEstadisticas.hp; 
 
-    console.log(` -> ¡Stats corregidos para ${pokemon.especie}! (Nuevo HP: ${pokemon.estadisticas.hp})`);
+
+    if (apiData.cries) {
+        pokemon.cryUrl = apiData.cries.latest || apiData.cries.legacy || null;
+    } else {
+        pokemon.cryUrl = null;
+    }
+
+    console.log(` -> ¡Actualizado! Stats corregidos y Cry añadido para ${pokemon.especie}`);
     return pokemon;
 
   } catch (error) {
@@ -74,7 +81,7 @@ async function recalcularStatsPokemon(pokemon) {
 }
 
 async function migrarBaseDeDatos() {
-  console.log('Iniciando migración de estadísticas de Pokémon...');
+  console.log('Iniciando migración (Stats + Cries)...');
   
   let data;
   try {
@@ -117,7 +124,7 @@ async function migrarBaseDeDatos() {
 
   try {
     await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
-    console.log('\n¡Migración completada! Tu db.json ha sido actualizado con las estadísticas correctas.');
+    console.log('\n¡Migración completada! Tu db.json ahora tiene stats recalculados y URLs de sonido.');
   } catch (err) {
     console.error('Error: No se pudo guardar el archivo db.json actualizado.', err);
   }

@@ -4,7 +4,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 // Definición de tipos para las claves de música y SFX
 type BGMKey = 'battleBGM' | 'intro' | 'win' | 'lose' | 'finalBattle' | 'bossBattle';
-type SFXKey = 'hit';
+type SFXKey = 'hit'|'out'|'return';
 type SoundFileMap = Record<SFXKey, string> & Record<BGMKey, string | string[]>;
 
 @Injectable({
@@ -28,10 +28,13 @@ export class AudioService {
 
   private soundFiles: SoundFileMap = {
     hit: 'assets/audio/hit.mp3',
+    out: 'assets/audio/pokemon_out.mp3', 
+    return: 'assets/audio/pokemon_return.mp3',
     win: [
       'assets/audio/victory_gen_1.mp3',
       'assets/audio/victory_gen3_red.mp3',
-      'assets/audio/win.mp3'
+      'assets/audio/win.mp3',
+      'assets/audio/win_2.mp3'
     ],
     intro: [
       'assets/audio/pokemon_fire_and_red_intro.mp3',
@@ -41,6 +44,7 @@ export class AudioService {
       'assets/audio/battle_red_fire.mp3',
       'assets/audio/battle_green_blue_gen1.mp3',
       'assets/audio/combat.mp3',
+      'assets/audio/no_victory_without_toll.mp3'
     ],
     lose: [
       'assets/audio/lose.mp3'
@@ -50,7 +54,7 @@ export class AudioService {
     ],
     bossBattle: [
       'assets/audio/boss-theme-ftl.mp3'
-    ]
+    ],
   };
 
   constructor() {

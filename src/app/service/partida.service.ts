@@ -20,6 +20,7 @@ export class PartidaService {
   postPartida(partida: Partida): Observable<Partida> {
     return this.http.post<Partida>(this.urlBase, partida);
   }
+  //eliminamos la partida
   eliminarPartida(id: string): Observable<void> {
     return this.http.delete<void>(`${this.urlBase}/${id}`);
   }

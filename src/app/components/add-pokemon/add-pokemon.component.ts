@@ -9,12 +9,12 @@ import { TeamService } from '../../service/team.service';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
+import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
   selector: 'app-add-pokemon',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, TranslateModule],
+  imports: [CommonModule, RouterModule, FormsModule, TranslateModule, AppAudio],
   templateUrl: './add-pokemon.component.html',
   styleUrl: './add-pokemon.component.css'
 })
@@ -27,6 +27,10 @@ export class AddPokemonComponent {
   routes = inject(Router);
   pokeAPI: any;
 
+  searchError: string | null = null;
+  moveError: string | null = null;
+  saveError: string | null = null;
+
   pokemon: Pokemon = {
     id: '',
     especie: '',
@@ -35,7 +39,8 @@ export class AddPokemonComponent {
     vidaActual: 0,
     estadisticas: { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 },
     movimientos: [],
-    idEntrenador: ''
+    idEntrenador: '',
+    cryUrl:''
   };
 
   statsBase: Stats = {
@@ -53,7 +58,7 @@ export class AddPokemonComponent {
   //Limpia los valores de la variable
   cleanBuffer() {
     this.pokeID = "";
-    this.pokeAPI = [];
+    this.pokeAPI = null; 
     this.pokemon = {
       id: '',
       especie: '',
@@ -62,7 +67,8 @@ export class AddPokemonComponent {
       vidaActual: 0,
       estadisticas: { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 },
       movimientos: [],
-      idEntrenador: ''
+      idEntrenador: '',
+      cryUrl:''
     }
     this.statsBase = {
       hp: 0,
@@ -74,10 +80,19 @@ export class AddPokemonComponent {
     };
     this.iv = [];
     this.moves = [];
+    this.searchError = null;
+    this.moveError = null;
+    this.saveError = null;
   }
 
   //Busca los datos de un pokemon en la pokeAPI a travez del servicio
   generarPokemon(id: string) {
+    this.searchError = null;
+    this.moveError = null;
+    this.saveError = null;
+    this.pokeAPI = null; // Ocultar resultados anteriores
+    this.moves = []; // Limpiar movimientos
+
     this.ps.getPokemonByID(id).subscribe({
       next: (data) => {
         this.pokeAPI = data;
@@ -92,12 +107,17 @@ export class AddPokemonComponent {
       },
       error: (err: Error) => {
         console.log("ERROR: " + err.message);
+        this.translate.get('alerts.pokemonNotFound', { id: id }).subscribe((res: string) => {
+          this.searchError = res;
+        });
       }
     });
   }
 
   //Agrega los movimientos a un arreglo de movimientos
   agregarAtaque(moveName: string) {
+    this.moveError = null;
+
     this.ps.getMoveByName(moveName).subscribe({
       next: (data) => {
         if (data.damage_class.name !== 'status') {
@@ -110,14 +130,16 @@ export class AddPokemonComponent {
               precision: data.accuracy,
               usos: data.pp,
               pp: data.pp,
-              // Añadir campos originales para futura deslocalización/edición
               originalName: moveName,
               originalType: data.type.name
             }
             console.log(move);
             this.moves.push(move);
           } else {
-            console.log("El pokemon ya posee 4 movimientos");
+
+            this.translate.get('alerts.tooManyMoves').subscribe((res: string) => {
+              this.moveError = res;
+            });
           }
         }
       },
@@ -157,9 +179,13 @@ export class AddPokemonComponent {
 
   //Agrega el pokemon a la db.json en el apartado pokemons
   addPokemonBD() {
+    this.saveError = null;
+
     // Validar que el Pokémon tenga exactamente 4 movimientos
     if (this.moves.length !== 4) {
-      console.log('El Pokémon debe tener exactamente 4 movimientos antes de guardarse.'); // Cambio: De alert() a console.log()
+      this.translate.get('alerts.mustHaveFourMoves').subscribe((res: string) => {
+        this.saveError = res;
+      });
       return;
     }
 
@@ -168,8 +194,10 @@ export class AddPokemonComponent {
       next: (pokemons) => {
         const existe = pokemons.some((poke) => poke.id === this.pokeAPI.id.toString());
         if (existe) {
-          console.log(`El Pokémon con ID ${this.pokeAPI.id} ya existe en la base de datos.`); // Cambio: De alert() a console.log()
-          this.moves = [];
+          this.translate.get('alerts.pokemonExists', { id: this.pokeAPI.id }).subscribe((res: string) => {
+            this.saveError = res;
+          });
+          this.moves = []; // Limpiar movimientos para evitar spam
           return;
         }
 
@@ -177,18 +205,15 @@ export class AddPokemonComponent {
         this.pokemon.id = this.pokeAPI.id.toString();
         this.pokemon.especie = this.pokeAPI.name;
 
-        // Almacenar los tipos
+        if (this.pokeAPI.cries) {
+          this.pokemon.cryUrl = this.pokeAPI.cries.latest || this.pokeAPI.cries.legacy || '';
+        }
+
         for (let i = 0; i < this.pokeAPI.types.length; i++) {
           this.pokemon.tipos.push(this.pokeAPI.types[i].type.name);
         }
-
         this.pokemon.nivel = 100;
-
-        // Generar los IVs
         this.iv = this.generateIVs();
-
-        // Calcular las estadísticas
-
         this.pokemon.estadisticas = {
           hp: this.calculateStats(this.statsBase.hp, this.iv.hp, this.generateEV(1, 84), this.pokemon.nivel, true),
           atk: this.calculateStats(this.statsBase.atk, this.iv.atk, this.generateEV(1, 84), this.pokemon.nivel, false),
@@ -197,31 +222,35 @@ export class AddPokemonComponent {
           sdef: this.calculateStats(this.statsBase.sdef, this.iv.sdef, this.generateEV(1, 84), this.pokemon.nivel, false),
           spd: this.calculateStats(this.statsBase.spd, this.iv.spd, this.generateEV(1, 84), this.pokemon.nivel, false),
         };
-
         this.pokemon.vidaActual = this.pokemon.estadisticas.hp;
         this.pokemon.movimientos = this.moves;
         this.pokemon.idEntrenador = '';
 
-        console.log(this.pokemon);
+        console.log('Pokemon a guardar:', this.pokemon);
 
-        // Almacenar en el db.json "pokemons":[] 
         this.ts.addPokemon(this.pokemon).subscribe({
           next: () => {
             console.log("Pokémon Agregado");
-            console.log("Pokémon Agregado"); // Cambio: De alert() a console.log()
             this.cleanBuffer();
             this.routes.navigate(['pokemon-list']);
           },
           error: (err: Error) => {
             console.log('ERROR: ' + err.message);
+            this.translate.get('alerts.genericSaveError').subscribe((res: string) => {
+              this.saveError = res;
+            });
           }
         });
       },
       error: (err) => {
         console.log('ERROR: ' + err.message);
+        this.translate.get('alerts.genericSaveError').subscribe((res: string) => {
+          this.saveError = res;
+        });
       }
     });
-  };
+  }
+
   logout() {
     this.us.logoutAdmin();
     this.routes.navigate(['']);

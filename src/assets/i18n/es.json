@@ -28,7 +28,8 @@
     "revive": "Revivir",
     "inventory": "Inventario",
     "use": "usar item",
-    "noItems": "No hay items"
+    "noItems": "No hay items",
+    "switch":"Cambia el pokemon"
   },
   "alerts": {
     "nicknameEmpty": "No puedes dejar el campo vacío.",
@@ -52,7 +53,12 @@
     "maxLengthNick": "El nick debe tener como maximo 10 caracteres",
     "minLengthPassword": "Requiere un mínimo de 8 letras",
     "maxLengthPassword": "La contraseña debe tener como maximo 15 caracteres",
-    "registerSuccess": "{{nick}} se ha registrado correctamente :)"
+    "registerSuccess": "{{nick}} se ha registrado correctamente :)",
+    "mustHaveFourMoves":"El Pokémon debe tener exactamente 4 movimientos antes de guardarse",
+    "pokemonExists":"El pokemon ya existe en la base de datos",
+    "pokemonNotFound": "Error: No se encontró ningún Pokémon con el ID '{{id}}'.",
+    "tooManyMoves": "¡Ya has seleccionado 4 movimientos! No puedes añadir más.",
+    "genericSaveError": "Ocurrió un error inesperado al intentar guardar el Pokémon."
   },
   "game": {
     "welcomeTitle": "Bienvenido al juego",
@@ -193,7 +199,7 @@
     "rivalAppeared": "Aparecio un rival es un",
     "errorSpriteFetch": "Error al obtener el sprite",
     "isSentOut": " se ha enviado",
-    "pokedexError": "Error al cargar el pokemon de la pokedex",
+    "pokedexError": "Error al cargar el pokemon de la pokedex.  Buscar con el ID",
     "errorGameUpdate": "Error al cargar el juego",
     "usedItem": "Item usado",
     "selectTargetFor": "Objetivo seleccionado para revivir",
@@ -201,6 +207,9 @@
     "hp": "Vida",
     "selectPokemonToRevive": "Elige un pokemon para revivir",
     "selectReviveItemFirst": "Primero elige un item de revivir",
+    "go":"Vamos",
+    "return":"Vuelve",
+    "choosePokemonSwitch":"Elige un pokemon para cambiar",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

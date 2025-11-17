@@ -327,7 +327,8 @@ div.batalla div img {
 
 
 .inventory-panel,
-.revive-selection-panel {
+.revive-selection-panel,
+.team-selection-panel {
     position: absolute;
     top: -80px;
     left: 0;
@@ -627,4 +628,47 @@ div.batalla div img {
 
 .pokemon-sprite.is-attacking {
     animation: shake-left-right 0.3s ease-in-out 3;
+}
+
+
+.pokemon-option {
+    display: flex;
+    align-items: center; 
+    background: white;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.2s;
+    border-color: black;
+}
+
+.pokemon-option:hover {
+    background: white;
+    border-color: #3b4cca;
+}
+
+.pokemon-option-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.pokemon-option img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.pokemon-option.disabled-option {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+}
+
+.active-pokemon {
+    border-color: #ff9800; /* Naranja */
+    background-color: #fff3e0;
 }

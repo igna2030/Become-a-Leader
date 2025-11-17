@@ -17,15 +17,47 @@ nav {
   text-align: center;
 }
 
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #fff;  /* Texto blanco */
-  font-weight: bold;
+.nav-bar {
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(45, 42, 42, 0.9); 
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
 }
 
-nav a:hover {
-  color: #007bff;  /* Cambia el color al pasar el ratón */
+.nav-bar a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #ffcb05; 
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.nav-bar a:hover {
+  color: #fff; 
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #ffcb05;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  text-shadow: 0 0 20px rgba(255, 203, 5, 0.8), 0 0 30px rgba(255, 203, 5, 0.6);
 }
 
 /* Estilos para la sección de listado */

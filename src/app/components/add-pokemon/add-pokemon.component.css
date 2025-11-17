@@ -1,141 +1,287 @@
-/* Fondo oscuro para el cuerpo */
-body {
-  background-color: #333;
-  font-family: Arial, sans-serif;  /* Fuente más legible */
-  color: #fff;
+html, body, :host {
   margin: 0;
   padding: 0;
-
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
 }
 
-/* Estilos para el contenedor del nav */
-nav {
-  padding: 10px;
-  background-color: #444;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-nav a:hover {
-  color: #007bff;
-}
-
-/* Estilos para el contenedor del formulario */
-fieldset {
-  background-color: #444;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+:host {
+  background-color: #333;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
   padding: 20px;
-  max-width: 800px;
-  margin: 20px auto;
+  box-sizing: border-box;
 }
 
-legend {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
+.nav-bar {
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(45, 42, 42, 0.9);
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
-/* Estilo de los inputs y botones */
-input, button {
+.nav-bar a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #ffcb05; 
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.nav-bar a:hover {
+  color: #fff;
+}
+
+section {
+  background-color: rgba(45, 42, 42, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px; 
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #ffcb05;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  text-shadow: 0 0 20px rgba(255, 203, 5, 0.8), 0 0 30px rgba(255, 203, 5, 0.6);
+}
+
+h2, h4 {
+  font-size: 2em;
+  font-weight: 600;
+  color: #ffcb05;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 30px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+h6 {
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.search-form label {
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: bold;
+}
+
+.search-form input[type="text"] {
   padding: 10px;
-  margin: 10px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-input[type="text"] {
-  width: 80%;
+  font-size: 1em;
   background-color: #222;
   color: #fff;
+  width: 200px;
 }
 
-button {
-  background-color: #007bff;
+.search-form button {
+  background-color: #ff5733; 
   color: #fff;
-  cursor: pointer;
   border: none;
-  transition: background-color 0.3s;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+.search-form button:hover {
+  background-color: #ffcb05;
+  transform: translateY(-3px);
 }
 
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Estilo para los bloques de información */
-div {
-  text-align: center;
-  padding: 20px;
-}
-
-/* Título de la sección */
-h4 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-/* Estilo de la lista de pokemones */
-ul {
-  list-style: none;
-  padding: 0;
+.info-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100%;
   gap: 20px;
 }
 
-/* Estilo de cada ítem de Pokémon */
-li {
-  width: 180px;
-  background-color: #4a4848;
-  border: 2px solid #ddd;
+.basic-info, .stats-info {
+  flex: 1;
+  min-width: 300px;
+  background-color: rgba(45, 42, 42, 0.8);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.basic-info ul, .stats-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.basic-info li, .stats-info li {
+  padding: 12px;
+  text-align: left;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #333;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+.basic-info li:first-child { 
+  background-color: transparent;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilo para las imágenes de los Pokémon */
 .pokemon-icon {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border: 2px solid #ffcb05;
+}
+
+/* Línea separadora */
+hr {
+  width: 90%;
+  border: 1px solid #ffcb05;
+  margin: 30px auto;
+}
+
+.moves-section {
+  width: 100%;
+}
+
+.moves-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin-top: 20px;
+  background-color: rgba(45, 42, 42, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden; 
+}
+
+.moves-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #333;
+  border-bottom: 1px solid #1d1b1b;
+  transition: background-color 0.3s ease;
+}
+
+.moves-list li:last-child {
+  border-bottom: none;
+}
+
+.moves-list li:hover {
+  background-color: #444;
+}
+
+.moves-list li span {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.moves-list input[type="button"] {
+  background-color: #ffcb05;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1.1em;
+  cursor: pointer;
   border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-/* Estilo para los enlaces (nombres y ids) */
-a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: bold;
+.moves-list input[type="button"]:hover {
+  background-color: #ff5733;
+  transform: translateY(-3px);
 }
 
-a:hover {
-  color: #007bff;
+.moves-list input[type="button"]:active {
+  background-color: #3b4cca;
+  transform: translateY(1px);
 }
 
-/* Eliminar cualquier margen o espacio alrededor de la página */
-div {
-  max-width: 100%;
-  box-sizing: border-box;
+
+/* Botones de acción (Guardar) */
+button[type="submit"] {
+  background-color: #ffcb05;
+  color: #fff;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 30px;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff5733;
+  transform: translateY(-3px);
+}
+
+button[type="submit"]:active {
+  background-color: #3b4cca;
+  transform: translateY(1px);
 }

@@ -28,7 +28,8 @@
     "revive": "Revive",
     "inventory": "Inventory",
     "use": "use item",
-    "noItems":"There are no items"
+    "noItems": "There are no items",
+    "switch":"Switch pokemon"
   },
   "alerts": {
     "emailRequired": "Email is required",
@@ -52,7 +53,12 @@
     "maxLengthNick": "Nickname must have a maximum of 10 characters",
     "minLengthPassword": "Requires a minimum of 8 characters",
     "maxLengthPassword": "Password must have a maximum of 15 characters",
-    "registerSuccess": "{{nick}} has been registered successfully :)"
+    "registerSuccess": "{{nick}} has been registered successfully :)",
+    "mustHaveFourMoves": "The Pokémon needs to have exactly 4 moves before being saved",
+    "pokemonExists": "The pokemon already exits in the database",
+    "pokemonNotFound": "Error: No Pokémon found with ID '{{id}}'.",
+    "tooManyMoves": "You have already selected 4 moves! You cannot add more.",
+    "genericSaveError": "An unexpected error occurred while trying to save the Pokémon."
   },
   "game": {
     "welcomeTitle": "Welcome to the game",
@@ -193,14 +199,17 @@
     "isDefeated": "has been defeated!",
     "errorSpriteFetch": "Error fetching sprite",
     "isSentOut": "is sent out",
-    "pokedexError": "Error while loading the pokemon in the pokedex",
+    "pokedexError": "Error while loading the pokemon in the pokedex.  Search with the ID",
     "errorGameUpdate": "Error while loading the game",
     "usedItem": "Used item",
     "selectTargetFor": "Target selected for reviving",
     "healed": "healed",
     "hp": "HP",
     "selectPokemonToRevive": "Select pokemon to revive",
-    "selectReviveItemFirst":"First select an revive item",
+    "selectReviveItemFirst": "First select an revive item",
+    "go": "Go",
+    "return": "return",
+    "choosePokemonSwitch":"Choose a pokemon to change",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",
@@ -223,9 +232,9 @@
       "alreadyFullHP": "The pokemon life is full",
       "noFainted": "There are no fainted pokemon"
     },
-    "volume":{
-      "music":"Music volume",
-      "sfx":"Game volume"
+    "volume": {
+      "music": "Music volume",
+      "sfx": "Game volume"
     },
     "error": {
       "invalidAction": "Accion invalida"
@@ -257,7 +266,7 @@
   "intro": {
     "message": "Welcome to Become a Leader. This project simulates battles between a Pokémon Leader and trainers, using a single-type team. Your goal is to accumulate the highest number of victories and score points. Remember that when you lose, your game is deleted and your score is saved in the ranking table. Entering the game..."
   },
-  "general":{
-    "cancel":"cancel"
+  "general": {
+    "cancel": "cancel"
   }
 }

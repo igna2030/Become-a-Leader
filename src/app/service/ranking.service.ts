@@ -13,9 +13,11 @@ export class RankingService {
 
   constructor() { }
 
+  //consegimos los rankings
   getRankings(): Observable<Ranking[]> {
     return this.http.get<Ranking[]>(this.urlBase)
   }
+  //subimos la partida
   postRanking(ranking: Ranking): Observable<Ranking> {
     return this.http.post<Ranking>(this.urlBase, ranking);
   }

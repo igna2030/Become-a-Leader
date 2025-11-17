@@ -1,12 +1,12 @@
 <body>
-<nav>
-<a [routerLink]="['/add-pokemon']">{{ 'actions.add' | translate }}</a>
-<a [routerLink]="['/pokemon-list']">{{ 'NAV.POKEMON_LIST' | translate }}</a>
-<a (click)="logout()">{{ 'actions.logout' | translate }}</a>
+<nav class="nav-bar">
+  <a [routerLink]="['/add-pokemon']">{{ 'actions.add' | translate }}</a>
+  <a [routerLink]="['/pokemon-list']">{{ 'NAV.POKEMON_LIST' | translate }}</a>
+  <a (click)="logout()">{{ 'actions.logout' | translate }}</a>
 </nav>
 <section class="fondodiv">
 <div>
-<h4>{{ 'pokemonList.title' | translate }}</h4>
+<h1>{{ 'pokemonList.title' | translate }}</h1>
  <ul>
  @for (pokemon of pokemons; track $index)
  {

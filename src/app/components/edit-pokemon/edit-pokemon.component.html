@@ -1,5 +1,6 @@
 <section>
     <h1>{{pokemon.especie}} {{ 'editMoves.titleSuffix' | translate }}</h1>
+    
     <div>
         <h2>{{ 'editMoves.currentMoves' | translate }}</h2>
         <table>
@@ -14,24 +15,31 @@
                 </tr>
             </thead>
             <tbody>
-                
-                    @for (movimientos of pokemon.movimientos; track $index) 
-                    {
-                        <tr>
-                            <td>{{movimientos.nombre}}</td>
-                            <td>{{movimientos.tipo}}</td>
-                            <td>{{movimientos.clase}}</td>
-                            <td>{{movimientos.potencia}}</td>
-                            <td>{{movimientos.precision}}</td>
-                            <td>{{movimientos.pp}}</td>
+                @for (movimientos of pokemon.movimientos; track $index) 
+                {
+                    <tr>
+                        <td>{{movimientos.nombre}}</td>
+                        <td>{{movimientos.tipo}}</td>
+                        <td>{{movimientos.clase}}</td>
+                        <td>{{movimientos.potencia}}</td>
+                        <td>{{movimientos.precision}}</td>
+                        <td>{{movimientos.pp}}</td>
+                        <td>
                             <input (click)="seleccionarMovimiento($index)" type="button" [value]="'actions.select' | translate">
-                        </tr>
-                    }
+                        </td>
+                    </tr>
+                }
             </tbody>
-            <tfoot> <td>@if (pokemonMoveID!=undefined && pokemonMoveID!=-1){ {{ 'editMoves.move-to-change' | translate }}: {{pokemon.movimientos[pokemonMoveID].nombre }} }</td> </tfoot>
+            <tfoot> 
+                <td>
+                    @if (pokemonMoveID!=undefined && pokemonMoveID!=-1) { 
+                        {{ 'editMoves.move-to-change' | translate }}: {{pokemon.movimientos[pokemonMoveID].nombre }} 
+                    }
+                </td> 
+            </tfoot>
         </table>
-        
     </div>
+
     <div>
         <h2>{{ 'editMoves.availableMoves' | translate }}</h2>
         @if (pokemonMoveID!=undefined && pokemonMoveID!=-1) 
@@ -48,26 +56,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                        @for (move of movesList; track $index) 
-                        {
-                            <tr>
-                                <td>{{move.nombre}}</td>
-                                <td>{{move.tipo}}</td>
-                                <td>{{move.clase}}</td>
-                                <td>{{move.potencia}}</td>
-                                <td>{{move.precision}}</td>
-                                <td>{{move.pp}}</td>
+                    @for (move of movesList; track $index) 
+                    {
+                        <tr>
+                            <td>{{move.nombre}}</td>
+                            <td>{{move.tipo}}</td>
+                            <td>{{move.clase}}</td>
+                            <td>{{move.potencia}}</td>
+                            <td>{{move.precision}}</td>
+                            <td>{{move.pp}}</td>
+                            <td>
                                 @if (pokemonMoveID!=-1) {
                                     <input (click)="cambiarMovimientos(pokemonMoveID,$index)" type="button" [value]="'actions.change' | translate">
                                 }
-                                <!-- Se rompe luego del septimo movimiento ver como arreglar -->
-                            </tr>
-                        }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
-        }   
+        }
     </div>
-      <app-app-audio></app-app-audio>
+
+    <app-app-audio></app-app-audio>
     <button type="submit" (click)="guardarCambios()">{{ 'actions.save' | translate }}</button>
     <button type="button" (click)="volverALista()">{{ 'actions.backToList' | translate }}</button>
 </section>

@@ -32,14 +32,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 253,
+            "vidaActual": 256,
             "estadisticas": {
-              "hp": 253,
-              "atk": 125,
-              "def": 89,
-              "satk": 269,
-              "sdef": 221,
-              "spd": 227
+              "hp": 256,
+              "atk": 122,
+              "def": 104,
+              "satk": 280,
+              "sdef": 203,
+              "spd": 210
             },
             "movimientos": [
               {
@@ -79,7 +79,8 @@
                 "pp": 10
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/124.ogg"
           },
           {
             "id": "308",
@@ -89,14 +90,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 251,
+            "vidaActual": 261,
             "estadisticas": {
-              "hp": 251,
-              "atk": 158,
-              "def": 181,
-              "satk": 142,
-              "sdef": 188,
-              "spd": 204
+              "hp": 261,
+              "atk": 154,
+              "def": 170,
+              "satk": 128,
+              "sdef": 180,
+              "spd": 194
             },
             "movimientos": [
               {
@@ -136,7 +137,8 @@
                 "pp": 5
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/308.ogg"
           },
           {
             "id": "65",
@@ -145,14 +147,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 242,
+            "vidaActual": 253,
             "estadisticas": {
-              "hp": 242,
-              "atk": 132,
-              "def": 146,
-              "satk": 287,
-              "sdef": 221,
-              "spd": 254
+              "hp": 253,
+              "atk": 128,
+              "def": 123,
+              "satk": 292,
+              "sdef": 213,
+              "spd": 273
             },
             "movimientos": [
               {
@@ -192,7 +194,8 @@
                 "pp": 15
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/65.ogg"
           },
           {
             "id": "196",
@@ -201,14 +204,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 252,
+            "vidaActual": 249,
             "estadisticas": {
-              "hp": 252,
-              "atk": 161,
-              "def": 148,
-              "satk": 288,
-              "sdef": 226,
-              "spd": 263
+              "hp": 249,
+              "atk": 169,
+              "def": 163,
+              "satk": 270,
+              "sdef": 225,
+              "spd": 241
             },
             "movimientos": [
               {
@@ -248,7 +251,8 @@
                 "pp": 20
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/196.ogg"
           },
           {
             "id": "80",
@@ -258,14 +262,14 @@
               "psychic"
             ],
             "nivel": 100,
-            "vidaActual": 316,
+            "vidaActual": 327,
             "estadisticas": {
-              "hp": 316,
-              "atk": 191,
-              "def": 263,
-              "satk": 212,
-              "sdef": 190,
-              "spd": 80
+              "hp": 327,
+              "atk": 167,
+              "def": 248,
+              "satk": 228,
+              "sdef": 196,
+              "spd": 104
             },
             "movimientos": [
               {
@@ -305,7 +309,8 @@
                 "pp": 10
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/80.ogg"
           },
           {
             "id": "475",
@@ -315,14 +320,14 @@
               "fighting"
             ],
             "nivel": 100,
-            "vidaActual": 278,
+            "vidaActual": 291,
             "estadisticas": {
-              "hp": 278,
-              "atk": 273,
-              "def": 153,
-              "satk": 154,
-              "sdef": 259,
-              "spd": 197
+              "hp": 291,
+              "atk": 279,
+              "def": 166,
+              "satk": 169,
+              "sdef": 271,
+              "spd": 194
             },
             "movimientos": [
               {
@@ -362,109 +367,96 @@
                 "pp": 20
               }
             ],
-            "idEntrenador": "4efd"
+            "idEntrenador": "4efd",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/475.ogg"
           }
         ]
       }
     },
     {
       "id": "f5d9",
-      "fecha_inicio": "2025-11-15T21:27:22.040Z",
-      "fecha_fin": "2025-11-15T21:27:22.040Z",
-      "puntuacion": 1,
+      "fecha_inicio": "2025-11-17T02:20:25.240Z",
+      "fecha_fin": "2025-11-17T02:20:25.240Z",
+      "puntuacion": 0,
       "personaje": {
         "id": "f5d9",
-        "nombre": "asd",
-        "tipo": "rock",
+        "nombre": "asdasd",
+        "tipo": "flying",
         "equipo": [
           {
-            "id": "567",
-            "especie": "Archeops",
+            "id": "628",
+            "especie": "braviary",
             "tipos": [
-              "rock",
+              "normal",
               "flying"
             ],
             "nivel": 100,
-            "vidaActual": 276,
+            "vidaActual": 320,
             "estadisticas": {
-              "hp": 276,
-              "atk": 302,
-              "def": 159,
-              "satk": 262,
-              "sdef": 176,
-              "spd": 255
+              "hp": 320,
+              "atk": 288,
+              "def": 180,
+              "satk": 151,
+              "sdef": 170,
+              "spd": 190
             },
             "movimientos": [
               {
-                "nombre": "Terremoto",
-                "tipo": "ground",
+                "nombre": "brave-bird",
+                "tipo": "flying",
                 "clase": "physical",
-                "potencia": 100,
+                "potencia": 120,
                 "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Terremoto",
-                "localizedtype": "Tierra"
+                "usos": 15,
+                "pp": 15
               },
               {
-                "nombre": "Avalancha",
-                "tipo": "rock",
+                "nombre": "aerial-ace",
+                "tipo": "flying",
                 "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "rock-slide",
-                "localizedName": "Avalancha",
-                "localizedtype": "Roca"
-              },
-              {
-                "nombre": "Dragoaliento",
-                "tipo": "dragon",
-                "clase": "special",
                 "potencia": 60,
-                "precision": 100,
+                "precision": null,
                 "usos": 20,
-                "pp": 20,
-                "originalName": "dragon-breath",
-                "localizedName": "Dragoaliento",
-                "localizedtype": "Dragón"
+                "pp": 20
               },
               {
-                "nombre": "Ala de Acero",
-                "tipo": "steel",
+                "nombre": "close-combat",
+                "tipo": "fighting",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 5,
+                "pp": 5
+              },
+              {
+                "nombre": "shadow-claw",
+                "tipo": "ghost",
                 "clase": "physical",
                 "potencia": 70,
-                "precision": 90,
-                "usos": 25,
-                "pp": 25,
-                "originalName": "steel-wing",
-                "localizedName": "Ala de Acero",
-                "localizedtype": "Acero"
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
               }
             ],
             "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/567.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/567.png",
-            "localizedName": "Archeops"
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/628.ogg"
           },
           {
-            "id": "348",
-            "especie": "armaldo",
+            "id": "169",
+            "especie": "crobat",
             "tipos": [
-              "rock",
-              "bug"
+              "poison",
+              "flying"
             ],
             "nivel": 100,
-            "vidaActual": 298,
+            "vidaActual": 293,
             "estadisticas": {
-              "hp": 298,
-              "atk": 270,
-              "def": 248,
-              "satk": 159,
-              "sdef": 191,
-              "spd": 112
+              "hp": 293,
+              "atk": 221,
+              "def": 188,
+              "satk": 167,
+              "sdef": 205,
+              "spd": 297
             },
             "movimientos": [
               {
@@ -477,117 +469,57 @@
                 "pp": 15
               },
               {
-                "nombre": "earthquake",
-                "tipo": "ground",
+                "nombre": "cross-poison",
+                "tipo": "poison",
                 "clase": "physical",
-                "potencia": 100,
+                "potencia": 70,
                 "precision": 100,
-                "usos": 10,
-                "pp": 10
+                "usos": 20,
+                "pp": 20
               },
               {
-                "nombre": "aqua-tail",
-                "tipo": "water",
+                "nombre": "acrobatics",
+                "tipo": "flying",
                 "clase": "physical",
-                "potencia": 90,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10
-              },
-              {
-                "nombre": "rock-tomb",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 60,
-                "precision": 95,
-                "usos": 15,
-                "pp": 15
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/348.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/348.png"
-          },
-          {
-            "id": "464",
-            "especie": "rhyperior",
-            "tipos": [
-              "ground",
-              "rock"
-            ],
-            "nivel": 100,
-            "vidaActual": 350,
-            "estadisticas": {
-              "hp": 350,
-              "atk": 293,
-              "def": 291,
-              "satk": 133,
-              "sdef": 116,
-              "spd": 113
-            },
-            "movimientos": [
-              {
-                "nombre": "earthquake",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10
-              },
-              {
-                "nombre": "rock-slide",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10
-              },
-              {
-                "nombre": "flamethrower",
-                "tipo": "fire",
-                "clase": "special",
-                "potencia": 90,
+                "potencia": 55,
                 "precision": 100,
                 "usos": 15,
                 "pp": 15
               },
               {
-                "nombre": "thunderbolt",
-                "tipo": "electric",
-                "clase": "special",
-                "potencia": 90,
+                "nombre": "crunch",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 80,
                 "precision": 100,
                 "usos": 15,
                 "pp": 15
               }
             ],
             "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/464.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png"
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/169.ogg"
           },
           {
-            "id": "565",
-            "especie": "carracosta",
+            "id": "373",
+            "especie": "salamence",
             "tipos": [
-              "water",
-              "rock"
+              "dragon",
+              "flying"
             ],
             "nivel": 100,
-            "vidaActual": 284,
+            "vidaActual": 305,
             "estadisticas": {
-              "hp": 284,
-              "atk": 222,
-              "def": 299,
-              "satk": 190,
-              "sdef": 155,
-              "spd": 76
+              "hp": 305,
+              "atk": 312,
+              "def": 181,
+              "satk": 258,
+              "sdef": 197,
+              "spd": 228
             },
             "movimientos": [
               {
-                "nombre": "waterfall",
-                "tipo": "water",
+                "nombre": "dragon-claw",
+                "tipo": "dragon",
                 "clase": "physical",
                 "potencia": 80,
                 "precision": 100,
@@ -595,6 +527,15 @@
                 "pp": 15
               },
               {
+                "nombre": "fire-fang",
+                "tipo": "fire",
+                "clase": "physical",
+                "potencia": 65,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15
+              },
+              {
                 "nombre": "earthquake",
                 "tipo": "ground",
                 "clase": "physical",
@@ -611,57 +552,29 @@
                 "precision": 90,
                 "usos": 10,
                 "pp": 10
-              },
-              {
-                "nombre": "superpower",
-                "tipo": "fighting",
-                "clase": "physical",
-                "potencia": 120,
-                "precision": 100,
-                "usos": 5,
-                "pp": 5
               }
             ],
             "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/565.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/565.png"
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/373.ogg"
           },
           {
-            "id": "142",
-            "especie": "aerodactyl",
+            "id": "472",
+            "especie": "gliscor",
             "tipos": [
-              "rock",
+              "ground",
               "flying"
             ],
             "nivel": 100,
-            "vidaActual": 295,
+            "vidaActual": 292,
             "estadisticas": {
-              "hp": 295,
-              "atk": 250,
-              "def": 165,
-              "satk": 128,
-              "sdef": 182,
-              "spd": 291
+              "hp": 292,
+              "atk": 227,
+              "def": 279,
+              "satk": 117,
+              "sdef": 194,
+              "spd": 223
             },
             "movimientos": [
-              {
-                "nombre": "sky-attack",
-                "tipo": "flying",
-                "clase": "physical",
-                "potencia": 140,
-                "precision": 90,
-                "usos": 5,
-                "pp": 5
-              },
-              {
-                "nombre": "rock-slide",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 75,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10
-              },
               {
                 "nombre": "earthquake",
                 "tipo": "ground",
@@ -679,109 +592,155 @@
                 "precision": 95,
                 "usos": 15,
                 "pp": 15
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/142.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
-          },
-          {
-            "id": "141",
-            "especie": "Kabutops",
-            "tipos": [
-              "rock",
-              "water"
-            ],
-            "nivel": 100,
-            "vidaActual": 267,
-            "estadisticas": {
-              "hp": 267,
-              "atk": 263,
-              "def": 239,
-              "satk": 168,
-              "sdef": 178,
-              "spd": 184
-            },
-            "movimientos": [
-              {
-                "nombre": "Tijera X",
-                "tipo": "bug",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "x-scissor",
-                "localizedName": "Tijera X",
-                "localizedtype": "Bicho"
               },
               {
-                "nombre": "Tajo Umbrío",
-                "tipo": "dark",
+                "nombre": "cross-poison",
+                "tipo": "poison",
                 "clase": "physical",
                 "potencia": 70,
                 "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "night-slash",
-                "localizedName": "Tajo Umbrío",
-                "localizedtype": "Siniestro"
+                "usos": 20,
+                "pp": 20
               },
               {
-                "nombre": "Cascada",
-                "tipo": "water",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "waterfall",
-                "localizedName": "Cascada",
-                "localizedtype": "Agua"
-              },
-              {
-                "nombre": "Avalancha",
+                "nombre": "rock-slide",
                 "tipo": "rock",
                 "clase": "physical",
                 "potencia": 75,
                 "precision": 90,
                 "usos": 10,
-                "pp": 10,
-                "originalName": "rock-slide",
-                "localizedName": "Avalancha",
-                "localizedtype": "Roca"
+                "pp": 10
               }
             ],
             "idEntrenador": "f5d9",
-            "backSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/141.png",
-            "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
-            "localizedName": "Kabutops"
-          }
-        ],
-        "items": [
-          {
-            "name": "energy-root",
-            "category": {
-              "name": "healing",
-              "url": "https://pokeapi.co/api/v2/item-category/27/"
-            },
-            "localizedName": "Raíz Energía",
-            "description": "Raíz muy amarga que restaura 200 PS de un Pokémon.",
-            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-root.png"
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/472.ogg"
           },
           {
-            "name": "max-potion",
-            "category": {
-              "name": "healing",
-              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            "id": "123",
+            "especie": "scyther",
+            "tipos": [
+              "bug",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 273,
+            "estadisticas": {
+              "hp": 273,
+              "atk": 234,
+              "def": 196,
+              "satk": 137,
+              "sdef": 192,
+              "spd": 254
             },
-            "localizedName": "Poción Máxima",
-            "description": "Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.",
-            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-potion.png"
+            "movimientos": [
+              {
+                "nombre": "razor-wind",
+                "tipo": "normal",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "razor-wind",
+                "originalType": "normal"
+              },
+              {
+                "nombre": "wing-attack",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 100,
+                "usos": 35,
+                "pp": 35,
+                "originalName": "wing-attack",
+                "originalType": "flying"
+              },
+              {
+                "nombre": "hyper-beam",
+                "tipo": "normal",
+                "clase": "special",
+                "potencia": 150,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5,
+                "originalName": "hyper-beam",
+                "originalType": "normal"
+              },
+              {
+                "nombre": "quick-attack",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 40,
+                "precision": 100,
+                "usos": 30,
+                "pp": 30,
+                "originalName": "quick-attack",
+                "originalType": "normal"
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/123.ogg"
+          },
+          {
+            "id": "468",
+            "especie": "togekiss",
+            "tipos": [
+              "fairy",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 306,
+            "estadisticas": {
+              "hp": 306,
+              "atk": 110,
+              "def": 212,
+              "satk": 276,
+              "sdef": 267,
+              "spd": 188
+            },
+            "movimientos": [
+              {
+                "nombre": "air-slash",
+                "tipo": "flying",
+                "clase": "special",
+                "potencia": 75,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "dazzling-gleam",
+                "tipo": "fairy",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "shadow-ball",
+                "tipo": "ghost",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "aura-sphere",
+                "tipo": "fighting",
+                "clase": "special",
+                "potencia": 80,
+                "precision": null,
+                "usos": 20,
+                "pp": 20
+              }
+            ],
+            "idEntrenador": "f5d9",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/468.ogg"
           }
         ]
-      },
-      "duelosGanados": 1
+      }
     }
   ],
   "rankings": [
@@ -801,14 +760,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 349,
+      "vidaActual": 318,
       "estadisticas": {
-        "hp": 349,
-        "atk": 271,
-        "def": 175,
-        "satk": 154,
-        "sdef": 216,
-        "spd": 203
+        "hp": 318,
+        "atk": 286,
+        "def": 192,
+        "satk": 137,
+        "sdef": 223,
+        "spd": 180
       },
       "movimientos": [
         {
@@ -847,7 +806,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/130.ogg"
     },
     {
       "id": "131",
@@ -857,14 +817,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 406,
+      "vidaActual": 378,
       "estadisticas": {
-        "hp": 406,
-        "atk": 212,
-        "def": 194,
-        "satk": 203,
-        "sdef": 212,
-        "spd": 148
+        "hp": 378,
+        "atk": 199,
+        "def": 208,
+        "satk": 182,
+        "sdef": 223,
+        "spd": 140
       },
       "movimientos": [
         {
@@ -903,7 +863,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/131.ogg"
     },
     {
       "id": "134",
@@ -912,14 +873,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 388,
+      "vidaActual": 387,
       "estadisticas": {
-        "hp": 388,
-        "atk": 183,
-        "def": 172,
-        "satk": 266,
-        "sdef": 236,
-        "spd": 177
+        "hp": 387,
+        "atk": 158,
+        "def": 159,
+        "satk": 260,
+        "sdef": 214,
+        "spd": 151
       },
       "movimientos": [
         {
@@ -958,7 +919,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/134.ogg"
     },
     {
       "id": "73",
@@ -968,14 +930,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 311,
+      "vidaActual": 282,
       "estadisticas": {
-        "hp": 311,
-        "atk": 160,
-        "def": 160,
-        "satk": 170,
-        "sdef": 270,
-        "spd": 246
+        "hp": 282,
+        "atk": 174,
+        "def": 175,
+        "satk": 194,
+        "sdef": 260,
+        "spd": 232
       },
       "movimientos": [
         {
@@ -1014,7 +976,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/73.ogg"
     },
     {
       "id": "141",
@@ -1024,14 +987,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 265,
+      "vidaActual": 255,
       "estadisticas": {
-        "hp": 265,
-        "atk": 252,
-        "def": 239,
-        "satk": 139,
-        "sdef": 183,
-        "spd": 207
+        "hp": 255,
+        "atk": 250,
+        "def": 223,
+        "satk": 149,
+        "sdef": 165,
+        "spd": 191
       },
       "movimientos": [
         {
@@ -1070,7 +1033,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/141.ogg"
     },
     {
       "id": "260",
@@ -1080,14 +1044,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 330,
+      "vidaActual": 339,
       "estadisticas": {
-        "hp": 330,
-        "atk": 266,
+        "hp": 339,
+        "atk": 250,
         "def": 230,
-        "satk": 212,
-        "sdef": 206,
-        "spd": 137
+        "satk": 204,
+        "sdef": 234,
+        "spd": 150
       },
       "movimientos": [
         {
@@ -1126,7 +1090,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/260.ogg"
     },
     {
       "id": "467",
@@ -1135,14 +1100,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 287,
+      "vidaActual": 288,
       "estadisticas": {
-        "hp": 287,
-        "atk": 198,
-        "def": 185,
-        "satk": 298,
-        "sdef": 241,
-        "spd": 206
+        "hp": 288,
+        "atk": 212,
+        "def": 164,
+        "satk": 262,
+        "sdef": 223,
+        "spd": 199
       },
       "movimientos": [
         {
@@ -1181,7 +1146,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/467.ogg"
     },
     {
       "id": "136",
@@ -1190,14 +1156,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 281,
+      "vidaActual": 254,
       "estadisticas": {
-        "hp": 281,
-        "atk": 314,
-        "def": 154,
-        "satk": 213,
-        "sdef": 245,
-        "spd": 162
+        "hp": 254,
+        "atk": 292,
+        "def": 136,
+        "satk": 205,
+        "sdef": 243,
+        "spd": 152
       },
       "movimientos": [
         {
@@ -1236,7 +1202,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/136.ogg"
     },
     {
       "id": "555",
@@ -1245,14 +1212,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 348,
+      "vidaActual": 334,
       "estadisticas": {
-        "hp": 348,
-        "atk": 313,
-        "def": 148,
-        "satk": 86,
-        "sdef": 158,
-        "spd": 216
+        "hp": 334,
+        "atk": 287,
+        "def": 151,
+        "satk": 71,
+        "sdef": 136,
+        "spd": 212
       },
       "movimientos": [
         {
@@ -1291,7 +1258,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/555.ogg"
     },
     {
       "id": "59",
@@ -1300,14 +1268,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 328,
+      "vidaActual": 291,
       "estadisticas": {
-        "hp": 328,
-        "atk": 261,
-        "def": 210,
-        "satk": 221,
-        "sdef": 192,
-        "spd": 214
+        "hp": 291,
+        "atk": 239,
+        "def": 199,
+        "satk": 211,
+        "sdef": 190,
+        "spd": 233
       },
       "movimientos": [
         {
@@ -1346,7 +1314,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/59.ogg"
     },
     {
       "id": "6",
@@ -1356,14 +1325,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 286,
+      "vidaActual": 270,
       "estadisticas": {
-        "hp": 286,
-        "atk": 197,
-        "def": 185,
-        "satk": 247,
-        "sdef": 206,
-        "spd": 243
+        "hp": 270,
+        "atk": 190,
+        "def": 209,
+        "satk": 236,
+        "sdef": 203,
+        "spd": 232
       },
       "movimientos": [
         {
@@ -1402,7 +1371,8 @@
           "usos": 35,
           "pp": 35
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/6.ogg"
     },
     {
       "id": "324",
@@ -1411,14 +1381,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 298,
+      "vidaActual": 282,
       "estadisticas": {
-        "hp": 298,
-        "atk": 213,
-        "def": 322,
-        "satk": 191,
-        "sdef": 185,
-        "spd": 61
+        "hp": 282,
+        "atk": 211,
+        "def": 325,
+        "satk": 192,
+        "sdef": 179,
+        "spd": 87
       },
       "movimientos": [
         {
@@ -1457,7 +1427,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/324.ogg"
     },
     {
       "id": "3",
@@ -1467,14 +1438,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 303,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 303,
-        "atk": 178,
-        "def": 211,
-        "satk": 232,
-        "sdef": 236,
-        "spd": 187
+        "hp": 290,
+        "atk": 201,
+        "def": 199,
+        "satk": 215,
+        "sdef": 242,
+        "spd": 205
       },
       "movimientos": [
         {
@@ -1513,7 +1484,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/3.ogg"
     },
     {
       "id": "591",
@@ -1523,14 +1495,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 365,
+      "vidaActual": 371,
       "estadisticas": {
-        "hp": 365,
-        "atk": 216,
-        "def": 187,
-        "satk": 209,
-        "sdef": 191,
-        "spd": 75
+        "hp": 371,
+        "atk": 192,
+        "def": 183,
+        "satk": 189,
+        "sdef": 192,
+        "spd": 96
       },
       "movimientos": [
         {
@@ -1569,7 +1541,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/591.ogg"
     },
     {
       "id": "470",
@@ -1578,14 +1551,14 @@
         "grass"
       ],
       "nivel": 100,
-      "vidaActual": 274,
+      "vidaActual": 285,
       "estadisticas": {
-        "hp": 274,
-        "atk": 272,
-        "def": 277,
-        "satk": 132,
-        "sdef": 161,
-        "spd": 197
+        "hp": 285,
+        "atk": 245,
+        "def": 285,
+        "satk": 154,
+        "sdef": 158,
+        "spd": 220
       },
       "movimientos": [
         {
@@ -1624,7 +1597,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/470.ogg"
     },
     {
       "id": "286",
@@ -1634,14 +1608,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 260,
+      "vidaActual": 257,
       "estadisticas": {
-        "hp": 260,
-        "atk": 312,
-        "def": 166,
-        "satk": 135,
-        "sdef": 139,
-        "spd": 190
+        "hp": 257,
+        "atk": 272,
+        "def": 190,
+        "satk": 143,
+        "sdef": 147,
+        "spd": 171
       },
       "movimientos": [
         {
@@ -1680,7 +1654,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/286.ogg"
     },
     {
       "id": "407",
@@ -1690,14 +1665,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 252,
+      "vidaActual": 266,
       "estadisticas": {
-        "hp": 252,
-        "atk": 162,
-        "def": 172,
-        "satk": 275,
-        "sdef": 229,
-        "spd": 214
+        "hp": 266,
+        "atk": 177,
+        "def": 144,
+        "satk": 292,
+        "sdef": 230,
+        "spd": 209
       },
       "movimientos": [
         {
@@ -1736,7 +1711,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/407.ogg"
     },
     {
       "id": "460",
@@ -1746,14 +1722,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 326,
+      "vidaActual": 311,
       "estadisticas": {
-        "hp": 326,
-        "atk": 218,
-        "def": 194,
-        "satk": 221,
-        "sdef": 197,
-        "spd": 172
+        "hp": 311,
+        "atk": 196,
+        "def": 195,
+        "satk": 218,
+        "sdef": 207,
+        "spd": 159
       },
       "movimientos": [
         {
@@ -1792,7 +1768,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/460.ogg"
     },
     {
       "id": "181",
@@ -1801,14 +1778,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 305,
+      "vidaActual": 333,
       "estadisticas": {
-        "hp": 305,
-        "atk": 183,
-        "def": 182,
-        "satk": 264,
-        "sdef": 204,
-        "spd": 136
+        "hp": 333,
+        "atk": 184,
+        "def": 193,
+        "satk": 250,
+        "sdef": 232,
+        "spd": 132
       },
       "movimientos": [
         {
@@ -1847,7 +1824,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/181.ogg"
     },
     {
       "id": "596",
@@ -1857,14 +1835,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 257,
+      "vidaActual": 279,
       "estadisticas": {
-        "hp": 257,
-        "atk": 189,
-        "def": 139,
-        "satk": 225,
-        "sdef": 176,
-        "spd": 258
+        "hp": 279,
+        "atk": 192,
+        "def": 160,
+        "satk": 230,
+        "sdef": 160,
+        "spd": 232
       },
       "movimientos": [
         {
@@ -1911,23 +1889,24 @@
           "originalName": "discharge",
           "originalType": "electric"
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/596.ogg"
     },
     {
       "id": "135",
-      "especie": "jolteon",
+      "especie": "Jolteon",
       "tipos": [
-        "electric"
+        "Eléctrico"
       ],
       "nivel": 100,
-      "vidaActual": 269,
+      "vidaActual": 248,
       "estadisticas": {
-        "hp": 269,
-        "atk": 157,
-        "def": 171,
-        "satk": 253,
-        "sdef": 219,
-        "spd": 282
+        "hp": 248,
+        "atk": 153,
+        "def": 133,
+        "satk": 244,
+        "sdef": 237,
+        "spd": 281
       },
       "movimientos": [
         {
@@ -1937,7 +1916,9 @@
           "potencia": 110,
           "precision": 70,
           "usos": 10,
-          "pp": 10
+          "pp": 10,
+          "originalName": "thunder",
+          "originalType": "electric"
         },
         {
           "nombre": "wild-charge",
@@ -1946,7 +1927,9 @@
           "potencia": 90,
           "precision": 100,
           "usos": 15,
-          "pp": 15
+          "pp": 15,
+          "originalName": "wild-charge",
+          "originalType": "electric"
         },
         {
           "nombre": "shadow-ball",
@@ -1955,7 +1938,9 @@
           "potencia": 80,
           "precision": 100,
           "usos": 15,
-          "pp": 15
+          "pp": 15,
+          "originalName": "shadow-ball",
+          "originalType": "ghost"
         },
         {
           "nombre": "thunderbolt",
@@ -1964,9 +1949,12 @@
           "potencia": 90,
           "precision": 100,
           "usos": 15,
-          "pp": 15
+          "pp": 15,
+          "originalName": "thunderbolt",
+          "originalType": "electric"
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/135.ogg"
     },
     {
       "id": "466",
@@ -1975,14 +1963,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 289,
+      "vidaActual": 308,
       "estadisticas": {
-        "hp": 289,
-        "atk": 275,
-        "def": 160,
-        "satk": 207,
-        "sdef": 198,
-        "spd": 227
+        "hp": 308,
+        "atk": 265,
+        "def": 168,
+        "satk": 219,
+        "sdef": 202,
+        "spd": 233
       },
       "movimientos": [
         {
@@ -2021,7 +2009,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/466.ogg"
     },
     {
       "id": "171",
@@ -2031,14 +2020,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 376,
+      "vidaActual": 389,
       "estadisticas": {
-        "hp": 376,
-        "atk": 143,
-        "def": 166,
-        "satk": 174,
-        "sdef": 192,
-        "spd": 147
+        "hp": 389,
+        "atk": 144,
+        "def": 172,
+        "satk": 179,
+        "sdef": 164,
+        "spd": 168
       },
       "movimientos": [
         {
@@ -2077,7 +2066,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/171.ogg"
     },
     {
       "id": "604",
@@ -2086,14 +2076,14 @@
         "electric"
       ],
       "nivel": 100,
-      "vidaActual": 305,
+      "vidaActual": 303,
       "estadisticas": {
-        "hp": 305,
-        "atk": 249,
-        "def": 189,
-        "satk": 234,
-        "sdef": 196,
-        "spd": 129
+        "hp": 303,
+        "atk": 258,
+        "def": 197,
+        "satk": 238,
+        "sdef": 200,
+        "spd": 130
       },
       "movimientos": [
         {
@@ -2132,7 +2122,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/604.ogg"
     },
     {
       "id": "365",
@@ -2142,14 +2133,14 @@
         "water"
       ],
       "nivel": 100,
-      "vidaActual": 357,
+      "vidaActual": 364,
       "estadisticas": {
-        "hp": 357,
-        "atk": 194,
-        "def": 230,
-        "satk": 231,
-        "sdef": 213,
-        "spd": 178
+        "hp": 364,
+        "atk": 183,
+        "def": 209,
+        "satk": 203,
+        "sdef": 202,
+        "spd": 172
       },
       "movimientos": [
         {
@@ -2188,7 +2179,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/365.ogg"
     },
     {
       "id": "614",
@@ -2197,14 +2189,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 321,
+      "vidaActual": 312,
       "estadisticas": {
-        "hp": 321,
-        "atk": 276,
-        "def": 209,
+        "hp": 312,
+        "atk": 292,
+        "def": 199,
         "satk": 171,
-        "sdef": 188,
-        "spd": 147
+        "sdef": 195,
+        "spd": 127
       },
       "movimientos": [
         {
@@ -2243,7 +2235,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/614.ogg"
     },
     {
       "id": "124",
@@ -2253,14 +2246,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 277,
+      "vidaActual": 252,
       "estadisticas": {
-        "hp": 277,
-        "atk": 132,
-        "def": 89,
-        "satk": 262,
-        "sdef": 230,
-        "spd": 239
+        "hp": 252,
+        "atk": 124,
+        "def": 92,
+        "satk": 243,
+        "sdef": 229,
+        "spd": 244
       },
       "movimientos": [
         {
@@ -2299,7 +2292,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/124.ogg"
     },
     {
       "id": "471",
@@ -2308,14 +2302,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 286,
+      "vidaActual": 263,
       "estadisticas": {
-        "hp": 286,
-        "atk": 148,
-        "def": 233,
-        "satk": 296,
-        "sdef": 217,
-        "spd": 164
+        "hp": 263,
+        "atk": 140,
+        "def": 253,
+        "satk": 289,
+        "sdef": 231,
+        "spd": 154
       },
       "movimientos": [
         {
@@ -2354,7 +2348,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/471.ogg"
     },
     {
       "id": "362",
@@ -2363,14 +2358,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 290,
+      "vidaActual": 318,
       "estadisticas": {
-        "hp": 290,
-        "atk": 193,
-        "def": 194,
-        "satk": 213,
-        "sdef": 187,
-        "spd": 174
+        "hp": 318,
+        "atk": 176,
+        "def": 193,
+        "satk": 176,
+        "sdef": 205,
+        "spd": 196
       },
       "movimientos": [
         {
@@ -2409,7 +2404,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/362.ogg"
     },
     {
       "id": "473",
@@ -2419,14 +2415,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 348,
+      "vidaActual": 364,
       "estadisticas": {
-        "hp": 348,
-        "atk": 290,
-        "def": 199,
-        "satk": 160,
-        "sdef": 156,
-        "spd": 199
+        "hp": 364,
+        "atk": 293,
+        "def": 200,
+        "satk": 178,
+        "sdef": 150,
+        "spd": 190
       },
       "movimientos": [
         {
@@ -2465,7 +2461,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/473.ogg"
     },
     {
       "id": "68",
@@ -2474,14 +2471,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 310,
+      "vidaActual": 306,
       "estadisticas": {
-        "hp": 310,
-        "atk": 288,
-        "def": 192,
-        "satk": 148,
-        "sdef": 192,
-        "spd": 162
+        "hp": 306,
+        "atk": 284,
+        "def": 186,
+        "satk": 158,
+        "sdef": 186,
+        "spd": 151
       },
       "movimientos": [
         {
@@ -2520,7 +2517,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/68.ogg"
     },
     {
       "id": "107",
@@ -2529,14 +2527,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 236,
+      "vidaActual": 242,
       "estadisticas": {
-        "hp": 236,
-        "atk": 246,
-        "def": 205,
-        "satk": 92,
-        "sdef": 238,
-        "spd": 175
+        "hp": 242,
+        "atk": 238,
+        "def": 178,
+        "satk": 110,
+        "sdef": 234,
+        "spd": 183
       },
       "movimientos": [
         {
@@ -2575,7 +2573,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/107.ogg"
     },
     {
       "id": "448",
@@ -2585,14 +2584,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 269,
+      "vidaActual": 298,
       "estadisticas": {
-        "hp": 269,
-        "atk": 240,
-        "def": 170,
-        "satk": 267,
-        "sdef": 193,
-        "spd": 202
+        "hp": 298,
+        "atk": 242,
+        "def": 159,
+        "satk": 270,
+        "sdef": 174,
+        "spd": 227
       },
       "movimientos": [
         {
@@ -2631,7 +2630,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/448.ogg"
     },
     {
       "id": "237",
@@ -2640,14 +2640,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 241,
+      "vidaActual": 245,
       "estadisticas": {
-        "hp": 241,
-        "atk": 235,
-        "def": 215,
-        "satk": 107,
-        "sdef": 263,
-        "spd": 157
+        "hp": 245,
+        "atk": 228,
+        "def": 212,
+        "satk": 92,
+        "sdef": 262,
+        "spd": 152
       },
       "movimientos": [
         {
@@ -2686,7 +2686,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/237.ogg"
     },
     {
       "id": "538",
@@ -2695,14 +2696,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 378,
+      "vidaActual": 399,
       "estadisticas": {
-        "hp": 378,
-        "atk": 238,
-        "def": 183,
-        "satk": 82,
-        "sdef": 212,
-        "spd": 117
+        "hp": 399,
+        "atk": 224,
+        "def": 207,
+        "satk": 107,
+        "sdef": 193,
+        "spd": 103
       },
       "movimientos": [
         {
@@ -2741,7 +2742,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/538.ogg"
     },
     {
       "id": "308",
@@ -2751,14 +2753,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 262,
+      "vidaActual": 257,
       "estadisticas": {
-        "hp": 262,
-        "atk": 135,
-        "def": 175,
-        "satk": 142,
-        "sdef": 172,
-        "spd": 189
+        "hp": 257,
+        "atk": 149,
+        "def": 185,
+        "satk": 161,
+        "sdef": 171,
+        "spd": 182
       },
       "movimientos": [
         {
@@ -2797,7 +2799,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/308.ogg"
     },
     {
       "id": "24",
@@ -2806,14 +2809,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 246,
+      "vidaActual": 259,
       "estadisticas": {
-        "hp": 246,
-        "atk": 228,
-        "def": 166,
-        "satk": 169,
-        "sdef": 188,
-        "spd": 180
+        "hp": 259,
+        "atk": 217,
+        "def": 170,
+        "satk": 153,
+        "sdef": 180,
+        "spd": 197
       },
       "movimientos": [
         {
@@ -2852,7 +2855,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/24.ogg"
     },
     {
       "id": "317",
@@ -2861,14 +2865,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 330,
+      "vidaActual": 343,
       "estadisticas": {
-        "hp": 330,
-        "atk": 170,
-        "def": 187,
-        "satk": 188,
-        "sdef": 186,
-        "spd": 139
+        "hp": 343,
+        "atk": 171,
+        "def": 206,
+        "satk": 160,
+        "sdef": 207,
+        "spd": 120
       },
       "movimientos": [
         {
@@ -2907,7 +2911,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/317.ogg"
     },
     {
       "id": "336",
@@ -2916,14 +2921,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 278,
+      "vidaActual": 297,
       "estadisticas": {
-        "hp": 278,
-        "atk": 214,
-        "def": 158,
-        "satk": 243,
-        "sdef": 128,
-        "spd": 158
+        "hp": 297,
+        "atk": 220,
+        "def": 132,
+        "satk": 232,
+        "sdef": 173,
+        "spd": 148
       },
       "movimientos": [
         {
@@ -2962,7 +2967,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/336.ogg"
     },
     {
       "id": "169",
@@ -2972,14 +2978,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 301,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 301,
-        "atk": 233,
-        "def": 182,
-        "satk": 166,
-        "sdef": 181,
-        "spd": 303
+        "hp": 290,
+        "atk": 219,
+        "def": 171,
+        "satk": 162,
+        "sdef": 193,
+        "spd": 292
       },
       "movimientos": [
         {
@@ -3018,7 +3024,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/169.ogg"
     },
     {
       "id": "454",
@@ -3028,14 +3035,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 315,
+      "vidaActual": 307,
       "estadisticas": {
-        "hp": 315,
-        "atk": 253,
-        "def": 149,
-        "satk": 194,
-        "sdef": 176,
-        "spd": 188
+        "hp": 307,
+        "atk": 251,
+        "def": 178,
+        "satk": 201,
+        "sdef": 152,
+        "spd": 184
       },
       "movimientos": [
         {
@@ -3074,7 +3081,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/454.ogg"
     },
     {
       "id": "452",
@@ -3084,14 +3092,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 286,
+      "vidaActual": 281,
       "estadisticas": {
-        "hp": 286,
-        "atk": 221,
-        "def": 225,
-        "satk": 158,
-        "sdef": 182,
-        "spd": 211
+        "hp": 281,
+        "atk": 209,
+        "def": 274,
+        "satk": 170,
+        "sdef": 188,
+        "spd": 208
       },
       "movimientos": [
         {
@@ -3130,7 +3138,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/452.ogg"
     },
     {
       "id": "537",
@@ -3140,14 +3149,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 339,
+      "vidaActual": 346,
       "estadisticas": {
-        "hp": 339,
-        "atk": 235,
-        "def": 183,
-        "satk": 199,
-        "sdef": 185,
-        "spd": 163
+        "hp": 346,
+        "atk": 213,
+        "def": 190,
+        "satk": 225,
+        "sdef": 173,
+        "spd": 153
       },
       "movimientos": [
         {
@@ -3186,7 +3195,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/537.ogg"
     },
     {
       "id": "530",
@@ -3196,14 +3206,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 351,
+      "vidaActual": 337,
       "estadisticas": {
-        "hp": 351,
-        "atk": 310,
-        "def": 152,
-        "satk": 133,
-        "sdef": 164,
-        "spd": 227
+        "hp": 337,
+        "atk": 318,
+        "def": 160,
+        "satk": 114,
+        "sdef": 158,
+        "spd": 191
       },
       "movimientos": [
         {
@@ -3242,7 +3252,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/530.ogg"
     },
     {
       "id": "232",
@@ -3251,14 +3262,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 321,
+      "vidaActual": 298,
       "estadisticas": {
-        "hp": 321,
-        "atk": 256,
-        "def": 268,
-        "satk": 151,
-        "sdef": 144,
-        "spd": 116
+        "hp": 298,
+        "atk": 249,
+        "def": 272,
+        "satk": 166,
+        "sdef": 151,
+        "spd": 127
       },
       "movimientos": [
         {
@@ -3297,7 +3308,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/232.ogg"
     },
     {
       "id": "472",
@@ -3307,14 +3319,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 284,
+      "vidaActual": 283,
       "estadisticas": {
-        "hp": 284,
-        "atk": 215,
-        "def": 295,
-        "satk": 134,
-        "sdef": 183,
-        "spd": 211
+        "hp": 283,
+        "atk": 242,
+        "def": 283,
+        "satk": 131,
+        "sdef": 174,
+        "spd": 236
       },
       "movimientos": [
         {
@@ -3353,7 +3365,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/472.ogg"
     },
     {
       "id": "553",
@@ -3363,14 +3376,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 326,
+      "vidaActual": 332,
       "estadisticas": {
-        "hp": 326,
-        "atk": 247,
-        "def": 193,
-        "satk": 165,
-        "sdef": 167,
-        "spd": 208
+        "hp": 332,
+        "atk": 265,
+        "def": 197,
+        "satk": 166,
+        "sdef": 193,
+        "spd": 221
       },
       "movimientos": [
         {
@@ -3409,7 +3422,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/553.ogg"
     },
     {
       "id": "31",
@@ -3419,14 +3433,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 316,
+      "vidaActual": 327,
       "estadisticas": {
-        "hp": 316,
-        "atk": 217,
+        "hp": 327,
+        "atk": 214,
         "def": 225,
-        "satk": 176,
-        "sdef": 197,
-        "spd": 189
+        "satk": 185,
+        "sdef": 186,
+        "spd": 178
       },
       "movimientos": [
         {
@@ -3466,7 +3480,8 @@
           "pp": 10
         }
       ],
-      "idEntrenador": ""
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/31.ogg"
     },
     {
       "id": "18",
@@ -3479,11 +3494,11 @@
       "vidaActual": 316,
       "estadisticas": {
         "hp": 316,
-        "atk": 204,
-        "def": 184,
-        "satk": 169,
-        "sdef": 154,
-        "spd": 231
+        "atk": 187,
+        "def": 193,
+        "satk": 173,
+        "sdef": 161,
+        "spd": 242
       },
       "movimientos": [
         {
@@ -3522,7 +3537,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/18.ogg"
     },
     {
       "id": "628",
@@ -3532,14 +3548,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 321,
+      "vidaActual": 318,
       "estadisticas": {
-        "hp": 321,
-        "atk": 264,
-        "def": 156,
-        "satk": 151,
-        "sdef": 167,
-        "spd": 187
+        "hp": 318,
+        "atk": 280,
+        "def": 193,
+        "satk": 158,
+        "sdef": 193,
+        "spd": 190
       },
       "movimientos": [
         {
@@ -3578,7 +3594,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/628.ogg"
     },
     {
       "id": "279",
@@ -3588,14 +3605,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 262,
+      "vidaActual": 260,
       "estadisticas": {
-        "hp": 262,
-        "atk": 122,
-        "def": 232,
-        "satk": 212,
-        "sdef": 154,
-        "spd": 157
+        "hp": 260,
+        "atk": 136,
+        "def": 247,
+        "satk": 223,
+        "sdef": 180,
+        "spd": 148
       },
       "movimientos": [
         {
@@ -3634,7 +3651,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/279.ogg"
     },
     {
       "id": "277",
@@ -3644,14 +3662,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 264,
+      "vidaActual": 281,
       "estadisticas": {
-        "hp": 264,
-        "atk": 196,
-        "def": 152,
-        "satk": 172,
-        "sdef": 116,
-        "spd": 273
+        "hp": 281,
+        "atk": 221,
+        "def": 139,
+        "satk": 178,
+        "sdef": 132,
+        "spd": 287
       },
       "movimientos": [
         {
@@ -3690,7 +3708,8 @@
           "usos": 25,
           "pp": 25
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/277.ogg"
     },
     {
       "id": "567",
@@ -3700,14 +3719,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 272,
+      "vidaActual": 285,
       "estadisticas": {
-        "hp": 272,
-        "atk": 322,
-        "def": 160,
-        "satk": 248,
-        "sdef": 163,
-        "spd": 258
+        "hp": 285,
+        "atk": 303,
+        "def": 178,
+        "satk": 258,
+        "sdef": 157,
+        "spd": 257
       },
       "movimientos": [
         {
@@ -3746,7 +3765,8 @@
           "usos": 25,
           "pp": 25
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/567.ogg"
     },
     {
       "id": "398",
@@ -3756,14 +3776,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 285,
+      "vidaActual": 284,
       "estadisticas": {
-        "hp": 285,
-        "atk": 279,
-        "def": 178,
-        "satk": 141,
-        "sdef": 162,
-        "spd": 230
+        "hp": 284,
+        "atk": 270,
+        "def": 160,
+        "satk": 144,
+        "sdef": 141,
+        "spd": 241
       },
       "movimientos": [
         {
@@ -3802,7 +3822,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/398.ogg"
     },
     {
       "id": "65",
@@ -3811,14 +3832,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 232,
+      "vidaActual": 259,
       "estadisticas": {
-        "hp": 232,
-        "atk": 137,
-        "def": 127,
-        "satk": 323,
-        "sdef": 206,
-        "spd": 263
+        "hp": 259,
+        "atk": 134,
+        "def": 113,
+        "satk": 292,
+        "sdef": 199,
+        "spd": 275
       },
       "movimientos": [
         {
@@ -3857,7 +3878,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/65.ogg"
     },
     {
       "id": "196",
@@ -3866,14 +3888,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 264,
+      "vidaActual": 267,
       "estadisticas": {
-        "hp": 264,
+        "hp": 267,
         "atk": 172,
-        "def": 133,
-        "satk": 288,
-        "sdef": 233,
-        "spd": 253
+        "def": 139,
+        "satk": 291,
+        "sdef": 218,
+        "spd": 240
       },
       "movimientos": [
         {
@@ -3912,7 +3934,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/196.ogg"
     },
     {
       "id": "80",
@@ -3922,14 +3945,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 310,
+      "vidaActual": 329,
       "estadisticas": {
-        "hp": 310,
-        "atk": 168,
-        "def": 264,
-        "satk": 223,
-        "sdef": 179,
-        "spd": 79
+        "hp": 329,
+        "atk": 166,
+        "def": 257,
+        "satk": 239,
+        "sdef": 194,
+        "spd": 115
       },
       "movimientos": [
         {
@@ -3968,7 +3991,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/80.ogg"
     },
     {
       "id": "475",
@@ -3978,14 +4002,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 278,
+      "vidaActual": 271,
       "estadisticas": {
-        "hp": 278,
-        "atk": 277,
-        "def": 168,
-        "satk": 156,
-        "sdef": 277,
-        "spd": 184
+        "hp": 271,
+        "atk": 295,
+        "def": 162,
+        "satk": 157,
+        "sdef": 269,
+        "spd": 179
       },
       "movimientos": [
         {
@@ -4024,7 +4048,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/475.ogg"
     },
     {
       "id": "437",
@@ -4034,14 +4059,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 260,
+      "vidaActual": 263,
       "estadisticas": {
-        "hp": 260,
-        "atk": 201,
+        "hp": 263,
+        "atk": 197,
         "def": 258,
-        "satk": 200,
-        "sdef": 281,
-        "spd": 89
+        "satk": 194,
+        "sdef": 240,
+        "spd": 87
       },
       "movimientos": [
         {
@@ -4080,7 +4105,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/437.ogg"
     },
     {
       "id": "348",
@@ -4090,14 +4116,14 @@
         "bug"
       ],
       "nivel": 100,
-      "vidaActual": 276,
+      "vidaActual": 283,
       "estadisticas": {
-        "hp": 276,
-        "atk": 273,
-        "def": 209,
-        "satk": 172,
-        "sdef": 201,
-        "spd": 135
+        "hp": 283,
+        "atk": 280,
+        "def": 210,
+        "satk": 164,
+        "sdef": 187,
+        "spd": 113
       },
       "movimientos": [
         {
@@ -4136,7 +4162,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/348.ogg"
     },
     {
       "id": "416",
@@ -4146,14 +4173,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 271,
+      "vidaActual": 276,
       "estadisticas": {
-        "hp": 271,
-        "atk": 185,
-        "def": 224,
-        "satk": 207,
-        "sdef": 237,
-        "spd": 109
+        "hp": 276,
+        "atk": 186,
+        "def": 242,
+        "satk": 195,
+        "sdef": 234,
+        "spd": 124
       },
       "movimientos": [
         {
@@ -4192,7 +4219,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/416.ogg"
     },
     {
       "id": "214",
@@ -4202,14 +4230,14 @@
         "fighting"
       ],
       "nivel": 100,
-      "vidaActual": 291,
+      "vidaActual": 312,
       "estadisticas": {
-        "hp": 291,
-        "atk": 276,
-        "def": 181,
-        "satk": 115,
-        "sdef": 236,
-        "spd": 210
+        "hp": 312,
+        "atk": 281,
+        "def": 177,
+        "satk": 123,
+        "sdef": 224,
+        "spd": 205
       },
       "movimientos": [
         {
@@ -4248,7 +4276,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/214.ogg"
     },
     {
       "id": "637",
@@ -4261,11 +4290,11 @@
       "vidaActual": 313,
       "estadisticas": {
         "hp": 313,
-        "atk": 140,
-        "def": 138,
-        "satk": 310,
-        "sdef": 217,
-        "spd": 224
+        "atk": 161,
+        "def": 180,
+        "satk": 287,
+        "sdef": 240,
+        "spd": 245
       },
       "movimientos": [
         {
@@ -4304,7 +4333,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/637.ogg"
     },
     {
       "id": "291",
@@ -4314,14 +4344,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 243,
+      "vidaActual": 260,
       "estadisticas": {
-        "hp": 243,
-        "atk": 197,
-        "def": 115,
-        "satk": 126,
-        "sdef": 116,
-        "spd": 364
+        "hp": 260,
+        "atk": 213,
+        "def": 137,
+        "satk": 124,
+        "sdef": 135,
+        "spd": 371
       },
       "movimientos": [
         {
@@ -4360,7 +4390,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/291.ogg"
     },
     {
       "id": "127",
@@ -4369,14 +4400,14 @@
         "bug"
       ],
       "nivel": 100,
-      "vidaActual": 251,
+      "vidaActual": 286,
       "estadisticas": {
-        "hp": 251,
-        "atk": 275,
-        "def": 229,
-        "satk": 150,
-        "sdef": 188,
-        "spd": 191
+        "hp": 286,
+        "atk": 272,
+        "def": 230,
+        "satk": 149,
+        "sdef": 185,
+        "spd": 196
       },
       "movimientos": [
         {
@@ -4415,7 +4446,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/127.ogg"
     },
     {
       "id": "464",
@@ -4425,14 +4457,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 366,
+      "vidaActual": 382,
       "estadisticas": {
-        "hp": 366,
-        "atk": 314,
-        "def": 305,
-        "satk": 137,
-        "sdef": 120,
-        "spd": 108
+        "hp": 382,
+        "atk": 312,
+        "def": 294,
+        "satk": 146,
+        "sdef": 132,
+        "spd": 132
       },
       "movimientos": [
         {
@@ -4471,7 +4503,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/464.ogg"
     },
     {
       "id": "565",
@@ -4481,14 +4514,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 279,
+      "vidaActual": 268,
       "estadisticas": {
-        "hp": 279,
-        "atk": 258,
-        "def": 279,
-        "satk": 175,
-        "sdef": 182,
-        "spd": 82
+        "hp": 268,
+        "atk": 246,
+        "def": 304,
+        "satk": 191,
+        "sdef": 158,
+        "spd": 101
       },
       "movimientos": [
         {
@@ -4527,7 +4560,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/565.ogg"
     },
     {
       "id": "142",
@@ -4537,14 +4571,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 292,
+      "vidaActual": 315,
       "estadisticas": {
-        "hp": 292,
-        "atk": 241,
-        "def": 171,
-        "satk": 134,
-        "sdef": 161,
-        "spd": 309
+        "hp": 315,
+        "atk": 238,
+        "def": 154,
+        "satk": 143,
+        "sdef": 202,
+        "spd": 280
       },
       "movimientos": [
         {
@@ -4583,7 +4617,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/142.ogg"
     },
     {
       "id": "338",
@@ -4593,14 +4628,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 331,
+      "vidaActual": 316,
       "estadisticas": {
-        "hp": 331,
-        "atk": 223,
-        "def": 216,
-        "satk": 156,
-        "sdef": 147,
-        "spd": 155
+        "hp": 316,
+        "atk": 221,
+        "def": 206,
+        "satk": 151,
+        "sdef": 182,
+        "spd": 189
       },
       "movimientos": [
         {
@@ -4639,7 +4674,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/338.ogg"
     },
     {
       "id": "526",
@@ -4648,14 +4684,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 306,
+      "vidaActual": 312,
       "estadisticas": {
-        "hp": 306,
-        "atk": 324,
-        "def": 301,
-        "satk": 153,
-        "sdef": 173,
-        "spd": 75
+        "hp": 312,
+        "atk": 303,
+        "def": 272,
+        "satk": 144,
+        "sdef": 178,
+        "spd": 72
       },
       "movimientos": [
         {
@@ -4694,7 +4730,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/526.ogg"
     },
     {
       "id": "409",
@@ -4703,14 +4740,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 329,
+      "vidaActual": 333,
       "estadisticas": {
-        "hp": 329,
-        "atk": 378,
-        "def": 146,
-        "satk": 158,
-        "sdef": 144,
-        "spd": 144
+        "hp": 333,
+        "atk": 364,
+        "def": 155,
+        "satk": 153,
+        "sdef": 122,
+        "spd": 139
       },
       "movimientos": [
         {
@@ -4749,7 +4786,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/409.ogg"
     },
     {
       "id": "94",
@@ -4759,14 +4797,14 @@
         "poison"
       ],
       "nivel": 100,
-      "vidaActual": 249,
+      "vidaActual": 269,
       "estadisticas": {
-        "hp": 249,
-        "atk": 168,
-        "def": 137,
-        "satk": 290,
-        "sdef": 197,
-        "spd": 255
+        "hp": 269,
+        "atk": 155,
+        "def": 150,
+        "satk": 281,
+        "sdef": 183,
+        "spd": 261
       },
       "movimientos": [
         {
@@ -4805,7 +4843,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/94.ogg"
     },
     {
       "id": "356",
@@ -4814,14 +4853,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 215,
+      "vidaActual": 228,
       "estadisticas": {
-        "hp": 215,
-        "atk": 169,
-        "def": 316,
-        "satk": 151,
-        "sdef": 302,
-        "spd": 90
+        "hp": 228,
+        "atk": 180,
+        "def": 272,
+        "satk": 143,
+        "sdef": 286,
+        "spd": 63
       },
       "movimientos": [
         {
@@ -4860,7 +4899,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/356.ogg"
     },
     {
       "id": "609",
@@ -4870,14 +4910,14 @@
         "fire"
       ],
       "nivel": 100,
-      "vidaActual": 250,
+      "vidaActual": 236,
       "estadisticas": {
-        "hp": 250,
-        "atk": 136,
-        "def": 198,
-        "satk": 335,
-        "sdef": 205,
-        "spd": 205
+        "hp": 236,
+        "atk": 126,
+        "def": 219,
+        "satk": 313,
+        "sdef": 223,
+        "spd": 195
       },
       "movimientos": [
         {
@@ -4916,7 +4956,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/609.ogg"
     },
     {
       "id": "623",
@@ -4926,14 +4967,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 300,
+      "vidaActual": 290,
       "estadisticas": {
-        "hp": 300,
-        "atk": 270,
-        "def": 189,
-        "satk": 126,
-        "sdef": 196,
-        "spd": 131
+        "hp": 290,
+        "atk": 282,
+        "def": 184,
+        "satk": 139,
+        "sdef": 183,
+        "spd": 127
       },
       "movimientos": [
         {
@@ -4972,7 +5013,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/623.ogg"
     },
     {
       "id": "442",
@@ -4982,14 +5024,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 243,
+      "vidaActual": 216,
       "estadisticas": {
-        "hp": 243,
-        "atk": 218,
-        "def": 245,
+        "hp": 216,
+        "atk": 230,
+        "def": 244,
         "satk": 205,
         "sdef": 259,
-        "spd": 93
+        "spd": 99
       },
       "movimientos": [
         {
@@ -5028,7 +5070,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/442.ogg"
     },
     {
       "id": "478",
@@ -5038,14 +5081,14 @@
         "ghost"
       ],
       "nivel": 100,
-      "vidaActual": 288,
+      "vidaActual": 273,
       "estadisticas": {
-        "hp": 288,
-        "atk": 182,
-        "def": 170,
-        "satk": 172,
-        "sdef": 177,
-        "spd": 236
+        "hp": 273,
+        "atk": 188,
+        "def": 162,
+        "satk": 203,
+        "sdef": 172,
+        "spd": 258
       },
       "movimientos": [
         {
@@ -5084,7 +5127,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/478.ogg"
     },
     {
       "id": "149",
@@ -5094,14 +5138,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 307,
+      "vidaActual": 309,
       "estadisticas": {
-        "hp": 307,
-        "atk": 290,
-        "def": 216,
-        "satk": 244,
-        "sdef": 235,
-        "spd": 198
+        "hp": 309,
+        "atk": 307,
+        "def": 220,
+        "satk": 218,
+        "sdef": 239,
+        "spd": 208
       },
       "movimientos": [
         {
@@ -5140,7 +5184,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/149.ogg"
     },
     {
       "id": "230",
@@ -5150,14 +5195,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 266,
+      "vidaActual": 284,
       "estadisticas": {
-        "hp": 266,
-        "atk": 215,
-        "def": 204,
-        "satk": 218,
-        "sdef": 205,
-        "spd": 210
+        "hp": 284,
+        "atk": 223,
+        "def": 199,
+        "satk": 219,
+        "sdef": 217,
+        "spd": 201
       },
       "movimientos": [
         {
@@ -5196,7 +5241,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/230.ogg"
     },
     {
       "id": "330",
@@ -5206,14 +5252,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 286,
+      "vidaActual": 301,
       "estadisticas": {
-        "hp": 286,
-        "atk": 253,
-        "def": 196,
-        "satk": 212,
-        "sdef": 195,
-        "spd": 222
+        "hp": 301,
+        "atk": 219,
+        "def": 184,
+        "satk": 198,
+        "sdef": 185,
+        "spd": 247
       },
       "movimientos": [
         {
@@ -5252,7 +5298,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/330.ogg"
     },
     {
       "id": "373",
@@ -5262,14 +5309,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 309,
+      "vidaActual": 344,
       "estadisticas": {
-        "hp": 309,
-        "atk": 299,
-        "def": 185,
-        "satk": 249,
-        "sdef": 201,
-        "spd": 245
+        "hp": 344,
+        "atk": 313,
+        "def": 182,
+        "satk": 227,
+        "sdef": 183,
+        "spd": 238
       },
       "movimientos": [
         {
@@ -5308,7 +5355,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/373.ogg"
     },
     {
       "id": "445",
@@ -5318,14 +5366,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 361,
+      "vidaActual": 354,
       "estadisticas": {
-        "hp": 361,
-        "atk": 311,
-        "def": 218,
-        "satk": 193,
-        "sdef": 211,
-        "spd": 219
+        "hp": 354,
+        "atk": 272,
+        "def": 236,
+        "satk": 182,
+        "sdef": 195,
+        "spd": 234
       },
       "movimientos": [
         {
@@ -5364,7 +5412,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/445.ogg"
     },
     {
       "id": "612",
@@ -5373,14 +5422,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 290,
+      "vidaActual": 289,
       "estadisticas": {
-        "hp": 290,
-        "atk": 316,
-        "def": 204,
-        "satk": 151,
-        "sdef": 173,
-        "spd": 219
+        "hp": 289,
+        "atk": 321,
+        "def": 227,
+        "satk": 139,
+        "sdef": 185,
+        "spd": 227
       },
       "movimientos": [
         {
@@ -5419,7 +5468,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/612.ogg"
     },
     {
       "id": "462",
@@ -5429,14 +5479,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 290,
+      "vidaActual": 260,
       "estadisticas": {
-        "hp": 290,
-        "atk": 163,
-        "def": 253,
-        "satk": 282,
-        "sdef": 198,
-        "spd": 164
+        "hp": 260,
+        "atk": 173,
+        "def": 251,
+        "satk": 307,
+        "sdef": 207,
+        "spd": 150
       },
       "movimientos": [
         {
@@ -5475,7 +5525,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/462.ogg"
     },
     {
       "id": "208",
@@ -5485,14 +5536,14 @@
         "ground"
       ],
       "nivel": 100,
-      "vidaActual": 279,
+      "vidaActual": 268,
       "estadisticas": {
-        "hp": 279,
-        "atk": 189,
-        "def": 411,
-        "satk": 117,
-        "sdef": 171,
-        "spd": 92
+        "hp": 268,
+        "atk": 184,
+        "def": 419,
+        "satk": 149,
+        "sdef": 146,
+        "spd": 94
       },
       "movimientos": [
         {
@@ -5531,7 +5582,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/208.ogg"
     },
     {
       "id": "227",
@@ -5541,14 +5593,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 250,
+      "vidaActual": 253,
       "estadisticas": {
-        "hp": 250,
-        "atk": 192,
-        "def": 305,
-        "satk": 114,
-        "sdef": 160,
-        "spd": 156
+        "hp": 253,
+        "atk": 214,
+        "def": 317,
+        "satk": 124,
+        "sdef": 188,
+        "spd": 163
       },
       "movimientos": [
         {
@@ -5587,7 +5639,8 @@
           "usos": 25,
           "pp": 25
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/227.ogg"
     },
     {
       "id": "306",
@@ -5597,14 +5650,14 @@
         "rock"
       ],
       "nivel": 100,
-      "vidaActual": 256,
+      "vidaActual": 289,
       "estadisticas": {
-        "hp": 256,
-        "atk": 246,
-        "def": 378,
-        "satk": 154,
-        "sdef": 128,
-        "spd": 114
+        "hp": 289,
+        "atk": 252,
+        "def": 406,
+        "satk": 150,
+        "sdef": 138,
+        "spd": 112
       },
       "movimientos": [
         {
@@ -5643,7 +5696,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/306.ogg"
     },
     {
       "id": "376",
@@ -5653,14 +5707,14 @@
         "psychic"
       ],
       "nivel": 100,
-      "vidaActual": 302,
+      "vidaActual": 278,
       "estadisticas": {
-        "hp": 302,
-        "atk": 295,
-        "def": 268,
-        "satk": 214,
-        "sdef": 213,
-        "spd": 173
+        "hp": 278,
+        "atk": 312,
+        "def": 282,
+        "satk": 220,
+        "sdef": 220,
+        "spd": 189
       },
       "movimientos": [
         {
@@ -5699,7 +5753,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/376.ogg"
     },
     {
       "id": "411",
@@ -5709,14 +5764,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 258,
+      "vidaActual": 246,
       "estadisticas": {
-        "hp": 258,
-        "atk": 130,
-        "def": 342,
-        "satk": 137,
-        "sdef": 321,
-        "spd": 113
+        "hp": 246,
+        "atk": 148,
+        "def": 346,
+        "satk": 111,
+        "sdef": 309,
+        "spd": 92
       },
       "movimientos": [
         {
@@ -5755,7 +5810,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/411.ogg"
     },
     {
       "id": "197",
@@ -5764,14 +5820,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 330,
+      "vidaActual": 340,
       "estadisticas": {
-        "hp": 330,
-        "atk": 166,
-        "def": 265,
-        "satk": 149,
-        "sdef": 311,
-        "spd": 151
+        "hp": 340,
+        "atk": 143,
+        "def": 260,
+        "satk": 165,
+        "sdef": 306,
+        "spd": 163
       },
       "movimientos": [
         {
@@ -5810,7 +5866,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/197.ogg"
     },
     {
       "id": "248",
@@ -5820,14 +5877,14 @@
         "dark"
       ],
       "nivel": 100,
-      "vidaActual": 346,
+      "vidaActual": 340,
       "estadisticas": {
-        "hp": 346,
-        "atk": 287,
-        "def": 253,
-        "satk": 227,
-        "sdef": 235,
-        "spd": 144
+        "hp": 340,
+        "atk": 299,
+        "def": 275,
+        "satk": 203,
+        "sdef": 244,
+        "spd": 172
       },
       "movimientos": [
         {
@@ -5866,7 +5923,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/248.ogg"
     },
     {
       "id": "430",
@@ -5876,14 +5934,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 340,
+      "vidaActual": 335,
       "estadisticas": {
-        "hp": 340,
-        "atk": 287,
-        "def": 140,
-        "satk": 226,
-        "sdef": 144,
-        "spd": 177
+        "hp": 335,
+        "atk": 281,
+        "def": 142,
+        "satk": 237,
+        "sdef": 149,
+        "spd": 168
       },
       "movimientos": [
         {
@@ -5922,7 +5980,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/430.ogg"
     },
     {
       "id": "635",
@@ -5932,14 +5991,14 @@
         "dragon"
       ],
       "nivel": 100,
-      "vidaActual": 334,
+      "vidaActual": 324,
       "estadisticas": {
-        "hp": 334,
-        "atk": 225,
-        "def": 212,
-        "satk": 292,
-        "sdef": 217,
-        "spd": 224
+        "hp": 324,
+        "atk": 255,
+        "def": 215,
+        "satk": 280,
+        "sdef": 224,
+        "spd": 232
       },
       "movimientos": [
         {
@@ -5978,7 +6037,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/635.ogg"
     },
     {
       "id": "461",
@@ -5988,14 +6048,14 @@
         "ice"
       ],
       "nivel": 100,
-      "vidaActual": 284,
+      "vidaActual": 261,
       "estadisticas": {
-        "hp": 284,
-        "atk": 257,
-        "def": 150,
-        "satk": 119,
-        "sdef": 200,
-        "spd": 277
+        "hp": 261,
+        "atk": 268,
+        "def": 135,
+        "satk": 126,
+        "sdef": 203,
+        "spd": 273
       },
       "movimientos": [
         {
@@ -6034,7 +6094,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/461.ogg"
     },
     {
       "id": "115",
@@ -6043,14 +6104,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 352,
+      "vidaActual": 333,
       "estadisticas": {
-        "hp": 352,
-        "atk": 209,
-        "def": 198,
-        "satk": 100,
-        "sdef": 187,
-        "spd": 208
+        "hp": 333,
+        "atk": 211,
+        "def": 202,
+        "satk": 116,
+        "sdef": 186,
+        "spd": 200
       },
       "movimientos": [
         {
@@ -6089,7 +6150,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/115.ogg"
     },
     {
       "id": "217",
@@ -6098,14 +6160,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 314,
+      "vidaActual": 310,
       "estadisticas": {
-        "hp": 314,
-        "atk": 309,
-        "def": 176,
-        "satk": 169,
-        "sdef": 184,
-        "spd": 134
+        "hp": 310,
+        "atk": 288,
+        "def": 178,
+        "satk": 173,
+        "sdef": 170,
+        "spd": 159
       },
       "movimientos": [
         {
@@ -6144,7 +6206,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/217.ogg"
     },
     {
       "id": "128",
@@ -6153,14 +6216,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 282,
+      "vidaActual": 283,
       "estadisticas": {
-        "hp": 282,
-        "atk": 240,
-        "def": 210,
-        "satk": 120,
-        "sdef": 176,
-        "spd": 248
+        "hp": 283,
+        "atk": 222,
+        "def": 229,
+        "satk": 131,
+        "sdef": 175,
+        "spd": 264
       },
       "movimientos": [
         {
@@ -6199,7 +6262,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/128.ogg"
     },
     {
       "id": "143",
@@ -6208,14 +6272,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 451,
+      "vidaActual": 462,
       "estadisticas": {
-        "hp": 451,
-        "atk": 271,
-        "def": 180,
-        "satk": 164,
-        "sdef": 257,
-        "spd": 84
+        "hp": 462,
+        "atk": 259,
+        "def": 141,
+        "satk": 143,
+        "sdef": 230,
+        "spd": 92
       },
       "movimientos": [
         {
@@ -6254,7 +6318,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/143.ogg"
     },
     {
       "id": "241",
@@ -6263,14 +6328,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 342,
+      "vidaActual": 326,
       "estadisticas": {
-        "hp": 342,
-        "atk": 189,
-        "def": 232,
-        "satk": 110,
-        "sdef": 169,
-        "spd": 221
+        "hp": 326,
+        "atk": 187,
+        "def": 242,
+        "satk": 109,
+        "sdef": 168,
+        "spd": 246
       },
       "movimientos": [
         {
@@ -6309,7 +6374,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/241.ogg"
     },
     {
       "id": "474",
@@ -6318,14 +6384,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 290,
+      "vidaActual": 291,
       "estadisticas": {
-        "hp": 290,
-        "atk": 191,
+        "hp": 291,
+        "atk": 203,
         "def": 164,
-        "satk": 318,
-        "sdef": 178,
-        "spd": 212
+        "satk": 297,
+        "sdef": 194,
+        "spd": 206
       },
       "movimientos": [
         {
@@ -6364,7 +6430,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/474.ogg"
     },
     {
       "id": "210",
@@ -6373,14 +6440,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 311,
+      "vidaActual": 307,
       "estadisticas": {
-        "hp": 311,
-        "atk": 270,
-        "def": 180,
-        "satk": 143,
-        "sdef": 157,
-        "spd": 128
+        "hp": 307,
+        "atk": 267,
+        "def": 196,
+        "satk": 146,
+        "sdef": 149,
+        "spd": 132
       },
       "movimientos": [
         {
@@ -6419,7 +6486,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/210.ogg"
     },
     {
       "id": "468",
@@ -6429,14 +6497,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 293,
+      "vidaActual": 295,
       "estadisticas": {
-        "hp": 293,
-        "atk": 127,
+        "hp": 295,
+        "atk": 135,
         "def": 226,
         "satk": 265,
-        "sdef": 258,
-        "spd": 177
+        "sdef": 260,
+        "spd": 191
       },
       "movimientos": [
         {
@@ -6475,7 +6543,8 @@
           "usos": 20,
           "pp": 20
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/468.ogg"
     },
     {
       "id": "122",
@@ -6485,14 +6554,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 227,
+      "vidaActual": 212,
       "estadisticas": {
-        "hp": 227,
-        "atk": 113,
-        "def": 172,
-        "satk": 212,
-        "sdef": 267,
-        "spd": 231
+        "hp": 212,
+        "atk": 133,
+        "def": 158,
+        "satk": 234,
+        "sdef": 291,
+        "spd": 213
       },
       "movimientos": [
         {
@@ -6531,7 +6600,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/122.ogg"
     },
     {
       "id": "288",
@@ -6540,14 +6610,14 @@
         "normal"
       ],
       "nivel": 100,
-      "vidaActual": 310,
+      "vidaActual": 297,
       "estadisticas": {
-        "hp": 310,
-        "atk": 210,
-        "def": 213,
-        "satk": 165,
-        "sdef": 136,
-        "spd": 227
+        "hp": 297,
+        "atk": 192,
+        "def": 174,
+        "satk": 146,
+        "sdef": 151,
+        "spd": 207
       },
       "movimientos": [
         {
@@ -6586,7 +6656,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/288.ogg"
     },
     {
       "id": "282",
@@ -6596,14 +6667,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 265,
+      "vidaActual": 257,
       "estadisticas": {
-        "hp": 265,
-        "atk": 140,
-        "def": 153,
-        "satk": 279,
-        "sdef": 271,
-        "spd": 184
+        "hp": 257,
+        "atk": 171,
+        "def": 169,
+        "satk": 304,
+        "sdef": 252,
+        "spd": 181
       },
       "movimientos": [
         {
@@ -6642,7 +6713,8 @@
           "usos": 15,
           "pp": 15
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/282.ogg"
     },
     {
       "id": "303",
@@ -6652,14 +6724,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 236,
+      "vidaActual": 240,
       "estadisticas": {
-        "hp": 236,
-        "atk": 212,
-        "def": 191,
-        "satk": 165,
-        "sdef": 147,
-        "spd": 124
+        "hp": 240,
+        "atk": 215,
+        "def": 220,
+        "satk": 153,
+        "sdef": 130,
+        "spd": 145
       },
       "movimientos": [
         {
@@ -6698,7 +6770,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/303.ogg"
     },
     {
       "id": "184",
@@ -6708,14 +6781,14 @@
         "fairy"
       ],
       "nivel": 100,
-      "vidaActual": 349,
+      "vidaActual": 340,
       "estadisticas": {
-        "hp": 349,
-        "atk": 126,
-        "def": 194,
-        "satk": 138,
-        "sdef": 211,
-        "spd": 114
+        "hp": 340,
+        "atk": 132,
+        "def": 212,
+        "satk": 137,
+        "sdef": 189,
+        "spd": 133
       },
       "movimientos": [
         {
@@ -6754,7 +6827,8 @@
           "usos": 10,
           "pp": 10
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/184.ogg"
     },
     {
       "id": "625",
@@ -6764,14 +6838,14 @@
         "steel"
       ],
       "nivel": 100,
-      "vidaActual": 266,
+      "vidaActual": 264,
       "estadisticas": {
-        "hp": 266,
-        "atk": 281,
-        "def": 228,
-        "satk": 130,
-        "sdef": 185,
-        "spd": 154
+        "hp": 264,
+        "atk": 266,
+        "def": 244,
+        "satk": 138,
+        "sdef": 168,
+        "spd": 175
       },
       "movimientos": [
         {
@@ -6810,7 +6884,8 @@
           "usos": 5,
           "pp": 5
         }
-      ]
+      ],
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/625.ogg"
     },
     {
       "id": "384",
@@ -6820,14 +6895,14 @@
         "flying"
       ],
       "nivel": 100,
-      "vidaActual": 351,
+      "vidaActual": 335,
       "estadisticas": {
-        "hp": 351,
-        "atk": 339,
-        "def": 216,
-        "satk": 326,
-        "sdef": 212,
-        "spd": 202
+        "hp": 335,
+        "atk": 336,
+        "def": 209,
+        "satk": 324,
+        "sdef": 186,
+        "spd": 219
       },
       "movimientos": [
         {
@@ -6875,7 +6950,139 @@
           "originalType": "normal"
         }
       ],
-      "idEntrenador": ""
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/384.ogg"
+    },
+    {
+      "id": "25",
+      "especie": "pikachu",
+      "tipos": [
+        "electric"
+      ],
+      "nivel": 100,
+      "vidaActual": 215,
+      "estadisticas": {
+        "hp": 215,
+        "atk": 125,
+        "def": 106,
+        "satk": 138,
+        "sdef": 115,
+        "spd": 219
+      },
+      "movimientos": [
+        {
+          "nombre": "seismic-toss",
+          "tipo": "fighting",
+          "clase": "physical",
+          "potencia": null,
+          "precision": 100,
+          "usos": 20,
+          "pp": 20,
+          "originalName": "seismic-toss",
+          "originalType": "fighting"
+        },
+        {
+          "nombre": "thunderbolt",
+          "tipo": "electric",
+          "clase": "special",
+          "potencia": 90,
+          "precision": 100,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "thunderbolt",
+          "originalType": "electric"
+        },
+        {
+          "nombre": "iron-tail",
+          "tipo": "steel",
+          "clase": "physical",
+          "potencia": 100,
+          "precision": 75,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "iron-tail",
+          "originalType": "steel"
+        },
+        {
+          "nombre": "play-rough",
+          "tipo": "fairy",
+          "clase": "physical",
+          "potencia": 90,
+          "precision": 90,
+          "usos": 10,
+          "pp": 10,
+          "originalName": "play-rough",
+          "originalType": "fairy"
+        }
+      ],
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg"
+    },
+    {
+      "id": "123",
+      "especie": "scyther",
+      "tipos": [
+        "bug",
+        "flying"
+      ],
+      "nivel": 100,
+      "vidaActual": 271,
+      "estadisticas": {
+        "hp": 271,
+        "atk": 243,
+        "def": 193,
+        "satk": 121,
+        "sdef": 183,
+        "spd": 234
+      },
+      "movimientos": [
+        {
+          "nombre": "razor-wind",
+          "tipo": "normal",
+          "clase": "special",
+          "potencia": 80,
+          "precision": 100,
+          "usos": 10,
+          "pp": 10,
+          "originalName": "razor-wind",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "wing-attack",
+          "tipo": "flying",
+          "clase": "physical",
+          "potencia": 60,
+          "precision": 100,
+          "usos": 35,
+          "pp": 35,
+          "originalName": "wing-attack",
+          "originalType": "flying"
+        },
+        {
+          "nombre": "hyper-beam",
+          "tipo": "normal",
+          "clase": "special",
+          "potencia": 150,
+          "precision": 90,
+          "usos": 5,
+          "pp": 5,
+          "originalName": "hyper-beam",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "quick-attack",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 40,
+          "precision": 100,
+          "usos": 30,
+          "pp": 30,
+          "originalName": "quick-attack",
+          "originalType": "normal"
+        }
+      ],
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/123.ogg"
     }
   ],
   "admins": [

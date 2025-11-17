@@ -25,6 +25,7 @@ export class PokeAPIService {
     return this.http.get<any>(this.url + 'stat/' + id);
   }
 
+  //consigue los datos de los pokemon
   getPokemonDetails(idOrName: string | number): Observable<any> {
     return this.http.get<any>(`${this.url}pokemon/${idOrName}`).pipe(
       switchMap((pokemonData) => {
@@ -66,6 +67,7 @@ export class PokeAPIService {
         return {
           ...moveData,
           name: localizedName ? localizedName.name : moveData.name,
+          originalSlug: moveData.name,
           effect: localizedEffect
             ? localizedEffect.effect
             : 'No effect description found.',
@@ -160,9 +162,6 @@ export class PokeAPIService {
       })
     );
   }
-
-  
-
 
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(

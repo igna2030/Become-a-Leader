@@ -25,7 +25,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   private MESSAGE_KEY = 'intro.message';
   private lineas: string[] = [];
   private langChangeSubscription!: Subscription;
-  private mensajeAcumuladoString: string = ''; // 🌟 NEW: Rastrea el contenido HTML sin sanitizar
+  private mensajeAcumuladoString: string = ''; 
 
   // Inyecciones
   us = inject(UserService);
@@ -35,10 +35,10 @@ export class PartidaComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // 1. Cargar el mensaje inicial al cargar el componente
+    //  Cargar el mensaje inicial al cargar el componente
     this.loadMessage();
 
-    // 2. Suscribirse a los cambios de idioma para recargar el mensaje traducido automáticamente
+    // Suscribirse a los cambios de idioma para recargar el mensaje traducido automáticamente
     this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
       this.loadMessage();
     });
@@ -78,10 +78,10 @@ export class PartidaComponent implements OnInit, OnDestroy {
         currentSegment += '.';
       }
 
-      // 1. Acumular el nuevo segmento al string interno
+      // Acumular el nuevo segmento al string interno
       this.mensajeAcumuladoString += currentSegment + '<br><br>';
       
-      // 2. Usar DomSanitizer para crear el SafeHtml y actualizar la variable pública
+      //  Usar DomSanitizer para crear el SafeHtml y actualizar la variable pública
       this.mensajeActual = this.sanitizer.bypassSecurityTrustHtml(
         this.mensajeAcumuladoString
       );

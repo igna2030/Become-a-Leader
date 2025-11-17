@@ -16,17 +16,21 @@ import { AppAudio } from '../app-audio/app-audio';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent {
+  //servicios
   rs = inject(RankingService);
   us = inject(UserService);
   router = inject(Router);
   translate = inject(TranslateService);
-  rankings: Ranking[] = [];
   audio_service = inject(AudioService);
+  rankings: Ranking[] = [];
 
   ngOnInit() {
+    //consigue los rankings
     this.rs.getRankings().subscribe((data) => {
       this.rankings = data as Ranking[];
+      //los arregla por puntaje
       this.rankings.sort((a, b) => b.puntaje - a.puntaje);
+      // suena la música si se reinicia la pagina
       this.audio_service.playBGM("intro");
     });
   }
