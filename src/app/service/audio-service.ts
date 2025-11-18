@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SoundBuffer } from '../interface/sound-buffer'; // Asegúrate de tener esta interfaz
 import { Observable, forkJoin } from 'rxjs';
 
+//Se utiliza la Web Audio API
 // Definición de tipos para las claves de música y SFX
 type BGMKey = 'battleBGM' | 'intro' | 'win' | 'lose' | 'finalBattle' | 'bossBattle';
 type SFXKey = 'hit'|'out'|'return';
@@ -77,6 +78,7 @@ export class AudioService {
     this.loadSounds();
   }
 
+  //cargo el volumen de la musica
   private loadBGMVolume(): number {
     const savedVolume = localStorage.getItem('bgmVolume');
     return savedVolume ? parseFloat(savedVolume) : 0.5;
@@ -84,6 +86,7 @@ export class AudioService {
   public getBGMVolume(): number {
     return this.currentBGMVolume;
   }
+  //cargo los sonidos
   private async loadSounds(): Promise<void> {
     const fileKeys = (
       Object.keys(this.soundFiles) as (keyof typeof this.soundFiles)[]
@@ -102,6 +105,8 @@ export class AudioService {
     }
   }
 
+
+  //decodifica el audio utilizando la api (Web Audio API)
   private async fetchAndDecodeAudio(key: string, url: string): Promise<void> {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
@@ -138,6 +143,7 @@ export class AudioService {
     source.start(0);
   }
 
+  //Utilizo un sonido dinamico como el grito de los pokemon
   public async playDynamicSound(url: string): Promise<void> {
     if (!url) return;
 
@@ -163,6 +169,7 @@ export class AudioService {
     }
   }
 
+  //paro la musica
   public stopBGM(): void {
     if (this.currentSource) {
       this.currentSource.stop();
@@ -172,6 +179,7 @@ export class AudioService {
     }
   }
 
+  //pongo la musica
   public playBGM(key: BGMKey): void {
     if (this.currentPlaylistKey === key) {
       return
@@ -191,6 +199,7 @@ export class AudioService {
     this.playSequentialTrack(key, initialIndex);
   }
 
+  //resume el sonido desde la ultima suspencion
   public resumeContext(): void {
     if (this.audioContext.state === 'suspended') {
       this.audioContext
@@ -202,6 +211,7 @@ export class AudioService {
     }
   }
 
+  //pone un arreglo de canciones
   private playSequentialTrack(key: BGMKey, index: number): void {
     const musicEntry = this.soundFiles[key] as string[];
     if (index < 0 || index >= musicEntry.length) return;
@@ -227,6 +237,7 @@ export class AudioService {
     }
   }
 
+  //cuando termina un track empiezo otro
   private startTrackWithOnEnded(
     key: BGMKey,
     index: number,
@@ -255,6 +266,7 @@ export class AudioService {
     this.currentTrackIndex = index;
   }
 
+  //funcion para loopear tracks
   private startLoopingBGM(key: string): void {
     const buffer = this.soundBuffers[key];
     if (!buffer) return;
@@ -275,6 +287,7 @@ export class AudioService {
     this.currentTrackIndex = 0;
   }
 
+  //Uso el sonido de los pokemon
   public async playMoveSound(moveName: string): Promise<void> {
     if (!moveName) return;
 
@@ -282,6 +295,7 @@ export class AudioService {
 
     const fileName = this.normalizeMoveNameForFile(apiName);
 
+    //la url del sonido en la carpeta movimientos
     const soundUrl = `assets/audio/moves/${fileName}.mp3`;
 
     try {
@@ -317,6 +331,7 @@ export class AudioService {
     }
   }
 
+//noramilizo el nombre del movimiento para que se pueda escuchar
   private normalizeMoveNameForFile(apiName: string): string {
     let formattedName = apiName.replace(/_/g, '-');
 
@@ -327,6 +342,7 @@ export class AudioService {
     return formattedName;
   }
 
+  //Utiliza cual fue la ultima canción y pone la siguiente
   private playNextTrackInSequence(key: BGMKey): void {
     if (this.currentPlaylistKey !== key) {
       return
@@ -344,6 +360,7 @@ export class AudioService {
     this.playSequentialTrack(key, nextIndex);
   }
 
+  //permite elegir el volumen de la musica
   public setBGMVolume(volume: number): void {
     volume = Math.max(0, Math.min(1, volume));
     this.bgmVolume = volume;
@@ -352,6 +369,7 @@ export class AudioService {
     localStorage.setItem('bgmVolume', volume.toString());
   }
 
+  //permite elegir el volumen de los efectos del juego
   public setSFXVolume(volume: number): void {
     volume = Math.max(0, Math.min(1, volume));
     this.currentsfxVolume = volume;
