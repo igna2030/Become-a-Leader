@@ -60,6 +60,8 @@ La aplicación tiene las siguientes funcionalidades clave:
   ├── app/
   │   ├── components/
   │   │    ├──add-pokemon         # Agregar Pokemon a la base de datos desde la PokeAPI
+  │   │    ├──app-audio           # Permite manejar el volumen durante toda la pagina
+  │   │    ├──app-mini-pokedex    # Busca pokemon en el componente batalla
   │   │    ├──batalla             # Metodos y logica de las batallas
   │   │    ├──edit-pokemon        # Editar informacion de un Pokemon en particular
   │   │    ├──pokemon-detail      # Detalle de la informacion de un Pokemon
@@ -79,10 +81,17 @@ La aplicación tiene las siguientes funcionalidades clave:
   │   │    ├──user-profile        # Visualizar detalles de la cuenta del usuario
   │   ├── services/               # Servicios para manejar la lógica (usuario, batalla, etc.)
   │   ├── app.routes.ts           # Configuracion de rutas del proyecto
+  │   ├── assets/
+  │   │    ├──audio               # Tiene la carpeta de sonidos para la aplicación y la musica de la misma
+  │   │    ├──¡18n                # Es la carpeta en la que se guardan los idiomas de la app
+  │   │      ├──es.json           # Tiene la traduccion al español de la aplicación
+  │   │      ├──en.json           # Tiene la traduccion al ingles de la aplicación
   ├── index.html                  # Página principal de la app
   │
   db.json
   ├── # Base de datos del proyecto
+ migrar_stats.js
+  ├── # Aplicación para cambio de stats de la base de datos
 ```
 ## Contacto
     Si tienes preguntas o sugerencias, no dudes en contactarnos:
