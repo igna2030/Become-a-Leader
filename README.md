@@ -13,6 +13,7 @@ Este proyecto está construido utilizando las siguientes tecnologías:
 - **Node.js**: Plataforma de backend para manejar las peticiones.
 - **JSON Server**: Para simular un backend y almacenar datos como las partidas y el puntaje.
 - **TypeScript**: Lenguaje utilizado para la lógica de la aplicación.
+- **ngx-translate**: Libreria para la traduccion de aplicaciones
 
 ## Requisitos
 
@@ -48,10 +49,12 @@ La aplicación tiene las siguientes funcionalidades clave:
 - **Crear e iniciar sesión de usuario:** Los usuarios pueden registrarse y acceder a su cuenta.
 - **Manejo de la base de datos de Pokémon como administrador:** Los administradores pueden gestionar la lista de Pokémon disponibles para las batallas.
 - **Crear una partida: Los jugadores pueden elegir un tipo de Pokémon y comenzar una partida.
-- **Luchar contra entrenadores generados al azar:** El jugador se enfrentará a entrenadores con Pokémon de un tipo aleatorio.
+- **Luchar contra entrenadores generados al azar:** El jugador se enfrentará a entrenadores con Pokémon aleatorios.
 - **Sistema de puntajes:** Cada victoria otorga un punto. El jugador continúa luchando hasta que pierda.
 - **Guardar el puntaje:** Al perder, la partida se elimina y se guarda el puntaje del jugador en la tabla de clasificación.
-
+- **Utilizar items:** En el combate se pueden utilizar items curativos clasicos de la franquicia.
+- **Cambio de pokemon:** En el combate se puede cambiar los pokémon.
+- **Cambio de idioma:** Se puede cambiar el idioma del juego tanto a ingles como al español.
 ## Estructura del proyecto
 ```
   public/
@@ -90,7 +93,7 @@ La aplicación tiene las siguientes funcionalidades clave:
   │
   db.json
   ├── # Base de datos del proyecto
- migrar_stats.js
+  migrar_stats.js
   ├── # Aplicación para cambio de stats de la base de datos
 ```
 ## Contacto
