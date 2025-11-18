@@ -18,12 +18,15 @@ import { AppAudio } from '../../components/app-audio/app-audio';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  usuario: any;
+  //configuraciones
   verConfigCuenta: boolean = true;
   verInfoPartidas: boolean = true;
+  //servicios
   userService = inject(UserService);
   partidaService = inject(PartidaService);
   pokeApiService = inject(PokeAPIService);
+  //interfaces
+  usuario: any;
   partida: Partida = {
     id: '',
     fecha_inicio: new Date,

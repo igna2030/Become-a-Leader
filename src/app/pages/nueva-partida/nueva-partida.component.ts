@@ -18,11 +18,10 @@ import { AppAudio } from '../../components/app-audio/app-audio';
   styleUrl: './nueva-partida.component.css'
 })
 export class NuevaPartidaComponent implements OnInit {
+  //servicios
   ts = inject(TeamService);
   translate = inject(TranslateService);
-  ngOnInit(): void {
-    this.id = localStorage.getItem('token')!;
-  }
+
   // Datos del formulario
   datos_partida: any = {
     nick: '',
@@ -48,8 +47,11 @@ export class NuevaPartidaComponent implements OnInit {
   id: string = '';
   constructor(private partidaService: PartidaService) { }
   router = inject(Router);
+  
   us = inject(UserService);
-
+  ngOnInit(): void {
+    this.id = localStorage.getItem('token')!;
+  }
   // Método que se ejecuta cuando el formulario es enviado
   crearPartida() {
     const cargarEquipo: Pokemon[] = [];

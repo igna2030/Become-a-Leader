@@ -294,7 +294,7 @@
                 </p>
                 <p>HP: {{ pk.vidaActual }} / {{ pk.estadisticas.hp }}</p>
                 <span *ngIf="pk.id === pokemonJugador.id" class="status-badge"
-                  >En combate</span
+                  >{{"batalla.inCombat"|translate}}</span
                 >
               </div>
             </div>

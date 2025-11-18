@@ -22,10 +22,11 @@ export class AudioService {
   private bgmGainNode: GainNode;
   private currentTrackIndex: number = -1;
   private bgmVolume: number = 0.5;
-  private sfxVolume: number = 0.8;
+  private sfxVolume: number = 0.5;
   private currentBGMVolume: number = this.loadBGMVolume();
   private currentsfxVolume: number = this.loadSFXVolume();
 
+  //Música para todo el programa
   private soundFiles: SoundFileMap = {
     hit: 'assets/audio/hit.mp3',
     out: 'assets/audio/pokemon_out.mp3', 
@@ -53,7 +54,9 @@ export class AudioService {
       'assets/audio/arceus-theme.mp3'
     ],
     bossBattle: [
-      'assets/audio/boss-theme-ftl.mp3'
+      'assets/audio/Chaos.mp3',
+      'assets/audio/boss_battle_song.mp3',
+      'assets/audio/boss_battle_song2.mp3'
     ],
   };
 

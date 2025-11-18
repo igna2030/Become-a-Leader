@@ -163,7 +163,7 @@ export class UserAccountInfoComponent implements OnInit {
     ) {
       // Actualizar usuario
       this.usuario.email = this.emailCopy;
-      // ACtualizar los datos
+      // Actualizar los datos
       this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
         next: () => {
           console.log("usuario actualizado...");

@@ -22,6 +22,7 @@ export class RankingComponent {
   router = inject(Router);
   translate = inject(TranslateService);
   audio_service = inject(AudioService);
+  //interfaz
   rankings: Ranking[] = [];
 
   ngOnInit() {
@@ -43,8 +44,4 @@ export class RankingComponent {
     this.router.navigate(['']);
   }
 
-  capitalizeDifficulty(dificultad: 'facil' | 'normal' | undefined): string {
-    if (!dificultad) return 'N/A';
-    return dificultad.charAt(0).toUpperCase() + dificultad.slice(1);
-  }
 }

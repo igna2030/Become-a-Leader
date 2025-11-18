@@ -31,6 +31,7 @@ export class PokeAPIService {
       switchMap((pokemonData) => {
         const pokemonId = pokemonData.id;
 
+        //consigue los datos localizados y su grito
         return this.getLocalizedSpeciesData(pokemonId).pipe(
           map((localizedData) => {
             return {
@@ -49,6 +50,7 @@ export class PokeAPIService {
   getMoveByName(name: string): Observable<any> {
     const currentLang = this.getCurrentLang();
 
+    //limpian el nombre para poder utilizar en pista de sonido
     const cleanName = name
       .split(':')[0]
       .toLowerCase()
@@ -76,6 +78,7 @@ export class PokeAPIService {
     );
   }
 
+  //consigue el nombre localizado
   getMoveLocalizedName(name: string): Observable<string> {
     return this.getMoveByName(name).pipe(
       map(localizedMoveData => {
@@ -84,9 +87,8 @@ export class PokeAPIService {
     );
   }
 
-  private getLocalizedSpeciesData(
-    idOrName: string | number
-  ): Observable<{ localizedName: string; flavor_text: string }> {
+  //consigue el pokemon  localizado
+  private getLocalizedSpeciesData(idOrName: string | number): Observable<{ localizedName: string; flavor_text: string }> {
     const currentLang = this.getCurrentLang();
 
     return this.http.get<any>(`${this.url}pokemon-species/${idOrName}`).pipe(
@@ -109,6 +111,7 @@ export class PokeAPIService {
     );
   }
 
+  //consigue el tipo del pokemon localizado
   getLocalizedTypeName(typeName: string): Observable<string> {
     const currentLang = this.getCurrentLang();
 
@@ -121,12 +124,14 @@ export class PokeAPIService {
       })
     );
   }
+  //consigue el nombre del pokemon localizado
   getPokemonLocalizedName(name: string): Observable<string> {
     return this.getLocalizedSpeciesData(name).pipe(
       map(data => data.localizedName)
     );
   }
 
+  //Transforma la letra así es mas visible
   private transformarPrimeraLetra(nombre: string): string {
     if (!nombre) return nombre;
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
@@ -152,6 +157,7 @@ export class PokeAPIService {
     return this.http.get<any>(`${this.url}type/${idOrName}`);
   }
 
+  //consigue el nombre original del pokemon
   getPokemonOriginalName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}pokemon-species/${localizedName}`).pipe(
       map(speciesData => {
@@ -163,6 +169,7 @@ export class PokeAPIService {
     );
   }
 
+  //consigue el tipo original
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(
       map(typeData => {
@@ -170,9 +177,12 @@ export class PokeAPIService {
       })
     );
   }
+  //consigue todos los items
   getItems(): Observable<Items> {
     return this.http.get<Items>(this.url + "item");
   }
+
+  //consigue los items y traduce su nombre y descripcion
   getItemsById(id: number): Observable<Items> {
     return this.http.get<any>(this.url + "item/" + id).pipe(
       switchMap((itemData: any) => {
@@ -200,6 +210,7 @@ export class PokeAPIService {
       })
     );
   }
+  //consigue los sprites de los items
   getItemsSprites(id: number): Observable<any> {
     return this.http
       .get<any>(this.url + 'item/' + id)

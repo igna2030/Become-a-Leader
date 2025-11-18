@@ -18,11 +18,13 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 })
 export class LoginComponent implements OnInit {
 
+  //servicios
   translate = inject(TranslateService);
   as = inject(AuthService);
   us = inject(UserService)
   fb = inject(FormBuilder);
   router = inject(Router);
+  //mensaje
   mensaje: string = '';
 
   loginForm = this.fb.nonNullable.group({

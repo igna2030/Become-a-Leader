@@ -17,10 +17,12 @@ import { AppAudio } from '../../components/app-audio/app-audio';
   styleUrl: './login-admin.component.css'
 })
 export class LoginAdminComponent {
+  //servicios
   as = inject(AuthService);
   us = inject(UserService)
   fb = inject(FormBuilder);
   router = inject(Router);
+  //mensaje
   mensaje: string = '';
 
   loginForm = this.fb.nonNullable.group({

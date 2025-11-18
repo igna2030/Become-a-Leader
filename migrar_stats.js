@@ -1,9 +1,9 @@
-const fs = require('fs').promises;
-const path = require('path');
-const axios = require('axios'); 
+import { promises as fs } from 'fs';
+import { join } from 'path';
+import { get } from 'axios'; 
 
 const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/';
-const DB_PATH = path.join(__dirname, 'db.json');
+const DB_PATH = join(__dirname, 'db.json');
 
 
 function generateIVs() {
@@ -33,7 +33,7 @@ async function recalcularStatsPokemon(pokemon) {
   console.log(`Procesando: ${pokemon.especie} (ID: ${pokemon.id})...`);
   
   try {
-    const response = await axios.get(`${POKEAPI_URL}${pokemon.id}`);
+    const response = await get(`${POKEAPI_URL}${pokemon.id}`);
     const apiData = response.data; 
 
     const apiStats = apiData.stats;

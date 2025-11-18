@@ -29,7 +29,8 @@
     "inventory": "Inventory",
     "use": "use item",
     "noItems": "There are no items",
-    "switch":"Switch pokemon"
+    "switch":"Switch pokemon",
+    "heal":"Heal"
   },
   "alerts": {
     "emailRequired": "Email is required",
@@ -210,6 +211,7 @@
     "go": "Go",
     "return": "return",
     "choosePokemonSwitch":"Choose a pokemon to change",
+    "inCombat":"In combat",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",

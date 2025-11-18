@@ -238,7 +238,6 @@ export class EditPokemonComponent implements OnInit {
     return pokemonToSave;
   }
 
-  // 💡 Helper de capitalización (mantenido)
   transformarPrimeraLetra(nombre: string): string {
     if (!nombre) return nombre;
     return nombre.charAt(0).toUpperCase() + nombre.slice(1);

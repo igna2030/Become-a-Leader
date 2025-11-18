@@ -16,10 +16,12 @@ export class UserService {
   private user?: Usuario;
   private admin?: Admin;
 
+  //post
   postUser(user: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.urlBase, user);
   }
 
+  //GETS
   getUser(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.urlBase);
   }
@@ -44,6 +46,7 @@ export class UserService {
     );
   }
 
+  //Update
   updateUser(id:string, usuario:Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(`${this.urlBase}/${id}`, usuario);
   }

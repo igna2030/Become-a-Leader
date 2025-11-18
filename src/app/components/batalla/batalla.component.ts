@@ -36,11 +36,15 @@ export class BatallaComponent {
 
   bgmVolume = this.audio_service.getBGMVolume();
   sfxVolume = this.audio_service.getsfxVolume();
+  
   //pelea con jefe
   isBossBattle: boolean = false;
-  bossMultiplier: number = 1.7;
+  bossStatMultiplier: number = 2;   // Para Vida y Velocidad
+  bossDamageMultiplier: number = 2; // Para Ataque y Ataque Especial
+  bossDefenseMultiplier = 1.5;
   turnosParaBoss: number = 5;
   duelosGanados: number = 0;
+  
   //interfaces
   idPartida: string = '';
   partida: Partida | null = null;
@@ -50,14 +54,17 @@ export class BatallaComponent {
   pokemonRival?: Pokemon | null = null;
   movimientosJugador: Move[] = [];
   movimientosRival: Move[] = [];
+  
   //mensajes
   mensajeBatalla: string = '';
   resultado: string = '';
   mostrarModal: boolean = false;
   mensajeModal: string = '';
+  
   //lista de pokemon debilitados
   pokemonDebilitados: Pokemon[] = [];
   originalEquipoJugador: Pokemon[] = [];
+  
   //inventario
   mostrarSeleccionRevivir: boolean = false;
   mostrarInventario: boolean = false;
@@ -233,9 +240,19 @@ export class BatallaComponent {
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
 
-    //pone la musica de batalla
+    // 1. COMPROBAR SI TOCA JEFE PRIMERO
+    this.checkBossBattle();
+
+    // 2. ELEGIR MÚSICA SEGÚN EL RESULTADO
     this.audio_service.resumeContext();
-    this.audio_service.playBGM('battleBGM')
+    if (this.isBossBattle) {
+      console.log('Reproduciendo música de JEFE');
+      this.audio_service.playBGM('bossBattle');
+    } else {
+      console.log('Reproduciendo música NORMAL');
+      this.audio_service.playBGM('battleBGM');
+    }
+
 
     //espera a que se asignen los sprites
     await this.asignarSprites(this.jugador?.equipo);
@@ -278,22 +295,32 @@ export class BatallaComponent {
   }
 
   enhancePokemonStats(pokemon: Pokemon): Pokemon {
-    //si no es pelea de jefe simplemente devuelve el pokemon
+    // Si no es pelea de jefe simplemente devuelve el pokemon original
     if (!this.isBossBattle) { return pokemon; }
 
-    //el pokemon enchanced es el pokemon pasado desde generar rival
+    // Creamos una copia del pokemon para no afectar al original de la "base de datos"
     const enhancedPokemon = {
       ...pokemon,
       estadisticas: { ...pokemon.estadisticas }
     };
-    //mejora las estadisticas del pokemon jefe cada 5 turnos aumento el bossMultiplier en.3 empezando en 1.7
-    enhancedPokemon.estadisticas.hp = Math.floor(pokemon.estadisticas.hp * this.bossMultiplier);
-    enhancedPokemon.estadisticas.atk = Math.floor(pokemon.estadisticas.atk * this.bossMultiplier);
-    enhancedPokemon.estadisticas.def = Math.floor(pokemon.estadisticas.def * this.bossMultiplier);
-    enhancedPokemon.estadisticas.satk = Math.floor(pokemon.estadisticas.satk * this.bossMultiplier);
-    enhancedPokemon.estadisticas.sdef = Math.floor(pokemon.estadisticas.sdef * this.bossMultiplier);
-    enhancedPokemon.estadisticas.spd = Math.floor(pokemon.estadisticas.spd * this.bossMultiplier);
+
+    // --- MULTIPLICADOR DE ESTADÍSTICAS GENERALES (X5) ---
+    // Vida (HP), Defensa, Defensa Especial y Velocidad
+    enhancedPokemon.estadisticas.hp = Math.floor(pokemon.estadisticas.hp * this.bossStatMultiplier);
+    enhancedPokemon.estadisticas.def = Math.floor(pokemon.estadisticas.def * this.bossDefenseMultiplier);
+    enhancedPokemon.estadisticas.sdef = Math.floor(pokemon.estadisticas.sdef * this.bossStatMultiplier);
+    enhancedPokemon.estadisticas.spd = Math.floor(pokemon.estadisticas.spd * this.bossStatMultiplier);
+
+    // --- MULTIPLICADOR DE DAÑO (X3) ---
+    // Ataque Físico y Ataque Especial
+    enhancedPokemon.estadisticas.atk = Math.floor(pokemon.estadisticas.atk * this.bossDamageMultiplier);
+    enhancedPokemon.estadisticas.satk = Math.floor(pokemon.estadisticas.satk * this.bossDamageMultiplier);
+
+    // IMPORTANTE: Actualizar la vida actual al nuevo máximo de HP
     enhancedPokemon.vidaActual = enhancedPokemon.estadisticas.hp;
+
+    console.log('Jefe Generado con Stats X5 y Daño X3:', enhancedPokemon.estadisticas);
+
     return enhancedPokemon;
   }
 
@@ -301,8 +328,8 @@ export class BatallaComponent {
     //muestra que genera el rival
     console.log(this.translate.instant('batalla.status.generatingRival'));
 
-    //se fija si es un jefe
-    const isBoss = this.checkBossBattle();
+    // Usamos el valor ya calculado en iniciarBatalla
+    const isBoss = this.isBossBattle;
     //si es jefe solo crea un jefe
     const numRivals = isBoss ? 1 : 6;
 
@@ -596,8 +623,13 @@ export class BatallaComponent {
   async calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
     console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
+    
     this.audio_service.resumeContext();
-    this.audio_service.playBGM('battleBGM');
+
+    // SI ES JEFE, MANTENEMOS MÚSICA DE JEFE. SI NO, MÚSICA NORMAL.
+    const musicaActual = this.isBossBattle ? 'bossBattle' : 'battleBGM';
+    this.audio_service.playBGM(musicaActual);
+    
     this.pokemonAtacanteId = atacante.id;
     await this.delay(600);
     if (movimiento.originalName) {
@@ -716,6 +748,11 @@ export class BatallaComponent {
 
 
       let id = this.getRandomItem();
+      if(this.isBossBattle == true)
+      {
+        //es la sacred ash, mejor item curativo del juego
+        id = 44;
+      }
       this.pokeapi.getItemsById(id).subscribe({
         next: (value: Items) => {
           this.jugador?.items?.push(value);
@@ -725,12 +762,15 @@ export class BatallaComponent {
           }
           this.jugador!.equipo.forEach(p => {
             p.vidaActual = p.estadisticas.hp;
+            this.partida!.puntuacion = puntajeNuevo;
+            this.partida!.duelosGanados = this.duelosGanados;
+            this.partida!.personaje = this.jugador!;
           })
-          this.ps.actualizarPuntaje(partidaId, { puntuacion: puntajeNuevo, duelosGanados: this.duelosGanados, personaje: this.jugador } as any).subscribe({
+          this.ps.actualizarPuntaje(partidaId, this.partida as any).subscribe({
             next: (response) => {
               console.log(this.translate.instant('log.scoreUpdated'), response);
               this.partida!.puntuacion = puntajeNuevo;
-              (this.partida as any).duelosGanados = this.duelosGanados;
+              this.partida!.duelosGanados = this.duelosGanados;
               this.continuarBatalla();
             },
             error: (error: Error) => {
@@ -773,6 +813,7 @@ export class BatallaComponent {
       this.ps.eliminarPartida(partidaId).subscribe({
         next: (response) => {
           console.log(this.translate.instant('log.gameDeleted'), response);
+          
         },
         error: (error: Error) => {
           console.error(this.translate.instant('log.gameDeleteError'), error);
@@ -835,7 +876,7 @@ export class BatallaComponent {
 
 
   cerrarModal() {
-    const isWin = this.resultado === this.translate.instant('batalla.title');
+    const isWin = this.resultado;
     this.mostrarModal = false;
     this.resultado = '';
     this.mensajeModal = '';

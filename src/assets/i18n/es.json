@@ -29,7 +29,8 @@
     "inventory": "Inventario",
     "use": "usar item",
     "noItems": "No hay items",
-    "switch":"Cambia el pokemon"
+    "switch":"Cambia el pokemon",
+    "heal":"Curar"
   },
   "alerts": {
     "nicknameEmpty": "No puedes dejar el campo vacío.",
@@ -210,6 +211,7 @@
     "go":"Vamos",
     "return":"Vuelve",
     "choosePokemonSwitch":"Elige un pokemon para cambiar",
+    "inCombat":"En combate",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

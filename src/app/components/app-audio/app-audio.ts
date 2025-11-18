@@ -11,11 +11,14 @@ import { TranslateModule, TranslateNoOpLoader, TranslateService } from '@ngx-tra
   styleUrl: './app-audio.css',
 })
 export class AppAudio {
-  sfxVolume: number = 0.8;
-  audio_service = inject(AudioService);
-  bgmVolume: number = this.audio_service.getBGMVolume();
 
+  //servicio
+  audio_service = inject(AudioService);
   translate_service = inject(TranslateService)
+  //cambio por parte de usuario del sonido
+  bgmVolume: number = this.audio_service.getBGMVolume();
+  sfxVolume: number = this.audio_service.getsfxVolume();
+
   public setBGMVolume(event: Event): void {
     const target = event.target as HTMLInputElement;
     const newVolume = parseFloat(target.value);

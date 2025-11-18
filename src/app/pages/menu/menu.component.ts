@@ -16,9 +16,12 @@ import { AppAudio } from '../../components/app-audio/app-audio';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  //interfaces
   usuario: any;
   partida: Partida | null = null;
+  //boolean
   tienePartida: boolean = false;
+  //servicios
     translate = inject(TranslateService);
     audio_service = inject(AudioService)
 

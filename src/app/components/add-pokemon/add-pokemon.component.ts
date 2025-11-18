@@ -19,18 +19,20 @@ import { AppAudio } from '../app-audio/app-audio';
   styleUrl: './add-pokemon.component.css'
 })
 export class AddPokemonComponent {
+  //id del pokemon
   pokeID: string = "";
+  //servicios
   ps = inject(PokeAPIService);
   ts = inject(TeamService);
   us = inject(UserService);
   translate = inject(TranslateService);
   routes = inject(Router);
-  pokeAPI: any;
-
+  //alertas tanto en ingles como español
   searchError: string | null = null;
   moveError: string | null = null;
   saveError: string | null = null;
-
+  //interfaces
+  pokeAPI: any;
   pokemon: Pokemon = {
     id: '',
     especie: '',

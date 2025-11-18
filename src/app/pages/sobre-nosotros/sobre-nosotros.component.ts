@@ -12,6 +12,7 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 })
 export class SobreNosotrosComponent {
   translate = inject(TranslateService);
+  //fotos con los miembros
   fotos: { url: string, texto: string, urlGitHub?: string }[] = [
     { url: 'foto1.jpg', texto: 'Quimey Varela', urlGitHub: 'https://github.com/Varela97' },
     { url: 'foto2.jpg', texto: 'Luciano Buda', urlGitHub: 'https://github.com/LuchoDMD' },
