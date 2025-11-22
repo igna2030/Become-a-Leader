@@ -370,6 +370,15 @@ div.batalla div img {
     border-bottom: none;
 }
 
+.item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;            
+    min-width: 0;      
+    padding: 0 10px;    
+}
+
 .item-sprite {
     width: 40px;
     height: 40px;
@@ -397,6 +406,9 @@ div.batalla div img {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    white-space: normal;  
+    overflow: visible;
+    display: block;
 }
 
 .use-item-button,

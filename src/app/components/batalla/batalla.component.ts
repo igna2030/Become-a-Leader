@@ -107,60 +107,79 @@ export class BatallaComponent {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  ngOnInit(): void {
-    //encuentra la partida
+ngOnInit(): void {
+    // 1. Encuentra el ID de la partida
     this.idPartida = localStorage.getItem('token')!;
 
     if (!this.idPartida) {
-      //si no esta tira error
       console.error(this.translate.instant('log.errorMissingToken'));
       this.navegarMenu();
       return;
     }
 
-    //se subscribe a la partida
+    // 2. Suscribirse a la partida
     this.ps.getPartidaByUserId(this.idPartida).subscribe({
-      next: (partida) => {
+      next: async (partida) => {
         this.partida = partida;
 
-        if (this.partida) {
+        if (this.partida && this.partida.personaje) {
           console.log('Partida obtenida:', partida);
-          this.jugador = partida?.personaje;
-          if (this.jugador) {
-            //si no hay un array de items lo crea
-            if (!this.jugador.items) {
-              this.jugador.items = [];
-            }
-            this.pokeapi.getItemsById(this.getRandomItem()).subscribe({
-              next: (data: Items) => {
-                //le agrega un item inicial
-                this.jugador!.items?.push(data)
-                console.log(data);
-                console.log('Ítems cargados. Total:', this.jugador!.items!.length);
+          this.jugador = this.partida.personaje;
 
-              },
-              error: (err: Error) => {
-                console.log(err)
-              },
-            })
+          // TRADUCIR INVENTARIO EXISTENTE (Base de Datos) 
+          if (this.jugador.items && this.jugador.items.length > 0) {
+            console.log('Traduciendo items guardados...');
+            // Esperamos a que todos los items viejos se traduzcan al idioma actual
+            const promesasTraduccion = this.jugador.items.map(item => 
+              this.actualizarIdiomaItemExistente(item)
+            );
+            await Promise.all(promesasTraduccion);
+          } else {
+            // Si no existe el array, lo inicializamos
+            this.jugador.items = [];
           }
-          else {
-            console.log("No se encontro el jugador");
-          }
-          this.duelosGanados = (this.partida as any).duelosGanados || 0;
-          console.log('Duelos Ganados inicializados:', this.duelosGanados);
-          console.log('Entrenador obtenido:', this.jugador);
-          this.iniciarBatalla();
+
+          //  GENERAR Y AGREGAR NUEVO ITEM RANDOM 
+          const idNuevoItem = this.getRandomItem();
+          
+          // Pedimos el item a la PokeAPI
+          this.pokeapi.getItemsById(idNuevoItem).subscribe({
+            next: async (nuevoItem: Items) => {
+              
+              // Traducimos el NUEVO item antes de meterlo a la bolsa
+              await this.localizeItem(nuevoItem, idNuevoItem);
+              
+              // Lo agregamos al inventario
+              this.jugador?.items?.push(nuevoItem);
+              console.log('Nuevo item random agregado y traducido:', nuevoItem.localizedName);
+              
+              // Actualizamos logs
+              console.log('Ítems totales:', this.jugador!.items!.length);
+
+              // Configuramos stats de partida
+              this.duelosGanados = (this.partida as any).duelosGanados || 0;
+              
+              // INICIAR BATALLA 
+              // Solo iniciamos aquí, asegurando que ya tenemos items viejos traducidos + item nuevo traducido
+              this.iniciarBatalla();
+            },
+            error: (err: Error) => {
+              console.error('Error al obtener el item random:', err);
+              // Si falla la API del item, iniciamos la batalla igual para no trabar el juego
+              this.iniciarBatalla();
+            }
+          });
+
         } else {
-          console.error('Error: Partida no encontrada a pesar de la respuesta exitosa. Redirigiendo.');
+          console.error('Error: Partida o Jugador no encontrados.');
           this.navegarMenu();
         }
       },
       error: (error) => {
-        console.error('Error al obtener la partida (404 o error de red). Navegando al menú.', error);
+        console.error('Error al obtener la partida (404 o error de red).', error);
         this.navegarMenu();
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -200,6 +219,36 @@ export class BatallaComponent {
       }
     }
   }
+
+
+  // Agrega este método en tu clase BatallaComponent
+async localizeItem(item: Items, id: number): Promise<void> {
+  try {
+    // Obtenemos el idioma actual (por defecto 'es' si no existe)
+    const language = this.translate.currentLang || 'es';
+
+    // Hacemos una petición directa a la API para obtener los detalles crudos (nombres y descripciones en todos los idiomas)
+    // Nota: Usamos fetch aquí para asegurar que obtenemos la data cruda sin depender de cómo esté configurado tu servicio
+    const response = await fetch(`https://pokeapi.co/api/v2/item/${id}/`);
+    const data = await response.json();
+
+    // 1. Buscar la descripción en el idioma actual
+    const flavorTextEntry = data.flavor_text_entries.find((entry: any) => entry.language.name === language);
+    if (flavorTextEntry) {
+      // Usamos tu función limpiarDescripcion para formatearlo bien
+      item.description = this.limpiarDescripcion(flavorTextEntry.text);
+    }
+
+    // 2. Buscar el nombre localizado (ej: "Potion" -> "Poción")
+    const nameEntry = data.names.find((entry: any) => entry.language.name === language);
+    if (nameEntry) {
+      item.localizedName = nameEntry.name;
+    }
+
+  } catch (error) {
+    console.error('Error al localizar el item antes de guardar:', error);
+  }
+}
 
   //esta funcion sirve para localizar los pokemon segun el currentLang()
   async localizePokemon(pokemon: Pokemon): Promise<void> {
@@ -754,7 +803,8 @@ export class BatallaComponent {
         id = 44;
       }
       this.pokeapi.getItemsById(id).subscribe({
-        next: (value: Items) => {
+        next: async (value: Items) => {
+          await this.localizeItem(value, id);
           this.jugador?.items?.push(value);
           for (let i = 0; i < this.pokemonDebilitados.length; i++) {
             this.jugador?.equipo.push(this.pokemonDebilitados[i]);
@@ -1168,5 +1218,36 @@ export class BatallaComponent {
     this.itemCuracionSeleccionado = null;
     this.indiceItemCuracion = -1;
   }
+
+  // Actualiza un item existente usando su nombre para buscar la traducción
+async actualizarIdiomaItemExistente(item: Items): Promise<void> {
+  try {
+    const idiomaActual = this.translate.currentLang || 'es';
+    
+    // Usamos el nombre (ej: 'potion') para buscar en la API
+    const response = await fetch(`https://pokeapi.co/api/v2/item/${item.name}/`);
+    const data = await response.json();
+
+    // 1. Actualizar Nombre Localizado
+    const nombreTraducido = data.names.find((n: any) => n.language.name === idiomaActual);
+    if (nombreTraducido) {
+      item.localizedName = nombreTraducido.name;
+    }
+
+    // 2. Actualizar Descripción
+    const descripcionTraducida = data.flavor_text_entries.find((t: any) => t.language.name === idiomaActual);
+    if (descripcionTraducida) {
+      item.description = this.limpiarDescripcion(descripcionTraducida.text);
+    } else {
+      // Fallback a inglés si no hay español
+      const descripcionEn = data.flavor_text_entries.find((t: any) => t.language.name === 'en');
+      if (descripcionEn) {
+        item.description = this.limpiarDescripcion(descripcionEn.text);
+      }
+    }
+  } catch (error) {
+    console.error(`Error actualizando idioma para ${item.name}:`, error);
+  }
+}
 
 }
