@@ -203,7 +203,7 @@
     "pokedexError": "Error while loading the pokemon in the pokedex.  Search with the ID",
     "errorGameUpdate": "Error while loading the game",
     "usedItem": "Used item",
-    "selectTargetFor": "Target selected for reviving",
+    "selectTargetFor": "Target selected for",
     "healed": "healed",
     "hp": "HP",
     "selectPokemonToRevive": "Select pokemon to revive",

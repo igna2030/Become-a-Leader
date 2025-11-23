@@ -203,7 +203,7 @@
     "pokedexError": "Error al cargar el pokemon de la pokedex.  Buscar con el ID",
     "errorGameUpdate": "Error al cargar el juego",
     "usedItem": "Item usado",
-    "selectTargetFor": "Objetivo seleccionado para revivir",
+    "selectTargetFor": "Objetivo seleccionado para ",
     "healed": "se curo",
     "hp": "Vida",
     "selectPokemonToRevive": "Elige un pokemon para revivir",

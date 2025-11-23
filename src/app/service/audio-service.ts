@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { SoundBuffer } from '../interface/sound-buffer'; // Asegúrate de tener esta interfaz
+import { SoundBuffer } from '../interface/sound-buffer';
 import { Observable, forkJoin } from 'rxjs';
-
 //Se utiliza la Web Audio API
 // Definición de tipos para las claves de música y SFX
 type BGMKey = 'battleBGM' | 'intro' | 'win' | 'lose' | 'finalBattle' | 'bossBattle';
-type SFXKey = 'hit'|'out'|'return';
+type SFXKey = 'hit' | 'out' | 'return';
 type SoundFileMap = Record<SFXKey, string> & Record<BGMKey, string | string[]>;
 
 @Injectable({
@@ -13,10 +12,16 @@ type SoundFileMap = Record<SFXKey, string> & Record<BGMKey, string | string[]>;
 })
 export class AudioService {
   private audioContext: AudioContext;
+  
+  // Buffers para sonidos estáticos (cargados al inicio)
   private soundBuffers: SoundBuffer = {};
+
+  // CACHE DINÁMICA: Aquí guardamos los gritos descargados para no pedirlos 2 veces
+  private dynamicSoundCache = new Map<string, AudioBuffer>();
+
   private isLoaded = false;
 
-  // Propiedades para el control de la lista de reproducción (playlist)
+  // Propiedades para el control de la lista de reproducción 
   private currentSource: AudioBufferSourceNode | null = null;
   private currentPlaylistKey: BGMKey | null = null;
   private sfxGainNode: GainNode;
@@ -27,10 +32,10 @@ export class AudioService {
   private currentBGMVolume: number = this.loadBGMVolume();
   private currentsfxVolume: number = this.loadSFXVolume();
 
-  //Música para todo el programa
+  // Música para todo el programa 
   private soundFiles: SoundFileMap = {
     hit: 'assets/audio/hit.mp3',
-    out: 'assets/audio/pokemon_out.mp3', 
+    out: 'assets/audio/pokemon_out.mp3',
     return: 'assets/audio/pokemon_return.mp3',
     win: [
       'assets/audio/victory_gen_1.mp3',
@@ -41,7 +46,8 @@ export class AudioService {
     intro: [
       'assets/audio/pokemon_fire_and_red_intro.mp3',
       'assets/audio/pokemon_gen_1_intro.mp3',
-      'assets/audio/intro3.mp3'],
+      'assets/audio/intro3.mp3'
+    ],
     battleBGM: [
       'assets/audio/battle_red_fire.mp3',
       'assets/audio/battle_green_blue_gen1.mp3',
@@ -78,7 +84,7 @@ export class AudioService {
     this.loadSounds();
   }
 
-  //cargo el volumen de la musica
+
   private loadBGMVolume(): number {
     const savedVolume = localStorage.getItem('bgmVolume');
     return savedVolume ? parseFloat(savedVolume) : 0.5;
@@ -86,7 +92,29 @@ export class AudioService {
   public getBGMVolume(): number {
     return this.currentBGMVolume;
   }
-  //cargo los sonidos
+  
+  public setBGMVolume(volume: number): void {
+    volume = Math.max(0, Math.min(1, volume));
+    this.bgmVolume = volume;
+    this.currentBGMVolume = volume;
+    this.bgmGainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+    localStorage.setItem('bgmVolume', volume.toString());
+  }
+
+  public setSFXVolume(volume: number): void {
+    volume = Math.max(0, Math.min(1, volume));
+    this.currentsfxVolume = volume;
+    this.sfxGainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+    localStorage.setItem('sfxVolume', volume.toString());
+  }
+  private loadSFXVolume(): number {
+    const savedVolume = localStorage.getItem('sfxVolume');
+    return savedVolume ? parseFloat(savedVolume) : 0.8;
+  }
+  public getsfxVolume() {
+    return this.currentsfxVolume;
+  }
+
   private async loadSounds(): Promise<void> {
     const fileKeys = (
       Object.keys(this.soundFiles) as (keyof typeof this.soundFiles)[]
@@ -105,8 +133,6 @@ export class AudioService {
     }
   }
 
-
-  //decodifica el audio utilizando la api (Web Audio API)
   private async fetchAndDecodeAudio(key: string, url: string): Promise<void> {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
@@ -126,50 +152,72 @@ export class AudioService {
     });
   }
 
-  public playSound(key: keyof typeof this.soundFiles): void {
-    if (!this.isLoaded) return;
 
-    const buffer = this.soundBuffers[key];
-    if (!buffer) return;
-
+  // Método auxiliar para no repetir código al crear la fuente de audio
+  private playBuffer(buffer: AudioBuffer, destination: GainNode): void {
     const source = this.audioContext.createBufferSource();
     source.buffer = buffer;
 
     if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
+      this.audioContext.resume().catch(e => console.error(e));
     }
 
-    source.connect(this.sfxGainNode);
+    source.connect(destination);
     source.start(0);
   }
 
-  //Utilizo un sonido dinamico como el grito de los pokemon
+  public playSound(key: keyof typeof this.soundFiles): void {
+    if (!this.isLoaded) return;
+    const buffer = this.soundBuffers[key];
+    if (!buffer) return;
+    this.playBuffer(buffer, this.sfxGainNode);
+  }
+
+  // Utilizo un sonido dinamico como el grito de los pokemon CON CACHE
   public async playDynamicSound(url: string): Promise<void> {
     if (!url) return;
 
+    // 1 Verificar CACHÉ: Si ya lo tenemos, lo usamos y NO hacemos fetch a GitHub
+    if (this.dynamicSoundCache.has(url)) {
+      const cachedBuffer = this.dynamicSoundCache.get(url)!;
+      this.playBuffer(cachedBuffer, this.sfxGainNode);
+      return;
+    }
+
     try {
+      //  Si no está en caché, lo descargamos
       const response = await fetch(url);
+
+      // Si GitHub nos da 429 (Too Many Requests), salimos silenciosamente
+      if (response.status === 429) {
+        console.warn(`[Audio] Rate Limit 429 en: ${url}. Saltando sonido.`);
+        return; 
+      }
+
+      if (!response.ok) {
+         throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const arrayBuffer = await response.arrayBuffer();
 
+      //  Decodificamos
       const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
         this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
       });
 
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+      //  GUARDAMOS EN CACHÉ para la próxima vez
+      this.dynamicSoundCache.set(url, audioBuffer);
 
-      if (this.audioContext.state === 'suspended') {
-        await this.audioContext.resume();
-      }
+      //  Reproducimos
+      this.playBuffer(audioBuffer, this.sfxGainNode);
 
-      source.connect(this.sfxGainNode);
-      source.start(0);
     } catch (error) {
-      console.error('Error playing dynamic sound:', error);
+      // Capturamos EncodingError para que el juego NO se congele
+      console.warn('Error playing dynamic sound (puede ser formato corrupto o error de red):', error);
     }
   }
 
-  //paro la musica
+
   public stopBGM(): void {
     if (this.currentSource) {
       this.currentSource.stop();
@@ -179,7 +227,6 @@ export class AudioService {
     }
   }
 
-  //pongo la musica
   public playBGM(key: BGMKey): void {
     if (this.currentPlaylistKey === key) {
       return
@@ -199,7 +246,6 @@ export class AudioService {
     this.playSequentialTrack(key, initialIndex);
   }
 
-  //resume el sonido desde la ultima suspencion
   public resumeContext(): void {
     if (this.audioContext.state === 'suspended') {
       this.audioContext
@@ -211,7 +257,6 @@ export class AudioService {
     }
   }
 
-  //pone un arreglo de canciones
   private playSequentialTrack(key: BGMKey, index: number): void {
     const musicEntry = this.soundFiles[key] as string[];
     if (index < 0 || index >= musicEntry.length) return;
@@ -237,7 +282,6 @@ export class AudioService {
     }
   }
 
-  //cuando termina un track empiezo otro
   private startTrackWithOnEnded(
     key: BGMKey,
     index: number,
@@ -266,45 +310,19 @@ export class AudioService {
     this.currentTrackIndex = index;
   }
 
-  //funcion para loopear tracks
-  private startLoopingBGM(key: string): void {
-    const buffer = this.soundBuffers[key];
-    if (!buffer) return;
 
-    const source = this.audioContext.createBufferSource();
-    source.buffer = buffer;
-    source.loop = true;
-
-    if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
-    }
-
-    source.connect(this.bgmGainNode);
-    source.start(0);
-
-    this.currentSource = source;
-    this.currentPlaylistKey = key as BGMKey;
-    this.currentTrackIndex = 0;
-  }
-
-  //Uso el sonido de los pokemon
   public async playMoveSound(moveName: string): Promise<void> {
     if (!moveName) return;
 
     const apiName = moveName.toLowerCase();
-
     const fileName = this.normalizeMoveNameForFile(apiName);
-
-    //la url del sonido en la carpeta movimientos
     const soundUrl = `assets/audio/moves/${fileName}.mp3`;
 
     try {
       const response = await fetch(soundUrl);
 
       if (!response.ok) {
-        console.warn(
-          `404 Not Found: Could not load sound from URL: ${soundUrl}`
-        );
+        // Ignoramos silenciosamente si no existe el sonido del movimiento
         return;
       }
 
@@ -314,35 +332,20 @@ export class AudioService {
         this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
       });
 
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+      this.playBuffer(audioBuffer, this.sfxGainNode);
 
-      if (this.audioContext.state === 'suspended') {
-        await this.audioContext.resume();
-      }
-
-      source.connect(this.sfxGainNode);
-      source.start(0);
     } catch (error) {
-      console.warn(
-        `Error playing sound for move '${moveName}'. File missing or corrupt.`,
-        error
-      );
+       // Catch error para que no moleste en consola si falta un archivo local
     }
   }
 
-//noramilizo el nombre del movimiento para que se pueda escuchar
   private normalizeMoveNameForFile(apiName: string): string {
     let formattedName = apiName.replace(/_/g, '-');
-
     formattedName = formattedName.toLowerCase();
-
     formattedName = formattedName.replace(/\s/g, '-');
-
     return formattedName;
   }
 
-  //Utiliza cual fue la ultima canción y pone la siguiente
   private playNextTrackInSequence(key: BGMKey): void {
     if (this.currentPlaylistKey !== key) {
       return
@@ -353,34 +356,15 @@ export class AudioService {
     };
     const currentTrack = this.currentTrackIndex;
     let nextIndex: number;
-    do {
-      nextIndex = Math.floor(Math.random() * musicEntry.length);
-    } while (musicEntry.length > 1 && nextIndex === currentTrack);
+    // Evita repetir la misma canción si hay más de una opción
+    if (musicEntry.length > 1) {
+        do {
+            nextIndex = Math.floor(Math.random() * musicEntry.length);
+        } while (nextIndex === currentTrack);
+    } else {
+        nextIndex = 0;
+    }
 
     this.playSequentialTrack(key, nextIndex);
-  }
-
-  //permite elegir el volumen de la musica
-  public setBGMVolume(volume: number): void {
-    volume = Math.max(0, Math.min(1, volume));
-    this.bgmVolume = volume;
-    this.currentBGMVolume = volume;
-    this.bgmGainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
-    localStorage.setItem('bgmVolume', volume.toString());
-  }
-
-  //permite elegir el volumen de los efectos del juego
-  public setSFXVolume(volume: number): void {
-    volume = Math.max(0, Math.min(1, volume));
-    this.currentsfxVolume = volume;
-    this.sfxGainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
-    localStorage.setItem('sfxVolume', volume.toString());
-  }
-  private loadSFXVolume(): number {
-    const savedVolume = localStorage.getItem('sfxVolume');
-    return savedVolume ? parseFloat(savedVolume) : 0.8;
-  }
-  public getsfxVolume(){
-    return this.currentsfxVolume;
   }
 }

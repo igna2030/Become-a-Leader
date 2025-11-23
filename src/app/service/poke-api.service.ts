@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap, shareReplay, of, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { Items } from '../interface/items';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,33 +12,49 @@ export class PokeAPIService {
   url = 'https://pokeapi.co/api/v2/';
   private translate_service = inject(TranslateService);
 
+  // CACHE: Guarda las respuestas API para evitar la reiteracion de llamadas
+  private cache = new Map<string, Observable<any>>();
+
   private getCurrentLang(): string {
-    // Ensure we are getting the current active language, defaulting to 'en'
     return this.translate_service.currentLang || 'en';
+  }
+
+  // Se fija si se tiene la data en chache, en caso contrario se la pide a la API
+  private fetchWithCache(url: string): Observable<any> {
+    if (!this.cache.has(url)) {
+      const request$ = this.http.get<any>(url).pipe(
+        shareReplay(1) // Este operador asegura que la solicitud se comparta y se almacene en el cache
+      );
+      this.cache.set(url, request$);
+    }
+    return this.cache.get(url)!;
   }
 
   //POKEMON
   getPokemonByID(id: string): Observable<any> {
-    return this.http.get<any>(this.url + 'pokemon/' + id);
+    return this.fetchWithCache(this.url + 'pokemon/' + id);
   }
+
   //STATS
   getStatsByID(id: string): Observable<any> {
-    return this.http.get<any>(this.url + 'stat/' + id);
+    return this.fetchWithCache(this.url + 'stat/' + id);
   }
 
   //consigue los datos de los pokemon
   getPokemonDetails(idOrName: string | number): Observable<any> {
-    return this.http.get<any>(`${this.url}pokemon/${idOrName}`).pipe(
+    //se utiliza fetchWithCache para optimizar las llamadas
+    return this.fetchWithCache(`${this.url}pokemon/${idOrName}`).pipe(
       switchMap((pokemonData) => {
         const pokemonId = pokemonData.id;
 
-        //consigue los datos localizados y su grito
+        // consique datos localizados 
         return this.getLocalizedSpeciesData(pokemonId).pipe(
           map((localizedData) => {
             return {
               ...pokemonData,
               ...localizedData,
-              name: localizedData.localizedName,
+              name: localizedData.localizedName, 
+              originalName: pokemonData.name,    
               especie: localizedData.localizedName,
               cryUrl: pokemonData.cries?.latest || pokemonData.cries?.legacy,
             };
@@ -46,22 +63,17 @@ export class PokeAPIService {
       })
     );
   }
+
   //MOVES
   getMoveByName(name: string): Observable<any> {
     const currentLang = this.getCurrentLang();
+    const cleanName = name.split(':')[0].toLowerCase().replace(/\s/g, '-');
 
-    //limpian el nombre para poder utilizar en pista de sonido
-    const cleanName = name
-      .split(':')[0]
-      .toLowerCase()
-      .replace(/\s/g, '-');
-
-    return this.http.get<any>(this.url + 'move/' + cleanName).pipe(
+    return this.fetchWithCache(this.url + 'move/' + cleanName).pipe(
       map((moveData) => {
         const localizedName = moveData.names.find(
           (n: any) => n.language.name === currentLang
         );
-
         const localizedEffect = moveData.effect_entries.find(
           (e: any) => e.language.name === currentLang
         );
@@ -78,20 +90,15 @@ export class PokeAPIService {
     );
   }
 
-  //consigue el nombre localizado
   getMoveLocalizedName(name: string): Observable<string> {
-    return this.getMoveByName(name).pipe(
-      map(localizedMoveData => {
-        return localizedMoveData.name;
-      })
-    );
+    return this.getMoveByName(name).pipe(map((data) => data.name));
   }
 
-  //consigue el pokemon  localizado
+  //consigue el pokemon localizado
   private getLocalizedSpeciesData(idOrName: string | number): Observable<{ localizedName: string; flavor_text: string }> {
     const currentLang = this.getCurrentLang();
 
-    return this.http.get<any>(`${this.url}pokemon-species/${idOrName}`).pipe(
+    return this.fetchWithCache(`${this.url}pokemon-species/${idOrName}`).pipe(
       map((speciesData) => {
         const localizedNameEntry = speciesData.names.find(
           (name: any) => name.language.name === currentLang
@@ -114,9 +121,8 @@ export class PokeAPIService {
   //consigue el tipo del pokemon localizado
   getLocalizedTypeName(typeName: string): Observable<string> {
     const currentLang = this.getCurrentLang();
-
-    return this.http.get<any>(`${this.url}type/${typeName}`).pipe(
-      map(typeData => {
+    return this.fetchWithCache(`${this.url}type/${typeName}`).pipe(
+      map((typeData) => {
         const localizedNameEntry = typeData.names.find(
           (name: any) => name.language.name === currentLang
         );
@@ -124,40 +130,66 @@ export class PokeAPIService {
       })
     );
   }
-  //consigue el nombre del pokemon localizado
+
   getPokemonLocalizedName(name: string): Observable<string> {
-    return this.getLocalizedSpeciesData(name).pipe(
-      map(data => data.localizedName)
-    );
+    return this.getLocalizedSpeciesData(name).pipe(map((data) => data.localizedName));
   }
 
-  //Transforma la letra así es mas visible
   private transformarPrimeraLetra(nombre: string): string {
     if (!nombre) return nombre;
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
   }
+
   //SPRITES
   getSpriteByID(id: string): Observable<any> {
-    return this.http
-      .get<any>(this.url + 'pokemon/' + id)
-      .pipe(map((data: any) => data?.sprites));
-  }
-  //Lista de pokemon
-  getPokemonList(limit: number = 20, offset: number = 0): Observable<any> {
-    return this.http.get<any>(
-      `${this.url}pokemon?limit=${limit}&offset=${offset}`
+    return this.fetchWithCache(this.url + 'pokemon/' + id).pipe(
+      map((data: any) => data?.sprites)
     );
   }
-  // Especie de pokemon:
-  getPokemonSpecies(idOrName: string | number): Observable<any> {
-    return this.http.get<any>(`${this.url}pokemon-species/${idOrName}`);
-  }
-  // Tipo de pokemon:
-  getTypeDetails(idOrName: string | number): Observable<any> {
-    return this.http.get<any>(`${this.url}type/${idOrName}`);
+
+  //Lista de pokemon 
+  getPokemonList(limit: number = 20, offset: number = 0): Observable<any> {
+    return this.http.get<any>(`${this.url}pokemon?limit=${limit}&offset=${offset}`);
   }
 
-  //consigue el nombre original del pokemon
+
+  getItemsById(id: number): Observable<Items> {
+    return this.fetchWithCache(this.url + 'item/' + id).pipe(
+      map((itemData: any) => {
+        const currentLang = this.getCurrentLang();
+        
+        const localizedName = itemData.names.find(
+          (n: any) => n.language.name === currentLang
+        );
+        
+        const descriptionEntry = itemData.flavor_text_entries.find(
+          (entry: any) => entry.language.name === currentLang
+        );
+
+
+        const sprite = itemData.sprites ? itemData.sprites.default : null;
+
+        const item: Items = {
+          name: itemData.name,
+          category: itemData.category,
+          localizedName: localizedName ? localizedName.name : itemData.name,
+          description: descriptionEntry
+            ? descriptionEntry.text.replace(/[\n\r\f]/g, ' ')
+            : 'No description found.',
+          sprite: sprite
+        };
+        return item;
+      })
+    );
+  }
+
+  getItemsSprites(id: number): Observable<any> {
+    return this.fetchWithCache(this.url + 'item/' + id).pipe(
+      map((data: any) => data?.sprites)
+    );
+  }
+
+    //consigue el nombre original del pokemon
   getPokemonOriginalName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}pokemon-species/${localizedName}`).pipe(
       map(speciesData => {
@@ -168,52 +200,12 @@ export class PokeAPIService {
       })
     );
   }
-
-  //consigue el tipo original
+    //consigue el tipo original
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(
       map(typeData => {
         return typeData.name;
       })
     );
-  }
-  //consigue todos los items
-  getItems(): Observable<Items> {
-    return this.http.get<Items>(this.url + "item");
-  }
-
-  //consigue los items y traduce su nombre y descripcion
-  getItemsById(id: number): Observable<Items> {
-    return this.http.get<any>(this.url + "item/" + id).pipe(
-      switchMap((itemData: any) => {
-        return this.getItemsSprites(id).pipe(
-          map((spriteData: any) => {
-            const currentLang = this.getCurrentLang();
-            const localizedName = itemData.names.find(
-              (n: any) => n.language.name === currentLang
-            );
-            const descriptionEntry = itemData.flavor_text_entries.find(
-              (entry: any) => entry.language.name === currentLang
-            );
-            const item: Items = {
-              name: itemData.name,
-              category: itemData.category,
-              localizedName: localizedName ? localizedName.name : itemData.name,
-              description: descriptionEntry
-                ? descriptionEntry.text.replace(/[\n\r\f]/g, ' ')
-                : 'No description found.',
-              sprite: spriteData.default
-            };
-            return item;
-          })
-        );
-      })
-    );
-  }
-  //consigue los sprites de los items
-  getItemsSprites(id: number): Observable<any> {
-    return this.http
-      .get<any>(this.url + 'item/' + id)
-      .pipe(map((data: any) => data?.sprites));
   }
 }
