@@ -31,6 +31,7 @@ export class AudioService {
   private sfxVolume: number = 0.5;
   private currentBGMVolume: number = this.loadBGMVolume();
   private currentsfxVolume: number = this.loadSFXVolume();
+  private readonly CACHE_NAME = 'pokemon-audio-cache-v1';
 
   // Música para todo el programa 
   private soundFiles: SoundFileMap = {
@@ -174,10 +175,28 @@ export class AudioService {
   }
 
   // Utilizo un sonido dinamico como el grito de los pokemon CON CACHE
-  public async playDynamicSound(url: string): Promise<void> {
-    if (!url) return;
+  // Modifica el método para que acepte ID o URL, pero usaremos jsDelivr
+  public async playDynamicSound(input: string): Promise<void> {
+    if (!input) return;
 
-    // 1 Verificar CACHÉ: Si ya lo tenemos, lo usamos y NO hacemos fetch a GitHub
+    let url = input;
+
+    // LÓGICA DE CORRECCIÓN AUTOMÁTICA:
+    // Si recibimos una URL vieja de GitHub Raw, la transformamos a jsDelivr
+    if (input.includes('raw.githubusercontent.com')) {
+       url = input.replace(
+         'https://raw.githubusercontent.com/PokeAPI/cries/main', 
+         'https://cdn.jsdelivr.net/gh/PokeAPI/cries@main'
+       );
+    } 
+    // Si recibimos solo el ID (ej: "384"), construimos la URL buena directamente
+    else if (!input.includes('http')) {
+       url = `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${input}.ogg`;
+    }
+
+    // --- A PARTIR DE AQUÍ ES TU LÓGICA DE CACHÉ EXISTENTE ---
+    
+    // 1. Verificar CACHÉ DE MEMORIA
     if (this.dynamicSoundCache.has(url)) {
       const cachedBuffer = this.dynamicSoundCache.get(url)!;
       this.playBuffer(cachedBuffer, this.sfxGainNode);
@@ -185,35 +204,30 @@ export class AudioService {
     }
 
     try {
-      //  Si no está en caché, lo descargamos
-      const response = await fetch(url);
+      // 2. Verificar CACHÉ DE NAVEGADOR (Persistente)
+      const cache = await caches.open(this.CACHE_NAME); // Asegúrate de tener definido CACHE_NAME
+      let response = await cache.match(url);
 
-      // Si GitHub nos da 429 (Too Many Requests), salimos silenciosamente
-      if (response.status === 429) {
-        console.warn(`[Audio] Rate Limit 429 en: ${url}. Saltando sonido.`);
-        return; 
-      }
+      if (!response) {
+        // 3. NETWORK (Ahora usando jsDelivr, ¡no te banearán!)
+        response = await fetch(url);
 
-      if (!response.ok) {
-         throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) throw new Error(`Status: ${response.status}`);
+        
+        // Guardar en caché del navegador
+        cache.put(url, response.clone());
       }
 
       const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
 
-      //  Decodificamos
-      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
-        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
-      });
-
-      //  GUARDAMOS EN CACHÉ para la próxima vez
+      // Guardar en caché de memoria
       this.dynamicSoundCache.set(url, audioBuffer);
-
-      //  Reproducimos
+      
       this.playBuffer(audioBuffer, this.sfxGainNode);
 
     } catch (error) {
-      // Capturamos EncodingError para que el juego NO se congele
-      console.warn('Error playing dynamic sound (puede ser formato corrupto o error de red):', error);
+      console.warn('Error reproduciendo sonido:', error);
     }
   }
 

@@ -36,7 +36,7 @@ export class BatallaComponent {
 
   bgmVolume = this.audio_service.getBGMVolume();
   sfxVolume = this.audio_service.getsfxVolume();
-  
+
   //pelea con jefe
   isBossBattle: boolean = false;
   bossStatMultiplier: number = 2;   // Para Vida y Velocidad
@@ -44,7 +44,7 @@ export class BatallaComponent {
   bossDefenseMultiplier = 1.5;
   turnosParaBoss: number = 5;
   duelosGanados: number = 0;
-  
+
   //interfaces
   idPartida: string = '';
   partida: Partida | null = null;
@@ -54,17 +54,17 @@ export class BatallaComponent {
   pokemonRival?: Pokemon | null = null;
   movimientosJugador: Move[] = [];
   movimientosRival: Move[] = [];
-  
+
   //mensajes
   mensajeBatalla: string = '';
   resultado: string = '';
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-  
+
   //lista de pokemon debilitados
   pokemonDebilitados: Pokemon[] = [];
   originalEquipoJugador: Pokemon[] = [];
-  
+
   //inventario
   mostrarSeleccionRevivir: boolean = false;
   mostrarInventario: boolean = false;
@@ -107,7 +107,7 @@ export class BatallaComponent {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     // 1. Encuentra el ID de la partida
     this.idPartida = localStorage.getItem('token')!;
 
@@ -130,7 +130,7 @@ ngOnInit(): void {
           if (this.jugador.items && this.jugador.items.length > 0) {
             console.log('Traduciendo items guardados...');
             // Esperamos a que todos los items viejos se traduzcan al idioma actual
-            const promesasTraduccion = this.jugador.items.map(item => 
+            const promesasTraduccion = this.jugador.items.map(item =>
               this.actualizarIdiomaItemExistente(item)
             );
             await Promise.all(promesasTraduccion);
@@ -141,24 +141,24 @@ ngOnInit(): void {
 
           //  GENERAR Y AGREGAR NUEVO ITEM RANDOM 
           const idNuevoItem = this.getRandomItem();
-          
+
           // Pedimos el item a la PokeAPI
           this.pokeapi.getItemsById(idNuevoItem).subscribe({
             next: async (nuevoItem: Items) => {
-              
+
               // Traducimos el NUEVO item antes de meterlo a la bolsa
               await this.localizeItem(nuevoItem, idNuevoItem);
-              
+
               // Lo agregamos al inventario
               this.jugador?.items?.push(nuevoItem);
               console.log('Nuevo item random agregado y traducido:', nuevoItem.localizedName);
-              
+
               // Actualizamos logs
               console.log('Ítems totales:', this.jugador!.items!.length);
 
               // Configuramos stats de partida
               this.duelosGanados = (this.partida as any).duelosGanados || 0;
-              
+
               // INICIAR BATALLA 
               // Solo iniciamos aquí, asegurando que ya tenemos items viejos traducidos + item nuevo traducido
               this.iniciarBatalla();
@@ -192,21 +192,18 @@ ngOnInit(): void {
   }
 
   obtenerUrlSprites(pokemon: Pokemon): Promise<{ front_default: string, back_default: string }> {
-    return new Promise((resolve, reject) => {
-      this.pokeapi.getSpriteByID(pokemon.id).subscribe({
-        next: (data) => {
-          resolve({
-            front_default: data.front_default,
-            back_default: data.back_default
-          });
-        },
-        error: (error: Error) => {
-          reject(this.translate.instant('batalla.errorSpriteFetch'));
-        }
+    return new Promise((resolve) => {
+      // CONSTRUCCIÓN MANUAL DE URLS SEGURAS (Bypass de API y GitHub Raw)
+      // Esto asegura que incluso los pokemons viejos usen la CDN nueva
+      const safeFront = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${pokemon.id}.png`;
+      const safeBack = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/${pokemon.id}.png`;
+
+      resolve({
+        front_default: safeFront,
+        back_default: safeBack
       });
     });
   }
-
   async asignarSprites(equipo: Pokemon[] | undefined) {
     for (const element of equipo || []) {
       try {
@@ -222,33 +219,31 @@ ngOnInit(): void {
 
 
   // Agrega este método en tu clase BatallaComponent
-async localizeItem(item: Items, id: number): Promise<void> {
-  try {
-    // Obtenemos el idioma actual (por defecto 'es' si no existe)
-    const language = this.translate.currentLang || 'es';
+  async localizeItem(item: Items, id: number): Promise<void> {
+    try {
+      const language = this.translate.currentLang || 'es';
 
-    // Hacemos una petición directa a la API para obtener los detalles crudos (nombres y descripciones en todos los idiomas)
-    // Nota: Usamos fetch aquí para asegurar que obtenemos la data cruda sin depender de cómo esté configurado tu servicio
-    const response = await fetch(`https://pokeapi.co/api/v2/item/${id}/`);
-    const data = await response.json();
+      // (Aseguramos que el nombre esté en minúsculas para la URL)
+      const safeItemSprite = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${item.name.toLowerCase()}.png`;
+      item.sprite = safeItemSprite;
 
-    // 1. Buscar la descripción en el idioma actual
-    const flavorTextEntry = data.flavor_text_entries.find((entry: any) => entry.language.name === language);
-    if (flavorTextEntry) {
-      // Usamos tu función limpiarDescripcion para formatearlo bien
-      item.description = this.limpiarDescripcion(flavorTextEntry.text);
+      const response = await fetch(`https://pokeapi.co/api/v2/item/${id}/`);
+      const data = await response.json();
+
+      const flavorTextEntry = data.flavor_text_entries.find((entry: any) => entry.language.name === language);
+      if (flavorTextEntry) {
+        item.description = this.limpiarDescripcion(flavorTextEntry.text);
+      }
+
+      const nameEntry = data.names.find((entry: any) => entry.language.name === language);
+      if (nameEntry) {
+        item.localizedName = nameEntry.name;
+      }
+
+    } catch (error) {
+      console.error('Error al localizar el item antes de guardar:', error);
     }
-
-    // 2. Buscar el nombre localizado (ej: "Potion" -> "Poción")
-    const nameEntry = data.names.find((entry: any) => entry.language.name === language);
-    if (nameEntry) {
-      item.localizedName = nameEntry.name;
-    }
-
-  } catch (error) {
-    console.error('Error al localizar el item antes de guardar:', error);
   }
-}
 
   //esta funcion sirve para localizar los pokemon segun el currentLang()
   async localizePokemon(pokemon: Pokemon): Promise<void> {
@@ -609,6 +604,21 @@ async localizeItem(item: Items, id: number): Promise<void> {
   //esta funcion hace que el rival utilize un movimiento de los 4 que tiene
   generarMovimientoRival(): Move {
     const movimientosPosibles = this.pokemonRival?.movimientos || [];
+    //Si no tiene movimientos validos se utiliza Forcejeo (Struggle)
+    if (movimientosPosibles.length === 0) {
+      console.log(this.translate.instant('batalla.error.invalidMove'));
+      return {
+        nombre: 'Struggle',
+        originalName: 'struggle',
+        tipo: 'normal',
+        clase: 'Fisico',
+        potencia: 50,
+        precision: 100,
+        pp: 1,
+        localizedName: 'Forcejeo', // Nombre seguro en español
+        localizedtype: 'Normal'
+      };
+    }
     //aca se utiliza la funcion math.random para utilizar uno de los 4 movimientos posibles
     const indiceAleatorio = Math.floor(Math.random() * movimientosPosibles.length);
     return movimientosPosibles[indiceAleatorio];
@@ -672,13 +682,15 @@ async localizeItem(item: Items, id: number): Promise<void> {
   async calcularAtaque(movimiento: Move, atacante: Pokemon, defensor: Pokemon) {
     console.log(`${this.transformarPrimeraLetra(atacante.especie)} ${this.translate.instant('batalla.status.performingMove')} ${this.transformarPrimeraLetra(movimiento.nombre)}`);
     const factor = this.calcularEfectividad(movimiento.tipo, defensor.tipos);
+
     
+
     this.audio_service.resumeContext();
 
     // SI ES JEFE, MANTENEMOS MÚSICA DE JEFE. SI NO, MÚSICA NORMAL.
     const musicaActual = this.isBossBattle ? 'bossBattle' : 'battleBGM';
     this.audio_service.playBGM(musicaActual);
-    
+
     this.pokemonAtacanteId = atacante.id;
     await this.delay(600);
     if (movimiento.originalName) {
@@ -797,8 +809,7 @@ async localizeItem(item: Items, id: number): Promise<void> {
 
 
       let id = this.getRandomItem();
-      if(this.isBossBattle == true)
-      {
+      if (this.isBossBattle == true) {
         //es la sacred ash, mejor item curativo del juego
         id = 44;
       }
@@ -863,7 +874,8 @@ async localizeItem(item: Items, id: number): Promise<void> {
       this.ps.eliminarPartida(partidaId).subscribe({
         next: (response) => {
           console.log(this.translate.instant('log.gameDeleted'), response);
-          
+          this.router.navigate(['/menu']);
+
         },
         error: (error: Error) => {
           console.error(this.translate.instant('log.gameDeleteError'), error);
@@ -999,6 +1011,7 @@ async localizeItem(item: Items, id: number): Promise<void> {
   }
 
   async ejecutarRevivir(pokemonIndex: number): Promise<void> {
+    console.log('Idioma actual:', this.translate.currentLang);
     const itemUsado = this.itemDeRevivirSeleccionado;
     const reviveItemIndex = this.indiceItemDeRevivir;
     this.mostrarSeleccionRevivir = false;
@@ -1220,34 +1233,34 @@ async localizeItem(item: Items, id: number): Promise<void> {
   }
 
   // Actualiza un item existente usando su nombre para buscar la traducción
-async actualizarIdiomaItemExistente(item: Items): Promise<void> {
-  try {
-    const idiomaActual = this.translate.currentLang || 'es';
-    
-    // Usamos el nombre (ej: 'potion') para buscar en la API
-    const response = await fetch(`https://pokeapi.co/api/v2/item/${item.name}/`);
-    const data = await response.json();
+  async actualizarIdiomaItemExistente(item: Items): Promise<void> {
+    try {
+      const idiomaActual = this.translate.currentLang || 'es';
 
-    // 1. Actualizar Nombre Localizado
-    const nombreTraducido = data.names.find((n: any) => n.language.name === idiomaActual);
-    if (nombreTraducido) {
-      item.localizedName = nombreTraducido.name;
-    }
-
-    // 2. Actualizar Descripción
-    const descripcionTraducida = data.flavor_text_entries.find((t: any) => t.language.name === idiomaActual);
-    if (descripcionTraducida) {
-      item.description = this.limpiarDescripcion(descripcionTraducida.text);
-    } else {
-      // Fallback a inglés si no hay español
-      const descripcionEn = data.flavor_text_entries.find((t: any) => t.language.name === 'en');
-      if (descripcionEn) {
-        item.description = this.limpiarDescripcion(descripcionEn.text);
+      if (item.name) {
+        item.sprite = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${item.name.toLowerCase()}.png`;
       }
+
+      const response = await fetch(`https://pokeapi.co/api/v2/item/${item.name}/`);
+      const data = await response.json();
+
+      const nombreTraducido = data.names.find((n: any) => n.language.name === idiomaActual);
+      if (nombreTraducido) {
+        item.localizedName = nombreTraducido.name;
+      }
+
+      const descripcionTraducida = data.flavor_text_entries.find((t: any) => t.language.name === idiomaActual);
+      if (descripcionTraducida) {
+        item.description = this.limpiarDescripcion(descripcionTraducida.text);
+      } else {
+        const descripcionEn = data.flavor_text_entries.find((t: any) => t.language.name === 'en');
+        if (descripcionEn) {
+          item.description = this.limpiarDescripcion(descripcionEn.text);
+        }
+      }
+    } catch (error) {
+      console.error(`Error actualizando idioma para ${item.name}:`, error);
     }
-  } catch (error) {
-    console.error(`Error actualizando idioma para ${item.name}:`, error);
   }
-}
 
 }

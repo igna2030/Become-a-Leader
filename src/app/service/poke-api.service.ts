@@ -19,7 +19,7 @@ export class PokeAPIService {
     return this.translate_service.currentLang || 'en';
   }
 
-  // Se fija si se tiene la data en chache, en caso contrario se la pide a la API
+  // Se fija si se tiene la data en cache, en caso contrario se la pide a la API
   private fetchWithCache(url: string): Observable<any> {
     if (!this.cache.has(url)) {
       const request$ = this.http.get<any>(url).pipe(
@@ -50,13 +50,21 @@ export class PokeAPIService {
         // consique datos localizados 
         return this.getLocalizedSpeciesData(pokemonId).pipe(
           map((localizedData) => {
+            
+            const safeCryUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${pokemonId}.ogg`;
+            const safeSpriteUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${pokemonId}.png`;
+
             return {
               ...pokemonData,
               ...localizedData,
               name: localizedData.localizedName, 
               originalName: pokemonData.name,    
               especie: localizedData.localizedName,
-              cryUrl: pokemonData.cries?.latest || pokemonData.cries?.legacy,
+              cryUrl: safeCryUrl, 
+              sprites: {
+                ...pokemonData.sprites,
+                front_default: safeSpriteUrl // Sobreescribimos la imagen principal
+              }
             };
           })
         );
@@ -140,10 +148,17 @@ export class PokeAPIService {
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
   }
 
-  //SPRITES
+  //SPRITES (Corrección aplicada)
   getSpriteByID(id: string): Observable<any> {
     return this.fetchWithCache(this.url + 'pokemon/' + id).pipe(
-      map((data: any) => data?.sprites)
+      map((data: any) => {
+        // Inyectamos la URL segura en el objeto de sprites
+        const safeUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${id}.png`;
+        return {
+           ...data?.sprites,
+           front_default: safeUrl
+        };
+      })
     );
   }
 
@@ -153,6 +168,7 @@ export class PokeAPIService {
   }
 
 
+  // --- AQUI ESTABA EL ERROR DE LOS ITEMS ---
   getItemsById(id: number): Observable<Items> {
     return this.fetchWithCache(this.url + 'item/' + id).pipe(
       map((itemData: any) => {
@@ -166,8 +182,8 @@ export class PokeAPIService {
           (entry: any) => entry.language.name === currentLang
         );
 
-
-        const sprite = itemData.sprites ? itemData.sprites.default : null;
+        // Los items en el repo de sprites usan el nombre en inglés (itemData.name)
+        const safeItemSprite = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${itemData.name}.png`;
 
         const item: Items = {
           name: itemData.name,
@@ -176,7 +192,7 @@ export class PokeAPIService {
           description: descriptionEntry
             ? descriptionEntry.text.replace(/[\n\r\f]/g, ' ')
             : 'No description found.',
-          sprite: sprite
+          sprite: safeItemSprite // Usamos la URL segura en lugar de itemData.sprites.default
         };
         return item;
       })
@@ -185,7 +201,14 @@ export class PokeAPIService {
 
   getItemsSprites(id: number): Observable<any> {
     return this.fetchWithCache(this.url + 'item/' + id).pipe(
-      map((data: any) => data?.sprites)
+      map((data: any) => {
+         // Fix para llamadas directas de sprites de items
+         const safeUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${data.name}.png`;
+         return {
+            ...data?.sprites,
+            default: safeUrl
+         };
+      })
     );
   }
 
