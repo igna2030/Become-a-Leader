@@ -42,7 +42,7 @@ export class BatallaComponent {
   bossStatMultiplier: number = 2;   // Para Vida y Velocidad
   bossDamageMultiplier: number = 2; // Para Ataque y Ataque Especial
   bossDefenseMultiplier = 1.5;
-  turnosParaBoss: number = 5;
+  turnosParaBoss: number = 2;
   duelosGanados: number = 0;
 
   //interfaces
@@ -284,10 +284,10 @@ export class BatallaComponent {
   async iniciarBatalla() {
     console.log(this.translate.instant('batalla.status.loadingBattle'));
 
-    // 1. COMPROBAR SI TOCA JEFE PRIMERO
+    //  COMPROBAR SI TOCA JEFE PRIMERO
     this.checkBossBattle();
 
-    // 2. ELEGIR MÚSICA SEGÚN EL RESULTADO
+    //  ELEGIR MÚSICA SEGÚN EL RESULTADO
     this.audio_service.resumeContext();
     if (this.isBossBattle) {
       console.log('Reproduciendo música de JEFE');
@@ -328,7 +328,7 @@ export class BatallaComponent {
   }
 
   checkBossBattle(): boolean {
-    //cada 5 duelos hay una pelea de jefe
+    //cada 2 duelos hay una pelea de jefe
     if (this.duelosGanados > 0 && this.duelosGanados % this.turnosParaBoss === 0) {
       this.isBossBattle = true;
       console.log(this.translate.instant('batalla.status.bossBattle'));

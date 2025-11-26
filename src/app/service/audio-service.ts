@@ -12,7 +12,7 @@ type SoundFileMap = Record<SFXKey, string> & Record<BGMKey, string | string[]>;
 })
 export class AudioService {
   private audioContext: AudioContext;
-  
+
   // Buffers para sonidos estáticos (cargados al inicio)
   private soundBuffers: SoundBuffer = {};
 
@@ -27,10 +27,10 @@ export class AudioService {
   private sfxGainNode: GainNode;
   private bgmGainNode: GainNode;
   private currentTrackIndex: number = -1;
-  private bgmVolume: number = 0.5;
-  private sfxVolume: number = 0.5;
   private currentBGMVolume: number = this.loadBGMVolume();
   private currentsfxVolume: number = this.loadSFXVolume();
+  private bgmVolume: number = this.loadVolume('bgmVolume', 0.5);
+  private sfxVolume: number = this.loadVolume('sfxVolume', 0.8);
   private readonly CACHE_NAME = 'pokemon-audio-cache-v1';
 
   // Música para todo el programa 
@@ -79,12 +79,17 @@ export class AudioService {
     this.sfxGainNode.connect(this.audioContext.destination);
 
     this.bgmGainNode.gain.setValueAtTime(this.bgmVolume, this.audioContext.currentTime);
-    this.sfxGainNode.gain.setValueAtTime(this.currentsfxVolume, this.audioContext.currentTime);
+    this.sfxGainNode.gain.setValueAtTime(this.sfxVolume, this.audioContext.currentTime);
     this.sfxVolume = this.currentsfxVolume;
 
     this.loadSounds();
   }
 
+
+  private loadVolume(key: string, defaultValue: number): number {
+    const savedVolume = localStorage.getItem(key);
+    return savedVolume ? parseFloat(savedVolume) : defaultValue;
+  }
 
   private loadBGMVolume(): number {
     const savedVolume = localStorage.getItem('bgmVolume');
@@ -93,7 +98,7 @@ export class AudioService {
   public getBGMVolume(): number {
     return this.currentBGMVolume;
   }
-  
+
   public setBGMVolume(volume: number): void {
     volume = Math.max(0, Math.min(1, volume));
     this.bgmVolume = volume;
@@ -181,22 +186,19 @@ export class AudioService {
 
     let url = input;
 
-    // LÓGICA DE CORRECCIÓN AUTOMÁTICA:
     // Si recibimos una URL vieja de GitHub Raw, la transformamos a jsDelivr
     if (input.includes('raw.githubusercontent.com')) {
-       url = input.replace(
-         'https://raw.githubusercontent.com/PokeAPI/cries/main', 
-         'https://cdn.jsdelivr.net/gh/PokeAPI/cries@main'
-       );
-    } 
+      url = input.replace(
+        'https://raw.githubusercontent.com/PokeAPI/cries/main',
+        'https://cdn.jsdelivr.net/gh/PokeAPI/cries@main'
+      );
+    }
     // Si recibimos solo el ID (ej: "384"), construimos la URL buena directamente
     else if (!input.includes('http')) {
-       url = `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${input}.ogg`;
+      url = `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${input}.ogg`;
     }
 
-    // --- A PARTIR DE AQUÍ ES TU LÓGICA DE CACHÉ EXISTENTE ---
-    
-    // 1. Verificar CACHÉ DE MEMORIA
+
     if (this.dynamicSoundCache.has(url)) {
       const cachedBuffer = this.dynamicSoundCache.get(url)!;
       this.playBuffer(cachedBuffer, this.sfxGainNode);
@@ -204,16 +206,14 @@ export class AudioService {
     }
 
     try {
-      // 2. Verificar CACHÉ DE NAVEGADOR (Persistente)
       const cache = await caches.open(this.CACHE_NAME); // Asegúrate de tener definido CACHE_NAME
       let response = await cache.match(url);
 
       if (!response) {
-        // 3. NETWORK (Ahora usando jsDelivr, ¡no te banearán!)
         response = await fetch(url);
 
         if (!response.ok) throw new Error(`Status: ${response.status}`);
-        
+
         // Guardar en caché del navegador
         cache.put(url, response.clone());
       }
@@ -223,7 +223,7 @@ export class AudioService {
 
       // Guardar en caché de memoria
       this.dynamicSoundCache.set(url, audioBuffer);
-      
+
       this.playBuffer(audioBuffer, this.sfxGainNode);
 
     } catch (error) {
@@ -325,33 +325,7 @@ export class AudioService {
   }
 
 
-  public async playMoveSound(moveName: string): Promise<void> {
-    if (!moveName) return;
 
-    const apiName = moveName.toLowerCase();
-    const fileName = this.normalizeMoveNameForFile(apiName);
-    const soundUrl = `assets/audio/moves/${fileName}.mp3`;
-
-    try {
-      const response = await fetch(soundUrl);
-
-      if (!response.ok) {
-        // Ignoramos silenciosamente si no existe el sonido del movimiento
-        return;
-      }
-
-      const arrayBuffer = await response.arrayBuffer();
-
-      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
-        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
-      });
-
-      this.playBuffer(audioBuffer, this.sfxGainNode);
-
-    } catch (error) {
-       // Catch error para que no moleste en consola si falta un archivo local
-    }
-  }
 
   private normalizeMoveNameForFile(apiName: string): string {
     let formattedName = apiName.replace(/_/g, '-');
@@ -372,13 +346,56 @@ export class AudioService {
     let nextIndex: number;
     // Evita repetir la misma canción si hay más de una opción
     if (musicEntry.length > 1) {
-        do {
-            nextIndex = Math.floor(Math.random() * musicEntry.length);
-        } while (nextIndex === currentTrack);
+      do {
+        nextIndex = Math.floor(Math.random() * musicEntry.length);
+      } while (nextIndex === currentTrack);
     } else {
-        nextIndex = 0;
+      nextIndex = 0;
     }
 
     this.playSequentialTrack(key, nextIndex);
+  }
+
+
+  private playBufferAndWait(buffer: AudioBuffer, destination: GainNode): Promise<void> {
+    return new Promise((resolve) => {
+      const source = this.audioContext.createBufferSource();
+      source.buffer = buffer;
+      source.connect(destination);
+      source.onended = () => {
+        resolve();
+      };
+      source.start(0);
+    });
+  }
+
+  public async playMoveSound(moveName: string): Promise<void> {
+    if (!moveName) return Promise.resolve();
+    const apiName = moveName.toLowerCase();
+    const fileName = this.normalizeMoveNameForFile(apiName);
+    const soundUrl = `assets/audio/moves/${fileName}.mp3`;
+
+    try {
+      const response = await fetch(soundUrl);
+
+      if (!response.ok) {
+        // Si no existe el sonido, resolvemos inmediatamente para no trabar el juego
+        return Promise.resolve();
+      }
+
+      const arrayBuffer = await response.arrayBuffer();
+      
+      // Decodificamos el audio
+      const audioBuffer: AudioBuffer = await new Promise((resolve, reject) => {
+        this.audioContext.decodeAudioData(arrayBuffer, resolve, reject);
+      });
+
+      // Llamamos al método que ESPERA a que termine el sonido
+      return this.playBufferAndWait(audioBuffer, this.sfxGainNode);
+
+    } catch (error) {
+       // Si hay error, resolvemos la promesa para que el juego continúe
+       return Promise.resolve();
+    }
   }
 }

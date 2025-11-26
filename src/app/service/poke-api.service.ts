@@ -50,17 +50,17 @@ export class PokeAPIService {
         // consique datos localizados 
         return this.getLocalizedSpeciesData(pokemonId).pipe(
           map((localizedData) => {
-            
+
             const safeCryUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${pokemonId}.ogg`;
             const safeSpriteUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${pokemonId}.png`;
 
             return {
               ...pokemonData,
               ...localizedData,
-              name: localizedData.localizedName, 
-              originalName: pokemonData.name,    
+              name: localizedData.localizedName,
+              originalName: pokemonData.name,
               especie: localizedData.localizedName,
-              cryUrl: safeCryUrl, 
+              cryUrl: safeCryUrl,
               sprites: {
                 ...pokemonData.sprites,
                 front_default: safeSpriteUrl // Sobreescribimos la imagen principal
@@ -72,6 +72,7 @@ export class PokeAPIService {
     );
   }
 
+
   //MOVES
   getMoveByName(name: string): Observable<any> {
     const currentLang = this.getCurrentLang();
@@ -79,6 +80,17 @@ export class PokeAPIService {
 
     return this.fetchWithCache(this.url + 'move/' + cleanName).pipe(
       map((moveData) => {
+
+        const allowedGenerations = [
+          'generation-i',
+          'generation-ii',
+          'generation-iii',
+          'generation-iv',
+          'generation-v',
+          'generation-vi',
+          'generation-vii'
+        ];
+
         const localizedName = moveData.names.find(
           (n: any) => n.language.name === currentLang
         );
@@ -148,15 +160,15 @@ export class PokeAPIService {
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
   }
 
-  //SPRITES (Corrección aplicada)
+  //SPRITES 
   getSpriteByID(id: string): Observable<any> {
     return this.fetchWithCache(this.url + 'pokemon/' + id).pipe(
       map((data: any) => {
         // Inyectamos la URL segura en el objeto de sprites
         const safeUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${id}.png`;
         return {
-           ...data?.sprites,
-           front_default: safeUrl
+          ...data?.sprites,
+          front_default: safeUrl
         };
       })
     );
@@ -168,20 +180,18 @@ export class PokeAPIService {
   }
 
 
-  // --- AQUI ESTABA EL ERROR DE LOS ITEMS ---
   getItemsById(id: number): Observable<Items> {
     return this.fetchWithCache(this.url + 'item/' + id).pipe(
       map((itemData: any) => {
         const currentLang = this.getCurrentLang();
-        
+
         const localizedName = itemData.names.find(
           (n: any) => n.language.name === currentLang
         );
-        
+
         const descriptionEntry = itemData.flavor_text_entries.find(
           (entry: any) => entry.language.name === currentLang
         );
-
         // Los items en el repo de sprites usan el nombre en inglés (itemData.name)
         const safeItemSprite = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${itemData.name}.png`;
 
@@ -202,17 +212,17 @@ export class PokeAPIService {
   getItemsSprites(id: number): Observable<any> {
     return this.fetchWithCache(this.url + 'item/' + id).pipe(
       map((data: any) => {
-         // Fix para llamadas directas de sprites de items
-         const safeUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${data.name}.png`;
-         return {
-            ...data?.sprites,
-            default: safeUrl
-         };
+        // Fix para llamadas directas de sprites de items
+        const safeUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/${data.name}.png`;
+        return {
+          ...data?.sprites,
+          default: safeUrl
+        };
       })
     );
   }
 
-    //consigue el nombre original del pokemon
+  //consigue el nombre original del pokemon
   getPokemonOriginalName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}pokemon-species/${localizedName}`).pipe(
       map(speciesData => {
@@ -223,7 +233,7 @@ export class PokeAPIService {
       })
     );
   }
-    //consigue el tipo original
+  //consigue el tipo original
   getOriginalTypeName(localizedName: string): Observable<string> {
     return this.http.get<any>(`${this.url}type/${localizedName}`).pipe(
       map(typeData => {
