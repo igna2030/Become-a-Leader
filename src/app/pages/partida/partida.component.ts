@@ -8,11 +8,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-partida',
-  standalone: true,
-  imports: [RouterModule, CommonModule, TranslateModule,AppAudio], 
-  templateUrl: './partida.component.html',
-  styleUrl: './partida.component.css'
+    selector: 'app-partida',
+    imports: [RouterModule, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './partida.component.html',
+    styleUrl: './partida.component.css'
 })
 export class PartidaComponent implements OnInit, OnDestroy {
   // Estado de la UI

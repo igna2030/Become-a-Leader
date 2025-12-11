@@ -10,11 +10,10 @@ import { CommonModule } from '@angular/common';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-pokemon-detail',
-  standalone: true,
-  imports: [TranslateModule, CommonModule,AppAudio],
-  templateUrl: './pokemon-detail.component.html',
-  styleUrls: ['./pokemon-detail.component.css']
+    selector: 'app-pokemon-detail',
+    imports: [TranslateModule, CommonModule, AppAudio],
+    templateUrl: './pokemon-detail.component.html',
+    styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
   // Variables

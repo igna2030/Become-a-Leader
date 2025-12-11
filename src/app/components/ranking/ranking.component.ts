@@ -9,11 +9,10 @@ import { AudioService } from '../../service/audio-service';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-ranking',
-  standalone: true,
-  imports: [CommonModule, TranslateModule,AppAudio],
-  templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css']
+    selector: 'app-ranking',
+    imports: [CommonModule, TranslateModule, AppAudio],
+    templateUrl: './ranking.component.html',
+    styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent {
   //servicios

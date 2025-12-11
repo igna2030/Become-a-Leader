@@ -18,11 +18,10 @@ import { Items } from '../../interface/items';
 import { AudioService } from '../../service/audio-service';
 import { Stats } from '../../interface/stats';
 @Component({
-  selector: 'app-batalla',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, MiniPokedexComponent],
-  templateUrl: './batalla.component.html',
-  styleUrls: ['./batalla.component.css']
+    selector: 'app-batalla',
+    imports: [CommonModule, TranslateModule, MiniPokedexComponent],
+    templateUrl: './batalla.component.html',
+    styleUrls: ['./batalla.component.css']
 })
 export class BatallaComponent {
   //Servicios

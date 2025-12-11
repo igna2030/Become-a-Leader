@@ -6,11 +6,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AudioService } from '../../service/audio-service';
 import { AppAudio } from '../../components/app-audio/app-audio';
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterModule, CommonModule, TranslateModule, AppAudio],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [RouterModule, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
 

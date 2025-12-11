@@ -9,11 +9,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-edit-pokemon',
-  standalone: true,
-  imports: [CommonModule, TranslateModule,AppAudio],
-  templateUrl: './edit-pokemon.component.html',
-  styleUrl: './edit-pokemon.component.css'
+    selector: 'app-edit-pokemon',
+    imports: [CommonModule, TranslateModule, AppAudio],
+    templateUrl: './edit-pokemon.component.html',
+    styleUrl: './edit-pokemon.component.css'
 })
 export class EditPokemonComponent implements OnInit {
   pokemon: Pokemon = {

@@ -10,11 +10,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-pokemon-list',
-  standalone: true,
-  imports: [CommonModule, RouterModule,TranslateModule,AppAudio],
-  templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.css'
+    selector: 'app-pokemon-list',
+    imports: [CommonModule, RouterModule, TranslateModule, AppAudio],
+    templateUrl: './pokemon-list.component.html',
+    styleUrl: './pokemon-list.component.css'
 })
 
 export class PokemonListComponent implements OnInit

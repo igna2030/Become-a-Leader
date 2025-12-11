@@ -7,11 +7,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-user-account-info',
-  standalone: true,
-  imports: [FormsModule, CommonModule, TranslateModule,AppAudio],
-  templateUrl: './user-account-info.component.html',
-  styleUrls: ['./user-account-info.component.css']
+    selector: 'app-user-account-info',
+    imports: [FormsModule, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './user-account-info.component.html',
+    styleUrls: ['./user-account-info.component.css']
 })
 export class UserAccountInfoComponent implements OnInit {
   @Input() userId: string | null = null;

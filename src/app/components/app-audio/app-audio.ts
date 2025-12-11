@@ -4,11 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AudioService } from '../../service/audio-service';
 import { TranslateModule, TranslateNoOpLoader, TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-app-audio',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './app-audio.html',
-  styleUrl: './app-audio.css',
+    selector: 'app-app-audio',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './app-audio.html',
+    styleUrl: './app-audio.css'
 })
 export class AppAudio {
 

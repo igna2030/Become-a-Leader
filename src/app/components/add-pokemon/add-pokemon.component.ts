@@ -12,11 +12,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
-  selector: 'app-add-pokemon',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, TranslateModule, AppAudio],
-  templateUrl: './add-pokemon.component.html',
-  styleUrl: './add-pokemon.component.css'
+    selector: 'app-add-pokemon',
+    imports: [CommonModule, RouterModule, FormsModule, TranslateModule, AppAudio],
+    templateUrl: './add-pokemon.component.html',
+    styleUrl: './add-pokemon.component.css'
 })
 export class AddPokemonComponent {
   //id del pokemon

@@ -10,11 +10,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-login-admin',
-  standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule,AppAudio],
-  templateUrl: './login-admin.component.html',
-  styleUrl: './login-admin.component.css'
+    selector: 'app-login-admin',
+    imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './login-admin.component.html',
+    styleUrl: './login-admin.component.css'
 })
 export class LoginAdminComponent {
   //servicios

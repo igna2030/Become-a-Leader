@@ -9,11 +9,10 @@ import { lastValueFrom, Observable } from 'rxjs';
 type TypeFactor = { type: string; factor: number; displayType?: string };
 
 @Component({
-  selector: 'app-mini-pokedex',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, FormsModule],
-  templateUrl: './pokedex.html',
-  styleUrls: ['./pokedex.css']
+    selector: 'app-mini-pokedex',
+    imports: [CommonModule, TranslateModule, FormsModule],
+    templateUrl: './pokedex.html',
+    styleUrls: ['./pokedex.css']
 })
 export class MiniPokedexComponent {
   //servicios

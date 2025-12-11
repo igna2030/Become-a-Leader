@@ -9,11 +9,10 @@ import { AudioService } from '../../service/audio-service';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [CommonModule,TranslateModule,RouterModule,AppAudio],
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+    selector: 'app-menu',
+    imports: [CommonModule, TranslateModule, RouterModule, AppAudio],
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
   //interfaces

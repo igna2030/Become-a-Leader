@@ -11,11 +11,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-user-profile',
-  standalone: true,
-  imports: [UserAccountInfoComponent, CommonModule,TranslateModule,AppAudio],
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+    selector: 'app-user-profile',
+    imports: [UserAccountInfoComponent, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
   //configuraciones

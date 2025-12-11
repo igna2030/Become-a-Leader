@@ -11,11 +11,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-nueva-partida',
-  standalone: true,
-  imports: [FormsModule, TranslateModule, AppAudio],
-  templateUrl: './nueva-partida.component.html',
-  styleUrl: './nueva-partida.component.css'
+    selector: 'app-nueva-partida',
+    imports: [FormsModule, TranslateModule, AppAudio],
+    templateUrl: './nueva-partida.component.html',
+    styleUrl: './nueva-partida.component.css'
 })
 export class NuevaPartidaComponent implements OnInit {
   //servicios

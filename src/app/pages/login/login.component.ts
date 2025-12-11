@@ -10,11 +10,10 @@ import { AudioService } from '../../service/audio-service';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule,AppAudio],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule, AppAudio],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
 
