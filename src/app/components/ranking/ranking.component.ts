@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { Ranking } from './../../interface/ranking';
 import { RankingService } from './../../service/ranking.service';
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AudioService } from '../../service/audio-service';
@@ -10,7 +10,8 @@ import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
     selector: 'app-ranking',
-    imports: [CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [TranslateModule, AppAudio],
     templateUrl: './ranking.component.html',
     styleUrls: ['./ranking.component.css']
 })

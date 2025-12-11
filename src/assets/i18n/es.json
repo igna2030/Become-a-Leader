@@ -212,6 +212,7 @@
     "return":"Vuelve",
     "choosePokemonSwitch":"Elige un pokemon para cambiar",
     "inCombat":"En combate",
+    "using":"Usando",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

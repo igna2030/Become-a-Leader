@@ -1,29 +1,31 @@
 <div>
-    <h1 class="titulo">{{ "game.ranking" | translate }}</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>{{ "ranking.position" | translate }}</th>
-                <th>{{ "ranking.name" | translate }}</th>
-                <th>{{ "ranking.score" | translate }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let ranking of rankings; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ ranking.nombre }}</td>
-                <td>{{ ranking.puntaje }}</td>
-            </tr>
-        </tbody>
-    </table>
+  <h1 class="titulo">{{ "game.ranking" | translate }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>{{ "ranking.position" | translate }}</th>
+        <th>{{ "ranking.name" | translate }}</th>
+        <th>{{ "ranking.score" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (ranking of rankings; track ranking; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ ranking.nombre }}</td>
+          <td>{{ ranking.puntaje }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
   <app-app-audio></app-app-audio>
-    
+
 </div>
 <nav class="navbar">
-    <div class="BotoncitoLogout">
-      <button type="button" (click)="navegarMenu()">{{"NAV.MENU"| translate}}</button>
-    </div>
-    <div class="LogoutButton">
-      <button type="button" (click)="logout()">{{ "actions.logout" | translate }}</button>
-    </div>
+  <div class="BotoncitoLogout">
+    <button type="button" (click)="navegarMenu()">{{"NAV.MENU"| translate}}</button>
+  </div>
+  <div class="LogoutButton">
+    <button type="button" (click)="logout()">{{ "actions.logout" | translate }}</button>
+  </div>
 </nav>

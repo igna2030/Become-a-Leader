@@ -10,6 +10,7 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
     selector: 'app-register',
+    standalone:true,
     imports: [RouterModule, ReactiveFormsModule, TranslateModule, AppAudio],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'

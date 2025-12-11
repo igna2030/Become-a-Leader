@@ -1,6 +1,6 @@
 
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router, RouterModule } from '@angular/router';
 import { TeamService } from '../../service/team.service';
 import { PokeAPIService } from '../../service/poke-api.service';
@@ -11,7 +11,8 @@ import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
     selector: 'app-pokemon-list',
-    imports: [CommonModule, RouterModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [RouterModule, TranslateModule, AppAudio],
     templateUrl: './pokemon-list.component.html',
     styleUrl: './pokemon-list.component.css'
 })

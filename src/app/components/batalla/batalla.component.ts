@@ -19,6 +19,7 @@ import { AudioService } from '../../service/audio-service';
 import { Stats } from '../../interface/stats';
 @Component({
     selector: 'app-batalla',
+    standalone:true,
     imports: [CommonModule, TranslateModule, MiniPokedexComponent],
     templateUrl: './batalla.component.html',
     styleUrls: ['./batalla.component.css']

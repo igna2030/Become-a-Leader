@@ -4,7 +4,7 @@ import { UserService } from './../../service/user.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAccountInfoComponent } from '../../components/user-account-info/user-account-info.component';
-import { CommonModule } from '@angular/common';
+
 import { PartidaService } from '../../service/partida.service';
 import { PokeAPIService } from '../../service/poke-api.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,8 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
     selector: 'app-user-profile',
-    imports: [UserAccountInfoComponent, CommonModule, TranslateModule, AppAudio],
+    standalone: true,
+    imports: [UserAccountInfoComponent, TranslateModule, AppAudio],
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.css']
 })

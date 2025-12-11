@@ -1,5 +1,5 @@
 
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -7,7 +7,8 @@ import { AudioService } from '../../service/audio-service';
 import { AppAudio } from '../../components/app-audio/app-audio';
 @Component({
     selector: 'app-home',
-    imports: [RouterModule, CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [RouterModule, TranslateModule, AppAudio],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })

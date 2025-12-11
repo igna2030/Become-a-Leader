@@ -7,96 +7,105 @@
       [(ngModel)]="searchTerm"
       (keyup.enter)="searchPokemon()"
       [placeholder]="('batalla.searchPlaceholder' | translate)"
-    />
-    <button (click)="searchPokemon()" [disabled]="!searchTerm">
-      {{ 'actions.search' | translate }}
-    </button>
-  </div>
-
-  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-
-  <div class="pokemon-details" *ngIf="searchedPokemonData">
-    <p class="pokemon-name">
-      <strong>{{ 'pokemonDetail.species' | translate }}:</strong>
-      {{ transformarPrimeraLetra(searchedPokemonData.localizedName ||
-      searchedPokemonData.name) }}
-    </p>
-
-    <img
-      [src]="searchedPokemonData.spriteUrl"
-      alt="{{ searchedPokemonData.name }}"
-      class="pokedex-sprite"
-    />
-
-    <div class="pokemon-types">
-      <strong>{{ 'pokemonDetail.types' | translate }}:</strong>
-      <span
-        *ngFor="let tipoData of searchedPokemonData.typesLocalized"
-        [ngClass]="obtenerClaseTipoMovimiento(tipoData.type)"
-        class="type-tag"
-      >
-        {{ tipoData.displayType || transformarPrimeraLetra(tipoData.type) }}
-      </span>
+      />
+      <button (click)="searchPokemon()" [disabled]="!searchTerm">
+        {{ 'actions.search' | translate }}
+      </button>
     </div>
 
-    <div class="type-effectiveness" *ngIf="searchedPokemonData.effectiveness">
-      <div *ngIf="searchedPokemonData.effectiveness.superEffective.length">
-        <strong>{{ 'pokedex.superEffective' | translate }}</strong>
-        <div class="type-list">
-          <span
-            class="type-item"
-            *ngFor="let t of searchedPokemonData.effectiveness.superEffective"
-            [ngClass]="obtenerClaseTipoMovimiento(t.type)"
-          >
-            <span class="type-tag"
-              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
-            >
-            <span class="factor-badge super"
-              >{{ formatoFactor(t.factor) }}</span
-            >
-          </span>
-        </div>
-      </div>
+    @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+    }
 
-      <div
-        *ngIf="searchedPokemonData.effectiveness.notEffective.length"
-        class="mt"
-      >
-        <strong>{{ 'pokedex.notVeryEffective' | translate }}</strong>
-        <div class="type-list">
-          <span
-            class="type-item"
-            *ngFor="let t of searchedPokemonData.effectiveness.notEffective"
-            [ngClass]="obtenerClaseTipoMovimiento(t.type)"
-          >
-            <span class="type-tag"
-              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
-            >
-            <span class="factor-badge weak">{{ formatoFactor(t.factor) }}</span>
-          </span>
-        </div>
-      </div>
-
-      <div
-        *ngIf="searchedPokemonData.effectiveness.immunities.length"
-        class="mt"
-      >
-        <strong>{{ 'pokedex.immunities' | translate }}</strong>
-        <div class="type-list">
-          <span
-            class="type-item"
-            *ngFor="let t of searchedPokemonData.effectiveness.immunities"
-            [ngClass]="obtenerClaseTipoMovimiento(t.type)"
-          >
-            <span class="type-tag"
-              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
-            >
-            <span class="factor-badge immune"
-              >{{ formatoFactor(t.factor) }}</span
-            >
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    @if (searchedPokemonData) {
+      <div class="pokemon-details">
+        <p class="pokemon-name">
+          <strong>{{ 'pokemonDetail.species' | translate }}:</strong>
+          {{ transformarPrimeraLetra(searchedPokemonData.localizedName ||
+          searchedPokemonData.name) }}
+        </p>
+        <img
+          [src]="searchedPokemonData.spriteUrl"
+          alt="{{ searchedPokemonData.name }}"
+          class="pokedex-sprite"
+          />
+          <div class="pokemon-types">
+            <strong>{{ 'pokemonDetail.types' | translate }}:</strong>
+            @for (tipoData of searchedPokemonData.typesLocalized; track tipoData) {
+              <span
+                [ngClass]="obtenerClaseTipoMovimiento(tipoData.type)"
+                class="type-tag"
+                >
+                {{ tipoData.displayType || transformarPrimeraLetra(tipoData.type) }}
+              </span>
+            }
+          </div>
+          @if (searchedPokemonData.effectiveness) {
+            <div class="type-effectiveness">
+              @if (searchedPokemonData.effectiveness.superEffective.length) {
+                <div>
+                  <strong>{{ 'pokedex.superEffective' | translate }}</strong>
+                  <div class="type-list">
+                    @for (t of searchedPokemonData.effectiveness.superEffective; track t) {
+                      <span
+                        class="type-item"
+                        [ngClass]="obtenerClaseTipoMovimiento(t.type)"
+                        >
+                        <span class="type-tag"
+                          >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+                          >
+                          <span class="factor-badge super"
+                            >{{ formatoFactor(t.factor) }}</span
+                            >
+                          </span>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (searchedPokemonData.effectiveness.notEffective.length) {
+                    <div
+                      class="mt"
+                      >
+                      <strong>{{ 'pokedex.notVeryEffective' | translate }}</strong>
+                      <div class="type-list">
+                        @for (t of searchedPokemonData.effectiveness.notEffective; track t) {
+                          <span
+                            class="type-item"
+                            [ngClass]="obtenerClaseTipoMovimiento(t.type)"
+                            >
+                            <span class="type-tag"
+                              >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+                              >
+                              <span class="factor-badge weak">{{ formatoFactor(t.factor) }}</span>
+                            </span>
+                          }
+                        </div>
+                      </div>
+                    }
+                    @if (searchedPokemonData.effectiveness.immunities.length) {
+                      <div
+                        class="mt"
+                        >
+                        <strong>{{ 'pokedex.immunities' | translate }}</strong>
+                        <div class="type-list">
+                          @for (t of searchedPokemonData.effectiveness.immunities; track t) {
+                            <span
+                              class="type-item"
+                              [ngClass]="obtenerClaseTipoMovimiento(t.type)"
+                              >
+                              <span class="type-tag"
+                                >{{ t.displayType || transformarPrimeraLetra(t.type) }}</span
+                                >
+                                <span class="factor-badge immune"
+                                  >{{ formatoFactor(t.factor) }}</span
+                                  >
+                                </span>
+                              }
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
+              </div>

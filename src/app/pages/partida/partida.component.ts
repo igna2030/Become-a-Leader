@@ -3,13 +3,14 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
     selector: 'app-partida',
-    imports: [RouterModule, CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [RouterModule, TranslateModule, AppAudio],
     templateUrl: './partida.component.html',
     styleUrl: './partida.component.css'
 })

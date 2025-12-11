@@ -1,14 +1,15 @@
 import { Component, Input, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { Usuario } from '../../interface/user.interface';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
     selector: 'app-user-account-info',
-    imports: [FormsModule, CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [FormsModule, TranslateModule, AppAudio],
     templateUrl: './user-account-info.component.html',
     styleUrls: ['./user-account-info.component.css']
 })

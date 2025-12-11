@@ -4,13 +4,14 @@ import { PokeAPIService } from '../../service/poke-api.service';
 import { TeamService } from '../../service/team.service';
 import { Move } from '../../interface/move';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
     selector: 'app-edit-pokemon',
-    imports: [CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [TranslateModule, AppAudio],
     templateUrl: './edit-pokemon.component.html',
     styleUrl: './edit-pokemon.component.css'
 })

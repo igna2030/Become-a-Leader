@@ -3,7 +3,7 @@ import { Usuario } from './../../interface/user.interface';
 import { Component, Output, EventEmitter, Inject, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
-import { CommonModule } from '@angular/common';
+
 import { AuthService } from '../../service/auth.service';
 import { Admin } from '../../interface/admin';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,7 +11,8 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
     selector: 'app-login-admin',
-    imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [RouterModule, ReactiveFormsModule, TranslateModule, AppAudio],
     templateUrl: './login-admin.component.html',
     styleUrl: './login-admin.component.css'
 })

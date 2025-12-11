@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { UserService } from '../../service/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { PartidaService } from '../../service/partida.service';
@@ -10,7 +10,8 @@ import { AppAudio } from '../../components/app-audio/app-audio';
 
 @Component({
     selector: 'app-menu',
-    imports: [CommonModule, TranslateModule, RouterModule, AppAudio],
+    standalone:true,
+    imports: [TranslateModule, RouterModule, AppAudio],
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.css']
 })

@@ -10,6 +10,7 @@ type TypeFactor = { type: string; factor: number; displayType?: string };
 
 @Component({
     selector: 'app-mini-pokedex',
+    standalone:true,
     imports: [CommonModule, TranslateModule, FormsModule],
     templateUrl: './pokedex.html',
     styleUrls: ['./pokedex.css']

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PokeAPIService } from '../../service/poke-api.service';
@@ -13,7 +13,8 @@ import { AppAudio } from '../app-audio/app-audio';
 
 @Component({
     selector: 'app-add-pokemon',
-    imports: [CommonModule, RouterModule, FormsModule, TranslateModule, AppAudio],
+    standalone:true,
+    imports: [RouterModule, FormsModule, TranslateModule, AppAudio],
     templateUrl: './add-pokemon.component.html',
     styleUrl: './add-pokemon.component.css'
 })

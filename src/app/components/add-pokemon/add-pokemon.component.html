@@ -13,59 +13,66 @@
     <button type="button" (click)="generarPokemon(pokeID)">{{ 'actions.search' | translate }}</button>
   </form>
 
-  <div *ngIf="searchError" class="error-message">
-    {{ searchError }}
-  </div>
-  <div *ngIf="pokeAPI" class="results-container">
-
-    <div class="info-container">
-      
-      <div class="basic-info">
-        <h2>{{ 'addPokemon.basicInfo' | translate }}</h2>
-        <ul>
-          <li>
-            <img [src]="pokeAPI.sprites.front_default" [alt]="pokeAPI.id + ' - ' + pokeAPI.name" class="pokemon-icon">
-          </li>
-          <li>{{ 'addPokemon.idApi' | translate }}: {{pokeAPI.id}}</li>
-          <li>{{ 'addPokemon.nameApi' | translate }}: {{pokeAPI.name}}</li>
-          <li>{{ 'addPokemon.typeApi' | translate }}:
-            <span *ngFor="let t of pokeAPI.types; let i = index">
-              {{t?.type.name}}<span *ngIf="i < pokeAPI.types.length - 1">,</span>
-            </span>
+  @if (searchError) {
+    <div class="error-message">
+      {{ searchError }}
+    </div>
+  }
+  @if (pokeAPI) {
+    <div class="results-container">
+      <div class="info-container">
+        <div class="basic-info">
+          <h2>{{ 'addPokemon.basicInfo' | translate }}</h2>
+          <ul>
+            <li>
+              <img [src]="pokeAPI.sprites.front_default" [alt]="pokeAPI.id + ' - ' + pokeAPI.name" class="pokemon-icon">
+            </li>
+            <li>{{ 'addPokemon.idApi' | translate }}: {{pokeAPI.id}}</li>
+            <li>{{ 'addPokemon.nameApi' | translate }}: {{pokeAPI.name}}</li>
+            <li>{{ 'addPokemon.typeApi' | translate }}:
+              @for (t of pokeAPI.types; track t; let i = $index) {
+                <span>
+                  {{t?.type.name}}@if (i < pokeAPI.types.length - 1) {
+                  <span>,</span>
+                }
+              </span>
+            }
           </li>
         </ul>
       </div>
-
       <div class="stats-info">
         <h2>{{ 'addPokemon.baseStats' | translate }}</h2>
         <ul>
-          <li *ngFor="let st of pokeAPI.stats">{{st?.stat.name}}: {{st?.base_stat}}</li>
+          @for (st of pokeAPI.stats; track st) {
+            <li>{{st?.stat.name}}: {{st?.base_stat}}</li>
+          }
         </ul>
       </div>
     </div>
-
     <hr>
-
-    <div class="moves-section">
-      <h2>{{ 'addPokemon.attacks' | translate }}</h2>
-      <h6>{{ 'addPokemon.statusMoveRestriction' | translate }}</h6>
-      
-      <div *ngIf="moveError" class="error-message">
-        {{ moveError }}
+      <div class="moves-section">
+        <h2>{{ 'addPokemon.attacks' | translate }}</h2>
+        <h6>{{ 'addPokemon.statusMoveRestriction' | translate }}</h6>
+        @if (moveError) {
+          <div class="error-message">
+            {{ moveError }}
+          </div>
+        }
+        <ul class="moves-list">
+          @for (move of pokeAPI.moves; track move) {
+            <li>
+              <span>{{move.move.name}}</span>
+              <input type="button" (click)="agregarAtaque(move.move.name)" [value]="'actions.add' | translate">
+            </li>
+          }
+        </ul>
       </div>
-      <ul class="moves-list">
-        <li *ngFor="let move of pokeAPI.moves">
-          <span>{{move.move.name}}</span>
-          <input type="button" (click)="agregarAtaque(move.move.name)" [value]="'actions.add' | translate">
-        </li>
-      </ul>
+      <app-app-audio></app-app-audio>
+      @if (saveError) {
+        <div class="error-message">
+          {{ saveError }}
+        </div>
+      }
+      <button type="submit" (click)="addPokemonBD()">{{ 'actions.save' | translate }}</button>
     </div>
-
-    <app-app-audio></app-app-audio>
-    
-    <div *ngIf="saveError" class="error-message">
-      {{ saveError }}
-    </div>
-    <button type="submit" (click)="addPokemonBD()">{{ 'actions.save' | translate }}</button>
-
-  </div> </section>
+  } </section>

@@ -31,250 +31,250 @@
         step="0.1"
         [value]="bgmVolume"
         (input)="setBGMVolume($event)"
-      />
-    </div>
+        />
+      </div>
 
-    <div class="volume-control sfx-volume">
-      <label for="sfx-volume">
-        {{ "batalla.volume.sfx" | translate }}:
-        {{ (sfxVolume * 100).toFixed(0) }}%
-      </label>
-      <input
-        id="sfx-volume"
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        [value]="sfxVolume"
-        (input)="setSFXVolume($event)"
-      />
-    </div>
-  </div>
+      <div class="volume-control sfx-volume">
+        <label for="sfx-volume">
+          {{ "batalla.volume.sfx" | translate }}:
+          {{ (sfxVolume * 100).toFixed(0) }}%
+        </label>
+        <input
+          id="sfx-volume"
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          [value]="sfxVolume"
+          (input)="setSFXVolume($event)"
+          />
+        </div>
+      </div>
 
-  <div class="batalla-container" *ngIf="pokemonJugador && pokemonRival">
-    <div class="informacion">
-      <div class="pokemon-info rival">
-        <h3>{{ transformarPrimeraLetra(pokemonRival.especie) }}</h3>
-        ID:{{ pokemonRival.id }}
-        <p>
-          {{ "pokemonDetail.hp" | translate }}: {{ pokemonRival.vidaActual }}/{{
-            pokemonRival.estadisticas.hp
-          }}
-        </p>
-        <div class="hp-bar">
-          <div
-            class="hp-bar-inner"
+      @if (pokemonJugador && pokemonRival) {
+        <div class="batalla-container">
+          <div class="informacion">
+            <div class="pokemon-info rival">
+              <h3>{{ transformarPrimeraLetra(pokemonRival.especie) }}</h3>
+              ID:{{ pokemonRival.id }}
+              <p>
+                {{ "pokemonDetail.hp" | translate }}: {{ pokemonRival.vidaActual }}/{{
+                pokemonRival.estadisticas.hp
+                }}
+              </p>
+              <div class="hp-bar">
+                <div
+                  class="hp-bar-inner"
             [style.width.%]="
               (pokemonRival.vidaActual / pokemonRival.estadisticas.hp) * 100
             "
-          ></div>
-        </div>
-        <p>{{ "profile.team" | translate }}: {{ pokemonRivalRestantes() }}</p>
-      </div>
-    </div>
-
-    <div class="batalla">
-               
-      <div
-        class="pokemon-sprite rival"
-        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonRival.id }"
-      >
-         
-        <img
-          [src]="pokemonRival.frontSprite"
-          alt="{{ pokemonRival.especie }}"
-        />
-               
-      </div>
-               
-      <div
-        class="pokemon-sprite jugador"
-        [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonJugador.id }"
-      >
-        <img
-          [src]="pokemonJugador.backSprite"
-          alt="{{ pokemonJugador.especie }}"
-        />
-      </div>
-           
-    </div>
-
-    <div class="informacion">
-      <div class="pokemon-info jugador">
-        <h3>{{ transformarPrimeraLetra(pokemonJugador.especie) }}</h3>
-        ID: {{ pokemonJugador.id }}
-        <p>
-          {{ "pokemonDetail.hp" | translate }}:
-          {{ pokemonJugador.vidaActual }}/{{ pokemonJugador.estadisticas.hp }}
-        </p>
-        <div class="hp-bar">
-          <div
-            class="hp-bar-inner"
+                ></div>
+              </div>
+              <p>{{ "profile.team" | translate }}: {{ pokemonRivalRestantes() }}</p>
+            </div>
+          </div>
+          <div class="batalla">
+            <div
+              class="pokemon-sprite rival"
+              [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonRival.id }"
+              >
+              <img
+                [src]="pokemonRival.frontSprite"
+                alt="{{ pokemonRival.especie }}"
+                />
+              </div>
+              <div
+                class="pokemon-sprite jugador"
+                [ngClass]="{ 'is-attacking': pokemonAtacanteId === pokemonJugador.id }"
+                >
+                <img
+                  [src]="pokemonJugador.backSprite"
+                  alt="{{ pokemonJugador.especie }}"
+                  />
+                </div>
+              </div>
+              <div class="informacion">
+                <div class="pokemon-info jugador">
+                  <h3>{{ transformarPrimeraLetra(pokemonJugador.especie) }}</h3>
+                  ID: {{ pokemonJugador.id }}
+                  <p>
+                    {{ "pokemonDetail.hp" | translate }}:
+                    {{ pokemonJugador.vidaActual }}/{{ pokemonJugador.estadisticas.hp }}
+                  </p>
+                  <div class="hp-bar">
+                    <div
+                      class="hp-bar-inner"
             [style.width.%]="
               (pokemonJugador.vidaActual / pokemonJugador.estadisticas.hp) * 100
             "
-          ></div>
-        </div>
-        <p>{{ "profile.team" | translate }}: {{ pokemonJugadorRestantes() }}</p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div *ngIf="mensajeBatalla" class="mensaje-batalla">
-        <p>{{ mensajeBatalla }}</p>
-      </div>
-
-      <div class="actions-container">
-        <div
-          class="main-battle-menu"
-          *ngIf="
-            !mostrarInventario &&
-            !mostrarSeleccionRevivir &&
-            !mostrarSeleccionEquipo
-          "
-        >
-          <ul class="movimientos-container">
-            <li
-              *ngFor="let movimiento of movimientosJugador"
-              (click)="batalla(movimiento)"
-              class="boton-movimiento"
-              [ngClass]="obtenerClaseTipoMovimiento(movimiento.tipo)"
-            >
-              {{ transformarPrimeraLetra(movimiento.nombre) }} -
-              {{ "pokemonDetail.movePower" | translate }}:
-              {{ movimiento.potencia }}
-              {{ movimiento.localizedtype ?? "Unknown" }}
-            </li>
-          </ul>
-
-          <div class="additional-controls">
-            <button
-              class="control-button items-button"
-              (click)="mostrarInventario = true"
-            >
-              {{ "actions.items" | translate }} ({{
-                jugador?.items?.length || 0
-              }})
-            </button>
-
-            <button
-              class="control-button pokemon-button"
-              (click)="abrirMenuCambio()"
-            >
-              Pokémon ({{ jugador?.equipo?.length || 0 }})
-            </button>
-
-            <button
-              *ngIf="pokemonDebilitados.length > 0"
-              class="control-button revive-button"
-              (click)="mostrarSeleccionRevivir = true"
-            >
-              {{ "actions.revive" | translate }}
-            </button>
-          </div>
-        </div>
-
-        <div
-          class="inventory-panel"
-          *ngIf="mostrarInventario && !mostrarSeleccionRevivir"
-        >
-          <h2>{{ "actions.inventory" | translate }}</h2>
-
-          <ul class="item-list">
-            <li
-              *ngFor="let item of jugador?.items; let i = index"
-              class="item-entry"
-            >
-              <div class="item-icon-container">
-                <img
-                  *ngIf="item.sprite"
-                  [src]="item.sprite"
-                  [alt]="item.localizedName"
-                  class="item-img"
-                />
+                    ></div>
+                  </div>
+                  <p>{{ "profile.team" | translate }}: {{ pokemonJugadorRestantes() }}</p>
+                </div>
               </div>
-              <div class="item-details">
-                <span class="item-name">
-                  {{ transformarPrimeraLetra(item.name) }}
-                </span>
-                <span class="item-description">{{
-                  limpiarDescripcion(item.description)
-                }}</span>
-              </div>
-              <button
-                (click)="usarItemPorIndice(i)"
-                class="use-item-button"
-                [disabled]="!pokemonJugador"
-              >
-                {{ "actions.use" | translate }}
-              </button>
-            </li>
-            <li
-              *ngIf="!jugador?.items?.length || jugador?.items?.length === 0"
-              class="empty-items"
-            >
-              {{ "actions.noItems" | translate }}
-            </li>
-          </ul>
-
-          <button class="back-button" (click)="mostrarInventario = false">
-            {{ "actions.back" | translate }}
-          </button>
-        </div>
-
-        <div class="revive-selection-panel" *ngIf="mostrarSeleccionRevivir">
-          <h2>{{ "batalla.selectPokemonToRevive" | translate }}</h2>
-          <p *ngIf="itemDeRevivirSeleccionado">
-            Usando:
-            {{ transformarPrimeraLetra(itemDeRevivirSeleccionado.name) }}
-          </p>
-          <p *ngIf="!itemDeRevivirSeleccionado" class="warning-message">
-            {{ "batalla.selectReviveItemFirst" | translate }}
-          </p>
-
-          <div class="fainted-pokemon-list">
-            <div
-              *ngFor="let pokemon of pokemonDebilitados; let i = index"
-              (click)="ejecutarRevivir(i)"
-              class="pokemon-option"
-              [class.disabled-revive]="!itemDeRevivirSeleccionado"
-            >
-              <img [src]="pokemon.frontSprite" [alt]="pokemon.especie" />
-              <div class="pokemon-option-info">
-                <p>
-                  {{
-                    transformarPrimeraLetra(
-                      pokemon.localizedName || pokemon.especie
-                    )
-                  }}
-                </p>
-                <p>HP: 0/{{ pokemon.estadisticas.hp }}</p>
-              </div>
-            </div>
-          </div>
-
-          <button class="back-button" (click)="mostrarSeleccionRevivir = false">
-            {{ "general.cancel" | translate }}
-          </button>
-        </div>
-
-        <div class="team-selection-panel" *ngIf="mostrarSeleccionEquipo">
-          <h2>
-            {{
-              modoSeleccion === "cambio"
-                ? ("actions.switch" | translate)
-                : ("actions.heal" | translate)
-            }}
-          </h2>
-          <p *ngIf="modoSeleccion === 'curacion' && itemCuracionSeleccionado">
-            Usando: {{ transformarPrimeraLetra(itemCuracionSeleccionado.name) }}
-          </p>
-
-          <div class="fainted-pokemon-list">
-            <div
-              *ngFor="let pk of jugador?.equipo; let i = index"
-              class="pokemon-option"
-              (click)="onPokemonSeleccionado(i)"
+              <div class="container">
+                @if (mensajeBatalla) {
+                  <div class="mensaje-batalla">
+                    <p>{{ mensajeBatalla }}</p>
+                  </div>
+                }
+                <div class="actions-container">
+                  @if (
+                    !mostrarInventario &&
+                    !mostrarSeleccionRevivir &&
+                    !mostrarSeleccionEquipo
+                    ) {
+                    <div
+                      class="main-battle-menu"
+                      >
+                      <ul class="movimientos-container">
+                        @for (movimiento of movimientosJugador; track movimiento) {
+                          <li
+                            (click)="batalla(movimiento)"
+                            class="boton-movimiento"
+                            [ngClass]="obtenerClaseTipoMovimiento(movimiento.tipo)"
+                            >
+                            {{ transformarPrimeraLetra(movimiento.nombre) }} -
+                            {{ "pokemonDetail.movePower" | translate }}:
+                            {{ movimiento.potencia }}
+                            {{ movimiento.localizedtype ?? "Unknown" }}
+                          </li>
+                        }
+                      </ul>
+                      <div class="additional-controls">
+                        <button
+                          class="control-button items-button"
+                          (click)="mostrarInventario = true"
+                          >
+                          {{ "actions.items" | translate }} ({{
+                          jugador?.items?.length || 0
+                          }})
+                        </button>
+                        <button
+                          class="control-button pokemon-button"
+                          (click)="abrirMenuCambio()"
+                          >
+                          Pokémon ({{ jugador?.equipo?.length || 0 }})
+                        </button>
+                        @if (pokemonDebilitados.length > 0) {
+                          <button
+                            class="control-button revive-button"
+                            (click)="mostrarSeleccionRevivir = true"
+                            >
+                            {{ "actions.revive" | translate }}
+                          </button>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (mostrarInventario && !mostrarSeleccionRevivir) {
+                    <div
+                      class="inventory-panel"
+                      >
+                      <h2>{{ "actions.inventory" | translate }}</h2>
+                      <ul class="item-list">
+                        @for (item of jugador?.items; track item; let i = $index) {
+                          <li
+                            class="item-entry"
+                            >
+                            <div class="item-icon-container">
+                              @if (item.sprite) {
+                                <img
+                                  [src]="item.sprite"
+                                  [alt]="item.localizedName"
+                                  class="item-img"
+                                  />
+                              }
+                            </div>
+                            <div class="item-details">
+                              <span class="item-name">
+                                {{ transformarPrimeraLetra(item.name) }}
+                              </span>
+                              <span class="item-description">{{
+                                limpiarDescripcion(item.description)
+                              }}</span>
+                            </div>
+                            <button
+                              (click)="usarItemPorIndice(i)"
+                              class="use-item-button"
+                              [disabled]="!pokemonJugador"
+                              >
+                              {{ "actions.use" | translate }}
+                            </button>
+                          </li>
+                        }
+                        @if (!jugador?.items?.length || jugador?.items?.length === 0) {
+                          <li
+                            class="empty-items"
+                            >
+                            {{ "actions.noItems" | translate }}
+                          </li>
+                        }
+                      </ul>
+                      <button class="back-button" (click)="mostrarInventario = false">
+                        {{ "actions.back" | translate }}
+                      </button>
+                    </div>
+                  }
+                  @if (mostrarSeleccionRevivir) {
+                    <div class="revive-selection-panel">
+                      <h2>{{ "batalla.selectPokemonToRevive" | translate }}</h2>
+                      @if (itemDeRevivirSeleccionado) {
+                        <p>
+                          {{"batalla.using" | translate}}
+                          {{ transformarPrimeraLetra(itemDeRevivirSeleccionado.name) }}
+                        </p>
+                      }
+                      @if (!itemDeRevivirSeleccionado) {
+                        <p class="warning-message">
+                          {{ "batalla.selectReviveItemFirst" | translate }}
+                        </p>
+                      }
+                      <div class="fainted-pokemon-list">
+                        @for (pokemon of pokemonDebilitados; track pokemon; let i = $index) {
+                          <div
+                            (click)="ejecutarRevivir(i)"
+                            class="pokemon-option"
+                            [class.disabled-revive]="!itemDeRevivirSeleccionado"
+                            >
+                            <img [src]="pokemon.frontSprite" [alt]="pokemon.especie" />
+                            <div class="pokemon-option-info">
+                              <p>
+                                {{
+                                transformarPrimeraLetra(
+                                pokemon.localizedName || pokemon.especie
+                                )
+                                }}
+                              </p>
+                              <p>HP: 0/{{ pokemon.estadisticas.hp }}</p>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                      <button class="back-button" (click)="mostrarSeleccionRevivir = false">
+                        {{ "general.cancel" | translate }}
+                      </button>
+                    </div>
+                  }
+                  @if (mostrarSeleccionEquipo) {
+                    <div class="team-selection-panel">
+                      <h2>
+                        {{
+                        modoSeleccion === "cambio"
+                        ? ("actions.switch" | translate)
+                        : ("actions.heal" | translate)
+                        }}
+                      </h2>
+                      @if (modoSeleccion === 'curacion' && itemCuracionSeleccionado) {
+                        <p>
+                          {{"batalla.using" | translate}} {{ transformarPrimeraLetra(itemCuracionSeleccionado.name) }}
+                        </p>
+                      }
+                      <div class="fainted-pokemon-list">
+                        @for (pk of jugador?.equipo; track pk; let i = $index) {
+                          <div
+                            class="pokemon-option"
+                            (click)="onPokemonSeleccionado(i)"
               [ngClass]="{
                 'active-pokemon': pk.id === pokemonJugador.id,
                 'disabled-option':
@@ -282,42 +282,50 @@
                   (modoSeleccion === 'curacion' &&
                     pk.vidaActual === pk.estadisticas.hp)
               }"
-            >
-              <img [src]="pk.frontSprite" [alt]="pk.especie" />
-              <div class="pokemon-option-info">
-                <p>
-                  <strong>
-                    {{
-                      transformarPrimeraLetra(pk.localizedName || pk.especie)
-                    }}</strong
-                  >
-                </p>
-                <p>HP: {{ pk.vidaActual }} / {{ pk.estadisticas.hp }}</p>
-                <span *ngIf="pk.id === pokemonJugador.id" class="status-badge"
-                  >{{"batalla.inCombat"|translate}}</span
-                >
-              </div>
+                            >
+                            <img [src]="pk.frontSprite" [alt]="pk.especie" />
+                            <div class="pokemon-option-info">
+                              <p>
+                                <strong>
+                                  {{
+                                  transformarPrimeraLetra(pk.localizedName || pk.especie)
+                                  }}</strong
+                                  >
+                                </p>
+                                <p>HP: {{ pk.vidaActual }} / {{ pk.estadisticas.hp }}</p>
+                                @if (pk.id === pokemonJugador.id) {
+                                  <span class="status-badge"
+                                    >{{"batalla.inCombat"|translate}}</span
+                                    >
+                                  }
+                                </div>
+                              </div>
+                            }
+                          </div>
+                          <button class="back-button" (click)="cancelarSeleccionEquipo()">
+                            {{ "general.cancel" | translate }}
+                          </button>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+              @if (resultado) {
+                <div class="resultado-batalla">
+                  <p>{{ resultado }}</p>
+                </div>
+              }
             </div>
-          </div>
 
-          <button class="back-button" (click)="cancelarSeleccionEquipo()">
-            {{ "general.cancel" | translate }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="resultado" class="resultado-batalla">
-    <p>{{ resultado }}</p>
-  </div>
-</div>
-
-<div class="modal" *ngIf="mostrarModal">
-  <div class="modal-contenido">
-    <h2>{{ resultado }}</h2>
-    <p>{{ mensajeModal }}</p>
-    <button (click)="cerrarModal()" [translate]="'actions.select'">
-      Aceptar
-    </button>
-  </div>
-</div>
+            @if (mostrarModal) {
+              <div class="modal">
+                <div class="modal-contenido">
+                  <h2>{{ resultado }}</h2>
+                  <p>{{ mensajeModal }}</p>
+                  <button (click)="cerrarModal()" [translate]="'actions.select'">
+                    Aceptar
+                  </button>
+                </div>
+              </div>
+            }

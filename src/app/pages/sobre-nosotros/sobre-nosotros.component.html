@@ -1,26 +1,28 @@
 <div class="TITULO">
-    {{"NAV.ABOUT_US"|translate}}
+  {{"NAV.ABOUT_US"|translate}}
 </div>
 
 <div class="fotos-container">
-    <div class="foto" *ngFor="let foto of fotos">
-        <img [src]="foto.url" alt="Foto del equipo" />
-        <a [href]="foto.urlGitHub" class="pie-foto" target="_blank">{{ foto.texto }}</a>
+  @for (foto of fotos; track foto) {
+    <div class="foto">
+      <img [src]="foto.url" alt="Foto del equipo" />
+      <a [href]="foto.urlGitHub" class="pie-foto" target="_blank">{{ foto.texto }}</a>
     </div>
+  }
 </div>
 
 <nav class="navbar">
-    <img src="pokeball_icon.png" alt="fondo">
-    <ul class="nav-links">
-        <li>
-        <a routerLinkActive="active" routerLink="/">{{"NAV.BEGINNING" | translate}}</a>
-            |
-        <a routerLinkActive="active" routerLink="/login">{{"NAV.LOGIN"|translate}}</a>
-            |
-        <a routerLinkActive="active" routerLink="/register">{{"NAV.REGISTER"|translate}}</a>
-            |
-        <a routerLinkActive="active" routerLink="/login-admin">{{"NAV.ADMIN"|translate}}</a>
-        </li>
-    </ul>
+  <img src="pokeball_icon.png" alt="fondo">
+  <ul class="nav-links">
+    <li>
+      <a routerLinkActive="active" routerLink="/">{{"NAV.BEGINNING" | translate}}</a>
+      |
+      <a routerLinkActive="active" routerLink="/login">{{"NAV.LOGIN"|translate}}</a>
+      |
+      <a routerLinkActive="active" routerLink="/register">{{"NAV.REGISTER"|translate}}</a>
+      |
+      <a routerLinkActive="active" routerLink="/login-admin">{{"NAV.ADMIN"|translate}}</a>
+    </li>
+  </ul>
 </nav>
 <app-app-audio></app-app-audio>

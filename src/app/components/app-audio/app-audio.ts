@@ -1,11 +1,12 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AudioService } from '../../service/audio-service';
 import { TranslateModule, TranslateNoOpLoader, TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'app-app-audio',
-    imports: [CommonModule, TranslateModule],
+    standalone:true,
+    imports: [TranslateModule],
     templateUrl: './app-audio.html',
     styleUrl: './app-audio.css'
 })
