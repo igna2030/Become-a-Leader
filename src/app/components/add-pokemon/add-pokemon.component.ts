@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PokeAPIService } from '../../service/poke-api.service';
@@ -10,13 +9,14 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppAudio } from '../app-audio/app-audio';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
-    selector: 'app-add-pokemon',
-    standalone:true,
-    imports: [RouterModule, FormsModule, TranslateModule, AppAudio],
-    templateUrl: './add-pokemon.component.html',
-    styleUrl: './add-pokemon.component.css'
+  selector: 'app-add-pokemon',
+  standalone: true,
+  imports: [RouterModule, FormsModule, TranslateModule, AppAudio],
+  templateUrl: './add-pokemon.component.html',
+  styleUrl: './add-pokemon.component.css'
 })
 export class AddPokemonComponent {
   //id del pokemon
@@ -33,6 +33,7 @@ export class AddPokemonComponent {
   saveError: string | null = null;
   //interfaces
   pokeAPI: any;
+  availableMoves: any[] = [];
   pokemon: Pokemon = {
     id: '',
     especie: '',
@@ -42,7 +43,7 @@ export class AddPokemonComponent {
     estadisticas: { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 },
     movimientos: [],
     idEntrenador: '',
-    cryUrl:''
+    cryUrl: ''
   };
 
   statsBase: Stats = {
@@ -57,10 +58,21 @@ export class AddPokemonComponent {
   iv: any;
   moves: Move[] = [];
 
+  isMoveSelected(moveName: string): boolean {
+    return this.moves.some(m => m.nombre === moveName);
+  }
+
+  eliminarAtaque(index: number) {
+    this.moves.splice(index, 1);
+    this.moveError = null; // Limpiar error si se eliminó para poder añadir uno nuevo
+  }
+
+
   //Limpia los valores de la variable
   cleanBuffer() {
     this.pokeID = "";
-    this.pokeAPI = null; 
+    this.pokeAPI = null;
+    this.availableMoves = [];
     this.pokemon = {
       id: '',
       especie: '',
@@ -70,7 +82,7 @@ export class AddPokemonComponent {
       estadisticas: { hp: 0, atk: 0, def: 0, satk: 0, sdef: 0, spd: 0 },
       movimientos: [],
       idEntrenador: '',
-      cryUrl:''
+      cryUrl: ''
     }
     this.statsBase = {
       hp: 0,
@@ -93,7 +105,8 @@ export class AddPokemonComponent {
     this.moveError = null;
     this.saveError = null;
     this.pokeAPI = null; // Ocultar resultados anteriores
-    this.moves = []; // Limpiar movimientos
+    this.moves = []; // Limpiar movimientos seleccionados
+    this.availableMoves = []; // Limpiar movimientos disponibles
 
     this.ps.getPokemonByID(id).subscribe({
       next: (data) => {
@@ -106,6 +119,25 @@ export class AddPokemonComponent {
           sdef: this.pokeAPI.stats[4].base_stat,
           spd: this.pokeAPI.stats[5].base_stat
         }
+
+        // Cargar y filtrar detalles de movimientos:
+        const moveObservables: Observable<any>[] = this.pokeAPI.moves.map((m: any) =>
+          this.ps.getMoveByName(m.move.name)
+        );
+
+        // Esperar a que todas las llamadas a la API de movimientos terminen
+        forkJoin(moveObservables).subscribe({
+          next: (moveDetailsArray) => {
+            // Filtrar movimientos que NO son de clase 'status'
+            this.availableMoves = moveDetailsArray.filter(
+              (moveData: any) => moveData.damage_class.name !== 'status'
+            );
+            console.log('Movimientos disponibles (filtrados):', this.availableMoves);
+          },
+          error: (moveErr: Error) => {
+            console.error("Error al cargar detalles de movimientos:", moveErr);
+          }
+        });
       },
       error: (err: Error) => {
         console.log("ERROR: " + err.message);
@@ -116,39 +148,37 @@ export class AddPokemonComponent {
     });
   }
 
-  //Agrega los movimientos a un arreglo de movimientos
+  //Agrega los movimientos a un arreglo de movimientos (Simplificada)
   agregarAtaque(moveName: string) {
     this.moveError = null;
 
-    this.ps.getMoveByName(moveName).subscribe({
-      next: (data) => {
-        if (data.damage_class.name !== 'status') {
-          if (this.moves.length < 4) {
-            const move: Move = {
-              nombre: moveName,
-              tipo: data.type.name,
-              clase: data.damage_class.name,
-              potencia: data.power,
-              precision: data.accuracy,
-              usos: data.pp,
-              pp: data.pp,
-              originalName: moveName,
-              originalType: data.type.name
-            }
-            console.log(move);
-            this.moves.push(move);
-          } else {
+    // Buscar el movimiento en la lista ya cargada y filtrada
+    const data = this.availableMoves.find(m => m.name === moveName);
 
-            this.translate.get('alerts.tooManyMoves').subscribe((res: string) => {
-              this.moveError = res;
-            });
-          }
-        }
-      },
-      error: (err: Error) => {
-        console.log('ERROR: ' + err.message);
+    if (!data) {
+      return; // Debería estar ya filtrado, pero por seguridad
+    }
+
+    if (this.moves.length < 4) {
+      const move: Move = {
+        nombre: moveName,
+        tipo: data.type.name,
+        clase: data.damage_class.name,
+        potencia: data.power,
+        precision: data.accuracy,
+        usos: data.pp,
+        pp: data.pp,
+        originalName: moveName,
+        originalType: data.type.name
       }
-    });
+      console.log(move);
+      this.moves.push(move);
+    } else {
+
+      this.translate.get('alerts.tooManyMoves').subscribe((res: string) => {
+        this.moveError = res;
+      });
+    }
   }
 
   //Genera estadisticas IV random entre 0 31

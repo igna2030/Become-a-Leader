@@ -18,98 +18,111 @@ import { AppAudio } from '../../components/app-audio/app-audio';
     styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  //configuraciones
-  verConfigCuenta: boolean = true;
-  verInfoPartidas: boolean = true;
-  //servicios
-  userService = inject(UserService);
-  partidaService = inject(PartidaService);
-  pokeApiService = inject(PokeAPIService);
-  //interfaces
-  usuario: any;
-  partida: Partida = {
-    id: '',
-    fecha_inicio: new Date,
-    puntuacion: 0,
-    personaje: {
-      id: '',
-      nombre: '',
-      tipo: '',
-      equipo: []
-    }
-  };
-
-  translate = inject(TranslateService);
-  sprites: string[] = [];
-
-  constructor(
-    private router: Router,
-    private us: UserService
-  ) { }
-
-  ngOnInit(): void {
-    console.log('token: ' + localStorage.getItem('token'));
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.us.getUserByID(token).subscribe({
-        next: (res) => this.usuario = res,
-        error: (err) => console.error('Error al obtener el usuario: ' + err + '.')
-      })
-      this.partidaService.getPartidaByUserId(token).subscribe({
-        next: (data: Partida | null) => {
-          if(data){
-            this.partida = data!;
-          }
-          //console.log(this.partida);
-        },
-        error() {
+    //configuraciones
+    verConfigCuenta: boolean = true;
+    verInfoPartidas: boolean = true;
+    //servicios
+    userService = inject(UserService);
+    partidaService = inject(PartidaService);
+    pokeApiService = inject(PokeAPIService);
+    //interfaces
+    usuario: any;
+    partida: Partida = {
+        id: '',
+        fecha_inicio: new Date,
+        puntuacion: 0,
+        personaje: {
+            id: '',
+            nombre: '',
+            tipo: '',
+            equipo: []
         }
-      })
-    }
-  }
+    };
 
-  onVolver(): void {
-    this.verConfigCuenta = true;
-    this.verInfoPartidas = true;
-  }
+    translate = inject(TranslateService);
+    sprites: string[] = [];
 
-  activarConfigCuenta(): void {
-    this.verInfoPartidas = false;
-    this.verConfigCuenta = true;
-  }
+    constructor(
+        private router: Router,
+        private us: UserService
+    ) { }
 
-  activarInfoPartidas(): void {
-    this.verConfigCuenta = false;
-    this.verInfoPartidas = true;
-  }
-
-  onSalir(): void {
-    this.router.navigate(['/menu']);
-  }
-  eliminarUsuario() {
-    if (this.usuario) {
-      if(this.partida){
-        this.partidaService.eliminarPartida(this.partida.id).subscribe({
-          next: () => {
-            console.log('Partida eliminada');
-          },
-          error: (err: Error) => {
-            console.log("Error al eliminar la partida: " + err.message);
-          }
-        })
-      }
-      this.userService.deleteUser(this.usuario.id).subscribe({
-        next: () => {
-          alert("Se elimino el usuario exitosamente");
-          this.userService.logout();
-          this.router.navigate(['']);
-        },
-        error: (err: Error) => {
-          console.log(err.message);
+    ngOnInit(): void {
+        console.log('token: ' + localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
+        if (token) {
+            this.us.getUserByID(token).subscribe({
+                next: (res) => this.usuario = res,
+                error: (err) => console.error('Error al obtener el usuario: ' + err + '.')
+            })
+            this.partidaService.getPartidaByUserId(token).subscribe({
+                next: (data: Partida | null) => {
+                    if(data){
+                        this.partida = data!;
+                    }
+                },
+                error() {
+                }
+            })
         }
-      })
     }
+
+    onProfileUpdated(updatedUserData: any | null): void {
+        if (updatedUserData) {
+            this.usuario = updatedUserData; 
+            console.log("Datos de usuario actualizados desde el componente hijo.");
+        }
+        // Vuelve a la vista principal
+        this.verConfigCuenta = true;
+        this.verInfoPartidas = true;
+    }
+
+    // Renombrado de onVolver
+    onVolver(): void {
+        this.verConfigCuenta = true;
+        this.verInfoPartidas = true;
+    }
+
+    activarConfigCuenta(): void {
+        this.verInfoPartidas = false;
+        this.verConfigCuenta = true;
+    }
+
+    activarInfoPartidas(): void {
+        this.verConfigCuenta = false;
+        this.verInfoPartidas = true;
+    }
+
+    onSalir(): void {
+        this.router.navigate(['/menu']);
+    }
+
+    eliminarUsuario() {
+        if (this.usuario) {
+            if(this.partida){
+                this.partidaService.eliminarPartida(this.partida.id).subscribe({
+                    next: () => {
+                        console.log('Partida eliminada');
+                    },
+                    error: (err: Error) => {
+                        console.log("Error al eliminar la partida: " + err.message);
+                    }
+                })
+            }
+            this.userService.deleteUser(this.usuario.id).subscribe({
+                next: () => {
+                    alert("Se elimino el usuario exitosamente");
+                    this.userService.logout();
+                    this.router.navigate(['']);
+                },
+                error: (err: Error) => {
+                    console.log(err.message);
+                }
+            })
+        }
+    }
+      transformarPrimeraLetra(nombre: string): string {
+    if (!nombre) return nombre;
+    return nombre.charAt(0).toUpperCase() + nombre.slice(1);
   }
-
-
 }

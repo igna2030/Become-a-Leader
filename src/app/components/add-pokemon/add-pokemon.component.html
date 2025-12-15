@@ -1,78 +1,103 @@
 <nav class="nav-bar">
-  <a [routerLink]="['/add-pokemon']">{{ 'actions.add' | translate }}</a>
-  <a [routerLink]="['/pokemon-list']">{{ 'NAV.POKEMON_LIST' | translate }}</a>
-  <a (click)="logout()">{{ 'actions.logout' | translate }}</a>
+  <a [routerLink]="['/add-pokemon']">{{ 'actions.add' | translate }}</a>
+  <a [routerLink]="['/pokemon-list']">{{ 'NAV.POKEMON_LIST' | translate }}</a>
+  <a (click)="logout()">{{ 'actions.logout' | translate }}</a>
 </nav>
 
 <section>
-  <h1>{{ 'addPokemon.title' | translate }}</h1>
+  <h1>{{ 'addPokemon.title' | translate }}</h1>
 
-  <form (ngSubmit)="addPokemonBD()" class="search-form">
-    <label for="pokeID">{{ 'addPokemon.idLabel' | translate }}: </label>
-    <input type="text" name="pokeID" id="pokeID" [(ngModel)]="pokeID" [placeholder]="'addPokemon.idPlaceholder' | translate">
-    <button type="button" (click)="generarPokemon(pokeID)">{{ 'actions.search' | translate }}</button>
-  </form>
+  <form (ngSubmit)="addPokemonBD()" class="search-form">
+    <label for="pokeID">{{ 'addPokemon.idLabel' | translate }}: </label>
+    <input type="text" name="pokeID" id="pokeID" [(ngModel)]="pokeID" [placeholder]="'addPokemon.idPlaceholder' | translate">
+    <button type="button" (click)="generarPokemon(pokeID)">{{ 'actions.search' | translate }}</button>
+  </form>
 
-  @if (searchError) {
-    <div class="error-message">
-      {{ searchError }}
-    </div>
-  }
-  @if (pokeAPI) {
-    <div class="results-container">
-      <div class="info-container">
-        <div class="basic-info">
-          <h2>{{ 'addPokemon.basicInfo' | translate }}</h2>
-          <ul>
-            <li>
-              <img [src]="pokeAPI.sprites.front_default" [alt]="pokeAPI.id + ' - ' + pokeAPI.name" class="pokemon-icon">
-            </li>
-            <li>{{ 'addPokemon.idApi' | translate }}: {{pokeAPI.id}}</li>
-            <li>{{ 'addPokemon.nameApi' | translate }}: {{pokeAPI.name}}</li>
-            <li>{{ 'addPokemon.typeApi' | translate }}:
-              @for (t of pokeAPI.types; track t; let i = $index) {
-                <span>
-                  {{t?.type.name}}@if (i < pokeAPI.types.length - 1) {
-                  <span>,</span>
-                }
-              </span>
-            }
-          </li>
-        </ul>
-      </div>
-      <div class="stats-info">
-        <h2>{{ 'addPokemon.baseStats' | translate }}</h2>
-        <ul>
-          @for (st of pokeAPI.stats; track st) {
-            <li>{{st?.stat.name}}: {{st?.base_stat}}</li>
-          }
-        </ul>
-      </div>
-    </div>
-    <hr>
-      <div class="moves-section">
-        <h2>{{ 'addPokemon.attacks' | translate }}</h2>
-        <h6>{{ 'addPokemon.statusMoveRestriction' | translate }}</h6>
-        @if (moveError) {
-          <div class="error-message">
-            {{ moveError }}
-          </div>
-        }
-        <ul class="moves-list">
-          @for (move of pokeAPI.moves; track move) {
-            <li>
-              <span>{{move.move.name}}</span>
-              <input type="button" (click)="agregarAtaque(move.move.name)" [value]="'actions.add' | translate">
-            </li>
-          }
-        </ul>
-      </div>
-      <app-app-audio></app-app-audio>
-      @if (saveError) {
-        <div class="error-message">
-          {{ saveError }}
-        </div>
-      }
-      <button type="submit" (click)="addPokemonBD()">{{ 'actions.save' | translate }}</button>
-    </div>
-  } </section>
+  @if (searchError) {
+    <div class="error-message">
+      {{ searchError }}
+    </div>
+  }
+  @if (pokeAPI) {
+    <div class="results-container">
+      <div class="info-container">
+        <div class="basic-info">
+          <h2>{{ 'addPokemon.basicInfo' | translate }}</h2>
+          <ul>
+            <li>
+              <img [src]="pokeAPI.sprites.front_default" [alt]="pokeAPI.id + ' - ' + pokeAPI.name" class="pokemon-icon">
+            </li>
+            <li>{{ 'addPokemon.idApi' | translate }}: {{pokeAPI.id}}</li>
+            <li>{{ 'addPokemon.nameApi' | translate }}: {{pokeAPI.name}}</li>
+            <li>{{ 'addPokemon.typeApi' | translate }}:
+              @for (t of pokeAPI.types; track t.type.name; let i = $index) {
+                <span>
+                  {{t?.type.name}}@if (i < pokeAPI.types.length - 1) {
+                  <span>,</span>
+                }
+              </span>
+            }
+          </li>
+        </ul>
+      </div>
+      <div class="stats-info">
+        <h2>{{ 'addPokemon.baseStats' | translate }}</h2>
+        <ul>
+          @for (st of pokeAPI.stats; track st.stat.name) {
+            <li>{{st?.stat.name}}: {{st?.base_stat}}</li>
+          }
+        </ul>
+      </div>
+    </div>
+    <hr>
+
+    <div class="selected-moves-section">
+        <h2>{{"addPokemon.pokemonmoves" |translate}} ({{moves.length}} / 4)</h2>
+        <ul class="moves-list">
+            @for (move of moves; track move.nombre; let idx = $index) {
+                <li class="selected-move-item">
+                    <span>{{move.nombre}}</span>
+                    <button type="delete-button" (click)="eliminarAtaque(idx)">
+                        {{ 'actions.delete' | translate }}
+                    </button>
+                </li>
+            }
+            @if (moves.length < 4) {
+                <li class="placeholder-move-item">
+                    
+                </li>
+            }
+        </ul>
+    </div>
+    <hr>
+    
+      <div class="moves-section">
+        <h2>{{ 'addPokemon.attacks' | translate }}</h2>
+        <h6>{{ 'addPokemon.statusMoveRestriction' | translate }}</h6>
+        @if (moveError) {
+          <div class="error-message">
+            {{ moveError }}
+          </div>
+        }
+        <ul class="moves-list">
+          @for (move of availableMoves; track move.name) {             <li>
+              <span>{{move.name}}</span>
+              <input 
+                   type="button" 
+                   (click)="agregarAtaque(move.name)" 
+                   [value]="'actions.add' | translate"
+                   [disabled]="moves.length >= 4 || isMoveSelected(move.name)"
+              >
+            </li>
+          }
+        </ul>
+      </div>
+      <app-app-audio></app-app-audio>
+      @if (saveError) {
+        <div class="error-message">
+          {{ saveError }}
+        </div>
+      }
+      <button type="submit" (click)="addPokemonBD()">{{ 'actions.save' | translate }}</button>
+    </div>
+  } </section>

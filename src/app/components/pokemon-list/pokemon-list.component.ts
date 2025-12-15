@@ -37,6 +37,9 @@ export class PokemonListComponent implements OnInit
         next:(data:Pokemon[])=>
         {
           this.pokemons=data;
+          this.pokemons.sort((a,b)=>{
+            return Number(a.id) - Number(b.id)
+          })
           this.loadIcons();
         },
         error:(err:Error)=>{

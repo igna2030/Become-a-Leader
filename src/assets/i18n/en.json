@@ -29,12 +29,14 @@
     "inventory": "Inventory",
     "use": "use item",
     "noItems": "There are no items",
-    "switch":"Switch pokemon",
-    "heal":"Heal"
+    "switch": "Switch pokemon",
+    "heal": "Heal",
+    "continue":"Continue"
   },
   "alerts": {
     "emailRequired": "Email is required",
     "emailInvalid": "Invalid email format",
+    "emailInvalidFormat": "Email must be a valid @gmail.com address.",
     "passwordRequired": "This field is required",
     "incorrectCredentials": "Incorrect credentials, please try again.",
     "loginApiError": "There was an error trying to log in. Please try again later.",
@@ -59,7 +61,9 @@
     "pokemonExists": "The pokemon already exits in the database",
     "pokemonNotFound": "Error: No Pokémon found with ID '{{id}}'.",
     "tooManyMoves": "You have already selected 4 moves! You cannot add more.",
-    "genericSaveError": "An unexpected error occurred while trying to save the Pokémon."
+    "genericSaveError": "An unexpected error occurred while trying to save the Pokémon.",
+    "saveAlreadyExits":"You already have a save. ¿Do you want to eliminate it?",
+    "deletingSave":"Error while deleting the save"
   },
   "game": {
     "welcomeTitle": "Welcome to the game",
@@ -155,10 +159,10 @@
     "inmune": "Inmune"
   },
   "pokedex": {
-    "superEffective": "super effective against him",
-    "notVeryEffective": "Not very effective against him",
-    "immunities": "inmune",
-    "neutral": "neutral"
+    "superEffective": "Super effective against this pokemon",
+    "notVeryEffective": "Not very effective against this pokemon",
+    "immunities": "Inmune",
+    "neutral": "Neutral"
   },
   "pokemonList": {
     "title": "List of Pokemon "
@@ -173,7 +177,8 @@
     "typeApi": "Type",
     "baseStats": "Base Stats",
     "attacks": "Attacks",
-    "statusMoveRestriction": "Status type moves cannot be added"
+    "statusMoveRestriction": "Status type moves cannot be added",
+    "pokemonmoves":"Added Moves"
   },
   "editMoves": {
     "titleSuffix": "Edit Moves",
@@ -200,7 +205,7 @@
     "isDefeated": "has been defeated!",
     "errorSpriteFetch": "Error fetching sprite",
     "isSentOut": "is sent out",
-    "pokedexError": "Error while loading the pokemon in the pokedex.  Search with the ID",
+    "pokedexError": "Error while loading the pokemon in the pokedex.  Search with the ID",
     "errorGameUpdate": "Error while loading the game",
     "usedItem": "Used item",
     "selectTargetFor": "Target selected for",
@@ -210,9 +215,10 @@
     "selectReviveItemFirst": "First select an revive item",
     "go": "Go",
     "return": "return",
-    "choosePokemonSwitch":"Choose a pokemon to change",
-    "inCombat":"In combat",
-    "using":"Using",
+    "choosePokemonSwitch": "Choose a pokemon to change",
+    "inCombat": "In combat",
+    "using": "Using",
+    "speed":"Speed",
     "status": {
       "loadingBattle": "Initiating battle",
       "generatingRival": "Generating rival",

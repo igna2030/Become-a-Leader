@@ -1,89 +1,89 @@
 <body>
-  <div class="menu">
-    @if (verConfigCuenta && verInfoPartidas) {
-      <nav class="navbar">
-        <div class="BotoncitoLogout">
-          <button (click)="onSalir()" type="button" class="btnVolver">
-            {{ "account.back" | translate }}
-          </button>
-        </div>
-      </nav>
-    }
-    <h1>{{ "profile.title" | translate }}</h1>
+    <div class="menu">
+        @if (verConfigCuenta && verInfoPartidas) {
+            <nav class="navbar">
+                <div class="BotoncitoLogout">
+                    <button (click)="onSalir()" type="button" class="btnVolver">
+                        {{ "account.back" | translate }}
+                    </button>
+                </div>
+            </nav>
+        }
+        <h1>{{ "profile.title" | translate }}</h1>
 
-    <div class="contenedor-principal">
-      @if (verInfoPartidas) {
-        <div class="columna-informacion">
-          <div class="cuenta">
-            <h2>{{ "profile.generalInfo" | translate }}</h2>
-            <ul>
-              <li>{{ "account.nickname" | translate }}: {{ usuario?.nick }}</li>
-              <li>{{ "account.email" | translate }}: {{ usuario?.email }}</li>
-            </ul>
-            <h2>{{ "profile.gameData" | translate }}</h2>
-            @if(partida.id != ''){
-              @if (partida) {
-                <ul>
-                  <li>
-                    {{ "profile.startDate" | translate }}:
-                    {{ partida.fecha_inicio }}
-                  </li>
-                  <li>
-                    {{ "profile.currentScore" | translate }}:
-                    {{ partida.puntuacion }}
-                  </li>
-                </ul>
-                <h3>{{ "profile.character" | translate }}</h3>
-                <ul>
-                  <li>
-                    {{ "profile.name" | translate }}: {{ partida.personaje.nombre }}
-                  </li>
-                  <li>
-                    {{ "profile.type" | translate }}: {{ partida.personaje.tipo }}
-                  </li>
-                </ul>
-                <h4>{{ "profile.team" | translate }}</h4>
-                <ol>
-                  @for (pokemon of partida.personaje.equipo; track pokemon) {
-                    <li>
-                      {{ pokemon.especie }}
-                    </li>
-                  }
-                </ol>
-              }
-            } @else{
-              <p>{{ "profile.noActiveGame" | translate }}</p>
+        <div class="contenedor-principal">
+            @if (verInfoPartidas) {
+                <div class="columna-informacion">
+                    <div class="cuenta">
+                        <h2>{{ "profile.generalInfo" | translate }}</h2>
+                        <ul>
+                            <li>{{ "account.nickname" | translate }}: {{ usuario?.nick }}</li>
+                            <li>{{ "account.email" | translate }}: {{ usuario?.email }}</li>
+                        </ul>
+                        <h2>{{ "profile.gameData" | translate }}</h2>
+                        @if(partida.id != ''){
+                            @if (partida) {
+                                <ul>
+                                    <li>
+                                        {{ "profile.startDate" | translate }}:
+                                        {{ partida.fecha_inicio }}
+                                    </li>
+                                    <li>
+                                        {{ "profile.currentScore" | translate }}:
+                                        {{ partida.puntuacion }}
+                                    </li>
+                                </ul>
+                                <h3>{{ "profile.character" | translate }}</h3>
+                                <ul>
+                                    <li>
+                                        {{ "profile.name" | translate }}: {{ (partida.personaje.nombre) }}
+                                    </li>
+                                    <li>
+                                        {{ "profile.type" | translate }}: {{ transformarPrimeraLetra(partida.personaje.tipo) }}
+                                    </li>
+                                </ul>
+                                <h4>{{ "profile.team" | translate }}</h4>
+                                <ol>
+                                    @for (pokemon of partida.personaje.equipo; track pokemon) {
+                                        <li>
+                                            {{ transformarPrimeraLetra(pokemon.especie) }}
+                                        </li>
+                                    }
+                                </ol>
+                            }
+                        } @else{
+                            <p>{{ "profile.noActiveGame" | translate }}</p>
+                        }
+                    </div>
+                </div>
             }
-          </div>
-        </div>
-      }
 
-      <div class="columna-botones">
-        <div class="cuenta">
-          <button
-            class="config_cuenta"
-            type="button"
-            (click)="eliminarUsuario()"
-            >
-            {{ "profile.deleteAccount" | translate }}
-          </button>
-          @if (verConfigCuenta && verInfoPartidas) {
-            <button
-              (click)="activarConfigCuenta()"
-              class="config_cuenta"
-              >
-              {{ "profile.modifyAccount" | translate }}
-            </button>
-          }
-          @if (verConfigCuenta && !verInfoPartidas) {
-            <app-user-account-info
-              [userId]="usuario?.id"
-              (volver)="onVolver()"
-            ></app-user-account-info>
-          }
+            <div class="columna-botones">
+                <div class="cuenta">
+                    <button
+                        class="config_cuenta"
+                        type="button"
+                        (click)="eliminarUsuario()"
+                        >
+                        {{ "profile.deleteAccount" | translate }}
+                    </button>
+                    @if (verConfigCuenta && verInfoPartidas) {
+                        <button
+                            (click)="activarConfigCuenta()"
+                            class="config_cuenta"
+                            >
+                            {{ "profile.modifyAccount" | translate }}
+                        </button>
+                    }
+                    @if (verConfigCuenta && !verInfoPartidas) {
+                        <app-user-account-info
+                            [userId]="usuario?.id"
+                            (profileUpdateCompleted)="onProfileUpdated($event)"
+                        ></app-user-account-info>
+                    }
+                </div>
+            </div>
         </div>
-      </div>
+        <app-app-audio></app-app-audio>
     </div>
-  </div>
-  <app-app-audio></app-app-audio>
 </body>

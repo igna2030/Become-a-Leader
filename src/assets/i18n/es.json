@@ -29,8 +29,9 @@
     "inventory": "Inventario",
     "use": "usar item",
     "noItems": "No hay items",
-    "switch":"Cambia el pokemon",
-    "heal":"Curar"
+    "switch": "Cambia el pokemon",
+    "heal": "Curar",
+    "continue":"Continuar"
   },
   "alerts": {
     "nicknameEmpty": "No puedes dejar el campo vacío.",
@@ -39,6 +40,7 @@
     "emailSame": "Debes indicar una dirección distinta a la actual.",
     "emailInUse": "Esta dirección ya se encuentra en uso",
     "emailSuccess": "¡Dirección de correo modificada exitosamente!",
+    "emailInvalidFormat": "El email debe ser una dirección válida de @gmail.com.",
     "passwordDifferent": "Debes ingresar una contraseña distinta a la actual.",
     "passwordMismatch": "Las contraseñas nuevas no coinciden.",
     "currentPasswordIncorrect": "La contraseña actual indicada no es correcta.",
@@ -55,11 +57,13 @@
     "minLengthPassword": "Requiere un mínimo de 8 letras",
     "maxLengthPassword": "La contraseña debe tener como maximo 15 caracteres",
     "registerSuccess": "{{nick}} se ha registrado correctamente :)",
-    "mustHaveFourMoves":"El Pokémon debe tener exactamente 4 movimientos antes de guardarse",
-    "pokemonExists":"El pokemon ya existe en la base de datos",
+    "mustHaveFourMoves": "El Pokémon debe tener exactamente 4 movimientos antes de guardarse",
+    "pokemonExists": "El pokemon ya existe en la base de datos",
     "pokemonNotFound": "Error: No se encontró ningún Pokémon con el ID '{{id}}'.",
     "tooManyMoves": "¡Ya has seleccionado 4 movimientos! No puedes añadir más.",
-    "genericSaveError": "Ocurrió un error inesperado al intentar guardar el Pokémon."
+    "genericSaveError": "Ocurrió un error inesperado al intentar guardar el Pokémon.",
+    "saveAlreadyExits":"Ya tienes una partida guardada. ¿Deseas eliminarla para comenzar una nueva?",
+    "deletingSave":"Error al eliminar la partida"
   },
   "game": {
     "welcomeTitle": "Bienvenido al juego",
@@ -92,7 +96,7 @@
   },
   "NAV": {
     "LOGIN": "LOG IN",
-    "REGISTER": "REGISTER",
+    "REGISTER": "REGISTRARSE",
     "ABOUT_US": "SOBRE NOSOTROS",
     "ADMIN": "ADMIN",
     "BEGINNING": "INICIO",
@@ -173,7 +177,8 @@
     "typeApi": "Tipo",
     "baseStats": "Estadísticas Base",
     "attacks": "Ataques",
-    "statusMoveRestriction": "Los movimientos de tipo estatus no pueden ser agregados"
+    "statusMoveRestriction": "Los movimientos de tipo estatus no pueden ser agregados",
+    "pokemonmoves":"Movimientos agregados"
   },
   "editMoves": {
     "titleSuffix": "Editar Movimientos",
@@ -200,7 +205,7 @@
     "rivalAppeared": "Aparecio un rival es un",
     "errorSpriteFetch": "Error al obtener el sprite",
     "isSentOut": " se ha enviado",
-    "pokedexError": "Error al cargar el pokemon de la pokedex.  Buscar con el ID",
+    "pokedexError": "Error al cargar el pokemon de la pokedex.  Buscar con el ID",
     "errorGameUpdate": "Error al cargar el juego",
     "usedItem": "Item usado",
     "selectTargetFor": "Objetivo seleccionado para ",
@@ -208,11 +213,12 @@
     "hp": "Vida",
     "selectPokemonToRevive": "Elige un pokemon para revivir",
     "selectReviveItemFirst": "Primero elige un item de revivir",
-    "go":"Vamos",
-    "return":"Vuelve",
-    "choosePokemonSwitch":"Elige un pokemon para cambiar",
-    "inCombat":"En combate",
-    "using":"Usando",
+    "go": "Vamos",
+    "return": "Vuelve",
+    "choosePokemonSwitch": "Elige un pokemon para cambiar",
+    "inCombat": "En combate",
+    "using": "Usando",
+    "speed":"Velocidad",
     "status": {
       "loadingBattle": "Iniciando batalla",
       "generatingRival": "Generando rival",

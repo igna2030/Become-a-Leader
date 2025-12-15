@@ -7,10 +7,22 @@
       "password": "ejemplo123"
     },
     {
-      "id": "f5d9",
-      "email": "ejemplo@gmail.com",
+      "id": "983a",
+      "email": "ignaburner001@gmail.com",
       "nick": "igna2030",
+      "password": "nacho2030"
+    },
+    {
+      "id": "7d46",
+      "email": "ejemplo@gmail.com",
+      "nick": "ejemas",
       "password": "ejemplo123"
+    },
+    {
+      "id": "ac9c",
+      "email": "ejemplo2@gmail.com",
+      "nick": "igna203000",
+      "password": "12345678"
     }
   ],
   "partidas": [
@@ -374,57 +386,1303 @@
       }
     },
     {
-      "id": "f5d9",
-      "fecha_inicio": "2025-11-24T21:25:04.550Z",
-      "fecha_fin": "2025-11-24T21:25:04.550Z",
-      "puntuacion": 2,
+      "id": "983a",
+      "fecha_inicio": "2025-12-13T11:42:23.274Z",
+      "fecha_fin": "2025-12-13T11:42:23.274Z",
+      "puntuacion": 0,
       "personaje": {
-        "id": "f5d9",
-        "nombre": "ignaaa",
-        "tipo": "dragon",
+        "id": "983a",
+        "nombre": "asd",
+        "tipo": "flying",
         "equipo": [
           {
-            "id": "373",
-            "especie": "Salamence",
+            "id": "384",
+            "especie": "rayquaza",
             "tipos": [
               "dragon",
               "flying"
             ],
             "nivel": 100,
-            "vidaActual": 344,
+            "vidaActual": 335,
             "estadisticas": {
-              "hp": 344,
-              "atk": 313,
-              "def": 182,
-              "satk": 227,
-              "sdef": 183,
-              "spd": 238
+              "hp": 335,
+              "atk": 336,
+              "def": 209,
+              "satk": 324,
+              "sdef": 186,
+              "spd": 219
             },
             "movimientos": [
               {
-                "nombre": "Dragon Claw",
+                "nombre": "dragon-tail",
                 "tipo": "dragon",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "dragon-tail",
+                "originalType": "dragon"
+              },
+              {
+                "nombre": "dragon-ascent",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 5,
+                "pp": 5,
+                "originalName": "dragon-ascent",
+                "originalType": "flying"
+              },
+              {
+                "nombre": "air-slash",
+                "tipo": "flying",
+                "clase": "special",
+                "potencia": 75,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "air-slash",
+                "originalType": "flying"
+              },
+              {
+                "nombre": "headbutt",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "headbutt",
+                "originalType": "normal"
+              }
+            ],
+            "idEntrenador": "983a",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/384.ogg"
+          },
+          {
+            "id": "567",
+            "especie": "archeops",
+            "tipos": [
+              "rock",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 285,
+            "estadisticas": {
+              "hp": 285,
+              "atk": 303,
+              "def": 178,
+              "satk": 258,
+              "sdef": 157,
+              "spd": 257
+            },
+            "movimientos": [
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "dragon-breath",
+                "tipo": "dragon",
+                "clase": "special",
+                "potencia": 60,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20
+              },
+              {
+                "nombre": "steel-wing",
+                "tipo": "steel",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 90,
+                "usos": 25,
+                "pp": 25
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/567.ogg",
+            "idEntrenador": "983a"
+          },
+          {
+            "id": "130",
+            "especie": "gyarados",
+            "tipos": [
+              "water",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 318,
+            "estadisticas": {
+              "hp": 318,
+              "atk": 286,
+              "def": 192,
+              "satk": 137,
+              "sdef": 223,
+              "spd": 180
+            },
+            "movimientos": [
+              {
+                "nombre": "waterfall",
+                "tipo": "water",
                 "clase": "physical",
                 "potencia": 80,
                 "precision": 100,
                 "usos": 15,
-                "pp": 15,
-                "originalName": "dragon-claw",
-                "localizedName": "Dragon Claw",
-                "localizedtype": "Dragon"
+                "pp": 15
               },
               {
-                "nombre": "Fire Fang",
+                "nombre": "crunch",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "avalanche",
+                "tipo": "ice",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "giga-impact",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 150,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/130.ogg",
+            "idEntrenador": "983a"
+          },
+          {
+            "id": "227",
+            "especie": "skarmory",
+            "tipos": [
+              "steel",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 253,
+            "estadisticas": {
+              "hp": 253,
+              "atk": 214,
+              "def": 317,
+              "satk": 124,
+              "sdef": 188,
+              "spd": 163
+            },
+            "movimientos": [
+              {
+                "nombre": "brave-bird",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "iron-head",
+                "tipo": "steel",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "steel-wing",
+                "tipo": "steel",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 90,
+                "usos": 25,
+                "pp": 25
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/227.ogg",
+            "idEntrenador": "983a"
+          },
+          {
+            "id": "142",
+            "especie": "aerodactyl",
+            "tipos": [
+              "rock",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 315,
+            "estadisticas": {
+              "hp": 315,
+              "atk": 238,
+              "def": 154,
+              "satk": 143,
+              "sdef": 202,
+              "spd": 280
+            },
+            "movimientos": [
+              {
+                "nombre": "sky-attack",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 140,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "fire-fang",
                 "tipo": "fire",
                 "clase": "physical",
                 "potencia": 65,
                 "precision": 95,
                 "usos": 15,
+                "pp": 15
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/142.ogg",
+            "idEntrenador": "983a"
+          },
+          {
+            "id": "472",
+            "especie": "gliscor",
+            "tipos": [
+              "ground",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 283,
+            "estadisticas": {
+              "hp": 283,
+              "atk": 242,
+              "def": 283,
+              "satk": 131,
+              "sdef": 174,
+              "spd": 236
+            },
+            "movimientos": [
+              {
+                "nombre": "earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10
+              },
+              {
+                "nombre": "fire-fang",
+                "tipo": "fire",
+                "clase": "physical",
+                "potencia": 65,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15
+              },
+              {
+                "nombre": "cross-poison",
+                "tipo": "poison",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20
+              },
+              {
+                "nombre": "rock-slide",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 90,
+                "usos": 10,
+                "pp": 10
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/472.ogg",
+            "idEntrenador": "983a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "7d46",
+      "fecha_inicio": "2025-12-15T15:32:11.558Z",
+      "fecha_fin": "2025-12-15T15:32:11.558Z",
+      "puntuacion": 3,
+      "personaje": {
+        "id": "7d46",
+        "nombre": "asd",
+        "tipo": "poison",
+        "equipo": [
+          {
+            "id": "591",
+            "especie": "Amoonguss",
+            "tipos": [
+              "grass",
+              "poison"
+            ],
+            "nivel": 100,
+            "vidaActual": 371,
+            "estadisticas": {
+              "hp": 371,
+              "atk": 192,
+              "def": 183,
+              "satk": 189,
+              "sdef": 192,
+              "spd": 96
+            },
+            "movimientos": [
+              {
+                "nombre": "Body Slam",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 85,
+                "precision": 100,
+                "usos": 15,
                 "pp": 15,
-                "originalName": "fire-fang",
-                "localizedName": "Fire Fang",
+                "originalName": "body-slam",
+                "localizedName": "Body Slam",
+                "localizedtype": "Normal"
+              },
+              {
+                "nombre": "Feint Attack",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": null,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "feint-attack",
+                "localizedName": "Feint Attack",
+                "localizedtype": "Dark"
+              },
+              {
+                "nombre": "Sludge Bomb",
+                "tipo": "poison",
+                "clase": "special",
+                "potencia": 90,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "sludge-bomb",
+                "localizedName": "Sludge Bomb",
+                "localizedtype": "Poison"
+              },
+              {
+                "nombre": "Seed Bomb",
+                "tipo": "grass",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "seed-bomb",
+                "localizedName": "Seed Bomb",
+                "localizedtype": "Grass"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/591.ogg",
+            "idEntrenador": "7d46",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/591.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/591.png",
+            "localizedName": "Amoonguss"
+          },
+          {
+            "id": "317",
+            "especie": "Swalot",
+            "tipos": [
+              "poison"
+            ],
+            "nivel": 100,
+            "vidaActual": 343,
+            "estadisticas": {
+              "hp": 343,
+              "atk": 171,
+              "def": 206,
+              "satk": 160,
+              "sdef": 207,
+              "spd": 120
+            },
+            "movimientos": [
+              {
+                "nombre": "Ice Punch",
+                "tipo": "ice",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "ice-punch",
+                "localizedName": "Ice Punch",
+                "localizedtype": "Ice"
+              },
+              {
+                "nombre": "Seed Bomb",
+                "tipo": "grass",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "seed-bomb",
+                "localizedName": "Seed Bomb",
+                "localizedtype": "Grass"
+              },
+              {
+                "nombre": "Shadow Ball",
+                "tipo": "ghost",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "shadow-ball",
+                "localizedName": "Shadow Ball",
+                "localizedtype": "Ghost"
+              },
+              {
+                "nombre": "Earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "earthquake",
+                "localizedName": "Earthquake",
+                "localizedtype": "Ground"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/317.ogg",
+            "idEntrenador": "7d46",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/317.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/317.png",
+            "localizedName": "Swalot"
+          },
+          {
+            "id": "31",
+            "especie": "Nidoqueen",
+            "tipos": [
+              "poison",
+              "ground"
+            ],
+            "nivel": 100,
+            "vidaActual": 327,
+            "estadisticas": {
+              "hp": 327,
+              "atk": 214,
+              "def": 225,
+              "satk": 185,
+              "sdef": 186,
+              "spd": 178
+            },
+            "movimientos": [
+              {
+                "nombre": "Mega Punch",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 85,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "mega-punch",
+                "localizedName": "Mega Punch",
+                "localizedtype": "Normal"
+              },
+              {
+                "nombre": "Ice Punch",
+                "tipo": "ice",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "ice-punch",
+                "localizedName": "Ice Punch",
+                "localizedtype": "Ice"
+              },
+              {
+                "nombre": "Fire Punch",
+                "tipo": "fire",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "fire-punch",
+                "localizedName": "Fire Punch",
                 "localizedtype": "Fire"
               },
+              {
+                "nombre": "Earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "earthquake",
+                "localizedName": "Earthquake",
+                "localizedtype": "Ground"
+              }
+            ],
+            "idEntrenador": "7d46",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/31.ogg",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/31.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/31.png",
+            "localizedName": "Nidoqueen"
+          },
+          {
+            "id": "336",
+            "especie": "Seviper",
+            "tipos": [
+              "poison"
+            ],
+            "nivel": 100,
+            "vidaActual": 297,
+            "estadisticas": {
+              "hp": 297,
+              "atk": 220,
+              "def": 132,
+              "satk": 232,
+              "sdef": 173,
+              "spd": 148
+            },
+            "movimientos": [
+              {
+                "nombre": "Crunch",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "crunch",
+                "localizedName": "Crunch",
+                "localizedtype": "Dark"
+              },
+              {
+                "nombre": "Poison Jab",
+                "tipo": "poison",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "poison-jab",
+                "localizedName": "Poison Jab",
+                "localizedtype": "Poison"
+              },
+              {
+                "nombre": "Bulldoze",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "bulldoze",
+                "localizedName": "Bulldoze",
+                "localizedtype": "Ground"
+              },
+              {
+                "nombre": "Facade",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "facade",
+                "localizedName": "Facade",
+                "localizedtype": "Normal"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/336.ogg",
+            "idEntrenador": "7d46",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/336.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/336.png",
+            "localizedName": "Seviper"
+          },
+          {
+            "id": "73",
+            "especie": "Tentacruel",
+            "tipos": [
+              "water",
+              "poison"
+            ],
+            "nivel": 100,
+            "vidaActual": 282,
+            "estadisticas": {
+              "hp": 282,
+              "atk": 174,
+              "def": 175,
+              "satk": 194,
+              "sdef": 260,
+              "spd": 232
+            },
+            "movimientos": [
+              {
+                "nombre": "Scald",
+                "tipo": "water",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "scald",
+                "localizedName": "Scald",
+                "localizedtype": "Water"
+              },
+              {
+                "nombre": "Cross Poison",
+                "tipo": "poison",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "cross-poison",
+                "localizedName": "Cross Poison",
+                "localizedtype": "Poison"
+              },
+              {
+                "nombre": "Ice Beam",
+                "tipo": "ice",
+                "clase": "special",
+                "potencia": 90,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "ice-beam",
+                "localizedName": "Ice Beam",
+                "localizedtype": "Ice"
+              },
+              {
+                "nombre": "Hyper Beam",
+                "tipo": "normal",
+                "clase": "special",
+                "potencia": 150,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5,
+                "originalName": "hyper-beam",
+                "localizedName": "Hyper Beam",
+                "localizedtype": "Normal"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/73.ogg",
+            "idEntrenador": "7d46",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/73.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/73.png",
+            "localizedName": "Tentacruel"
+          },
+          {
+            "id": "452",
+            "especie": "Drapion",
+            "tipos": [
+              "poison",
+              "dark"
+            ],
+            "nivel": 100,
+            "vidaActual": 281,
+            "estadisticas": {
+              "hp": 281,
+              "atk": 209,
+              "def": 274,
+              "satk": 170,
+              "sdef": 188,
+              "spd": 208
+            },
+            "movimientos": [
+              {
+                "nombre": "Poison Jab",
+                "tipo": "poison",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "poison-jab",
+                "localizedName": "Poison Jab",
+                "localizedtype": "Poison"
+              },
+              {
+                "nombre": "Crunch",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "crunch",
+                "localizedName": "Crunch",
+                "localizedtype": "Dark"
+              },
+              {
+                "nombre": "Aerial Ace",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": null,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "aerial-ace",
+                "localizedName": "Aerial Ace",
+                "localizedtype": "Flying"
+              },
+              {
+                "nombre": "Rock Tomb",
+                "tipo": "rock",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "rock-tomb",
+                "localizedName": "Rock Tomb",
+                "localizedtype": "Rock"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/452.ogg",
+            "idEntrenador": "7d46",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/452.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/452.png",
+            "localizedName": "Drapion"
+          }
+        ],
+        "items": [
+          {
+            "name": "sacred-ash",
+            "category": {
+              "name": "revival",
+              "url": "https://pokeapi.co/api/v2/item-category/29/"
+            },
+            "localizedName": "Sacred Ash",
+            "description": "FULLY REVIVES AND RESTORES ALL FAINTED POKÉMON.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/sacred-ash.png"
+          },
+          {
+            "name": "hyper-potion",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Hyper Potion",
+            "description": "RESTORES THE HP OF A POKÉMON BY 200 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/hyper-potion.png"
+          },
+          {
+            "name": "revive",
+            "category": {
+              "name": "revival",
+              "url": "https://pokeapi.co/api/v2/item-category/29/"
+            },
+            "localizedName": "Revive",
+            "description": "REVIVES A FAINTED POKÉMON WITH HALF ITS HP.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/revive.png"
+          },
+          {
+            "name": "full-restore",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Full Restore",
+            "description": "FULLY RESTORES THE HP AND STATUS OF A POKÉMON.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/full-restore.png"
+          },
+          {
+            "name": "super-potion",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Super Potion",
+            "description": "RESTORES THE HP OF A POKÉMON BY 50 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/super-potion.png"
+          },
+          {
+            "name": "energy-root",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Energy Root",
+            "description": "A BITTER ROOT THAT RESTORES HP BY 200 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/energy-root.png"
+          },
+          {
+            "name": "max-potion",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Max Potion",
+            "description": "FULLY RESTORES THE HP OF A POKÉMON.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/max-potion.png"
+          },
+          {
+            "name": "max-revive",
+            "category": {
+              "name": "revival",
+              "url": "https://pokeapi.co/api/v2/item-category/29/"
+            },
+            "localizedName": "Max Revive",
+            "description": "REVIVES A FAINTED POKÉMON WITH ALL ITS HP.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/max-revive.png"
+          }
+        ]
+      },
+      "duelosGanados": 2
+    },
+    {
+      "id": "ac9c",
+      "fecha_inicio": "2025-12-15T18:10:38.139Z",
+      "fecha_fin": "2025-12-15T18:10:38.139Z",
+      "puntuacion": 3,
+      "personaje": {
+        "id": "ac9c",
+        "nombre": "asd",
+        "tipo": "flying",
+        "equipo": [
+          {
+            "id": "468",
+            "especie": "Togekiss",
+            "tipos": [
+              "fairy",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 295,
+            "estadisticas": {
+              "hp": 295,
+              "atk": 135,
+              "def": 226,
+              "satk": 265,
+              "sdef": 260,
+              "spd": 191
+            },
+            "movimientos": [
+              {
+                "nombre": "Air Slash",
+                "tipo": "flying",
+                "clase": "special",
+                "potencia": 75,
+                "precision": 95,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "air-slash",
+                "localizedName": "Air Slash",
+                "localizedtype": "Flying"
+              },
+              {
+                "nombre": "Dazzling Gleam",
+                "tipo": "fairy",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "dazzling-gleam",
+                "localizedName": "Dazzling Gleam",
+                "localizedtype": "Fairy"
+              },
+              {
+                "nombre": "Shadow Ball",
+                "tipo": "ghost",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "shadow-ball",
+                "localizedName": "Shadow Ball",
+                "localizedtype": "Ghost"
+              },
+              {
+                "nombre": "Aura Sphere",
+                "tipo": "fighting",
+                "clase": "special",
+                "potencia": 80,
+                "precision": null,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "aura-sphere",
+                "localizedName": "Aura Sphere",
+                "localizedtype": "Fighting"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/468.ogg",
+            "idEntrenador": "ac9c",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/468.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/468.png",
+            "localizedName": "Togekiss"
+          },
+          {
+            "id": "149",
+            "especie": "Dragonite",
+            "tipos": [
+              "dragon",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 309,
+            "estadisticas": {
+              "hp": 309,
+              "atk": 307,
+              "def": 220,
+              "satk": 218,
+              "sdef": 239,
+              "spd": 208
+            },
+            "movimientos": [
+              {
+                "nombre": "Outrage",
+                "tipo": "dragon",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "outrage",
+                "localizedName": "Outrage",
+                "localizedtype": "Dragon"
+              },
+              {
+                "nombre": "Earthquake",
+                "tipo": "ground",
+                "clase": "physical",
+                "potencia": 100,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "earthquake",
+                "localizedName": "Earthquake",
+                "localizedtype": "Ground"
+              },
+              {
+                "nombre": "Fire Punch",
+                "tipo": "fire",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "fire-punch",
+                "localizedName": "Fire Punch",
+                "localizedtype": "Fire"
+              },
+              {
+                "nombre": "Thunder Punch",
+                "tipo": "electric",
+                "clase": "physical",
+                "potencia": 75,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "thunder-punch",
+                "localizedName": "Thunder Punch",
+                "localizedtype": "Electric"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/149.ogg",
+            "idEntrenador": "ac9c",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/149.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/149.png",
+            "localizedName": "Dragonite"
+          },
+          {
+            "id": "169",
+            "especie": "Crobat",
+            "tipos": [
+              "poison",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 290,
+            "estadisticas": {
+              "hp": 290,
+              "atk": 219,
+              "def": 171,
+              "satk": 162,
+              "sdef": 193,
+              "spd": 292
+            },
+            "movimientos": [
+              {
+                "nombre": "X-Scissor",
+                "tipo": "bug",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "x-scissor",
+                "localizedName": "X-Scissor",
+                "localizedtype": "Bug"
+              },
+              {
+                "nombre": "Cross Poison",
+                "tipo": "poison",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "cross-poison",
+                "localizedName": "Cross Poison",
+                "localizedtype": "Poison"
+              },
+              {
+                "nombre": "Acrobatics",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 55,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "acrobatics",
+                "localizedName": "Acrobatics",
+                "localizedtype": "Flying"
+              },
+              {
+                "nombre": "Crunch",
+                "tipo": "dark",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "crunch",
+                "localizedName": "Crunch",
+                "localizedtype": "Dark"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/169.ogg",
+            "idEntrenador": "ac9c",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/169.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/169.png",
+            "localizedName": "Crobat"
+          },
+          {
+            "id": "291",
+            "especie": "Ninjask",
+            "tipos": [
+              "bug",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 260,
+            "estadisticas": {
+              "hp": 260,
+              "atk": 213,
+              "def": 137,
+              "satk": 124,
+              "sdef": 135,
+              "spd": 371
+            },
+            "movimientos": [
+              {
+                "nombre": "X-Scissor",
+                "tipo": "bug",
+                "clase": "physical",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "x-scissor",
+                "localizedName": "X-Scissor",
+                "localizedtype": "Bug"
+              },
+              {
+                "nombre": "Aerial Ace",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": null,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "aerial-ace",
+                "localizedName": "Aerial Ace",
+                "localizedtype": "Flying"
+              },
+              {
+                "nombre": "Facade",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 70,
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "facade",
+                "localizedName": "Facade",
+                "localizedtype": "Normal"
+              },
+              {
+                "nombre": "Double-Edge",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 120,
+                "precision": 100,
+                "usos": 15,
+                "pp": 15,
+                "originalName": "double-edge",
+                "localizedName": "Double-Edge",
+                "localizedtype": "Normal"
+              }
+            ],
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/291.ogg",
+            "idEntrenador": "ac9c",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/291.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/291.png",
+            "localizedName": "Ninjask"
+          },
+          {
+            "id": "123",
+            "especie": "Scyther",
+            "tipos": [
+              "bug",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 271,
+            "estadisticas": {
+              "hp": 271,
+              "atk": 243,
+              "def": 193,
+              "satk": 121,
+              "sdef": 183,
+              "spd": 234
+            },
+            "movimientos": [
+              {
+                "nombre": "Razor Wind",
+                "tipo": "normal",
+                "clase": "special",
+                "potencia": 80,
+                "precision": 100,
+                "usos": 10,
+                "pp": 10,
+                "originalName": "razor-wind",
+                "originalType": "normal",
+                "localizedName": "Razor Wind",
+                "localizedtype": "Normal"
+              },
+              {
+                "nombre": "Wing Attack",
+                "tipo": "flying",
+                "clase": "physical",
+                "potencia": 60,
+                "precision": 100,
+                "usos": 35,
+                "pp": 35,
+                "originalName": "wing-attack",
+                "originalType": "flying",
+                "localizedName": "Wing Attack",
+                "localizedtype": "Flying"
+              },
+              {
+                "nombre": "Hyper Beam",
+                "tipo": "normal",
+                "clase": "special",
+                "potencia": 150,
+                "precision": 90,
+                "usos": 5,
+                "pp": 5,
+                "originalName": "hyper-beam",
+                "originalType": "normal",
+                "localizedName": "Hyper Beam",
+                "localizedtype": "Normal"
+              },
+              {
+                "nombre": "Quick Attack",
+                "tipo": "normal",
+                "clase": "physical",
+                "potencia": 40,
+                "precision": 100,
+                "usos": 30,
+                "pp": 30,
+                "originalName": "quick-attack",
+                "originalType": "normal",
+                "localizedName": "Quick Attack",
+                "localizedtype": "Normal"
+              }
+            ],
+            "idEntrenador": "ac9c",
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/123.ogg",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/123.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/123.png",
+            "localizedName": "Scyther"
+          },
+          {
+            "id": "567",
+            "especie": "Archeops",
+            "tipos": [
+              "rock",
+              "flying"
+            ],
+            "nivel": 100,
+            "vidaActual": 285,
+            "estadisticas": {
+              "hp": 285,
+              "atk": 303,
+              "def": 178,
+              "satk": 258,
+              "sdef": 157,
+              "spd": 257
+            },
+            "movimientos": [
               {
                 "nombre": "Earthquake",
                 "tipo": "ground",
@@ -448,423 +1706,89 @@
                 "originalName": "rock-slide",
                 "localizedName": "Rock Slide",
                 "localizedtype": "Rock"
-              }
-            ],
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/373.ogg",
-            "idEntrenador": "f5d9",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/373.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/373.png",
-            "localizedName": "Salamence"
-          },
-          {
-            "id": "384",
-            "especie": "Rayquaza",
-            "tipos": [
-              "dragon",
-              "flying"
-            ],
-            "nivel": 100,
-            "vidaActual": 335,
-            "estadisticas": {
-              "hp": 335,
-              "atk": 336,
-              "def": 209,
-              "satk": 324,
-              "sdef": 186,
-              "spd": 219
-            },
-            "movimientos": [
+              },
               {
-                "nombre": "Dragon Tail",
+                "nombre": "Dragon Breath",
                 "tipo": "dragon",
-                "clase": "physical",
+                "clase": "special",
                 "potencia": 60,
-                "precision": 90,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "dragon-tail",
-                "originalType": "dragon",
-                "localizedName": "Dragon Tail",
+                "precision": 100,
+                "usos": 20,
+                "pp": 20,
+                "originalName": "dragon-breath",
+                "localizedName": "Dragon Breath",
                 "localizedtype": "Dragon"
               },
               {
-                "nombre": "Dragon Ascent",
-                "tipo": "flying",
-                "clase": "physical",
-                "potencia": 120,
-                "precision": 100,
-                "usos": 5,
-                "pp": 5,
-                "originalName": "dragon-ascent",
-                "originalType": "flying",
-                "localizedName": "Dragon Ascent",
-                "localizedtype": "Flying"
-              },
-              {
-                "nombre": "Air Slash",
-                "tipo": "flying",
-                "clase": "special",
-                "potencia": 75,
-                "precision": 95,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "air-slash",
-                "originalType": "flying",
-                "localizedName": "Air Slash",
-                "localizedtype": "Flying"
-              },
-              {
-                "nombre": "Headbutt",
-                "tipo": "normal",
-                "clase": "physical",
-                "potencia": 70,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "headbutt",
-                "originalType": "normal",
-                "localizedName": "Headbutt",
-                "localizedtype": "Normal"
-              }
-            ],
-            "idEntrenador": "f5d9",
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/384.ogg",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/384.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/384.png",
-            "localizedName": "Rayquaza"
-          },
-          {
-            "id": "635",
-            "especie": "Hydreigon",
-            "tipos": [
-              "dark",
-              "dragon"
-            ],
-            "nivel": 100,
-            "vidaActual": 324,
-            "estadisticas": {
-              "hp": 324,
-              "atk": 255,
-              "def": 215,
-              "satk": 280,
-              "sdef": 224,
-              "spd": 232
-            },
-            "movimientos": [
-              {
-                "nombre": "Dark Pulse",
-                "tipo": "dark",
-                "clase": "special",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "dark-pulse",
-                "localizedName": "Dark Pulse",
-                "localizedtype": "Dark"
-              },
-              {
-                "nombre": "Dragon Pulse",
-                "tipo": "dragon",
-                "clase": "special",
-                "potencia": 85,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "dragon-pulse",
-                "localizedName": "Dragon Pulse",
-                "localizedtype": "Dragon"
-              },
-              {
-                "nombre": "Earth Power",
-                "tipo": "ground",
-                "clase": "special",
-                "potencia": 90,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earth-power",
-                "localizedName": "Earth Power",
-                "localizedtype": "Ground"
-              },
-              {
-                "nombre": "Flamethrower",
-                "tipo": "fire",
-                "clase": "special",
-                "potencia": 90,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "flamethrower",
-                "localizedName": "Flamethrower",
-                "localizedtype": "Fire"
-              }
-            ],
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/635.ogg",
-            "idEntrenador": "f5d9",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/635.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/635.png",
-            "localizedName": "Hydreigon"
-          },
-          {
-            "id": "612",
-            "especie": "Haxorus",
-            "tipos": [
-              "dragon"
-            ],
-            "nivel": 100,
-            "vidaActual": 289,
-            "estadisticas": {
-              "hp": 289,
-              "atk": 321,
-              "def": 227,
-              "satk": 139,
-              "sdef": 185,
-              "spd": 227
-            },
-            "movimientos": [
-              {
-                "nombre": "Dragon Claw",
-                "tipo": "dragon",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "dragon-claw",
-                "localizedName": "Dragon Claw",
-                "localizedtype": "Dragon"
-              },
-              {
-                "nombre": "Iron Head",
+                "nombre": "Steel Wing",
                 "tipo": "steel",
                 "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "iron-head",
-                "localizedName": "Iron Head",
+                "potencia": 70,
+                "precision": 90,
+                "usos": 25,
+                "pp": 25,
+                "originalName": "steel-wing",
+                "localizedName": "Steel Wing",
                 "localizedtype": "Steel"
-              },
-              {
-                "nombre": "Earthquake",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Earthquake",
-                "localizedtype": "Ground"
-              },
-              {
-                "nombre": "Crunch",
-                "tipo": "dark",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "crunch",
-                "localizedName": "Crunch",
-                "localizedtype": "Dark"
               }
             ],
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/612.ogg",
-            "idEntrenador": "f5d9",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/612.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/612.png",
-            "localizedName": "Haxorus"
-          },
-          {
-            "id": "230",
-            "especie": "Kingdra",
-            "tipos": [
-              "water",
-              "dragon"
-            ],
-            "nivel": 100,
-            "vidaActual": 284,
-            "estadisticas": {
-              "hp": 284,
-              "atk": 223,
-              "def": 199,
-              "satk": 219,
-              "sdef": 217,
-              "spd": 201
-            },
-            "movimientos": [
-              {
-                "nombre": "Surf",
-                "tipo": "water",
-                "clase": "special",
-                "potencia": 90,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "surf",
-                "localizedName": "Surf",
-                "localizedtype": "Water"
-              },
-              {
-                "nombre": "Ice Beam",
-                "tipo": "ice",
-                "clase": "special",
-                "potencia": 90,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "ice-beam",
-                "localizedName": "Ice Beam",
-                "localizedtype": "Ice"
-              },
-              {
-                "nombre": "Dragon Pulse",
-                "tipo": "dragon",
-                "clase": "special",
-                "potencia": 85,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "dragon-pulse",
-                "localizedName": "Dragon Pulse",
-                "localizedtype": "Dragon"
-              },
-              {
-                "nombre": "Waterfall",
-                "tipo": "water",
-                "clase": "physical",
-                "potencia": 80,
-                "precision": 100,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "waterfall",
-                "localizedName": "Waterfall",
-                "localizedtype": "Water"
-              }
-            ],
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/230.ogg",
-            "idEntrenador": "f5d9",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/230.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/230.png",
-            "localizedName": "Kingdra"
-          },
-          {
-            "id": "445",
-            "especie": "Garchomp",
-            "tipos": [
-              "dragon",
-              "ground"
-            ],
-            "nivel": 100,
-            "vidaActual": 354,
-            "estadisticas": {
-              "hp": 354,
-              "atk": 272,
-              "def": 236,
-              "satk": 182,
-              "sdef": 195,
-              "spd": 234
-            },
-            "movimientos": [
-              {
-                "nombre": "Earthquake",
-                "tipo": "ground",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "earthquake",
-                "localizedName": "Earthquake",
-                "localizedtype": "Ground"
-              },
-              {
-                "nombre": "Outrage",
-                "tipo": "dragon",
-                "clase": "physical",
-                "potencia": 120,
-                "precision": 100,
-                "usos": 10,
-                "pp": 10,
-                "originalName": "outrage",
-                "localizedName": "Outrage",
-                "localizedtype": "Dragon"
-              },
-              {
-                "nombre": "Fire Fang",
-                "tipo": "fire",
-                "clase": "physical",
-                "potencia": 65,
-                "precision": 95,
-                "usos": 15,
-                "pp": 15,
-                "originalName": "fire-fang",
-                "localizedName": "Fire Fang",
-                "localizedtype": "Fire"
-              },
-              {
-                "nombre": "Stone Edge",
-                "tipo": "rock",
-                "clase": "physical",
-                "potencia": 100,
-                "precision": 80,
-                "usos": 5,
-                "pp": 5,
-                "originalName": "stone-edge",
-                "localizedName": "Stone Edge",
-                "localizedtype": "Rock"
-              }
-            ],
-            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/445.ogg",
-            "idEntrenador": "f5d9",
-            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/445.png",
-            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/445.png",
-            "localizedName": "Garchomp"
+            "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/567.ogg",
+            "idEntrenador": "ac9c",
+            "backSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/back/567.png",
+            "frontSprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/567.png",
+            "localizedName": "Archeops"
           }
         ],
         "items": [
           {
-            "name": "max-revive",
-            "category": {
-              "name": "revival",
-              "url": "https://pokeapi.co/api/v2/item-category/29/"
-            },
-            "localizedName": "Max Revive",
-            "description": "REVIVES A FAINTED POKÉMON WITH ALL ITS HP.",
-            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/max-revive.png"
-          },
-          {
-            "name": "max-potion",
+            "name": "soda-pop",
             "category": {
               "name": "healing",
               "url": "https://pokeapi.co/api/v2/item-category/27/"
             },
-            "localizedName": "Max Potion",
-            "description": "FULLY RESTORES THE HP OF A POKÉMON.",
-            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/max-potion.png"
+            "localizedName": "Soda Pop",
+            "description": "A FIZZY SODA DRINK THAT RESTORES HP BY 60 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/soda-pop.png"
           },
           {
-            "name": "energy-powder",
+            "name": "hyper-potion",
             "category": {
               "name": "healing",
               "url": "https://pokeapi.co/api/v2/item-category/27/"
             },
-            "localizedName": "Energy Powder",
-            "description": "A BITTER POWDER THAT RESTORES HP BY 50 POINTS.",
-            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/energy-powder.png"
+            "localizedName": "Hyper Potion",
+            "description": "RESTORES THE HP OF A POKÉMON BY 200 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/hyper-potion.png"
           },
           {
-            "name": "energy-root",
+            "name": "berry-juice",
             "category": {
               "name": "healing",
               "url": "https://pokeapi.co/api/v2/item-category/27/"
             },
-            "localizedName": "Energy Root",
-            "description": "A BITTER ROOT THAT RESTORES HP BY 200 POINTS.",
-            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/energy-root.png"
+            "localizedName": "Berry Juice",
+            "description": "A 100% PURE JUICE THAT RESTORES HP BY 20 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/berry-juice.png"
+          },
+          {
+            "name": "lemonade",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Lemonade",
+            "description": "A VERY SWEET DRINK THAT RESTORES HP BY 80 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/lemonade.png"
+          },
+          {
+            "name": "moomoo-milk",
+            "category": {
+              "name": "healing",
+              "url": "https://pokeapi.co/api/v2/item-category/27/"
+            },
+            "localizedName": "Moomoo Milk",
+            "description": "A NUTRITIOUS MILK THAT RESTORES HP BY 100 POINTS.",
+            "sprite": "https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/items/moomoo-milk.png"
           }
         ]
       },
@@ -7235,6 +8159,138 @@
       ],
       "idEntrenador": "",
       "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/123.ogg"
+    },
+    {
+      "id": "167",
+      "especie": "spinarak",
+      "tipos": [
+        "bug",
+        "poison"
+      ],
+      "nivel": 100,
+      "vidaActual": 226,
+      "estadisticas": {
+        "hp": 226,
+        "atk": 168,
+        "def": 112,
+        "satk": 101,
+        "sdef": 108,
+        "spd": 85
+      },
+      "movimientos": [
+        {
+          "nombre": "double-edge",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 120,
+          "precision": 100,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "double-edge",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "poison-sting",
+          "tipo": "poison",
+          "clase": "physical",
+          "potencia": 15,
+          "precision": 100,
+          "usos": 35,
+          "pp": 35,
+          "originalName": "poison-sting",
+          "originalType": "poison"
+        },
+        {
+          "nombre": "body-slam",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 85,
+          "precision": 100,
+          "usos": 15,
+          "pp": 15,
+          "originalName": "body-slam",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "trailblaze",
+          "tipo": "grass",
+          "clase": "physical",
+          "potencia": 50,
+          "precision": 100,
+          "usos": 20,
+          "pp": 20,
+          "originalName": "trailblaze",
+          "originalType": "grass"
+        }
+      ],
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/167.ogg"
+    },
+    {
+      "id": "168",
+      "especie": "ariados",
+      "tipos": [
+        "bug",
+        "poison"
+      ],
+      "nivel": 100,
+      "vidaActual": 276,
+      "estadisticas": {
+        "hp": 276,
+        "atk": 210,
+        "def": 157,
+        "satk": 143,
+        "sdef": 165,
+        "spd": 109
+      },
+      "movimientos": [
+        {
+          "nombre": "Constrict",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 10,
+          "precision": 100,
+          "usos": 35,
+          "pp": 35,
+          "originalName": "Constrict",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "Thief",
+          "tipo": "dark",
+          "clase": "physical",
+          "potencia": 60,
+          "precision": 100,
+          "usos": 25,
+          "pp": 25,
+          "originalName": "Thief",
+          "originalType": "dark"
+        },
+        {
+          "nombre": "Facade",
+          "tipo": "normal",
+          "clase": "physical",
+          "potencia": 70,
+          "precision": 100,
+          "usos": 20,
+          "pp": 20,
+          "originalName": "Facade",
+          "originalType": "normal"
+        },
+        {
+          "nombre": "Pounce",
+          "tipo": "bug",
+          "clase": "physical",
+          "potencia": 50,
+          "precision": 100,
+          "usos": 20,
+          "pp": 20,
+          "originalName": "Pounce",
+          "originalType": "bug"
+        }
+      ],
+      "idEntrenador": "",
+      "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/168.ogg"
     }
   ],
   "admins": [

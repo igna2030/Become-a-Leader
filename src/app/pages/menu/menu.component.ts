@@ -64,7 +64,7 @@ export class MenuComponent implements OnInit {
   onNuevaPartida(): void {
     if (this.tienePartida) {
       const confirmacion = confirm(
-        "Ya tienes una partida guardada. ¿Deseas eliminarla para comenzar una nueva?"
+        this.translate.instant("alerts.saveAlreadyExits")
       );
       if (confirmacion) {
         this.eliminarPartida();
@@ -90,7 +90,7 @@ export class MenuComponent implements OnInit {
           this.router.navigate(['/nueva-partida']);
         },
         error: (error: Error) => {
-          console.error("Error al eliminar la partida:", error);
+          console.error(this.translate.instant("alerts.deletingSave"), error);
           this.router.navigate(['/nueva-partida']) // El juego debe permitir la creación de una partida en caso de que no exista una.
         },
       });

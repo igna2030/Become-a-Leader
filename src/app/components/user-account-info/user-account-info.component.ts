@@ -14,211 +14,232 @@ import { AppAudio } from '../app-audio/app-audio';
     styleUrls: ['./user-account-info.component.css']
 })
 export class UserAccountInfoComponent implements OnInit {
-  @Input() userId: string | null = null;
-  @Output() volver = new EventEmitter<void>();
+    @Input() userId: string | null = null;
+    @Output() profileUpdateCompleted = new EventEmitter<Usuario | null>();
 
-  
-  translate = inject(TranslateService); 
-  usuario: any = {};
+    
+    translate = inject(TranslateService); 
+    usuario: any = {};
 
-  cambioNickname: boolean = false;
-  editarNickname = false;
-  nickNameCopy: string = "";
-  nickNameErrorMsg: string = "";
-  showNickNameErrorMsg: boolean = false;
+    cambioNickname: boolean = false;
+    editarNickname = false;
+    nickNameCopy: string = "";
+    nickNameErrorMsg: string = "";
+    showNickNameErrorMsg: boolean = false;
 
-  mostrarCambioClave = false;
-  currentPassword = '';
-  newPassword = '';
-  confirmNewPassword = '';
-  passwordCopy: string = "";
-  claveActualIncorrectaMsg: boolean = false;
-  claveDistintaALaActualMsg: boolean = false;
-  clavesNuevasNoCoincidenMsg: boolean = false;
-  claveVaciaMsg: boolean = false;
+    mostrarCambioClave = false;
+    currentPassword = '';
+    newPassword = '';
+    confirmNewPassword = '';
+    passwordCopy: string = "";
+    claveActualIncorrectaMsg: boolean = false;
+    claveDistintaALaActualMsg: boolean = false;
+    clavesNuevasNoCoincidenMsg: boolean = false;
+    claveVaciaMsg: boolean = false;
 
 
-  editarEmail = false; // Habilitación a la edición.
-  emailEnUso = false; // Nuevo estado para el mensaje de error
-  emailCopy: string = "";
-  emailDistintoAlActualMsg: boolean = false;
-  emailEnUsoMsg: boolean = false;
-  cambioEmail: boolean = false;
-  cambioClave: boolean = false;
+    editarEmail = false;
+    emailEnUso = false;
+    emailCopy: string = "";
+    emailDistintoAlActualMsg: boolean = false;
+    emailEnUsoMsg: boolean = false;
+    cambioEmail: boolean = false;
+    cambioClave: boolean = false;
+    // Nuevo estado: Para el formato de email
+    emailFormatoInvalidoMsg: boolean = false; 
 
-  constructor(private userService: UserService) { }
+    constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
-    if (this.userId) {
-      this.userService.getUserByID(this.userId).subscribe({
-        next: (res) => {
-          this.usuario = res;
-          this.emailCopy = this.usuario.email; // Copiar el email inicial
-          this.nickNameCopy = this.usuario.nick;
-        },
-        error: (err) => {
-          console.error('Error al obtener el usuario: ' + err + '.');
+    ngOnInit(): void {
+        if (this.userId) {
+            this.userService.getUserByID(this.userId).subscribe({
+                next: (res) => {
+                    this.usuario = res;
+                    this.emailCopy = this.usuario.email; 
+                    this.nickNameCopy = this.usuario.nick;
+                },
+                error: (err) => {
+                    console.error('Error al obtener el usuario: ' + err + '.');
+                }
+            });
+        } else {
+            console.error("Error al encontrar el usuario.");
         }
-      });
-    } else {
-      console.error("Error al encontrar el usuario.");
     }
-  }
 
-  cambiarClave(): void {
-    this.desactivarAlertasClave();
-    if (this.currentPassword === this.usuario.password) { ///Debe conocer su password actual...
-      if (this.newPassword === this.confirmNewPassword &&
-        this.newPassword !== this.currentPassword &&
-        this.newPassword !== ""
-      ) {
-        this.usuario.password = this.newPassword;
-        this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
-          next: () => {
-            console.log("usuario actualizado...");
-            this.mostrarCambioClave = false;
-            this.cambioClave = true;
-            setTimeout(() => {
-              this.cambioClave = false;
-            }, 3000);
-          },
-          error: (err) => { console.error("Error al actualizar el usuario: " + err + ".") },
-        })
-      }
-      else {
-        if (this.newPassword === this.currentPassword) {
-          this.claveDistintaALaActualMsg = true;
+    cambiarClave(): void {
+        this.desactivarAlertasClave();
+        if (this.currentPassword === this.usuario.password) { 
+            if (this.newPassword === this.confirmNewPassword &&
+                this.newPassword !== this.currentPassword &&
+                this.newPassword !== ""
+            ) {
+                this.usuario.password = this.newPassword;
+                this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
+                    next: () => {
+                        console.log("usuario actualizado...");
+                        this.mostrarCambioClave = false;
+                        this.cambioClave = true;
+                        setTimeout(() => {
+                            this.cambioClave = false;
+                        }, 3000);
+                        this.profileUpdateCompleted.emit(this.usuario); 
+                    },
+                    error: (err) => { console.error("Error al actualizar el usuario: " + err + ".") },
+                })
+            }
+            else {
+                if (this.newPassword === this.currentPassword) {
+                    this.claveDistintaALaActualMsg = true;
+                }
+                else if (this.newPassword !== this.confirmNewPassword) {
+                    this.clavesNuevasNoCoincidenMsg = true;
+                }
+                else if (this.newPassword === "") {
+                    this.claveVaciaMsg = true;
+                }
+            }
         }
-        else if (this.newPassword !== this.confirmNewPassword) {
-          this.clavesNuevasNoCoincidenMsg = true;
+        else {
+            this.claveActualIncorrectaMsg = true;
         }
-        else if (this.newPassword === "") {
-          this.claveVaciaMsg = true;
-        }
-      }
     }
-    else {
-      this.claveActualIncorrectaMsg = true;
 
+    cambiarNickName(): void {
+        this.showNickNameErrorMsg = false;
+        
+        if (this.nickNameCopy !== this.usuario.nick && this.nickNameCopy !== "") {
+            this.usuario.nick = this.nickNameCopy;
+            this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
+                next: (res) => {
+                    console.log("Nickname actualizado y usuario emitido...");
+                    this.usuario = res; 
+                    this.cambioNickname = true;
+                    this.editarNickname = false;
+                    setTimeout(() => {
+                        this.cambioNickname = false;
+                    }, 3000);
+                    
+                    this.profileUpdateCompleted.emit(this.usuario); 
+                },
+                error: (err) => {
+                    console.error("error al actualizar el usuario: " + err + ".");
+                }
+            });
+        }
+        else {
+            if (this.nickNameCopy === "")
+                this.nickNameErrorMsg = "alerts.NicknameEmpty";
+            else if (this.nickNameCopy === this.usuario.nick)
+                this.nickNameErrorMsg = "alerts.NicknameSame";
+            
+            this.showNickNameErrorMsg = true;
+            this.editarNickname = true;
+        }
     }
-  }
 
+    private esFormatoGmail(email: string): boolean {
+        const gmailRegex = /@gmail\.com$/i;
+        return gmailRegex.test(email);
+    }
 
-  cambiarNickName(): void {
-    this.showNickNameErrorMsg = false;
-    if (this.nickNameCopy !== this.usuario.nick &&
-      this.nickNameCopy !== "") {
-        this.usuario.nick = this.nickNameCopy;
-        this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
-          next: () => {
-            console.log("usuario actualizado...");
-            this.cambioNickname = true;
-            this.editarNickname = false;
-            setTimeout(() => {
-              this.cambioNickname = false;
-            }, 3000);
-          },
-          error: (err) => {
-            console.error("error al actualizar el usuario: " + err + ".");
-          }
+    verificarUsoEmail(): void {
+        this.desactivarAlertasMail();
+        
+        if (!this.esFormatoGmail(this.emailCopy)) {
+            this.alertMailFormatoInvalido();
+            this.emailEnUso = true; // Bloquea el botón de guardar
+            return;
+        }
+        
+        if (this.emailCopy === this.usuario.email) {
+            this.alertMailDistintoAlActual();
+            this.emailEnUso = true; // Bloquea el botón de guardar
+            return;
+        }
+        
+        this.userService.getUserByEmail(this.emailCopy).subscribe({
+            next: (res: Usuario | null) => {
+                if (res) {
+                    this.emailEnUso = true;
+                    this.alertaMailEnUso();
+                } else {
+                    this.emailEnUso = false; // Permitir guardar
+                }
+            },
+            error: (err) => {
+                console.error("Error al verificar el uso del mail: " + err + ",");
+                this.emailEnUso = false;
+            }
         });
     }
-    else {
-      if (this.nickNameCopy === "")
-        this.nickNameErrorMsg = "alerts.NicknameEmpty";
-      else if (this.nickNameCopy === this.usuario.nick)
-        this.nickNameErrorMsg = "alerts.NicknameSame";
-      this.showNickNameErrorMsg = true;
-      this.editarNickname=true;
-    }
-  }
 
-  verificarUsoEmail(): void {
-    this.desactivarAlertasMail();
-    // Verificar si el email está en uso
-    if (this.emailCopy === this.usuario.email) {
-      this.alertMailDistintoAlActual();
-    }
-    else {
-      this.userService.getUserByEmail(this.emailCopy).subscribe({
-        next: (res: Usuario | null) => {
-          if (res) {
-            this.emailEnUso = true;
+    cambiarEmail(): void {
+        this.desactivarAlertasMail();
+        
+        if (!this.esFormatoGmail(this.emailCopy)) {
+            this.alertMailFormatoInvalido();
+            return;
+        }
+
+        if (this.emailCopy === this.usuario.email) {
+            this.alertMailDistintoAlActual();
+            return;
+        }
+
+        if (!this.emailEnUso) {
+            this.usuario.email = this.emailCopy;
+            this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
+                next: (res) => {
+                    console.log("Email actualizado...");
+                    this.usuario = res; 
+                    this.editarEmail = false;
+                    this.cambioEmail = true;
+                    setTimeout(() => {
+                        this.cambioEmail = false;
+                    }, 3000);
+                    
+                    this.profileUpdateCompleted.emit(this.usuario); 
+                },
+                error: (err) => {
+                    console.error(err.message);
+                }
+            });
+        } else {
             this.alertaMailEnUso();
-          } else {
-            this.emailEnUso = false;
-          }
-        },
-        error: (err) => {
-          console.error("Error al verificar el uso del mail: " + err + ",");
         }
-      });
     }
-  }
 
-  cambiarEmail(): void {
-    this.desactivarAlertasMail();
-    if (!this.emailEnUso &&
-      (this.emailCopy !== this.usuario.email)
-    ) {
-      // Actualizar usuario
-      this.usuario.email = this.emailCopy;
-      // Actualizar los datos
-      this.userService.updateUser(this.usuario.id, this.usuario).subscribe({
-        next: () => {
-          console.log("usuario actualizado...");
-          this.editarEmail = false;
-          this.cambioEmail = true;
-          setTimeout(() => {
-            this.cambioEmail = false;
-          }, 3000);
-        },
-        error: (err) => {
-          console.error(err.message);
-        }
-      });
-    } else {
-      if (this.emailCopy === this.usuario.email) {
-        //El usuario ya posee esta dirección.
-        this.alertMailDistintoAlActual();
-      }
-      else {
-        //La dirección está siendo utilizada por otro usuario.
-        this.alertaMailEnUso();
-      }
+    desactivarAlertasClave() {
+        this.claveActualIncorrectaMsg = false;
+        this.claveDistintaALaActualMsg = false;
+        this.clavesNuevasNoCoincidenMsg = false;
+        this.claveVaciaMsg = false;
     }
-  }
 
-  desactivarAlertasClave() {
-    this.claveActualIncorrectaMsg = false;
-    this.claveDistintaALaActualMsg = false;
-    this.clavesNuevasNoCoincidenMsg = false;
-    this.claveVaciaMsg = false;
-  }
+    desactivarAlertasMail() {
+        this.emailDistintoAlActualMsg = false;
+        this.emailEnUsoMsg = false;
+        this.emailFormatoInvalidoMsg = false; // Desactivar la nueva alerta
+    }
 
-  desactivarAlertasMail() {
-    this.emailDistintoAlActualMsg = false;
-    this.emailEnUsoMsg = false;
-  }
+    alertMailDistintoAlActual(): void {
+        this.desactivarAlertasMail();
+        this.emailDistintoAlActualMsg = true;
+    }
 
-  alertMailDistintoAlActual(): void {
-    //Desactivar las otras alertas.
-    this.emailEnUsoMsg = false;
+    alertaMailEnUso(): void {
+        this.desactivarAlertasMail();
+        this.emailEnUsoMsg = true;
+    }
 
-    this.emailDistintoAlActualMsg = true;
+    alertMailFormatoInvalido(): void {
+        this.desactivarAlertasMail();
+        this.emailFormatoInvalidoMsg = true;
+    }
 
-  }
-
-  alertaMailEnUso(): void {
-    this.emailDistintoAlActualMsg = false;
-
-    this.emailEnUsoMsg = true;
-
-  }
-
-  onVolver(): void {
-    this.volver.emit();
-    console.log("hola");
-  }
-  
+    onVolver(): void {
+        // Emitir null al volver, indicando al padre que solo cambie la vista.
+        this.profileUpdateCompleted.emit(null); 
+    }
 }
